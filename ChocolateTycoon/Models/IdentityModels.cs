@@ -25,6 +25,7 @@ namespace ChocolateTycoon.Models
         public DbSet<MainStorage> MainStorages { get; set; }
         public DbSet<Safe> Safes { get; set; }
         public DbSet<Player> Players { get; set; }
+        public DbSet<Chocolate> Chocolates { get; set; }
 
         public ApplicationDbContext()
             : base("ChocolateTycoonContext", throwIfV1Schema: false)
