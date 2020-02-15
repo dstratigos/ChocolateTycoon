@@ -20,11 +20,11 @@ namespace ChocolateTycoon.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        DbSet<Store> Stores { get; set; }
-        DbSet<Factory> Factories { get; set; }
-        DbSet<MainStorage> MainStorages { get; set; }
-        DbSet<Safe> Safes { get; set; }
-        DbSet<Player> Players { get; set; }
+        public DbSet<Store> Stores { get; set; }
+        public DbSet<Factory> Factories { get; set; }
+        public DbSet<MainStorage> MainStorages { get; set; }
+        public DbSet<Safe> Safes { get; set; }
+        public DbSet<Player> Players { get; set; }
 
         public ApplicationDbContext()
             : base("ChocolateTycoonContext", throwIfV1Schema: false)
