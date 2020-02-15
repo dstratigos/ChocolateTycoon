@@ -190,6 +190,18 @@
     <Compile Include="Migrations\202002151112533_ChocolateClass.Designer.cs">
       <DependentUpon>202002151112533_ChocolateClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002151137585_ForeignKeysChocolate.cs" />
+    <Compile Include="Migrations\202002151137585_ForeignKeysChocolate.Designer.cs">
+      <DependentUpon>202002151137585_ForeignKeysChocolate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002151150148_MainStorageName.cs" />
+    <Compile Include="Migrations\202002151150148_MainStorageName.Designer.cs">
+      <DependentUpon>202002151150148_MainStorageName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002151456087_changesInModels.cs" />
+    <Compile Include="Migrations\202002151456087_changesInModels.Designer.cs">
+      <DependentUpon>202002151456087_changesInModels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chocolate.cs" />
@@ -290,6 +302,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002151112533_ChocolateClass.resx">
       <DependentUpon>202002151112533_ChocolateClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002151137585_ForeignKeysChocolate.resx">
+      <DependentUpon>202002151137585_ForeignKeysChocolate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002151150148_MainStorageName.resx">
+      <DependentUpon>202002151150148_MainStorageName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002151456087_changesInModels.resx">
+      <DependentUpon>202002151456087_changesInModels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

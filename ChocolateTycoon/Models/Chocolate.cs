@@ -21,5 +21,18 @@ namespace ChocolateTycoon.Models
         public Type ChocolateType { get; set; }
 
         public decimal Price { get; set; }
+
+        //public int FactoryID { get; set; }
+
+        private int _mainStorageID;
+
+        public int MainStorageID
+        {
+            get => _mainStorageID;
+
+            private set => _mainStorageID = 1;
+        }
+
+        public MainStorage MainStorage { get; set; }
     }
 }

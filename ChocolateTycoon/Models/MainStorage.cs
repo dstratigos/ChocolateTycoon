@@ -8,5 +8,15 @@ namespace ChocolateTycoon.Models
     public class MainStorage
     {
         public int ID { get; set; }
+
+        public string Name { get; set; }
+
+        public List<Chocolate> Chocolates { get; set; }
+
+
+        public MainStorage()
+        {
+            Chocolates = new List<Chocolate>();
+        }
     }
 }
