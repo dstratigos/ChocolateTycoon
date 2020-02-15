@@ -11,5 +11,7 @@ namespace ChocolateTycoon.Models
         public string Name { get; set; }
         public byte Level { get; set; }
 
+        public ProductionUnit ProductionUnit { get; set; }
+
     }
 }
