@@ -177,6 +177,14 @@
     <Compile Include="Migrations\202002150905388_InitialModel.Designer.cs">
       <DependentUpon>202002150905388_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002151017439_InitialEntitiesTables.cs" />
+    <Compile Include="Migrations\202002151017439_InitialEntitiesTables.Designer.cs">
+      <DependentUpon>202002151017439_InitialEntitiesTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002151019449_PopulateInitialTables.cs" />
+    <Compile Include="Migrations\202002151019449_PopulateInitialTables.Designer.cs">
+      <DependentUpon>202002151019449_PopulateInitialTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Factory.cs" />
@@ -265,6 +273,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202002150905388_InitialModel.resx">
       <DependentUpon>202002150905388_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002151017439_InitialEntitiesTables.resx">
+      <DependentUpon>202002151017439_InitialEntitiesTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002151019449_PopulateInitialTables.resx">
+      <DependentUpon>202002151019449_PopulateInitialTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

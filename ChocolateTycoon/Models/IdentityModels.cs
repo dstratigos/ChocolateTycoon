@@ -20,8 +20,14 @@ namespace ChocolateTycoon.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        DbSet<Store> Stores { get; set; }
+        DbSet<Factory> Factories { get; set; }
+        DbSet<MainStorage> MainStorages { get; set; }
+        DbSet<Safe> Safes { get; set; }
+        DbSet<Player> Players { get; set; }
+
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("ChocolateTycoonContext", throwIfV1Schema: false)
         {
         }
 
