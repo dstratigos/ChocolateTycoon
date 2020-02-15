@@ -21,8 +21,6 @@ namespace ChocolateTycoon.Controllers
         {
             var factories = db.Factories;
 
-
-
             return View(factories);
         }
     }
