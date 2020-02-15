@@ -12,5 +12,13 @@ namespace ChocolateTycoon.Models
         public string Name { get; set; }
 
         public byte Level { get; set; }
+
+        //public int MainStorageID { get; set; }
+
+        //public int SafeID { get; set; }
+
+        //public MainStorage MainStorage { get; set; }
+
+        //public Safe Safe { get; set; }
     }
 }

@@ -1,0 +1,22 @@
+﻿@model IEnumerable<ChocolateTycoon.Models.Store>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Stores</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Store Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var store in Model)
+        {
+            <tr>
+                <td>@store.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
