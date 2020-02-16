@@ -13,7 +13,7 @@ namespace ChocolateTycoon.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202002161035146_PopulateProductionUnits"; }
+            get { return "202002161059130_PopulateProductionUnits"; }
         }
         
         string IMigrationMetadata.Source

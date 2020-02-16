@@ -10,12 +10,14 @@
 
     <th>Name</th>
     <th>Level</th>
+    <th>Production per Day</th>
 
     @foreach (var item in Model)
     {
         <tr>
             <td>@Html.DisplayFor(modelItem => item.Name)</td>
             <td>@Html.DisplayFor(modelItem => item.Level)</td>
+            <td>@Html.DisplayFor(modelItem => item.ProductionUnit.MaxProductionPerDay)</td>
         </tr>
     }
 
