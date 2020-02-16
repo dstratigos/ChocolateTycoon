@@ -203,6 +203,10 @@
     <Compile Include="Migrations\202002151846574_AddedProductionUnit.Designer.cs">
       <DependentUpon>202002151846574_AddedProductionUnit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002161035146_PopulateProductionUnits.cs" />
+    <Compile Include="Migrations\202002161035146_PopulateProductionUnits.Designer.cs">
+      <DependentUpon>202002161035146_PopulateProductionUnits.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chocolate.cs" />
@@ -314,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002151846574_AddedProductionUnit.resx">
       <DependentUpon>202002151846574_AddedProductionUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002161035146_PopulateProductionUnits.resx">
+      <DependentUpon>202002161035146_PopulateProductionUnits.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
