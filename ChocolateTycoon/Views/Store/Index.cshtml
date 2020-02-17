@@ -5,17 +5,21 @@
 
 <h2>Stores</h2>
 
-<table class="table table-bordered">
+<table class="table">
     <thead>
         <tr>
             <th>Store Name</th>
+            <th>Level</th>
+            <th>Current Chocolate Stock</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var store in Model)
         {
             <tr>
-                <td>@store.Name</td>
+                <td>@Html.ActionLink(store.Name, "Details", "Store", new { id = store.ID }, null)</td>
+                <td>@store.Level</td>
+                <td>@store.Chocolates</td>
             </tr>
         }
     </tbody>

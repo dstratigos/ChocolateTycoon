@@ -13,27 +13,13 @@ namespace ChocolateTycoon.Models
 
         public byte Level { get; set; }
 
-        //private int _mainStorageID;
+        public int MainStorageID { get; set; }
 
-        //public int MainStorageID
-        //{
-        //    get => _mainStorageID;
+        public int SafeID { get; set; }
 
-        //    private set => _mainStorageID = 1;
-        //}
+        public MainStorage MainStorage { get; set; }
 
-        //private int _safeID;
-
-        //public int SafeID
-        //{
-        //    get => _safeID;
-
-        //    private set => _safeID = 1;
-        //}
-
-        //public MainStorage MainStorage { get; set; }
-
-        //public Safe Safe { get; set; }
+        public Safe Safe { get; set; }
 
         public List<Chocolate> Chocolates { get; set; }
     }

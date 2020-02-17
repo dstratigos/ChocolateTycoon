@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace ChocolateTycoon.Controllers
 {
@@ -24,9 +25,19 @@ namespace ChocolateTycoon.Controllers
         // GET: Store
         public ActionResult Index()
         {
-            var stores = db.Stores;
+            var stores = db.Stores.ToList();
 
             return View(stores);
+        }
+
+        public ActionResult Details(int? id)
+        {
+            var store = db.Stores.SingleOrDefault(s => s.ID == id);
+
+            if (store == null)
+                return HttpNotFound();
+
+            return View(store);
         }
     }
 }

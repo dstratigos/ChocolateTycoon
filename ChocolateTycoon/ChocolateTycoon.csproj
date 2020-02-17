@@ -207,6 +207,10 @@
     <Compile Include="Migrations\202002161059130_PopulateProductionUnits.Designer.cs">
       <DependentUpon>202002161059130_PopulateProductionUnits.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002170834438_StoreForeignKeysMainStorageSafe.cs" />
+    <Compile Include="Migrations\202002170834438_StoreForeignKeysMainStorageSafe.Designer.cs">
+      <DependentUpon>202002170834438_StoreForeignKeysMainStorageSafe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chocolate.cs" />
@@ -281,6 +285,7 @@
     <Content Include="Views\Store\Index.cshtml" />
     <Content Include="Views\Factory\Index.cshtml" />
     <Content Include="Views\Factory\Edit.cshtml" />
+    <Content Include="Views\Store\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -322,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002161059130_PopulateProductionUnits.resx">
       <DependentUpon>202002161059130_PopulateProductionUnits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002170834438_StoreForeignKeysMainStorageSafe.resx">
+      <DependentUpon>202002170834438_StoreForeignKeysMainStorageSafe.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
