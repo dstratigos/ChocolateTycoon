@@ -18,37 +18,75 @@ namespace ChocolateTycoon.Controllers
         }
 
         // GET: Factory
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             var factories = db.Factories
                 .Include(f => f.ProductionUnit);
 
+            if (id != null)
+            {
+                ViewBag.SelectedId = id.Value;
+            }
+
             return View(factories);
         }
 
-        // GET: Factory/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Factory/Details/5
+        [ChildActionOnly]
+        public PartialViewResult Details(int? id)
         {
-            var factory = db.Factories.SingleOrDefault(f => f.ID == id);
+            var factory = db.Factories
+                .Include(f => f.ProductionUnit)
+                .FirstOrDefault(f => f.ID == id);
 
-            if (id == null)
-                return HttpNotFound();
+            return PartialView(factory);
+        }
+
+        // GET: Factory/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: Factory/Create
+        [HttpPost, ActionName("Create")]
+        public ActionResult CreatePost(string name)
+        {
+            var factories = db.Factories;
+            
+            var factory = new Factory
+            {
+                Name = name,
+                Level = 1,
+                ProductionUnit = new ProductionUnit {MaxProductionPerDay=200 }
+            };
+
+            //foreach (var f in factories)
+            //{
+            //    if (f.Name == factory.Name)
+            //    {
+            //        ModelState.AddModelError("Name", "This name already exists!");
+            //    }
+            //}
+
+            if (ModelState.IsValid)
+            {
+                factories.Add(factory);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
             return View(factory);
         }
 
-        // POST: Factory/Edit/5
-        [HttpPost]
-        public ActionResult Save(Factory factory)
+
+
+
+        protected override void Dispose(bool disposing)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(factory).State = EntityState.Modified;                
-
-                db.SaveChanges();
-            }
-
-            return RedirectToAction("Index", "Factory");
+            db.Dispose();
         }
+
+
     }
 }
