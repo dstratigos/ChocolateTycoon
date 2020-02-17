@@ -18,37 +18,30 @@ namespace ChocolateTycoon.Controllers
         }
 
         // GET: Factory
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             var factories = db.Factories
                 .Include(f => f.ProductionUnit);
 
+            if (id != null)
+            {
+                ViewBag.SelectedId = id.Value;
+            }
+
             return View(factories);
         }
 
-        // GET: Factory/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Factory/Details/5
+        [ChildActionOnly]
+        public PartialViewResult Details(int? id)
         {
-            var factory = db.Factories.SingleOrDefault(f => f.ID == id);
-
-            if (id == null)
-                return HttpNotFound();
-
-            return View(factory);
+            var factory = db.Factories
+                .Include(f => f.ProductionUnit)
+                .FirstOrDefault(f => f.ID == id);
+            
+            return PartialView(factory);
         }
 
-        // POST: Factory/Edit/5
-        [HttpPost]
-        public ActionResult Save(Factory factory)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(factory).State = EntityState.Modified;                
-
-                db.SaveChanges();
-            }
-
-            return RedirectToAction("Index", "Factory");
-        }
+        
     }
 }

@@ -1,0 +1,22 @@
+﻿@model ChocolateTycoon.Models.Factory
+
+
+    <table class="table">
+        <tr>
+            <th>Factory ID</th>
+            <th>Level</th>
+            <th>Production per Day</th>
+        </tr>
+
+        <tr>
+            <td>@Html.DisplayFor(model => model.ID)</td>
+            <td>@Html.DisplayFor(model => model.Level)</td>
+            <td>
+                @Html.DisplayFor(model => model.ProductionUnit.MaxProductionPerDay)
+            </td>
+        </tr>
+        </table>
+
+
+
+

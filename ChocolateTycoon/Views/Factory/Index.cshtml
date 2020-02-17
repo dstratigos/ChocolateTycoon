@@ -8,21 +8,39 @@
 
 <table class="table">
 
-    <th>Name</th>
-    <th>Level</th>
-    <th>Production per Day</th>
+    <tr>
+        <th>Name</th>
+        <th>Level</th>
+        <th>Production per Day</th>
+    </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
+        string selected = "";
+
+        if (item.ID == ViewBag.SelectedId)
+        {
+            selected = "success";
+        }
+
+        <tr class=@selected>
             <td>@Html.DisplayFor(modelItem => item.Name)</td>
             <td>@Html.DisplayFor(modelItem => item.Level)</td>
             <td>@Html.DisplayFor(modelItem => item.ProductionUnit.MaxProductionPerDay)</td>
-            <td>@Html.ActionLink("Edit", "Edit", new {id = item.ID }, null)</td>
+            <td>@Html.ActionLink("Details", null, new { id = item.ID }, new { @style = "text-align: right" })</td>
         </tr>
     }
-
-
-
-
 </table>
+
+@if (ViewBag.SelectedId != null)
+{
+    foreach (var item in Model)
+    {
+        if (ViewBag.SelectedId == item.ID)
+        {
+            {
+                Html.RenderAction("Details", new { id = item.ID });
+            }
+        }
+    }
+}
