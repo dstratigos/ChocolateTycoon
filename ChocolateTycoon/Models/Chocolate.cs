@@ -24,7 +24,17 @@ namespace ChocolateTycoon.Models
 
         //public int FactoryID { get; set; }
 
-        public int MainStorageID { get; set; }
+        private int _mainStorageID;
+
+        public int MainStorageID
+        {
+            get => _mainStorageID;
+
+            private set
+            {
+                _mainStorageID = 1;
+            }
+        }
 
         public MainStorage MainStorage { get; set; }
     }

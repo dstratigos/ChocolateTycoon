@@ -1,0 +1,21 @@
+﻿@model ChocolateTycoon.ViewModels.StoreFormViewModel
+@{
+    ViewBag.Title = "StoreForm";
+}
+
+<h2>@Model.Title</h2>
+
+@using (Html.BeginForm("Save", "Store"))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        @Html.LabelFor(s => s.Name)
+        @Html.TextBoxFor(s => s.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(s => s.Level)
+        @Html.TextBoxFor(s => s.Level, new { @class = "form-control" })
+    </div>
+    @Html.HiddenFor(s => s.ID)
+    <button type="submit" class="btn btn-primary">Save</button>
+}

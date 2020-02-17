@@ -17,9 +17,10 @@
         @foreach (var store in Model)
         {
             <tr>
-                <td>@Html.ActionLink(store.Name, "Details", "Store", new { id = store.ID }, null)</td>
+                <td>@store.Name</td>
                 <td>@store.Level</td>
                 <td>@store.Chocolates</td>
+                <td>@Html.ActionLink("Edit", "Edit", "Store", new { id = store.ID }, null)</td>
             </tr>
         }
     </tbody>
