@@ -215,6 +215,10 @@
     <Compile Include="Migrations\202002171129170_PopulateChocolatesTable.Designer.cs">
       <DependentUpon>202002171129170_PopulateChocolatesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002180702421_FactoryAnnotations.cs" />
+    <Compile Include="Migrations\202002180702421_FactoryAnnotations.Designer.cs">
+      <DependentUpon>202002180702421_FactoryAnnotations.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chocolate.cs" />
@@ -340,6 +344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002171129170_PopulateChocolatesTable.resx">
       <DependentUpon>202002171129170_PopulateChocolatesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002180702421_FactoryAnnotations.resx">
+      <DependentUpon>202002180702421_FactoryAnnotations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
