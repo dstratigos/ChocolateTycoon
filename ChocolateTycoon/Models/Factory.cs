@@ -13,9 +13,14 @@ namespace ChocolateTycoon.Models
         [Required]
         [StringLength(100, ErrorMessage = "Please enter a name up to 100 characters")]
         public string Name { get; set; }
-        public byte Level { get; set; }
+        public byte Level { get; private set; }
 
         public ProductionUnit ProductionUnit { get; set; }
+
+        public Factory()
+        {
+            Level = 1;
+        }
 
     }
 }

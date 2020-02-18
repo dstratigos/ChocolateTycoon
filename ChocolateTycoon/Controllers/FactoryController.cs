@@ -64,24 +64,24 @@ namespace ChocolateTycoon.Controllers
         public ActionResult Save(Factory factory)
         {
             var factories = db.Factories;
-                        
+
             if (factory.ID == 0)
             {
+                foreach (var f in factories)
+                {
+                    if (f.Name == factory.Name)
+                    {
+                        ModelState.AddModelError("Name", "This name already exists!");
+                        break;
+                    }
+                }
+
                 var newFactory = new Factory
                 {
-                    Name = factory.Name,
-                    Level = 1,
+                    Name = factory.Name,                    
                     ProductionUnit = new ProductionUnit { MaxProductionPerDay = 200 }
                 };
 
-                //foreach (var f in factories)
-                //{
-                //    if (f.Name == factory.Name)
-                //    {
-                //        ModelState.AddModelError("Name", "This name already exists!");
-                //    }
-                //}
-                
                 factories.Add(newFactory);
             }
             else
@@ -90,10 +90,10 @@ namespace ChocolateTycoon.Controllers
                 factoryDb.Name = factory.Name;
             }
 
+            if (!ModelState.IsValid)
+                return View("FactoryForm");
 
-
-            if (ModelState.IsValid)
-                db.SaveChanges();
+            db.SaveChanges();
 
             return RedirectToAction("Index");
         }
