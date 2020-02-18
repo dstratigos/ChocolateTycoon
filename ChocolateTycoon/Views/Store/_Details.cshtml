@@ -1,0 +1,19 @@
+﻿@model ChocolateTycoon.Models.Store
+@{
+    ViewBag.Title = "_Details";
+}
+
+<h2>@Model.Name</h2>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Level</th>
+    </tr>
+    <tr>
+        <td>@Model.ID</td>
+        <td>@Model.Name</td>
+        <td>@Model.Level</td>
+    </tr>
+</table>
