@@ -37,6 +37,7 @@ namespace ChocolateTycoon.Controllers
             return View(stores);
         }
 
+        //[ChildActionOnly]
         public ActionResult Details(int? id)
         {
             if (id == null)

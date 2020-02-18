@@ -30,7 +30,7 @@
             }
 
             <tr class=@selected>
-                <td>@Html.ActionLink(store.Name, "Details", "Store", new { id = store.ID }, null)</td>
+                <td>@Html.ActionLink(store.Name, "Details", "Store", new { id = store.ID }, new { @style = "text-align: right" })</td>
                 <td>@store.Level</td>
                 <td>@store.Chocolates</td>
                 <td>@Html.ActionLink("Edit", "Edit", "Store", new { id = store.ID }, null)</td>
@@ -46,7 +46,7 @@
         if (ViewBag.SelectedId == store.ID)
         {
             {
-                Html.RenderAction("_Details", new { id = store.ID });
+                Html.RenderAction("Details", new { id = store.ID });
             }
         }
     }
