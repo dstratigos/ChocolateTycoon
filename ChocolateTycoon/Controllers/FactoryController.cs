@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -31,7 +32,7 @@ namespace ChocolateTycoon.Controllers
             return View(factories);
         }
 
-        // GET: Factory/Details/5
+        // GET: Factory/Details/id
         [ChildActionOnly]
         public PartialViewResult Details(int? id)
         {
@@ -48,7 +49,7 @@ namespace ChocolateTycoon.Controllers
             return View("FactoryForm");
         }
 
-        // GET: factory/Edit
+        // GET: Factory/Edit/id
         public ActionResult Edit(int? id)
         {
             var factory = db.Factories.SingleOrDefault(f => f.ID == id);
@@ -59,7 +60,7 @@ namespace ChocolateTycoon.Controllers
             return View("FactoryForm", factory);
         }
 
-        // POST: Factory/Create
+        // POST: Factory/Save
         [HttpPost]
         public ActionResult Save(Factory factory)
         {
@@ -78,7 +79,7 @@ namespace ChocolateTycoon.Controllers
 
                 var newFactory = new Factory
                 {
-                    Name = factory.Name,                    
+                    Name = factory.Name,
                     ProductionUnit = new ProductionUnit { MaxProductionPerDay = 200 }
                 };
 
@@ -98,9 +99,47 @@ namespace ChocolateTycoon.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Factory/Delete/id
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
+            var factory = db.Factories
+                .Include(f => f.ProductionUnit)
+                .SingleOrDefault(f => f.ID == id);
 
+            if (factory == null)
+                return HttpNotFound();
 
+            return View(factory);
+        }
+
+        // POST: Factory/Delete/id
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeletePost(Factory factory)
+        {
+            var factories = db.Factories;
+
+            var factoryToDelete = factories
+                .Include(f => f.ProductionUnit)
+                .SingleOrDefault(f => f.ID == factory.ID);
+
+            if (factory == null)
+                return HttpNotFound();
+
+            if (factoryToDelete.ProductionUnit != null)
+            {
+                factoryToDelete.ProductionUnit = null;
+            }
+
+            factories.Remove(factoryToDelete);
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+
+        }
 
         protected override void Dispose(bool disposing)
         {

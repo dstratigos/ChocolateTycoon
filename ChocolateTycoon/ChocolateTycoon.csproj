@@ -297,6 +297,7 @@
     <Content Include="Views\Factory\Details.cshtml" />
     <Content Include="Views\Factory\FactoryForm.cshtml" />
     <Content Include="Views\Store\StoreForm.cshtml" />
+    <Content Include="Views\Factory\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

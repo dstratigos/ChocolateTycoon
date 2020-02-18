@@ -32,7 +32,7 @@
             <td>@Html.DisplayFor(modelItem => item.Level)</td>
             <td>@Html.ActionLink("Details", null, new { id = item.ID }, new { @style = "text-align: right" })</td>
             <td>@Html.ActionLink("Edit", "Edit", new { id = item.ID }, null)</td>
-
+            <td>@Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "text-danger" })</td>
         </tr>
     }
 </table>
