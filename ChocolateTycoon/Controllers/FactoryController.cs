@@ -45,39 +45,59 @@ namespace ChocolateTycoon.Controllers
         // GET: Factory/Create
         public ActionResult Create()
         {
-            return View();
+            return View("FactoryForm");
+        }
+
+        // GET: factory/Edit
+        public ActionResult Edit(int? id)
+        {
+            var factory = db.Factories.SingleOrDefault(f => f.ID == id);
+
+            if (factory == null)
+                return HttpNotFound();
+
+            return View("FactoryForm", factory);
         }
 
         // POST: Factory/Create
-        [HttpPost, ActionName("Create")]
-        public ActionResult CreatePost(string name)
+        [HttpPost]
+        public ActionResult Save(Factory factory)
         {
             var factories = db.Factories;
-            
-            var factory = new Factory
+                        
+            if (factory.ID == 0)
             {
-                Name = name,
-                Level = 1,
-                ProductionUnit = new ProductionUnit {MaxProductionPerDay=200 }
-            };
+                var newFactory = new Factory
+                {
+                    Name = factory.Name,
+                    Level = 1,
+                    ProductionUnit = new ProductionUnit { MaxProductionPerDay = 200 }
+                };
 
-            //foreach (var f in factories)
-            //{
-            //    if (f.Name == factory.Name)
-            //    {
-            //        ModelState.AddModelError("Name", "This name already exists!");
-            //    }
-            //}
-
-            if (ModelState.IsValid)
+                //foreach (var f in factories)
+                //{
+                //    if (f.Name == factory.Name)
+                //    {
+                //        ModelState.AddModelError("Name", "This name already exists!");
+                //    }
+                //}
+                
+                factories.Add(newFactory);
+            }
+            else
             {
-                factories.Add(factory);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var factoryDb = db.Factories.SingleOrDefault(f => f.ID == factory.ID);
+                factoryDb.Name = factory.Name;
             }
 
-            return View(factory);
+
+
+            if (ModelState.IsValid)
+                db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
+
 
 
 

@@ -1,23 +1,28 @@
 ﻿@model ChocolateTycoon.Models.Factory
 
 
-@{
-    ViewBag.Title = "Create";
+<h2>Factory</h2>
+
+@if(Model == null)
+{
+    <h4>Create</h4>
+}
+else
+{
+    <h4>Edit</h4>
 }
 
-<h2>Create</h2>
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("Save", "Factory"))
 {
     <div class="form-horizontal">
-        <h4>Factory</h4>
-
+        
         <div class="form-group">
             @Html.LabelFor(model => model.Name, new { @class = "control-label" })
             <div>
                 @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
             </div>
         </div>
+        @Html.HiddenFor(model => model.ID)
 
         <button type="submit" class="btn btn-primary">
             Save

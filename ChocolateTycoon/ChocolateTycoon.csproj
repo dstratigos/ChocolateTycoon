@@ -295,7 +295,7 @@
     <Content Include="Views\Factory\Index.cshtml" />
     <Content Include="Views\Store\Details.cshtml" />
     <Content Include="Views\Factory\Details.cshtml" />
-    <Content Include="Views\Factory\Create.cshtml" />
+    <Content Include="Views\Factory\FactoryForm.cshtml" />
     <Content Include="Views\Store\StoreForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
