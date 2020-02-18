@@ -25,25 +25,30 @@ namespace ChocolateTycoon.Controllers
         }
 
         // GET: Store
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
             var stores = db.Stores.ToList();
+
+            if (id != null)
+            {
+                ViewBag.SelectedId = id.Value;
+            }
 
             return View(stores);
         }
 
-        //public ActionResult Details(int? id)
-        //{
-        //    if (id == null)
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-        //    var store = db.Stores.SingleOrDefault(s => s.ID == id);
+            var store = db.Stores.SingleOrDefault(s => s.ID == id);
 
-        //    if (store == null)
-        //        return HttpNotFound();
+            if (store == null)
+                return HttpNotFound();
 
-        //    return View(store);
-        //}
+            return PartialView("_Details", store);
+        }
 
         public ActionResult New()
         {

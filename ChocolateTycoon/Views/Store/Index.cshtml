@@ -5,6 +5,12 @@
 
 <h2>Stores</h2>
 
+<hr />
+<button type="button" class="btn-link">
+    @Html.ActionLink("Create New", "Create")
+</button>
+<hr />
+
 <table class="table">
     <thead>
         <tr>
@@ -16,8 +22,15 @@
     <tbody>
         @foreach (var store in Model)
         {
-            <tr>
-                <td>@store.Name</td>
+            string selected = "";
+
+            if (store.ID == ViewBag.SelectedId)
+            {
+                selected = "success";
+            }
+
+            <tr class=@selected>
+                <td>@Html.ActionLink(store.Name, "Details", "Store", new { id = store.ID }, null)</td>
                 <td>@store.Level</td>
                 <td>@store.Chocolates</td>
                 <td>@Html.ActionLink("Edit", "Edit", "Store", new { id = store.ID }, null)</td>
@@ -25,3 +38,17 @@
         }
     </tbody>
 </table>
+
+@if (ViewBag.SelectedId != null)
+{
+    foreach (var store in Model)
+    {
+        if (ViewBag.SelectedId == store.ID)
+        {
+            {
+                Html.RenderAction("_Details", new { id = store.ID });
+            }
+        }
+    }
+}
+

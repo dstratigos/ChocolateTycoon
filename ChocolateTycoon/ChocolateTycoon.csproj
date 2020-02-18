@@ -293,7 +293,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Store\Index.cshtml" />
     <Content Include="Views\Factory\Index.cshtml" />
-    <Content Include="Views\Store\Details.cshtml" />
+    <Content Include="Views\Store\_Details.cshtml" />
     <Content Include="Views\Factory\Details.cshtml" />
     <Content Include="Views\Factory\FactoryForm.cshtml" />
     <Content Include="Views\Store\StoreForm.cshtml" />
