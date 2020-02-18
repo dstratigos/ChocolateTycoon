@@ -105,6 +105,7 @@ namespace ChocolateTycoon.Controllers
             { 
                 var storeInDb = db.Stores.Single(m => m.ID == store.ID);
                 storeInDb.Name = store.Name;
+                storeInDb.Level = store.Level;
             }
 
             db.SaveChanges();
