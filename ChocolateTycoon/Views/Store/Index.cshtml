@@ -30,7 +30,7 @@
             }
 
             <tr class=@selected>
-                <td>@Html.ActionLink(store.Name, "Details", "Store", new { id = store.ID }, new { @style = "text-align: right" })</td>
+                <td>@Html.ActionLink(store.Name, null, null, new { id = store.ID }, new { @style = "text-align: right" })</td>
                 <td>@store.Level</td>
                 <td>@store.Chocolates</td>
                 <td>@Html.ActionLink("Edit", "Edit", "Store", new { id = store.ID }, null)</td>
