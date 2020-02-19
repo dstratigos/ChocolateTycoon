@@ -8,7 +8,7 @@ namespace ChocolateTycoon.Models
 {
     public enum EmployeePosition
     {
-        Manager,
+        Manager = 1,
         Sales,
         Production
     }

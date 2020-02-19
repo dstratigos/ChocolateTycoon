@@ -152,7 +152,7 @@ namespace ChocolateTycoon.Controllers
             var viewModel = new FactoryEmployeesViewModel
             {
                 Factory = db.Factories.SingleOrDefault(f => f.ID == id),
-                Employees = db.Employees.Where(e => e.FactoryID == id)
+                Employees = db.Employees.Where(e => e.FactoryID == id).ToList()
             };
 
             viewModel.GetEmployees();
