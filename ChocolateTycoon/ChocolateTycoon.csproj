@@ -231,6 +231,10 @@
     <Compile Include="Migrations\202002191234220_AddedEmployees.Designer.cs">
       <DependentUpon>202002191234220_AddedEmployees.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002191310124_PopulateEmployees.cs" />
+    <Compile Include="Migrations\202002191310124_PopulateEmployees.Designer.cs">
+      <DependentUpon>202002191310124_PopulateEmployees.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chocolate.cs" />
@@ -373,6 +377,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002191234220_AddedEmployees.resx">
       <DependentUpon>202002191234220_AddedEmployees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002191310124_PopulateEmployees.resx">
+      <DependentUpon>202002191310124_PopulateEmployees.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

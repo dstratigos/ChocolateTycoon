@@ -155,7 +155,7 @@ namespace ChocolateTycoon.Controllers
                 Employees = db.Employees.Where(e => e.FactoryID == id)
             };
 
-           viewModel.GetEmployees();
+            viewModel.GetEmployees();
 
             return PartialView("_FactoryEmployees", viewModel);
         }
