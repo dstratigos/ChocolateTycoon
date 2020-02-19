@@ -219,6 +219,10 @@
     <Compile Include="Migrations\202002180702421_FactoryAnnotations.Designer.cs">
       <DependentUpon>202002180702421_FactoryAnnotations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002190637202_AddedProductionUnit1.cs" />
+    <Compile Include="Migrations\202002190637202_AddedProductionUnit1.Designer.cs">
+      <DependentUpon>202002190637202_AddedProductionUnit1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Chocolate.cs" />
@@ -229,6 +233,7 @@
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\ProductionUnit.cs" />
     <Compile Include="Models\Safe.cs" />
+    <Compile Include="Models\StorageUnit.cs" />
     <Compile Include="Models\Store.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -348,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002180702421_FactoryAnnotations.resx">
       <DependentUpon>202002180702421_FactoryAnnotations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002190637202_AddedProductionUnit1.resx">
+      <DependentUpon>202002190637202_AddedProductionUnit1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

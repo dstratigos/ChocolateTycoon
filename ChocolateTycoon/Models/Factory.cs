@@ -16,6 +16,7 @@ namespace ChocolateTycoon.Models
         public byte Level { get; private set; }
 
         public ProductionUnit ProductionUnit { get; set; }
+        public StorageUnit StorageUnit { get; set; }
 
         public Factory()
         {

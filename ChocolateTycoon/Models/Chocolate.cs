@@ -37,5 +37,6 @@ namespace ChocolateTycoon.Models
         }
 
         public MainStorage MainStorage { get; set; }
+        public StorageUnit StorageUnit { get; set; }
     }
 }
