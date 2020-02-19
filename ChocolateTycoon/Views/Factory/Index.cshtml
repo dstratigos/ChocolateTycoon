@@ -30,23 +30,35 @@
         <tr class=@selected>
             <td>@Html.DisplayFor(modelItem => item.Name)</td>
             <td>@Html.DisplayFor(modelItem => item.Level)</td>
-            <td>@Html.ActionLink("Details", null, new { id = item.ID }, new { @style = "text-decoration: none" })</td>
-            <td>@Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @style = "text-decoration: none" })</td>
-            <td style="text-align: right">@Html.ActionLink("Delete", "Delete", new { id = item.ID }, new { @class = "text-danger",
-                                            @style = "text-decoration: none;" })</td>
+            <td style="text-align: right">@Html.ActionLink("Details", null, new { id = item.ID }, new { @style = "text-decoration: none" })</td>
+            <td style="text-align: left">@Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @style = "text-decoration: none" })</td>
+            <td style="text-align: right">
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new
+                {
+                    @class = "text-danger",
+                    @style = "text-decoration: none;"
+                })
+            </td>
         </tr>
     }
 </table>
 
 @if (ViewBag.SelectedId != null)
 {
-    foreach (var item in Model)
-    {
-        if (ViewBag.SelectedId == item.ID)
+    <table class="table table-bordered text-center">
+        <tr style="background-color: darkslategrey">
+            <th style="text-align: center">Production</th>
+            <th colspan="2" style="text-align: center">Storage</th>
+        </tr>
+
+        @foreach (var item in Model)
         {
+            if (ViewBag.SelectedId == item.ID)
             {
-                Html.RenderAction("Details", new { id = item.ID });
+                {
+                    Html.RenderAction("Details", new { id = item.ID });
+                }
             }
         }
-    }
+    </table>
 }

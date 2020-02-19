@@ -40,6 +40,8 @@ namespace ChocolateTycoon.Controllers
                 .Include(f => f.StorageUnit)
                 .FirstOrDefault(f => f.ID == id);
 
+            factory.StorageUnit.PopulateChocolates();
+
             return PartialView(factory);
         }
 

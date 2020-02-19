@@ -1,27 +1,22 @@
 ﻿@model ChocolateTycoon.Models.Factory
 
 
-<hr />
-<table class="table">
-    <tr>
-        <th>Factory ID</th>
-        <th>Level</th>
-        <th>Production per Day</th>
-        <th>Raw Material</th>
-    </tr>
+<br />
 
-    <tr>
-        <td>@Html.DisplayFor(model => model.ID)</td>
-        <td>@Html.DisplayFor(model => model.Level)</td>
-        <td>
-            @Html.DisplayFor(model => model.ProductionUnit.MaxProductionPerDay)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.StorageUnit.RawMaterialAmount)
-        </td>
-    </tr>
-</table>
+<tr>
+    <td style="text-align: center">Production per Day (units)</td>
+    <td style="text-align: center">Products Stored</td>
+    <td style="text-align: center">Raw Materials (Kg)</td>
+</tr>
 
-
-
-
+<tr>
+    <td>
+        @Html.DisplayFor(model => model.ProductionUnit.MaxProductionPerDay)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.StorageUnit._productsStored)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.StorageUnit.RawMaterialAmount)
+    </td>
+</tr>

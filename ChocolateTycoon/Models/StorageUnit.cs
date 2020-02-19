@@ -12,11 +12,26 @@ namespace ChocolateTycoon.Models
         [Key]
         [ForeignKey("Factory")]
         public int FactoryID { get; set; }
-        public double RawMaterialAmount { get; set; }       
+        public double RawMaterialAmount { get; set; }
+        public int _productsStored;
 
 
 
         public Factory Factory { get; set; }
         public ICollection<Chocolate> Chocolates { get; set; }
+
+        public StorageUnit()
+        {
+            Chocolates = new List<Chocolate>();
+        }
+
+
+        public int PopulateChocolates()
+        {
+            if (Chocolates != null)
+                return Chocolates.Count();
+
+            return 0;
+        }
     }
 }
