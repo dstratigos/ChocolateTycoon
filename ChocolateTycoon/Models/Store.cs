@@ -22,5 +22,6 @@ namespace ChocolateTycoon.Models
         public Safe Safe { get; set; }
 
         public List<Chocolate> Chocolates { get; set; }
+        public ICollection<Employee> Employees { get; set; }
     }
 }

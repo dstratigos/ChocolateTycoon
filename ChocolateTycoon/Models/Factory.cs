@@ -17,6 +17,8 @@ namespace ChocolateTycoon.Models
 
         public ProductionUnit ProductionUnit { get; set; }
         public StorageUnit StorageUnit { get; set; }
+        public ICollection<Employee> Employees { get; set; }
+
 
         public Factory()
         {

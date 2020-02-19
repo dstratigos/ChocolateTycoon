@@ -64,6 +64,7 @@ namespace ChocolateTycoon.Controllers
 
         // POST: Factory/Save
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Factory factory)
         {
             var factories = db.Factories;
@@ -119,6 +120,7 @@ namespace ChocolateTycoon.Controllers
 
         // POST: Factory/Delete/id
         [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
         public ActionResult DeletePost(Factory factory)
         {
             var factories = db.Factories;

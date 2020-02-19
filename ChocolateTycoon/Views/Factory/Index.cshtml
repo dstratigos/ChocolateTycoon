@@ -30,13 +30,17 @@
         <tr class=@selected>
             <td>@Html.DisplayFor(modelItem => item.Name)</td>
             <td>@Html.DisplayFor(modelItem => item.Level)</td>
-            <td style="text-align: right">@Html.ActionLink("Details", null, new { id = item.ID }, new { @style = "text-decoration: none" })</td>
-            <td style="text-align: left">@Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @style = "text-decoration: none" })</td>
+            <td style="text-align: right">
+                @Html.ActionLink("Details", null, new { id = item.ID }, new { @style = "text-decoration: none" })
+            </td>
+            <td style="text-align: left">
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @style = "text-decoration: none" })
+            </td>
             <td style="text-align: right">
                 @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new
                 {
                     @class = "text-danger",
-                    @style = "text-decoration: none;"
+                    @style = "text-decoration: none"
                 })
             </td>
         </tr>
