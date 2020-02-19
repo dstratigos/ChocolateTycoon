@@ -37,6 +37,7 @@ namespace ChocolateTycoon.Controllers
         {
             var factory = db.Factories
                 .Include(f => f.ProductionUnit)
+                .Include(f => f.StorageUnit)
                 .FirstOrDefault(f => f.ID == id);
 
             return PartialView(factory);
