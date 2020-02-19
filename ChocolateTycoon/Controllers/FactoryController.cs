@@ -1,4 +1,5 @@
 ﻿using ChocolateTycoon.Models;
+using ChocolateTycoon.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -144,6 +145,21 @@ namespace ChocolateTycoon.Controllers
             return RedirectToAction("Index");
 
         }
+
+        // GET: Factory employees by position
+        public PartialViewResult FactoryEmployees(int? id)
+        {
+            var viewModel = new FactoryEmployeesViewModel
+            {
+                Factory = db.Factories.SingleOrDefault(f => f.ID == id),
+                Employees = db.Employees.Where(e => e.FactoryID == id)
+            };
+
+           viewModel.GetEmployees();
+
+            return PartialView("_FactoryEmployees", viewModel);
+        }
+
 
         protected override void Dispose(bool disposing)
         {

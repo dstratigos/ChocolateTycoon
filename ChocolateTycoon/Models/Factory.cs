@@ -23,6 +23,7 @@ namespace ChocolateTycoon.Models
         public Factory()
         {
             Level = 1;
+            Employees = new List<Employee>();
         }
 
     }

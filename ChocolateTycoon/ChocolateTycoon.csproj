@@ -246,6 +246,7 @@
     <Compile Include="Models\Store.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\FactoryEmployeesViewModel.cs" />
     <Compile Include="ViewModels\StoreFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -312,6 +313,7 @@
     <Content Include="Views\Store\StoreForm.cshtml" />
     <Content Include="Views\Factory\Delete.cshtml" />
     <Content Include="Views\Store\_Details.cshtml" />
+    <Content Include="Views\Factory\_FactoryEmployees.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

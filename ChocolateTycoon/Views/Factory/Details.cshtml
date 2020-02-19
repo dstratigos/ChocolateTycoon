@@ -7,6 +7,9 @@
     <td style="text-align: center">Production per Day (units)</td>
     <td style="text-align: center">Products Stored</td>
     <td style="text-align: center">Raw Materials (Kg)</td>
+    <td style="text-align: center">Total</td>
+    <td style="text-align: center">Managers</td>
+    <td style="text-align: center">Production</td>
 </tr>
 
 <tr>
@@ -19,4 +22,7 @@
     <td>
         @Html.DisplayFor(model => model.StorageUnit.RawMaterialAmount)
     </td>
+    @{
+        Html.RenderAction("FactoryEmployees", new { id = Model.ID });
+    }
 </tr>
