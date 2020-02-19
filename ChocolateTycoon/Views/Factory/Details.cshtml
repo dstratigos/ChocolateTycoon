@@ -7,6 +7,7 @@
         <th>Factory ID</th>
         <th>Level</th>
         <th>Production per Day</th>
+        <th>Raw Material</th>
     </tr>
 
     <tr>
@@ -14,6 +15,9 @@
         <td>@Html.DisplayFor(model => model.Level)</td>
         <td>
             @Html.DisplayFor(model => model.ProductionUnit.MaxProductionPerDay)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.StorageUnit.RawMaterialAmount)
         </td>
     </tr>
 </table>

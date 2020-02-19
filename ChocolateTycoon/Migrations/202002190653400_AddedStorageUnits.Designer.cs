@@ -7,13 +7,13 @@ namespace ChocolateTycoon.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddedProductionUnit1 : IMigrationMetadata
+    public sealed partial class AddedStorageUnits : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedProductionUnit1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedStorageUnits));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002190637202_AddedProductionUnit1"; }
+            get { return "202002190653400_AddedStorageUnits"; }
         }
         
         string IMigrationMetadata.Source

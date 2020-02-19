@@ -219,9 +219,9 @@
     <Compile Include="Migrations\202002180702421_FactoryAnnotations.Designer.cs">
       <DependentUpon>202002180702421_FactoryAnnotations.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002190637202_AddedProductionUnit1.cs" />
-    <Compile Include="Migrations\202002190637202_AddedProductionUnit1.Designer.cs">
-      <DependentUpon>202002190637202_AddedProductionUnit1.cs</DependentUpon>
+    <Compile Include="Migrations\202002190653400_AddedStorageUnits.cs" />
+    <Compile Include="Migrations\202002190653400_AddedStorageUnits.Designer.cs">
+      <DependentUpon>202002190653400_AddedStorageUnits.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -354,8 +354,8 @@
     <EmbeddedResource Include="Migrations\202002180702421_FactoryAnnotations.resx">
       <DependentUpon>202002180702421_FactoryAnnotations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002190637202_AddedProductionUnit1.resx">
-      <DependentUpon>202002190637202_AddedProductionUnit1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002190653400_AddedStorageUnits.resx">
+      <DependentUpon>202002190653400_AddedStorageUnits.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

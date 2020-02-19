@@ -3,7 +3,7 @@ namespace ChocolateTycoon.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddedProductionUnit1 : DbMigration
+    public partial class AddedStorageUnits : DbMigration
     {
         public override void Up()
         {

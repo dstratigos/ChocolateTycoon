@@ -22,12 +22,11 @@ namespace ChocolateTycoon.Controllers
         public ActionResult Index(int? id)
         {
             var factories = db.Factories
-                .Include(f => f.ProductionUnit);
+                .Include(f => f.ProductionUnit)
+                .Include(f => f.StorageUnit);
 
             if (id != null)
-            {
                 ViewBag.SelectedId = id.Value;
-            }
 
             return View(factories);
         }
