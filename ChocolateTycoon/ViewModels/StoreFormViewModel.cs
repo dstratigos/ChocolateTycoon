@@ -17,7 +17,7 @@ namespace ChocolateTycoon.ViewModels
         [Required]
         public byte Level { get; set; }
 
-        public IEnumerable<Chocolate> Chocolates { get; set; }
+        public List<Chocolate> DbChocolates { get; set; }
 
         public string Title
         {
@@ -37,6 +37,7 @@ namespace ChocolateTycoon.ViewModels
             ID = store.ID;
             Name = store.Name;
             Level = store.Level;
+            DbChocolates = store.Chocolates;
         }
     }
 }

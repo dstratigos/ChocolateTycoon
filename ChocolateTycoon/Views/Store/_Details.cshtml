@@ -7,12 +7,14 @@
         <th>ID</th>
         <th>Name</th>
         <th>Level</th>
+        <th>Chocolate Stock</th>
     </tr>
 
     <tr>
         <td>@Model.ID</td>
         <td>@Model.Name</td>
         <td>@Model.Level</td>
+        <td>@Model.Chocolates.Count()</td>
     </tr>
 </table>
 
