@@ -1,10 +1,11 @@
 # ChocolateTycoon
 
-##To successfully run this project you have to follow the steps below:
+## To successfully run this project you have to follow the steps below:
 
 * Restore all NuGet packages.
 
-*Execute: 
+* Execute: 
+
 ```
 Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r
 ```
