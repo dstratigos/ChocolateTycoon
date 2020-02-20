@@ -12,6 +12,8 @@ namespace ChocolateTycoon.Models
         [Key]
         [ForeignKey("Factory")]
         public int FactoryID { get; set; }
+        
+        [Range(0, double.MaxValue, ErrorMessage = "No materials left!")]
         public double RawMaterialAmount { get; set; }
         public int _productsStored;
 
