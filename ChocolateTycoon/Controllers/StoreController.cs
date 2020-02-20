@@ -27,7 +27,8 @@ namespace ChocolateTycoon.Controllers
         // GET: Store
         public ActionResult Index(int? id)
         {
-            var stores = db.Stores.ToList();
+            var stores = db.Stores
+                .Include(s => s.Chocolates);
 
             if (id != null)
             {
@@ -42,7 +43,9 @@ namespace ChocolateTycoon.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            var store = db.Stores.SingleOrDefault(s => s.ID == id);
+            var store = db.Stores
+                .Include(s => s.Chocolates)
+                .SingleOrDefault(s => s.ID == id);
 
             if (store == null)
                 return HttpNotFound();
@@ -52,14 +55,7 @@ namespace ChocolateTycoon.Controllers
 
         public ActionResult New()
         {
-            var chocolates = db.Chocolates.ToList();
-
-            var viewModel = new StoreFormViewModel
-            {
-                Chocolates = chocolates
-            };
-
-            return View("StoreForm", viewModel);
+            return View("StoreForm");
         }
 
         // GET
@@ -73,12 +69,7 @@ namespace ChocolateTycoon.Controllers
             if (store == null)
                 return HttpNotFound();
 
-            var viewModel = new StoreFormViewModel(store)
-            {
-                Chocolates = db.Chocolates.ToList()
-            };
-
-            return View("StoreForm", viewModel);
+            return View("StoreForm", store);
         }
 
         // POST
@@ -88,12 +79,7 @@ namespace ChocolateTycoon.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var viewModel = new StoreFormViewModel
-                {
-                    Chocolates = db.Chocolates.ToList()
-                };
-
-                return View("StoreForm", viewModel);
+                return View("StoreForm", store);
             }
 
             //Create
