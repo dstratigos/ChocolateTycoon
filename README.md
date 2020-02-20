@@ -11,3 +11,9 @@ Update-Package Microsoft.CodeDom.Providers.DotNetCompilerPlatform -r
 ```
 
 * Create a MainStorage entry in your database with name "MainStorage"
+
+* Run:
+
+```
+Update-Database
+```
