@@ -586,6 +586,7 @@
     <Content Include="Views\Store\_Details.cshtml" />
     <Content Include="Views\Factory\_FactoryEmployees.cshtml" />
     <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Home\Main.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
