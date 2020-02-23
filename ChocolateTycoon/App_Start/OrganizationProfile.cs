@@ -14,6 +14,15 @@ namespace ChocolateTycoon.App_Start
         {
             CreateMap<Store, StoreDTO>();
             CreateMap<StoreDTO, Store>();
+
+            CreateMap<Factory, FactoryDTO>();
+            CreateMap<FactoryDTO, Factory>();
+
+            CreateMap<ProductionUnit, ProductionUnitDTO>();
+            CreateMap<ProductionUnitDTO, ProductionUnit>();
+
+            CreateMap<StorageUnit, StorageUnitDTO>();
+            CreateMap<StorageUnitDTO, StorageUnit>();
         }
     }
 }
