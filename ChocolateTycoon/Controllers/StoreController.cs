@@ -98,5 +98,19 @@ namespace ChocolateTycoon.Controllers
 
             return RedirectToAction("Index", "Store");
         }
+
+        // GET: Store employees by position
+        public PartialViewResult StoreEmployees(int? id)
+        {
+            var viewModel = new StoreEmployeesViewModel
+            {
+                Store = db.Stores.SingleOrDefault(s => s.ID == id),
+                Employees = db.Employees.Where(e => e.StoreID == id).ToList()
+            };
+
+            viewModel.GetEmployees();
+
+            return PartialView("_StoreEmployees", viewModel);
+        }
     }
 }
