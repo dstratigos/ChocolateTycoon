@@ -11,7 +11,7 @@
 </button>
 <hr />
 
-<table class="table">
+<table id="stores" class="table">
     <thead>
         <tr>
             <th>Store Name</th>
@@ -51,3 +51,48 @@
         }
     }
 }
+
+
+@*@section scripts
+    {
+        <script>
+            $(document).ready(function () {
+                var table = $("#stores").DataTable({
+                    ajax: {
+                        url: "/api/stores/",
+                        dataSrc: ""
+                    },
+                    columns: [
+                        {
+                            data: "name",
+                            render: function (data, type, store) {
+                                return "<a href='/store/edit/" + store.id + "'>" + store.name + "</a>"
+                            }
+                        },
+                        {
+                            data: "id",
+                            render: function (data) {
+                                return "<button class='btn btn-link js-delete' data-store-id=" + data + ">Delete</button>"
+                            }
+                        }
+                    ]
+                });
+
+                $("#stores").on("click", ".js-delete", function () {
+                    let button = $(this);
+
+                    bootbox.confirm("Delete?Are You SURE SURE?", function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/stores/" + button.attr("data-store-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    table.row(button.parents("tr")).remove().draw();
+                                }
+                            })
+                        }
+                    });
+                });
+            });
+        </script>
+    }*@

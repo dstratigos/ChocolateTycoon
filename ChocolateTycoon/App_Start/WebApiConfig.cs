@@ -14,12 +14,13 @@ namespace ChocolateTycoon.App_Start
         public static void Register(HttpConfiguration config)
         {
             // fairnei ta data sta metra ths js (h opoia 8a ta xrhsimopoihsei meta) -- kanei to prwto gramma mikro (san variable)
-            //var settings = config.Formatters.JsonFormatter.SerializerSettings;
-            //settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            //settings.Formatting = Formatting.Indented;
+            var settings = config.Formatters.JsonFormatter.SerializerSettings;
+            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            settings.Formatting = Newtonsoft.Json.Formatting.Indented;
 
-            // Produce JSON Format
-            //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+            //Exports to JSON format.
+            config.Formatters.JsonFormatter.SupportedMediaTypes
+                .Add(new MediaTypeHeaderValue("text/html"));
 
             config.MapHttpAttributeRoutes();
 
@@ -28,10 +29,6 @@ namespace ChocolateTycoon.App_Start
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
-            //Exports to JSON format.
-            config.Formatters.JsonFormatter.SupportedMediaTypes
-                .Add(new MediaTypeHeaderValue("text/html"));
         }
     }
 }
