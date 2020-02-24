@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ChocolateTycoon.Models.Store>
+﻿
 @{
     Layout = null;
 }
@@ -14,14 +14,35 @@
     <div>
         <div id="entities">
             <p>Hi</p>
+            <ul></ul>
         </div>
     </div>
 
-    @section scripts
-{
-        <script>
-
-        </script>
-    }
 </body>
 </html>
+
+@section Scripts
+{
+    <script>
+
+        $(document).ready(function () {
+            $.ajax({
+
+                url: "https://localhost:44341/api/Stores/api/Stores", // URL we want to hit
+
+                success: function (data) {
+
+                    console.log(data); // data holds the JSON.parsed data we get back from the server
+
+                    // Looping over the array we get back, and appending each entry as an <li> element to the DOM:
+                    data.forEach(function (name) {
+
+                        $("ul").append("<li>Course: <strong>" + name + "</strong></li>");
+
+                    });
+
+                }
+            });
+        });
+    </script>
+}
