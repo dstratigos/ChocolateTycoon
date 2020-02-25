@@ -146,5 +146,13 @@ namespace ChocolateTycoon.Controllers
 
             return PartialView("_StoreEmployees", viewModel);
         }
+
+        // restock
+        public PartialViewResult Restock(Store store)
+        {
+            var chocolatesOfMainStorage = db.MainStorages.Select(m => m.Chocolates);
+
+            return PartialView("_Restock");
+        }
     }
 }
