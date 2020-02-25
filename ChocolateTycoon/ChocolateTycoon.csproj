@@ -599,6 +599,7 @@
     <Content Include="Views\Home\Main.cshtml" />
     <Content Include="Views\Store\_StoreEmployees.cshtml" />
     <Content Include="Views\Store\IndexAPI.cshtml" />
+    <Content Include="Views\Store\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

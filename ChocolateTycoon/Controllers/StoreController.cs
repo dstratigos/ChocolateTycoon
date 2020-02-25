@@ -99,6 +99,40 @@ namespace ChocolateTycoon.Controllers
             return RedirectToAction("Index", "Store");
         }
 
+        // GET: Delete
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Store store = db.Stores
+                .Include(s => s.Chocolates)
+                .SingleOrDefault(s => s.ID == id);
+
+            if (store == null)
+            {
+                return HttpNotFound();
+            }
+            return View(store);
+        }
+
+        // POST: Delete
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int? id)
+        {
+            Store store = db.Stores
+                .Include(s => s.Chocolates)
+                .SingleOrDefault(s => s.ID == id);
+
+            db.Stores.Remove(store);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         // GET: Store employees by position
         public PartialViewResult StoreEmployees(int? id)
         {
