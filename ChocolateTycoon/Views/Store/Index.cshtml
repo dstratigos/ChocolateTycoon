@@ -33,7 +33,8 @@
                 <td>@Html.ActionLink(store.Name, null, null, new { id = store.ID }, new { @style = "text-align: right" })</td>
                 <td>@store.Level</td>
                 <td>@store.Chocolates.Count()</td>
-                <td>@Html.ActionLink("Edit", "Edit", "Store", new { id = store.ID }, null)</td>
+                <td>@Html.ActionLink("Edit", "Edit", "Store", new { id = store.ID }, new { @class = "text-warning" })</td>
+                <td>@Html.ActionLink("Delete", "Delete", "Store", new { id = store.ID }, new { @class = "text-danger" })</td>
             </tr>
         }
     </tbody>
@@ -51,48 +52,3 @@
         }
     }
 }
-
-
-@*@section scripts
-    {
-        <script>
-            $(document).ready(function () {
-                var table = $("#stores").DataTable({
-                    ajax: {
-                        url: "/api/stores/",
-                        dataSrc: ""
-                    },
-                    columns: [
-                        {
-                            data: "name",
-                            render: function (data, type, store) {
-                                return "<a href='/store/edit/" + store.id + "'>" + store.name + "</a>"
-                            }
-                        },
-                        {
-                            data: "id",
-                            render: function (data) {
-                                return "<button class='btn btn-link js-delete' data-store-id=" + data + ">Delete</button>"
-                            }
-                        }
-                    ]
-                });
-
-                $("#stores").on("click", ".js-delete", function () {
-                    let button = $(this);
-
-                    bootbox.confirm("Delete?Are You SURE SURE?", function (result) {
-                        if (result) {
-                            $.ajax({
-                                url: "/api/stores/" + button.attr("data-store-id"),
-                                method: "DELETE",
-                                success: function () {
-                                    table.row(button.parents("tr")).remove().draw();
-                                }
-                            })
-                        }
-                    });
-                });
-            });
-        </script>
-    }*@
