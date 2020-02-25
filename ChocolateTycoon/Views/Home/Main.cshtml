@@ -11,10 +11,13 @@
     <title>Main</title>
 </head>
 <body>
-    <div>
-        <div id="entities">
-            <p>Hi</p>
-            <ul></ul>
+    <div class="container">
+        <div class="col-sm-6 col-md-6 col-lg-6" id="FactoryView">
+            <p>Hi 1/2</p>
+        </div>
+
+        <div class="col-sm-6 col-md-6 col-lg-6" id="StoreView">
+            <p>Hi 2/2</p>
         </div>
     </div>
 
@@ -26,23 +29,26 @@
     <script>
 
         $(document).ready(function () {
-            $.ajax({
+            //$.ajax({
 
-                url: "https://localhost:44341/api/Stores/api/Stores", // URL we want to hit
+            var factories = $.ajax("/api/factories")
+                .done(function () {
 
-                success: function (data) {
+                    $.ajax({
+                        url: "/api/stores",
+                        method: "GET",
+                        data: viewModel
+                    })
 
-                    console.log(data); // data holds the JSON.parsed data we get back from the server
+                })
+                .fail(function () {
+                    alert("error");
+                })
+                .always(function () {
+                    alert("complete");
+                });
 
-                    // Looping over the array we get back, and appending each entry as an <li> element to the DOM:
-                    data.forEach(function (name) {
-
-                        $("ul").append("<li>Course: <strong>" + name + "</strong></li>");
-
-                    });
-
-                }
-            });
+            //});
         });
     </script>
 }
