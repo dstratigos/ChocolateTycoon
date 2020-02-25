@@ -23,8 +23,6 @@ namespace ChocolateTycoon.Controllers.API
         public IEnumerable<FactoryDTO> GetFactories()
         {
             return db.Factories
-            .Include(f => f.ProductionUnit)
-            .Include(f => f.StorageUnit)
             .ToList()
             .Select(Mapper.Map<Factory, FactoryDTO>);
         }
