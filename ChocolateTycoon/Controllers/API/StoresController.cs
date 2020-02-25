@@ -19,14 +19,14 @@ namespace ChocolateTycoon.Models.API
         }
 
         // GET api/stores
-        public IEnumerable<StoreDTO> GetStores()
+        public IEnumerable<StoreDTO> IndexAPI()
         {
             return db.Stores.ToList()
                 .Select(Mapper.Map<Store, StoreDTO>);
         }
 
         // GET /api/stores/id
-        public IHttpActionResult GetStores(int id)
+        public IHttpActionResult IndexAPI(int id)
         {
             var serie = db.Stores.SingleOrDefault(s => s.ID == id);
 
