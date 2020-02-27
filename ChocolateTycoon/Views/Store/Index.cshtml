@@ -33,7 +33,8 @@
                 <td>@Html.ActionLink(store.Name, null, null, new { id = store.ID }, new { @style = "text-align: right" })</td>
                 <td>@store.Level</td>
                 <td>@store.Chocolates.Count()</td>
-                <td>@Html.ActionLink("Edit", "Edit", "Store", new { id = store.ID }, null)</td>
+                <td>@Html.ActionLink("Edit", "Edit", "Store", new { id = store.ID }, new { @class = "text-warning" })</td>
+                <td>@Html.ActionLink("Delete", "Delete", "Store", new { id = store.ID }, new { @class = "text-danger" })</td>
             </tr>
         }
     </tbody>

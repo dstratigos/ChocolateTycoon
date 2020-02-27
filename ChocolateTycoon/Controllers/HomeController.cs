@@ -26,5 +26,11 @@ namespace ChocolateTycoon.Controllers
 
             return View();
         }
+
+        public ActionResult Main()
+        {
+
+            return View("Main");
+        }
     }
 }

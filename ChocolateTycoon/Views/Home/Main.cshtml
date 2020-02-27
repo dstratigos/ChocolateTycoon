@@ -1,0 +1,54 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Main</title>
+</head>
+<body>
+    <div class="container">
+        <div class="col-sm-6 col-md-6 col-lg-6" id="FactoryView">
+            <p>Hi 1/2</p>
+        </div>
+
+        <div class="col-sm-6 col-md-6 col-lg-6" id="StoreView">
+            <p>Hi 2/2</p>
+        </div>
+    </div>
+
+</body>
+</html>
+
+@section Scripts
+{
+    <script>
+
+        $(document).ready(function () {
+            //$.ajax({
+
+            var factories = $.ajax("/api/factories")
+                .done(function () {
+
+                    $.ajax({
+                        url: "/api/stores",
+                        method: "GET",
+                        data: viewModel
+                    })
+
+                })
+                .fail(function () {
+                    alert("error");
+                })
+                .always(function () {
+                    alert("complete");
+                });
+
+            //});
+        });
+    </script>
+}

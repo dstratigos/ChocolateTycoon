@@ -98,5 +98,61 @@ namespace ChocolateTycoon.Controllers
 
             return RedirectToAction("Index", "Store");
         }
+
+        // GET: Delete
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Store store = db.Stores
+                .Include(s => s.Chocolates)
+                .SingleOrDefault(s => s.ID == id);
+
+            if (store == null)
+            {
+                return HttpNotFound();
+            }
+            return View(store);
+        }
+
+        // POST: Delete
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int? id)
+        {
+            Store store = db.Stores
+                .Include(s => s.Chocolates)
+                .SingleOrDefault(s => s.ID == id);
+
+            db.Stores.Remove(store);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        // GET: Store employees by position
+        public PartialViewResult StoreEmployees(int? id)
+        {
+            var viewModel = new StoreEmployeesViewModel
+            {
+                Store = db.Stores.SingleOrDefault(s => s.ID == id),
+                Employees = db.Employees.Where(e => e.StoreID == id).ToList()
+            };
+
+            viewModel.GetEmployees();
+
+            return PartialView("_StoreEmployees", viewModel);
+        }
+
+        // restock
+        public PartialViewResult Restock(Store store)
+        {
+            var chocolatesOfMainStorage = db.MainStorages.Select(m => m.Chocolates);
+
+            return PartialView("_Restock");
+        }
     }
 }

@@ -1,0 +1,34 @@
+﻿@model ChocolateTycoon.ViewModels.StoreEmployeesViewModel
+
+<td>
+    @Model._total
+</td>
+
+<td>
+    @Model._manager
+
+    @if (Model._manager < 1)
+    {
+        <p class="text-warning" style="font-style: italic; font-size: small;">1 needed</p>
+    }
+</td>
+
+<td>
+    @Model._sales
+
+    @if (Model.Store.Level == 1)
+    {
+        if (Model._sales < 1)
+        {
+            <p class="text-warning" style="font-style: italic; font-size: small;">2 needed</p>
+        }
+    }
+
+    @if (Model.Store.Level > 2)
+    {
+        if (Model._sales < 3)
+        {
+            <p class="text-warning" style="font-style: italic; font-size: small;">3 needed</p>
+        }
+    }
+</td>
