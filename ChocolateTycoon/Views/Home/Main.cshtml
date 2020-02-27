@@ -9,6 +9,8 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Main</title>
+
+    <script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
 </head>
 <body>
     <div class="container">
@@ -21,34 +23,120 @@
         </div>
     </div>
 
-</body>
-</html>
 
-@section Scripts
-{
+
+    @*@section Scripts
+        {*@
     <script>
 
         $(document).ready(function () {
-            //$.ajax({
 
-            var factories = $.ajax("/api/factories")
-                .done(function () {
+            let newFactories = $('#FactoryView');
 
-                    $.ajax({
-                        url: "/api/stores",
-                        method: "GET",
-                        data: viewModel
-                    })
+            fetch("/api/factories").then(function (response) {
+                // console.log(response);
+                return response.text();
 
-                })
-                .fail(function () {
-                    alert("error");
-                })
-                .always(function () {
-                    alert("complete");
+            }).then(function (data) {
+
+                console.log(data);
+                const factories = JSON.parse(data);
+                //console.log(factories);
+                const pop = factories[0].name;
+                //console.log(pop);
+
+
+                //const popEl = document.querySelector("#FactoryView");
+                //popEl.innerText = pop;
+
+                //pop
+                $.each(factories, function (key, entry) {
+                    newFactories.append($('<div></div>').attr('data-factory', entry.name).text(entry.name));
                 });
 
-            //});
+
+
+                ////////////////////////////
+
+                let newStores = $('#StoreView');
+
+                fetch("/api/stores").then(function (response) {
+                    // console.log(response);
+                    return response.text();
+
+                }).then(function (data) {
+
+                    console.log(data);
+                    const stores = JSON.parse(data);
+                    //console.log(stores);
+                    const pop = stores[0].name;
+                    //console.log(pop);
+
+
+                    //const popEl = document.querySelector("#FactoryView");
+                    //popEl.innerText = pop;
+
+                    //pop
+                    $.each(stores, function (key, entry) {
+                        newStores.append($('<div></div>').attr('data-stores', entry.name).text(entry.name));
+                    });
+
+
+
+
+
+
+
+
+
+                    ////const url1 = 'https://localhost:44341/api/factories';
+
+
+                    ////const url = JSON.parse(url1);
+
+                    //const json = 'https://localhost:44341/api/factories';
+
+
+
+
+                    //// Populate Main with factories
+                    //$.getJSON(url, function (data) {
+                    //    $.each(data, function (key, entry) {
+                    //        var newFactory = document.createElement("p");                       // Create a <p> node
+                    //        var t = document.createTextNode(entry);      // Create a text node
+                    //        newFactory.appendChild(t);                                          // Append the text to <p>
+                    //        document.getElementById("FactoryView").appendChild(newFactory);           // Append <p> to <div> with id="myDIV"
+                    //    });
+                    //});
+
+                    //let viewModel = {};
+
+                    //$("#newActor").submit(function (e) {
+                    //    e.preventDefault();
+
+                    //    viewModel.name = $('#actor').val();
+                    //    viewModel.age = $('#age').val();
+                    //    viewModel.nationality = $('#nationality-dropdown').val();
+                    //    console.log(viewModel.nationality);
+
+                    //    $.ajax({
+                    //        url: "/api/actors",
+                    //        method: "post",
+                    //        data: viewModel
+                    //    })
+                    //        .done(function () {
+                    //            toastr.success("Gamei kai dernei");
+                    //        })
+                    //        .fail(function () {
+                    //            toastr.error("Bravo MALAKA");
+                    //        });
+                    //});
+                })
+            })
         });
     </script>
-}
+    @*}*@
+</body>
+</html>
+
+
