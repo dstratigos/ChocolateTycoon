@@ -35,5 +35,13 @@ namespace ChocolateTycoon.Models
 
             return 0;
         }
+
+        public bool MaterialsSuffice(double materialsNeeded)
+        {
+            if (materialsNeeded <= RawMaterialAmount)
+                return true;
+
+            return false;
+        }
     }
 }

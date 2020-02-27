@@ -14,6 +14,7 @@ namespace ChocolateTycoon.Models
         White
     }
 
+
     public class Chocolate
     {
         public int ID { get; set; }

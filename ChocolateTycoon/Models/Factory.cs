@@ -26,5 +26,26 @@ namespace ChocolateTycoon.Models
             Employees = new List<Employee>();
         }
 
+
+        // checks if the factory personel meets the required minimum for the factory to operate
+        public bool PersonelSuffice()
+        {
+            var managersEmployed = Employees.Where(e => e.Position == EmployeePosition.Manager).Count();
+            var employeesEmployed = Employees.Where(e => e.Position == EmployeePosition.Production).Count();
+
+            if (Level == 1)
+            {
+                if (managersEmployed >= 1 && employeesEmployed >= 2)
+                    return true;
+            }
+            else if (Level == 2)
+            {
+                if (managersEmployed >= 2 && employeesEmployed >= 4)
+                    return true;
+            }
+
+            return false;
+        }
+
     }
 }
