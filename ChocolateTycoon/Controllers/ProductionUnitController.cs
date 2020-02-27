@@ -18,12 +18,6 @@ namespace ChocolateTycoon.Controllers
         }
         
         // ????
-        [ChildActionOnly]
-        public PartialViewResult Produce(Factory factory)
-        {
-            var message = FactoryService.DailyProduction(factory);
-            
-            return PartialView("_ProductionResult", message);
-        }
+        
     }
 }

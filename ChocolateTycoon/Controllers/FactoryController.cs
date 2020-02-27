@@ -1,4 +1,5 @@
 ﻿using ChocolateTycoon.Models;
+using ChocolateTycoon.Services;
 using ChocolateTycoon.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,11 @@ namespace ChocolateTycoon.Controllers
         public FactoryController()
         {
             db = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
         }
 
         // GET: Factory
@@ -161,12 +167,20 @@ namespace ChocolateTycoon.Controllers
         }
 
 
-
-
-        protected override void Dispose(bool disposing)
+        // GET: /Factory/Produce
+        public PartialViewResult Produce(int id)
         {
-            db.Dispose();
+            var factory = db.Factories
+                .Include(f => f.ProductionUnit)
+                .Include(f => f.StorageUnit)
+                .SingleOrDefault(f => f.ID == id);
+            
+            var message = FactoryService.DailyProduction(factory);
+
+            return PartialView("_ProductionResult", message);
         }
+
+
 
 
     }
