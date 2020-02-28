@@ -16,7 +16,7 @@ namespace ChocolateTycoon.Services
 
             var materialsNeeded = productionUnit.MaterialsNeeded();
             var materialsSuffice = storageUnit.MaterialsSuffice(materialsNeeded);
-            var personelSuffice = factory.PersonelSuffice();
+            var personelSuffice = factory.PersonelSuffice(factory);
 
             if (personelSuffice && materialsSuffice)
             {

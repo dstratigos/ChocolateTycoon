@@ -1,6 +1,16 @@
-﻿@model string
+﻿
 
-@if (Model != string.Empty)
+
+
+
+
+@{
+    string message = ViewBag.Message;
+}
+
+
+
+@if (message != string.Empty)
 {
-    <p>@Model</p>
+    <p>@message</p>
 }

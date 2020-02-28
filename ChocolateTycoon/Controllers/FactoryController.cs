@@ -33,7 +33,7 @@ namespace ChocolateTycoon.Controllers
                 .Include(f => f.StorageUnit);
 
             if (id != null)
-                ViewBag.SelectedId = id.Value;
+                ViewBag.SelectedId = id.Value;           
 
             return View(factories);
         }
@@ -48,6 +48,8 @@ namespace ChocolateTycoon.Controllers
                 .FirstOrDefault(f => f.ID == id);
 
             factory.StorageUnit.PopulateChocolates();
+
+            ViewBag.ProductionError = TempData["ErrorMessage"];
 
             return PartialView(factory);
         }
@@ -168,16 +170,17 @@ namespace ChocolateTycoon.Controllers
 
 
         // GET: /Factory/Produce
-        public PartialViewResult Produce(int id)
+        public ActionResult Produce(int id)
         {
             var factory = db.Factories
                 .Include(f => f.ProductionUnit)
                 .Include(f => f.StorageUnit)
+                .Include(f => f.Employees)
                 .SingleOrDefault(f => f.ID == id);
             
-            var message = FactoryService.DailyProduction(factory);
+            TempData["ErrorMessage"] = FactoryService.DailyProduction(factory);
 
-            return PartialView("_ProductionResult", message);
+            return RedirectToAction("Index", new { id });
         }
 
 

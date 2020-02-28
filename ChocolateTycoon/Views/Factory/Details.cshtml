@@ -17,8 +17,8 @@
         @Html.DisplayFor(model => model.ProductionUnit.MaxProductionPerDay)
     </td>
     <td>
-        @Html.ActionLink("produce", "Produce", new {id = Model.ID }, new { @class = "btn btn-link text-success", @style = "padding: 0" })
-        
+        @Html.ActionLink("produce", "Produce", new { id = Model.ID }, new { @class = "btn btn-link text-success", @style = "padding: 0" })
+        <p class="text-danger">@ViewBag.ProductionError</p>
     </td>
     <td>
         @Html.DisplayFor(model => model.StorageUnit._productsStored)
