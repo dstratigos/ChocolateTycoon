@@ -178,7 +178,7 @@ namespace ChocolateTycoon.Controllers
                 .Include(f => f.Employees)
                 .SingleOrDefault(f => f.ID == id);
             
-            TempData["ErrorMessage"] = FactoryService.DailyProduction(factory);
+            TempData["ErrorMessage"] = FactoryService.Produce(factory);
 
             return RedirectToAction("Index", new { id });
         }

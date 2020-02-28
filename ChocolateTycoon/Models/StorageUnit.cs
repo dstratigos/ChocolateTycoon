@@ -28,12 +28,10 @@ namespace ChocolateTycoon.Models
         }
 
 
-        public int PopulateChocolates()
+        public void PopulateChocolates()
         {
             if (Chocolates != null)
-                return Chocolates.Count();
-
-            return 0;
+                _productsStored =  Chocolates.Count();
         }
 
         public bool MaterialsSuffice(double materialsNeeded)

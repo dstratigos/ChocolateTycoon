@@ -272,6 +272,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Controllers\API\StoresController.cs" />
     <Compile Include="Models\Chocolate.cs" />
+    <Compile Include="Models\ChocolateStatus.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\Factory.cs" />
     <Compile Include="Models\IdentityModels.cs" />

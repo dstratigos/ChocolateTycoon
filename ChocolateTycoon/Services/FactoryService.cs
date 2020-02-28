@@ -8,7 +8,7 @@ namespace ChocolateTycoon.Services
 {
     public class FactoryService
     {
-        public static string DailyProduction(Factory factory)
+        public static string Produce(Factory factory)
         {
             var productionUnit = factory.ProductionUnit;
             var storageUnit = factory.StorageUnit;
