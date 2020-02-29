@@ -15,15 +15,15 @@ namespace ChocolateTycoon.Models
 
         public byte Level { get; set; }
 
-        public int MainStorageID { get; } = 1;
+        //public int MainStorageID { get; } = 1;
 
         public int SafeID { get; } = 1;
 
-        public MainStorage MainStorage { get; set; }
+        //public MainStorage MainStorage { get; set; }
 
         public Safe Safe { get; set; }
 
-        public List<Chocolate> Chocolates { get; set; }
+        //public List<Chocolate> Chocolates { get; set; }
 
         public ICollection<Employee> Employees { get; set; }
     }

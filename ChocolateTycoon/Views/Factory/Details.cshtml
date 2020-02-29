@@ -1,6 +1,5 @@
 ﻿@model ChocolateTycoon.Models.Factory
 
-
 <br />
 
 <tr>
@@ -21,7 +20,7 @@
         <p class="text-danger">@ViewBag.ProductionError</p>
     </td>
     <td>
-        @Html.DisplayFor(model => model.StorageUnit.Chocolates.Count)
+        @ViewBag.ChocolateCount
     </td>
     <td>
         @Html.DisplayFor(model => model.StorageUnit.RawMaterialAmount)

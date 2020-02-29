@@ -45,10 +45,14 @@ namespace ChocolateTycoon.Controllers
             var factory = db.Factories
                 .Include(f => f.ProductionUnit)
                 .Include(f => f.StorageUnit)
+                .Include(f => f.Employees)
                 .FirstOrDefault(f => f.ID == id);
 
-            factory.StorageUnit.PopulateChocolates();
+            var chocolates = db.Chocolates
+                .Include(c => c.Status)
+                .ToList();
 
+            ViewBag.ChocolateCount = FactoryService.PopulateChocolates(chocolates);
             ViewBag.ProductionError = TempData["ErrorMessage"];
 
             return PartialView(factory);
@@ -177,8 +181,17 @@ namespace ChocolateTycoon.Controllers
                 .Include(f => f.StorageUnit)
                 .Include(f => f.Employees)
                 .SingleOrDefault(f => f.ID == id);
-            
+
             TempData["ErrorMessage"] = FactoryService.Produce(factory);
+
+            var chocolatesProduced = factory.StorageUnit._chocolates.ToList();
+
+            foreach (var chocolate in chocolatesProduced)
+            {
+                db.Chocolates.Add(chocolate);
+            }
+
+            db.SaveChanges();
 
             return RedirectToAction("Index", new { id });
         }

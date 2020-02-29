@@ -27,8 +27,8 @@ namespace ChocolateTycoon.Controllers
         // GET: Store
         public ActionResult Index(int? id)
         {
-            var stores = db.Stores
-                .Include(s => s.Chocolates);
+            var stores = db.Stores;
+                //.Include(s => s.Chocolates);
 
             if (id != null)
             {
@@ -44,7 +44,7 @@ namespace ChocolateTycoon.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             var store = db.Stores
-                .Include(s => s.Chocolates)
+                //.Include(s => s.Chocolates)
                 .SingleOrDefault(s => s.ID == id);
 
             if (store == null)
@@ -108,7 +108,7 @@ namespace ChocolateTycoon.Controllers
             }
 
             Store store = db.Stores
-                .Include(s => s.Chocolates)
+                //.Include(s => s.Chocolates)
                 .SingleOrDefault(s => s.ID == id);
 
             if (store == null)
@@ -124,7 +124,7 @@ namespace ChocolateTycoon.Controllers
         public ActionResult DeleteConfirmed(int? id)
         {
             Store store = db.Stores
-                .Include(s => s.Chocolates)
+                //.Include(s => s.Chocolates)
                 .SingleOrDefault(s => s.ID == id);
 
             db.Stores.Remove(store);
@@ -148,11 +148,11 @@ namespace ChocolateTycoon.Controllers
         }
 
         // restock
-        public PartialViewResult Restock(Store store)
-        {
-            var chocolatesOfMainStorage = db.MainStorages.Select(m => m.Chocolates);
+        //public PartialViewResult Restock(Store store)
+        //{
+        //    var chocolatesOfMainStorage = db.MainStorages.Select(m => m.Chocolates);
 
-            return PartialView("_Restock");
-        }
+        //    return PartialView("_Restock");
+        //}
     }
 }

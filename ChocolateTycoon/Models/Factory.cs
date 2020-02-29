@@ -26,11 +26,10 @@ namespace ChocolateTycoon.Models
             Employees = new List<Employee>();
         }
 
-
-        // checks if the factory personel meets the required minimum for the factory to operate
+        //checks if the factory personel meets the required minimum for the factory to operate
         public bool PersonelSuffice(Factory factory)
         {
-            var managersEmployed =factory.Employees.Where(e => e.Position == EmployeePosition.Manager).Count();
+            var managersEmployed = factory.Employees.Where(e => e.Position == EmployeePosition.Manager).Count();
             var employeesEmployed = factory.Employees.Where(e => e.Position == EmployeePosition.Production).Count();
 
             if (Level == 1)

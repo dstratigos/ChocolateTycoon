@@ -23,12 +23,13 @@ namespace ChocolateTycoon.Models
 
         public decimal Price { get; set; }
 
-        //public int FactoryID { get; set; }
+        public int ChocolateStatusId { get; set; }
+        public ChocolateStatus Status { get; set; }
 
-        public int MainStorageID { get; } = 1;
+        //public int MainStorageID { get; } = 1;
 
-        public MainStorage MainStorage { get; set; }
+        //public MainStorage MainStorage { get; set; }
 
-        public StorageUnit StorageUnit { get; set; }
+        //public StorageUnit StorageUnit { get; set; }
     }
 }

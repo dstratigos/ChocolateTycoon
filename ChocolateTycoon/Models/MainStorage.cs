@@ -11,12 +11,6 @@ namespace ChocolateTycoon.Models
 
         public string Name { get; set; }
 
-        public List<Chocolate> Chocolates { get; set; }
-
-
-        public MainStorage()
-        {
-            Chocolates = new List<Chocolate>();
-        }
+        //public List<Chocolate> Chocolates { get; set; }        
     }
 }

@@ -196,77 +196,37 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002150905388_InitialModel.cs" />
-    <Compile Include="Migrations\202002150905388_InitialModel.Designer.cs">
-      <DependentUpon>202002150905388_InitialModel.cs</DependentUpon>
+    <Compile Include="Migrations\202002282121374_InitialModelAgain.cs" />
+    <Compile Include="Migrations\202002282121374_InitialModelAgain.Designer.cs">
+      <DependentUpon>202002282121374_InitialModelAgain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002151017439_InitialEntitiesTables.cs" />
-    <Compile Include="Migrations\202002151017439_InitialEntitiesTables.Designer.cs">
-      <DependentUpon>202002151017439_InitialEntitiesTables.cs</DependentUpon>
+    <Compile Include="Migrations\202002290822361_populateInitialTables.cs" />
+    <Compile Include="Migrations\202002290822361_populateInitialTables.Designer.cs">
+      <DependentUpon>202002290822361_populateInitialTables.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002151019449_PopulateInitialTables.cs" />
-    <Compile Include="Migrations\202002151019449_PopulateInitialTables.Designer.cs">
-      <DependentUpon>202002151019449_PopulateInitialTables.cs</DependentUpon>
+    <Compile Include="Migrations\202002290948011_PopulateChocolateTypes.cs" />
+    <Compile Include="Migrations\202002290948011_PopulateChocolateTypes.Designer.cs">
+      <DependentUpon>202002290948011_PopulateChocolateTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002151112533_ChocolateClass.cs" />
-    <Compile Include="Migrations\202002151112533_ChocolateClass.Designer.cs">
-      <DependentUpon>202002151112533_ChocolateClass.cs</DependentUpon>
+    <Compile Include="Migrations\202002290952140_PopulateChocolates.cs" />
+    <Compile Include="Migrations\202002290952140_PopulateChocolates.Designer.cs">
+      <DependentUpon>202002290952140_PopulateChocolates.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002151137585_ForeignKeysChocolate.cs" />
-    <Compile Include="Migrations\202002151137585_ForeignKeysChocolate.Designer.cs">
-      <DependentUpon>202002151137585_ForeignKeysChocolate.cs</DependentUpon>
+    <Compile Include="Migrations\202002290954054_PopulateMainStorages.cs" />
+    <Compile Include="Migrations\202002290954054_PopulateMainStorages.Designer.cs">
+      <DependentUpon>202002290954054_PopulateMainStorages.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002151150148_MainStorageName.cs" />
-    <Compile Include="Migrations\202002151150148_MainStorageName.Designer.cs">
-      <DependentUpon>202002151150148_MainStorageName.cs</DependentUpon>
+    <Compile Include="Migrations\202002290956201_PopulateProductionUnits.cs" />
+    <Compile Include="Migrations\202002290956201_PopulateProductionUnits.Designer.cs">
+      <DependentUpon>202002290956201_PopulateProductionUnits.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002151846574_AddedProductionUnit.cs" />
-    <Compile Include="Migrations\202002151846574_AddedProductionUnit.Designer.cs">
-      <DependentUpon>202002151846574_AddedProductionUnit.cs</DependentUpon>
+    <Compile Include="Migrations\202002290957147_PopulateStorageUnits.cs" />
+    <Compile Include="Migrations\202002290957147_PopulateStorageUnits.Designer.cs">
+      <DependentUpon>202002290957147_PopulateStorageUnits.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002161059130_PopulateProductionUnits.cs" />
-    <Compile Include="Migrations\202002161059130_PopulateProductionUnits.Designer.cs">
-      <DependentUpon>202002161059130_PopulateProductionUnits.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002170834438_StoreForeignKeysMainStorageSafe.cs" />
-    <Compile Include="Migrations\202002170834438_StoreForeignKeysMainStorageSafe.Designer.cs">
-      <DependentUpon>202002170834438_StoreForeignKeysMainStorageSafe.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002171129170_PopulateChocolatesTable.cs" />
-    <Compile Include="Migrations\202002171129170_PopulateChocolatesTable.Designer.cs">
-      <DependentUpon>202002171129170_PopulateChocolatesTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002180702421_FactoryAnnotations.cs" />
-    <Compile Include="Migrations\202002180702421_FactoryAnnotations.Designer.cs">
-      <DependentUpon>202002180702421_FactoryAnnotations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002190653400_AddedStorageUnits.cs" />
-    <Compile Include="Migrations\202002190653400_AddedStorageUnits.Designer.cs">
-      <DependentUpon>202002190653400_AddedStorageUnits.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002190655033_PopulateStorageUnits.cs" />
-    <Compile Include="Migrations\202002190655033_PopulateStorageUnits.Designer.cs">
-      <DependentUpon>202002190655033_PopulateStorageUnits.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002191234220_AddedEmployees.cs" />
-    <Compile Include="Migrations\202002191234220_AddedEmployees.Designer.cs">
-      <DependentUpon>202002191234220_AddedEmployees.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002191310124_PopulateEmployees.cs" />
-    <Compile Include="Migrations\202002191310124_PopulateEmployees.Designer.cs">
-      <DependentUpon>202002191310124_PopulateEmployees.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002200918266_MainStorageInChocolates.cs" />
-    <Compile Include="Migrations\202002200918266_MainStorageInChocolates.Designer.cs">
-      <DependentUpon>202002200918266_MainStorageInChocolates.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002200921469_StoreForeignKeys.cs" />
-    <Compile Include="Migrations\202002200921469_StoreForeignKeys.Designer.cs">
-      <DependentUpon>202002200921469_StoreForeignKeys.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202002200938409_NotSure.cs" />
-    <Compile Include="Migrations\202002200938409_NotSure.Designer.cs">
-      <DependentUpon>202002200938409_NotSure.cs</DependentUpon>
+    <Compile Include="Migrations\202002290958084_PopulateEmployees.cs" />
+    <Compile Include="Migrations\202002290958084_PopulateEmployees.Designer.cs">
+      <DependentUpon>202002290958084_PopulateEmployees.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -624,59 +584,29 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002150905388_InitialModel.resx">
-      <DependentUpon>202002150905388_InitialModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002282121374_InitialModelAgain.resx">
+      <DependentUpon>202002282121374_InitialModelAgain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002151017439_InitialEntitiesTables.resx">
-      <DependentUpon>202002151017439_InitialEntitiesTables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002290822361_populateInitialTables.resx">
+      <DependentUpon>202002290822361_populateInitialTables.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002151019449_PopulateInitialTables.resx">
-      <DependentUpon>202002151019449_PopulateInitialTables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002290948011_PopulateChocolateTypes.resx">
+      <DependentUpon>202002290948011_PopulateChocolateTypes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002151112533_ChocolateClass.resx">
-      <DependentUpon>202002151112533_ChocolateClass.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002290952140_PopulateChocolates.resx">
+      <DependentUpon>202002290952140_PopulateChocolates.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002151137585_ForeignKeysChocolate.resx">
-      <DependentUpon>202002151137585_ForeignKeysChocolate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002290954054_PopulateMainStorages.resx">
+      <DependentUpon>202002290954054_PopulateMainStorages.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002151150148_MainStorageName.resx">
-      <DependentUpon>202002151150148_MainStorageName.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002290956201_PopulateProductionUnits.resx">
+      <DependentUpon>202002290956201_PopulateProductionUnits.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002151846574_AddedProductionUnit.resx">
-      <DependentUpon>202002151846574_AddedProductionUnit.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002290957147_PopulateStorageUnits.resx">
+      <DependentUpon>202002290957147_PopulateStorageUnits.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002161059130_PopulateProductionUnits.resx">
-      <DependentUpon>202002161059130_PopulateProductionUnits.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002170834438_StoreForeignKeysMainStorageSafe.resx">
-      <DependentUpon>202002170834438_StoreForeignKeysMainStorageSafe.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002171129170_PopulateChocolatesTable.resx">
-      <DependentUpon>202002171129170_PopulateChocolatesTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002180702421_FactoryAnnotations.resx">
-      <DependentUpon>202002180702421_FactoryAnnotations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002190653400_AddedStorageUnits.resx">
-      <DependentUpon>202002190653400_AddedStorageUnits.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002190655033_PopulateStorageUnits.resx">
-      <DependentUpon>202002190655033_PopulateStorageUnits.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002191234220_AddedEmployees.resx">
-      <DependentUpon>202002191234220_AddedEmployees.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002191310124_PopulateEmployees.resx">
-      <DependentUpon>202002191310124_PopulateEmployees.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002200918266_MainStorageInChocolates.resx">
-      <DependentUpon>202002200918266_MainStorageInChocolates.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002200921469_StoreForeignKeys.resx">
-      <DependentUpon>202002200921469_StoreForeignKeys.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002200938409_NotSure.resx">
-      <DependentUpon>202002200938409_NotSure.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002290958084_PopulateEmployees.resx">
+      <DependentUpon>202002290958084_PopulateEmployees.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

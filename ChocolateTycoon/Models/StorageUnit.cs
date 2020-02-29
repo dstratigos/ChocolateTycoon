@@ -15,23 +15,17 @@ namespace ChocolateTycoon.Models
         
         [Range(0, double.MaxValue, ErrorMessage = "No materials left!")]
         public double RawMaterialAmount { get; set; }
-        public int _productsStored;
+        //public int _productsStored;
+        public ICollection<Chocolate> _chocolates;
 
 
 
         public Factory Factory { get; set; }
-        public ICollection<Chocolate> Chocolates { get; set; }
+        
 
         public StorageUnit()
         {
-            Chocolates = new List<Chocolate>();
-        }
-
-
-        public void PopulateChocolates()
-        {
-            if (Chocolates != null)
-                _productsStored =  Chocolates.Count();
+            _chocolates = new List<Chocolate>();
         }
 
         public bool MaterialsSuffice(double materialsNeeded)

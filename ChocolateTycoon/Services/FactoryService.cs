@@ -8,6 +8,14 @@ namespace ChocolateTycoon.Services
 {
     public class FactoryService
     {
+        public static int PopulateChocolates(List<Chocolate> chocolates)
+        {
+            var count = chocolates.Where(c => c.ChocolateStatusId == 1).Count();
+            
+            return count;
+        }
+
+
         public static string Produce(Factory factory)
         {
             var productionUnit = factory.ProductionUnit;
@@ -24,10 +32,10 @@ namespace ChocolateTycoon.Services
 
                 foreach (var chocolate in products)
                 {
-                    storageUnit.Chocolates.Add(chocolate);
+                    storageUnit._chocolates.Add(chocolate);
                 }
 
-                products.Clear();                
+                products.Clear();
             }
             else if (!personelSuffice)
                 return "Not enough personel to start production!";

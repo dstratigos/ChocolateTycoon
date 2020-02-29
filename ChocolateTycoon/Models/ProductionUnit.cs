@@ -47,6 +47,7 @@ namespace ChocolateTycoon.Models
                 var chocolate = new Chocolate
                 {
                     ChocolateType = Type.Dark,
+                    ChocolateStatusId = 1
                 };
 
                 products.Add(chocolate);
@@ -56,6 +57,7 @@ namespace ChocolateTycoon.Models
                 var chocolate = new Chocolate
                 {
                     ChocolateType = Type.White,
+                    ChocolateStatusId = 1
                 };
 
                 products.Add(chocolate);
@@ -65,6 +67,7 @@ namespace ChocolateTycoon.Models
                 var chocolate = new Chocolate
                 {
                     ChocolateType = Type.Milk,
+                    ChocolateStatusId = 1
                 };
 
                 products.Add(chocolate);
@@ -74,6 +77,7 @@ namespace ChocolateTycoon.Models
                 var chocolate = new Chocolate
                 {
                     ChocolateType = Type.AlmondMilk,
+                    ChocolateStatusId = 1
                 };
 
                 products.Add(chocolate);
@@ -83,6 +87,7 @@ namespace ChocolateTycoon.Models
                 var chocolate = new Chocolate
                 {
                     ChocolateType = Type.HazelnutMilk,
+                    ChocolateStatusId = 1
                 };
 
                 products.Add(chocolate);
