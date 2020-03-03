@@ -8,7 +8,7 @@ namespace ChocolateTycoon.Models
 {
     public enum EmployeePosition
     {
-        Manager = 1,
+        Manager,
         Sales,
         Production
     }
@@ -18,10 +18,12 @@ namespace ChocolateTycoon.Models
         public int Id { get; set; }
 
         [Required]
+        [StringLength(100, MinimumLength = 3)]
         [Display(Name = "Name")]
         public string FirstName { get; set; }
 
         [Required]
+        [StringLength(100, MinimumLength = 3)]
         [Display(Name = "Surname")]
         public string LastName { get; set; }
 
@@ -33,6 +35,8 @@ namespace ChocolateTycoon.Models
                 return FirstName + " " + LastName;
             }
         }
+
+        [Required]
         public EmployeePosition Position { get; set; }
 
         [DataType(DataType.Currency)]
@@ -46,5 +50,29 @@ namespace ChocolateTycoon.Models
 
         public Store Store { get; set; }
         public Factory Factory { get; set; }
+
+
+        public Employee()
+        {
+            Salary = SetSalary(this);
+        }
+
+        private decimal SetSalary(Employee employee)
+        {
+            switch ((int)employee.Position)
+            {
+                case 0:
+                    return 1500;                   
+
+                case 1:
+                    return 900;
+
+                case 2:
+                    return 750;
+
+                default:
+                    return 0;
+            }
+        }
     }
 }

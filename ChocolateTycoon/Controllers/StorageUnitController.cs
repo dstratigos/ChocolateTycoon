@@ -1,5 +1,4 @@
 ﻿using ChocolateTycoon.Models;
-using ChocolateTycoon.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,40 +8,41 @@ using System.Data.Entity;
 
 namespace ChocolateTycoon.Controllers
 {
-    public class ProductionUnitController : Controller
+    public class StorageUnitController : Controller
     {
-        ApplicationDbContext db;
+        private ApplicationDbContext db;
 
-        public ProductionUnitController()
+        public StorageUnitController()
         {
             db = new ApplicationDbContext();
         }
 
-        //// GET: ProductionUnit/Create
+
+        //// GET: StorageUnit/Create
         //public ActionResult Create(int id)
         //{
         //    var factory = db.Factories
-        //        .Include(f => f.ProductionUnit)
-        //        .SingleOrDefault(f => f.ID == id);
+        //        .Include(f => f.StorageUnit)
+        //        .SingleOrDefault(f => f.ID == id);           
 
         //    return View(factory);
         //}
 
-        // POST: ProductionUnit/Create
+        // POST: StorageUnit/Create
         [HttpPost, ActionName("Create")]
         public ActionResult CreatePost(Factory factory)
         {
-            ProductionUnit productionUnit = new ProductionUnit
+            StorageUnit storageUnit = new StorageUnit
             {
                 FactoryID = factory.ID,
-                MaxProductionPerDay = 200
+                RawMaterialAmount = 100
             };
 
-            db.ProductionUnits.Add(productionUnit);
+            //db.Entry(factory).State = EntityState.Modified;
+            db.StorageUnits.Add(storageUnit);
             db.SaveChanges();
 
             return RedirectToAction("Index", "Factory", new { id = factory.ID });
         }
-
     }
 }

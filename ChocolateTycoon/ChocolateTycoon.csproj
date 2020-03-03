@@ -188,6 +188,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductionUnitController.cs" />
+    <Compile Include="Controllers\StorageUnitController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="DTOs\FactoryDTO.cs" />
     <Compile Include="DTOs\ProductionUnitDTO.cs" />
@@ -227,6 +228,10 @@
     <Compile Include="Migrations\202002290958084_PopulateEmployees.cs" />
     <Compile Include="Migrations\202002290958084_PopulateEmployees.Designer.cs">
       <DependentUpon>202002290958084_PopulateEmployees.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003021809597_EmployeeValidations.cs" />
+    <Compile Include="Migrations\202003021809597_EmployeeValidations.Designer.cs">
+      <DependentUpon>202003021809597_EmployeeValidations.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -565,10 +570,12 @@
     <Content Include="Views\Store\IndexAPI.cshtml" />
     <Content Include="Views\Store\Delete.cshtml" />
     <Content Include="Views\Factory\_ProductionResult.cshtml" />
+    <Content Include="Views\Employee\EmployeeForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\ProductionUnit\" />
+    <Folder Include="Views\StorageUnit\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -607,6 +614,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002290958084_PopulateEmployees.resx">
       <DependentUpon>202002290958084_PopulateEmployees.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003021809597_EmployeeValidations.resx">
+      <DependentUpon>202003021809597_EmployeeValidations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

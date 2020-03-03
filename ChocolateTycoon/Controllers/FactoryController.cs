@@ -33,7 +33,7 @@ namespace ChocolateTycoon.Controllers
                 .Include(f => f.StorageUnit);
 
             if (id != null)
-                ViewBag.SelectedId = id.Value;           
+                ViewBag.SelectedId = id.Value;
 
             return View(factories);
         }
@@ -96,7 +96,6 @@ namespace ChocolateTycoon.Controllers
                 var newFactory = new Factory
                 {
                     Name = factory.Name,
-                    ProductionUnit = new ProductionUnit { MaxProductionPerDay = 200 }
                 };
 
                 factories.Add(newFactory);
@@ -182,16 +181,22 @@ namespace ChocolateTycoon.Controllers
                 .Include(f => f.Employees)
                 .SingleOrDefault(f => f.ID == id);
 
-            TempData["ErrorMessage"] = FactoryService.Produce(factory);
+            if (factory.StorageUnit == null)
+                TempData["ErrorMessage"] = "Storage Unit not available!";
 
-            var chocolatesProduced = factory.StorageUnit._chocolates.ToList();
-
-            foreach (var chocolate in chocolatesProduced)
+            else
             {
-                db.Chocolates.Add(chocolate);
-            }
+                TempData["ErrorMessage"] = FactoryService.Produce(factory);
 
-            db.SaveChanges();
+                var chocolatesProduced = factory.StorageUnit._chocolates.ToList();
+
+                foreach (var chocolate in chocolatesProduced)
+                {
+                    db.Chocolates.Add(chocolate);
+                }
+
+                db.SaveChanges();
+            }
 
             return RedirectToAction("Index", new { id });
         }

@@ -3,28 +3,57 @@
 <br />
 
 <tr>
-    <td colspan="2" style="text-align: center">Production per Day (units)</td>
-    <td style="text-align: center">Products Stored</td>
     <td style="text-align: center">Raw Materials (Kg)</td>
-    <td style="text-align: center">Total</td>
+    <td colspan="2" style="text-align: center">Production per Day (units)</td>
     <td style="text-align: center">Managers</td>
     <td style="text-align: center">Production</td>
 </tr>
 
 <tr>
-    <td>
-        @Html.DisplayFor(model => model.ProductionUnit.MaxProductionPerDay)
-    </td>
-    <td>
-        @Html.ActionLink("produce", "Produce", new { id = Model.ID }, new { @class = "btn btn-link text-success", @style = "padding: 0" })
-        <p class="text-danger">@ViewBag.ProductionError</p>
-    </td>
-    <td>
-        @ViewBag.ChocolateCount
-    </td>
-    <td>
-        @Html.DisplayFor(model => model.StorageUnit.RawMaterialAmount)
-    </td>
+    @if (Model.StorageUnit == null)
+    {
+        using (Html.BeginForm("Create", "StorageUnit"))
+        {
+            <td>
+                @Html.HiddenFor(m => m.ID)
+                <button class="btn btn-link" type="submit" onclick="return confirm('This will cost 0.00 coins. Create?')"
+                        style="padding: 0; color: #e74c3c;">
+                    Create a Storage Unit first!
+                </button>
+            </td>
+        }
+    }
+    else
+    {
+        <td>
+            @Html.DisplayFor(model => model.StorageUnit.RawMaterialAmount)
+        </td>
+    }
+
+    @if (Model.ProductionUnit == null)
+    {
+        using (Html.BeginForm("Create", "ProductionUnit"))
+        {
+            <td colspan="2">
+                @Html.HiddenFor(m => m.ID)
+                <button class="btn btn-link" type="submit" onclick="return confirm('This will cost 0.00 coins. Create?')"
+                        style="padding: 0; color: #e74c3c;">
+                    Create a Production Unit first!
+                </button>
+            </td>
+        }
+    }
+    else
+    {
+        <td>
+            @Html.DisplayFor(model => model.ProductionUnit.MaxProductionPerDay)
+        </td>
+        <td>
+            @Html.ActionLink("produce", "Produce", new { id = Model.ID }, new { @class = "btn btn-link text-success", @style = "padding: 0" })
+            <p class="text-danger">@ViewBag.ProductionError</p>
+        </td>
+    }
+
     @{
         Html.RenderAction("FactoryEmployees", new { id = Model.ID });
     }

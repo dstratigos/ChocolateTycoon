@@ -28,5 +28,36 @@ namespace ChocolateTycoon.Controllers
             
             return View(employees.ToList());
         }
+
+        // GET: Employee/Create
+        public ActionResult Create()
+        {
+            return View("EmployeeForm");
+        }
+
+        // GET: Employee/Edit
+        // Todo: Implement
+
+        // POST: Employee/Save/Id?
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Employee employee)
+        {
+            if (employee == null)
+                return HttpNotFound();
+
+            var newEmployee = new Employee
+            {
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                Position = employee.Position
+            };
+
+            db.Employees.Add(newEmployee);
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }
