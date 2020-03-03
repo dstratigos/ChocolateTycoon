@@ -40,10 +40,12 @@
     {
         @Html.HiddenFor(model => model.Id)
 
-        if (Model.Position == ChocolateTycoon.Models.EmployeePosition.FactoryManager || Model.Position == ChocolateTycoon.Models.EmployeePosition.ProductionEngineer)
+        if (Model.Position == ChocolateTycoon.Models.EmployeePosition.FactoryManager ||
+            Model.Position == ChocolateTycoon.Models.EmployeePosition.ProductionEngineer)
         {
             <div class="form-group">
-                @Html.DropDownListFor(model => model.FactoryID, ViewBag.Factories as SelectList, new { @class = "form-control" })
+                @Html.Label("Assign to Factory")
+                @Html.DropDownListFor(model => model.FactoryID, (SelectList)ViewBag.Factories, "Select", new { @class = "form-control" })
             </div>
         }
 
