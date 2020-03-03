@@ -70,7 +70,8 @@ namespace ChocolateTycoon.Controllers
                 {
                     FirstName = employee.FirstName,
                     LastName = employee.LastName,
-                    Position = employee.Position
+                    Position = employee.Position,
+                    Salary = employee.SetSalary(employee)
                 };
 
                 db.Employees.Add(newEmployee);
