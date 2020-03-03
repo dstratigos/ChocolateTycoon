@@ -18,8 +18,8 @@ namespace ChocolateTycoon.ViewModels
         public void GetEmployees()
         {
             var total = Employees.Count();
-            var managers = Employees.Where(e => e.Position == EmployeePosition.Manager).Count();
-            var production = Employees.Where(e => e.Position == EmployeePosition.Production).Count();
+            var managers = Employees.Where(e => e.Position == EmployeePosition.FactoryManager).Count();
+            var production = Employees.Where(e => e.Position == EmployeePosition.ProductionEngineer).Count();
 
             _total = total;
             _managers = managers;

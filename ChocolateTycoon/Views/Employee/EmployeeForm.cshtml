@@ -5,8 +5,14 @@
 }
 
 <h2>Employee</h2>
-<br />
-<h4>Save</h4>
+<hr />
+
+@{
+    string title = (Model == null) ? "Create" : "Edit";
+
+    <h4>@title</h4>
+}
+<hr />
 
 @using (Html.BeginForm("Save", "Employee"))
 {
@@ -21,17 +27,31 @@
     <div class="form-group">
         @Html.LabelFor(model => model.LastName, new { @class = "control-label" })
         @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.LastName, "", new { @class= "text-danger"})
+        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
 
     </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.Position, new { @class = "control-label" })
-        @Html.EnumDropDownListFor(model => model.Position, new { @class = "form-control"})
+        @Html.EnumDropDownListFor(model => model.Position, new { @class = "form-control" })
     </div>
 
+    if (Model != null)
+    {
+        @Html.HiddenFor(model => model.Id)
 
-    <button class="btn btn-primary" type="submit">Save</button>
+        if (Model.Position == ChocolateTycoon.Models.EmployeePosition.FactoryManager || Model.Position == ChocolateTycoon.Models.EmployeePosition.ProductionEngineer)
+        {
+            <div class="form-group">
+                @Html.DropDownListFor(model => model.FactoryID, ViewBag.Factories as SelectList, new { @class = "form-control" })
+            </div>
+        }
+
+    }
+
+    <button class="btn btn-primary" type="submit">
+        Save
+    </button>
 }
 
 @section Scripts {

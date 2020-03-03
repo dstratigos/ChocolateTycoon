@@ -1,16 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 
 namespace ChocolateTycoon.Models
 {
     public enum EmployeePosition
     {
-        Manager,
-        Sales,
-        Production
+        [Display(Name ="Factory Manager")]
+        FactoryManager,
+
+        [Display(Name = "Store Manager")]
+        StoreManager,
+
+        [Display(Name = "Sales Expert")]
+        SalesExpert,
+
+        [Display(Name = "Production Engineer")]
+        ProductionEngineer
     }
 
     public class Employee
@@ -57,22 +67,27 @@ namespace ChocolateTycoon.Models
             Salary = SetSalary(this);
         }
 
-        private decimal SetSalary(Employee employee)
+        public decimal SetSalary(Employee employee)
         {
             switch ((int)employee.Position)
             {
                 case 0:
-                    return 1500;                   
+                    return 1700;                   
 
                 case 1:
-                    return 900;
+                    return 1500;
 
                 case 2:
-                    return 750;
+                    return 900;
+
+                case 3:
+                    return 1000;
 
                 default:
                     return 0;
             }
         }
+
+        
     }
 }

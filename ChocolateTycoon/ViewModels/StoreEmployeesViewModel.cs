@@ -20,8 +20,8 @@ namespace ChocolateTycoon.ViewModels
         public void GetEmployees()
         {
             var total = Employees.Count();
-            var manager = Employees.Where(e => e.Position == EmployeePosition.Manager).Count();
-            var sales = Employees.Where(e => e.Position == EmployeePosition.Sales).Count();
+            var manager = Employees.Where(e => e.Position == EmployeePosition.StoreManager).Count();
+            var sales = Employees.Where(e => e.Position == EmployeePosition.SalesExpert).Count();
 
             _total = total;
             _manager = manager;

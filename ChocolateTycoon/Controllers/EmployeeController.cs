@@ -25,7 +25,7 @@ namespace ChocolateTycoon.Controllers
             var employees = db.Employees
                 .Include(e => e.Factory)
                 .Include(e => e.Store);
-            
+
             return View(employees.ToList());
         }
 
@@ -36,24 +36,58 @@ namespace ChocolateTycoon.Controllers
         }
 
         // GET: Employee/Edit
-        // Todo: Implement
+        public ActionResult Edit(int id)
+        {
+            var employee = db.Employees.SingleOrDefault(e => e.Id == id);
+
+            if (employee == null)
+                return HttpNotFound();
+
+            ViewBag.Factories = new SelectList(db.Factories, "Id", "Name");
+
+            return View("EmployeeForm", employee);
+        }
 
         // POST: Employee/Save/Id?
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(Employee employee)
         {
-            if (employee == null)
-                return HttpNotFound();
+            var employees = db.Employees.ToList();
 
-            var newEmployee = new Employee
+            if (employee.Id == 0)
             {
-                FirstName = employee.FirstName,
-                LastName = employee.LastName,
-                Position = employee.Position
-            };
+                foreach (var item in employees)
+                {
+                    if (item.FullName == employee.FullName)
+                    {
+                        ModelState.AddModelError("Name", "This name already exists!");
+                        break;
+                    }
+                }
 
-            db.Employees.Add(newEmployee);
+                var newEmployee = new Employee
+                {
+                    FirstName = employee.FirstName,
+                    LastName = employee.LastName,
+                    Position = employee.Position
+                };
+
+                db.Employees.Add(newEmployee);
+            }
+            else
+            {
+                var employeeDb = db.Employees.SingleOrDefault(e => e.Id == employee.Id);
+
+                employeeDb.FirstName = employee.FirstName;
+                employeeDb.LastName = employee.LastName;
+                employeeDb.Position = employee.Position;
+                employeeDb.Salary = employee.SetSalary(employee);
+                employeeDb.FactoryID = employee.FactoryID;
+            }
+
+            if (!ModelState.IsValid)
+                return View("EmployeeForm");
 
             db.SaveChanges();
 
