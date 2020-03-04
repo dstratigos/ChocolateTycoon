@@ -1,9 +1,9 @@
 ﻿@model ChocolateTycoon.Models.Factory
 
 <h2>Factory</h2>
-<hr/>
+<hr />
 <h4>Delete</h4>
-<hr/>
+<hr />
 
 <table class="table table-condensed">
     <tr style="background-color: darkslategray">
@@ -58,7 +58,8 @@
                 e.preventDefault();
 
                 bootbox.confirm({
-                    message: "Delete this Factory?" + "<br/>" + "<span class='text-danger'>All resources will perish!</span>",
+                    message: "Delete this Factory?" + "<br/>" +
+                        "<span class='text-danger'>All associated resources will perish!</span>",
                     callback: function (result) {
                         if (result) {
                             button.closest("form").submit();

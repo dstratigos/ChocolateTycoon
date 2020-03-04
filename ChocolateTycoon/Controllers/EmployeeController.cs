@@ -46,7 +46,7 @@ namespace ChocolateTycoon.Controllers
                 Factories = factories,
                 Stores = stores
             };
-            
+
             return View("EmployeeForm", viewModel);
         }
 
@@ -121,18 +121,38 @@ namespace ChocolateTycoon.Controllers
         }
 
         // GET: Employee/Delete/Id
-        public ActionResult Delete(int? id)
-        {
-            var employee = db.Employees.SingleOrDefault(e => e.Id == id);
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    var employee = db.Employees.SingleOrDefault(e => e.Id == id);
+
+        //    if (employee == null)
+        //        return HttpNotFound();
+
+        //    return View(employee);
+        //}
+
+        // POST: Employee/Delete/Id
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            var employee = db.Employees
+                .SingleOrDefault(e => e.Id == id);
 
             if (employee == null)
                 return HttpNotFound();
 
-            return View();
+            employee.FactoryID = null;
+            employee.StoreID = null;
 
+            db.Employees.Remove(employee);
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }

@@ -29,6 +29,7 @@
             <td>@item.Position.GetDisplayName()</td>
 
             <td>@item.Salary</td>
+
             <td>
                 @if (item.FactoryID != null)
                 {
@@ -43,20 +44,45 @@
                     <span class="text-danger">Unasigned</span>
                 }
             </td>
-            <td>@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-link text-warning", @style = "padding: 0" })</td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id },
+           new { @class = "btn btn-link text-warning", @style = "padding: 0" })
+            </td>
+
+            <td>
+                @using (Html.BeginForm("Delete", "Employee", new { id = item.Id }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <button class="btn btn-primary js-delete" type="submit" style="padding: 0; color: #e74c3c;" onclick="return confirm()">
+                        Delete
+                    </button>
+                }
+            </td>
         </tr>
     }
-
-
-
-
-
-
-
-
-
-
-
-
 </table>
+
+@section scripts
+{
+    <script>
+
+        //$(document).ready(function () {
+
+        //    let btn = $('.js-delete').(this);
+            
+        //    btn.on('mouseover', function () {
+        //        console.log('hello');
+        //    })
+
+
+
+        //});
+
+       
+
+                
+    </script>
+}
 
