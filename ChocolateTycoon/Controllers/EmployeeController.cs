@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using ChocolateTycoon.ViewModels;
+using System.Net;
 
 namespace ChocolateTycoon.Controllers
 {
@@ -16,6 +17,11 @@ namespace ChocolateTycoon.Controllers
         public EmployeeController()
         {
             db = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
         }
 
 
@@ -32,35 +38,50 @@ namespace ChocolateTycoon.Controllers
         // GET: Employee/Create
         public ActionResult Create()
         {
-            return View("EmployeeForm");
+            var factories = db.Factories.ToList();
+            var stores = db.Stores.ToList();
+
+            var viewModel = new EmployeeFormViewModel
+            {
+                Factories = factories,
+                Stores = stores
+            };
+            
+            return View("EmployeeForm", viewModel);
         }
 
         // GET: Employee/Edit
         public ActionResult Edit(int id)
         {
+            var factories = db.Factories.ToList();
+            var stores = db.Stores.ToList();
             var employee = db.Employees.SingleOrDefault(e => e.Id == id);
 
             if (employee == null)
                 return HttpNotFound();
 
-            ViewBag.Factories = new SelectList(db.Factories, "ID", "Name");
-            ViewBag.Stores = new SelectList(db.Stores, "ID", "Name");
+            var viewModel = new EmployeeFormViewModel
+            {
+                Factories = factories,
+                Stores = stores,
+                Employee = employee
+            };
 
-            return View("EmployeeForm", employee);
+            return View("EmployeeForm", viewModel);
         }
 
         // POST: Employee/Save/Id?
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(Employee employee)
+        public ActionResult Save(EmployeeFormViewModel viewModel)
         {
             var employees = db.Employees.ToList();
 
-            if (employee.Id == 0)
+            if (viewModel.Employee.Id == 0)
             {
                 foreach (var item in employees)
                 {
-                    if (item.FullName == employee.FullName)
+                    if (item.FullName == viewModel.Employee.FullName)
                     {
                         ModelState.AddModelError("Name", "This name already exists!");
                         break;
@@ -69,23 +90,26 @@ namespace ChocolateTycoon.Controllers
 
                 var newEmployee = new Employee
                 {
-                    FirstName = employee.FirstName,
-                    LastName = employee.LastName,
-                    Position = employee.Position,
-                    Salary = employee.SetSalary(employee)
+                    FirstName = viewModel.Employee.FirstName,
+                    LastName = viewModel.Employee.LastName,
+                    Position = viewModel.Employee.Position,
+                    Salary = viewModel.Employee.SetSalary(viewModel.Employee),
+                    FactoryID = viewModel.Employee.FactoryID,
+                    StoreID = viewModel.Employee.StoreID
                 };
 
                 db.Employees.Add(newEmployee);
             }
             else
             {
-                var employeeDb = db.Employees.SingleOrDefault(e => e.Id == employee.Id);
+                var employeeDb = db.Employees.SingleOrDefault(e => e.Id == viewModel.Employee.Id);
 
-                employeeDb.FirstName = employee.FirstName;
-                employeeDb.LastName = employee.LastName;
-                employeeDb.Position = employee.Position;
-                employeeDb.Salary = employee.SetSalary(employee);
-                employeeDb.FactoryID = employee.FactoryID;
+                employeeDb.FirstName = viewModel.Employee.FirstName;
+                employeeDb.LastName = viewModel.Employee.LastName;
+                employeeDb.Position = viewModel.Employee.Position;
+                employeeDb.Salary = viewModel.Employee.SetSalary(viewModel.Employee);
+                employeeDb.FactoryID = viewModel.Employee.FactoryID;
+                employeeDb.StoreID = viewModel.Employee.StoreID;
             }
 
             if (!ModelState.IsValid)
@@ -94,6 +118,21 @@ namespace ChocolateTycoon.Controllers
             db.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        // GET: Employee/Delete/Id
+        public ActionResult Delete(int? id)
+        {
+            var employee = db.Employees.SingleOrDefault(e => e.Id == id);
+
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            if (employee == null)
+                return HttpNotFound();
+
+            return View();
+
         }
     }
 }

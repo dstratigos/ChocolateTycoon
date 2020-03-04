@@ -25,6 +25,7 @@ namespace ChocolateTycoon.Controllers
             db.Dispose();
         }
 
+
         // GET: Factory
         public ActionResult Index(int? id)
         {
@@ -122,6 +123,8 @@ namespace ChocolateTycoon.Controllers
 
             var factory = db.Factories
                 .Include(f => f.ProductionUnit)
+                .Include(f => f.StorageUnit)
+                .Include(f => f.Employees)
                 .SingleOrDefault(f => f.ID == id);
 
             if (factory == null)
@@ -139,15 +142,22 @@ namespace ChocolateTycoon.Controllers
 
             var factoryToDelete = factories
                 .Include(f => f.ProductionUnit)
+                .Include(f => f.StorageUnit)
+                .Include(f => f.Employees)
                 .SingleOrDefault(f => f.ID == factory.ID);
 
             if (factory == null)
                 return HttpNotFound();
 
             if (factoryToDelete.ProductionUnit != null)
-            {
                 factoryToDelete.ProductionUnit = null;
-            }
+
+            if (factoryToDelete.StorageUnit != null)
+                factoryToDelete.StorageUnit = null;
+
+            if (factoryToDelete.Employees.Count() > 0)
+                factoryToDelete.Employees.Clear();
+
 
             factories.Remove(factoryToDelete);
 

@@ -1,4 +1,4 @@
-﻿@model ChocolateTycoon.Models.Employee
+﻿@model ChocolateTycoon.ViewModels.EmployeeFormViewModel
 
 @{
     ViewBag.Title = "Employee Form";
@@ -19,36 +19,35 @@
     @Html.AntiForgeryToken()
 
     <div class="form-group">
-        @Html.LabelFor(model => model.FirstName, new { @class = "control-label" })
-        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.FirstName)
+        @Html.LabelFor(model => model.Employee.FirstName, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Employee.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Employee.FirstName)
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.LastName, new { @class = "control-label" })
-        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
-
+        @Html.LabelFor(model => model.Employee.LastName, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Employee.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Employee.LastName, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Position, new { @class = "control-label" })
-        @Html.EnumDropDownListFor(model => model.Position, new { @class = "form-control", @id = "drop" })
+        @Html.LabelFor(model => model.Employee.Position, new { @class = "control-label" })
+        @Html.EnumDropDownListFor(model => model.Employee.Position, new { @class = "form-control", @id = "drop" })
     </div>
     
     <div id="factoryChoice" class="form-group">
         @Html.Label("Assign to Factory")
-        @Html.DropDownListFor(model => model.FactoryID, (SelectList)ViewBag.Factories, "Select", new { @class = "form-control" })
+        @Html.DropDownListFor(model => model.Employee.FactoryID, new SelectList(Model.Factories, "ID", "Name"), "Select", new { @class = "form-control" })
     </div>
 
     <div id="storeChoice" class="form-group">
         @Html.Label("Assign to Store")
-        @Html.DropDownListFor(model => model.StoreID, (SelectList)ViewBag.Stores, "Select", new { @class = "form-control" })
+        @Html.DropDownListFor(model => model.Employee.StoreID, new SelectList(Model.Stores, "ID", "Name"), "Select", new { @class = "form-control" })
     </div>
 
-    if (Model != null)
+    if (Model.Employee != null)
     {
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.Employee.Id)
     }
 
     <button class="btn btn-primary" type="submit">
