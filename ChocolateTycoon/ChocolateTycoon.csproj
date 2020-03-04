@@ -253,6 +253,7 @@
     <Compile Include="Services\FactoryService.cs" />
     <Compile Include="Services\MaterialsCost.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\EmployeeFormViewModel.cs" />
     <Compile Include="ViewModels\FactoryEmployeesViewModel.cs" />
     <Compile Include="ViewModels\StoreEmployeesViewModel.cs" />
   </ItemGroup>

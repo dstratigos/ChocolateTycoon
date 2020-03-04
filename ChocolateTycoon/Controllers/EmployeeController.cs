@@ -43,7 +43,8 @@ namespace ChocolateTycoon.Controllers
             if (employee == null)
                 return HttpNotFound();
 
-            ViewBag.Factories = new SelectList(db.Factories, "Id", "Name");
+            ViewBag.Factories = new SelectList(db.Factories, "ID", "Name");
+            ViewBag.Stores = new SelectList(db.Stores, "ID", "Name");
 
             return View("EmployeeForm", employee);
         }

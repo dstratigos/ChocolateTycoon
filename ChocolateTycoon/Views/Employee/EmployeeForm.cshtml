@@ -33,22 +33,22 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.Position, new { @class = "control-label" })
-        @Html.EnumDropDownListFor(model => model.Position, new { @class = "form-control" })
+        @Html.EnumDropDownListFor(model => model.Position, new { @class = "form-control", @id = "drop" })
+    </div>
+    
+    <div id="factoryChoice" class="form-group">
+        @Html.Label("Assign to Factory")
+        @Html.DropDownListFor(model => model.FactoryID, (SelectList)ViewBag.Factories, "Select", new { @class = "form-control" })
+    </div>
+
+    <div id="storeChoice" class="form-group">
+        @Html.Label("Assign to Store")
+        @Html.DropDownListFor(model => model.StoreID, (SelectList)ViewBag.Stores, "Select", new { @class = "form-control" })
     </div>
 
     if (Model != null)
     {
         @Html.HiddenFor(model => model.Id)
-
-        if (Model.Position == ChocolateTycoon.Models.EmployeePosition.FactoryManager ||
-            Model.Position == ChocolateTycoon.Models.EmployeePosition.ProductionEngineer)
-        {
-            <div class="form-group">
-                @Html.Label("Assign to Factory")
-                @Html.DropDownListFor(model => model.FactoryID, (SelectList)ViewBag.Factories, "Select", new { @class = "form-control" })
-            </div>
-        }
-
     }
 
     <button class="btn btn-primary" type="submit">
@@ -58,5 +58,31 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            let drop = $("#drop");
+
+            if (drop.val() == 0 || drop.val() == 3) {
+                $("#factoryChoice").show();
+                $("#storeChoice").hide();
+            }
+            else {
+                $("#factoryChoice").hide();
+                $("#storeChoice").show();
+            };
+
+            $("#drop").change(function () {
+                if (drop.val() == 0 || drop.val() == 3) {
+                    $("#factoryChoice").show();
+                    $("#storeChoice").hide();
+                }
+                else {
+                    $("#factoryChoice").hide();
+                    $("#storeChoice").show();
+                }
+            });
+        });
+    </script>
 }
 
