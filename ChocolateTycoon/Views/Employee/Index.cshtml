@@ -52,11 +52,11 @@
             </td>
 
             <td>
-                @using (Html.BeginForm("Delete", "Employee", new { id = item.Id }, FormMethod.Post, new {@class = "del-form" }))
+                @using (Html.BeginForm("Delete", "Employee", new { id = item.Id }, FormMethod.Post, new { @class = "del-form" }))
                 {
                     @Html.AntiForgeryToken()
 
-                    <button data-employee-id=@item.Id class="btn btn-link js-delete" type="submit" style="padding: 0; color: #e74c3c;">
+                    <button id="btn" class="btn btn-link" type="submit" style="padding: 0; color: #e74c3c;">
                         Delete
                     </button>
                 }
@@ -68,34 +68,34 @@
 @section scripts
 {
     <script>
-
-
         $(document).ready(function () {
 
-            $(".js-delete").on("click", "data-employee-id", function () {
-
-                var button = $(this);
-                //var form = $(".del-form");
-                button.preventDefault();
+            $(".del-form").on("click", "#btn", function (e) {
+                var button = this;
+                e.preventDefault();
 
                 bootbox.confirm({
-                    message: "Send this employee to" + "<br/>" + "unemployment office?",
+                    size: "small",
+                    closeButton: false,
+                    message: "Send this employee to" + "<br/>" + "unemployment office?",                    
+                    buttons: {
+                        confirm: {
+                            label: 'Sack them!',
+                            className: 'btn-danger pull-left'
+                        },
+                        cancel: {
+                            label: 'Spare them!',
+                            className: 'btn-success pull-right'
+                        }
+                    },
                     callback: function (result) {
                         if (result) {
-                            button.closest('from').submit();
+                            button.form.submit();
                         };
-                    },
-                    size: "small"
+                    }
                 });
-
-                //alert("The data-id of clicked item is: " + button);
-
             });
-
         });
-
-
-
     </script>
 }
 

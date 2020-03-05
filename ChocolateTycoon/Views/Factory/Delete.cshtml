@@ -58,8 +58,19 @@
                 e.preventDefault();
 
                 bootbox.confirm({
-                    message: "Delete this Factory?" + "<br/>" +
+                    closeButton: false,
+                    message: "Demolish this Factory?" + "<br/>" +
                         "<span class='text-danger'>All associated resources will perish!</span>",
+                    buttons: {
+                        confirm: {
+                            label: 'Down with it!',
+                            className: 'btn-danger pull-left'
+                        },
+                        cancel: {
+                            label: 'Let it stand!',
+                            className: 'btn-success pull-right'
+                        }
+                    },
                     callback: function (result) {
                         if (result) {
                             button.closest("form").submit();
