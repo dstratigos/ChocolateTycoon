@@ -11,6 +11,13 @@ namespace ChocolateTycoon.Models
 
         public string Name { get; set; }
 
-        //public List<Chocolate> Chocolates { get; set; }        
+        public int maxStorage = 5000;
+        public int maxByType;
+
+        public MainStorage()
+        {
+            maxByType = maxStorage / 5;
+        }
+
     }
 }

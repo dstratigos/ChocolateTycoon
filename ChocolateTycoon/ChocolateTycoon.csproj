@@ -186,6 +186,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\FactoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MainStorageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductionUnitController.cs" />
     <Compile Include="Controllers\StorageUnitController.cs" />
@@ -255,6 +256,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EmployeeFormViewModel.cs" />
     <Compile Include="ViewModels\FactoryEmployeesViewModel.cs" />
+    <Compile Include="ViewModels\MainStorageViewModel.cs" />
     <Compile Include="ViewModels\StoreEmployeesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -573,6 +575,7 @@
     <Content Include="Views\Store\Delete.cshtml" />
     <Content Include="Views\Factory\_ProductionResult.cshtml" />
     <Content Include="Views\Employee\EmployeeForm.cshtml" />
+    <Content Include="Views\MainStorage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
