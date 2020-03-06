@@ -24,10 +24,16 @@ namespace ChocolateTycoon.Controllers
         {
             var mainStorage = db.MainStorages.SingleOrDefault(m => m.ID == 1);
 
+            if (mainStorage == null)
+                return HttpNotFound();
+
             var chocolates = db.Chocolates
                 .Include(c => c.Status)
                 .Where(c => c.ChocolateStatusId == 2)
                 .ToList();
+
+            if (chocolates == null)
+                chocolates = new List<Chocolate>();
 
             var viewModel = new MainStorageViewModel()
             {

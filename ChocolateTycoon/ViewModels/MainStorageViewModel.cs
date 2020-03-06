@@ -40,12 +40,12 @@ namespace ChocolateTycoon.ViewModels
 
         public void GetStorage()
         {
-            darkAvailable = MainStorage.maxByType - dark;
-            whiteAvailable = MainStorage.maxByType - white;
-            milkAvailable = MainStorage.maxByType - milk;
-            almondsAvailable = MainStorage.maxByType - almonds;
-            hazelnutsAvailable = MainStorage.maxByType - hazelnuts;
-            totalAvailable = MainStorage.maxStorage - Chocolates.Count();
+            darkAvailable = MainStorage.maxPerShelf - dark;
+            whiteAvailable = MainStorage.maxPerShelf - white;
+            milkAvailable = MainStorage.maxPerShelf - milk;
+            almondsAvailable = MainStorage.maxPerShelf - almonds;
+            hazelnutsAvailable = MainStorage.maxPerShelf - hazelnuts;
+            totalAvailable = MainStorage.MaxStorage - Chocolates.Count();
         }
     }
 }

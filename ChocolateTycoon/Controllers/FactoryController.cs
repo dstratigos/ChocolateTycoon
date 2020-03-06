@@ -55,6 +55,7 @@ namespace ChocolateTycoon.Controllers
 
             ViewBag.ChocolateCount = FactoryService.PopulateChocolates(chocolates);
             ViewBag.ProductionError = TempData["ErrorMessage"];
+            ViewBag.ProductionSuccess = TempData["SuccessMessage"];
 
             return PartialView(factory);
         }
@@ -191,14 +192,21 @@ namespace ChocolateTycoon.Controllers
                 .Include(f => f.Employees)
                 .SingleOrDefault(f => f.ID == id);
 
+            var mainStorage = db.MainStorages.SingleOrDefault(m => m.ID == 1);
+
+            var chocolatesStored = db.Chocolates
+                .Where(c => c.ChocolateStatusId == 2)
+                .ToList();
+
             if (factory.StorageUnit == null)
                 TempData["ErrorMessage"] = "Storage Unit not available!";
-
             else
             {
-                TempData["ErrorMessage"] = FactoryService.Produce(factory);
+                TempData["ErrorMessage"] = FactoryService.Produce(factory, mainStorage);
 
-                var chocolatesProduced = factory.StorageUnit._chocolates.ToList();
+                TempData["SuccessMessage"] = mainStorage.SortChocolates(chocolatesStored);
+                
+                var chocolatesProduced = mainStorage.newProducts.ToList();
 
                 foreach (var chocolate in chocolatesProduced)
                 {

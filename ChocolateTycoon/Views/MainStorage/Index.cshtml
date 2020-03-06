@@ -26,41 +26,41 @@
         <th>Dark</th>
         <td style="text-align: center">@Model.dark</td>
         <td style="text-align: center">@Model.darkAvailable</td>
-        <td style="text-align: center">@Model.MainStorage.maxByType</td>
+        <td style="text-align: center">@Model.MainStorage.maxPerShelf</td>
     </tr>
     <tr>
         <th>Milk</th>
         <td style="text-align: center">@Model.milk</td>
         <td style="text-align: center">@Model.milkAvailable</td>
-        <td style="text-align: center">@Model.MainStorage.maxByType</td>
+        <td style="text-align: center">@Model.MainStorage.maxPerShelf</td>
     </tr>
 
     <tr>
         <th>Milk w Almonds</th>
         <td style="text-align: center">@Model.almonds</td>
         <td style="text-align: center">@Model.almondsAvailable</td>
-        <td style="text-align: center">@Model.MainStorage.maxByType</td>
+        <td style="text-align: center">@Model.MainStorage.maxPerShelf</td>
     </tr>
 
     <tr>
         <th>Milk w Hazelnuts</th>
         <td style="text-align: center">@Model.hazelnuts</td>
         <td style="text-align: center">@Model.hazelnutsAvailable</td>
-        <td style="text-align: center">@Model.MainStorage.maxByType</td>
+        <td style="text-align: center">@Model.MainStorage.maxPerShelf</td>
     </tr>
 
     <tr>
         <th>White</th>
         <td style="text-align: center">@Model.white</td>
         <td style="text-align: center">@Model.whiteAvailable</td>
-        <td style="text-align: center">@Model.MainStorage.maxByType</td>
+        <td style="text-align: center">@Model.MainStorage.maxPerShelf</td>
     </tr>
 
     <tr style="background-color: darkslategray">
         <th>Total</th>
         <td style="text-align: center">@Model.Chocolates.Count()</td>
         <td style="text-align: center">@Model.totalAvailable</td>
-        <td style="text-align: center">@Model.MainStorage.maxStorage</td>
+        <td style="text-align: center">@Model.MainStorage.MaxStorage</td>
     </tr>
 </table>
 

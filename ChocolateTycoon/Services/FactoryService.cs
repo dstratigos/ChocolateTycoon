@@ -1,4 +1,5 @@
 ﻿using ChocolateTycoon.Models;
+using ChocolateTycoon.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,17 +12,17 @@ namespace ChocolateTycoon.Services
         public static int PopulateChocolates(List<Chocolate> chocolates)
         {
             var count = chocolates.Where(c => c.ChocolateStatusId == 1).Count();
-            
+
             return count;
         }
 
 
-        public static string Produce(Factory factory)
+        public static string Produce(Factory factory, MainStorage mainStorage)
         {
             var productionUnit = factory.ProductionUnit;
             var storageUnit = factory.StorageUnit;
 
-           
+
             var materialsNeeded = productionUnit.MaterialsNeeded();
             var materialsSuffice = storageUnit.MaterialsSuffice(materialsNeeded);
             var personelSuffice = factory.PersonelSuffice(factory);
@@ -30,12 +31,7 @@ namespace ChocolateTycoon.Services
             {
                 var products = productionUnit.DailyProduction();
 
-                foreach (var chocolate in products)
-                {
-                    storageUnit._chocolates.Add(chocolate);
-                }
-
-                products.Clear();
+                mainStorage.newProducts.AddRange(products);
             }
             else if (!personelSuffice)
                 return "Not enough personel to start production!";
@@ -44,5 +40,7 @@ namespace ChocolateTycoon.Services
 
             return "";
         }
+
+        
     }
 }
