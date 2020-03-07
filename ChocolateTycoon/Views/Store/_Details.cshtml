@@ -7,7 +7,6 @@
         <th>ID</th>
         <th>Name</th>
         <th>Level</th>
-        <th>Chocolate Stock</th>
         <th>Total Employees</th>
         <th>Managers</th>
         <th>Sales Department</th>
@@ -17,7 +16,6 @@
         <td>@Model.ID</td>
         <td>@Model.Name</td>
         <td>@Model.Level</td>
-        <td>@Model.Chocolates.Count()</td>
         @{
             Html.RenderAction("StoreEmployees", new { id = Model.ID });
         }

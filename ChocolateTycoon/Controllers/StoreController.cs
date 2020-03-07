@@ -28,7 +28,6 @@ namespace ChocolateTycoon.Controllers
         public ActionResult Index(int? id)
         {
             var stores = db.Stores;
-                //.Include(s => s.Chocolates);
 
             if (id != null)
             {
@@ -44,7 +43,6 @@ namespace ChocolateTycoon.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             var store = db.Stores
-                //.Include(s => s.Chocolates)
                 .SingleOrDefault(s => s.ID == id);
 
             if (store == null)
@@ -79,13 +77,15 @@ namespace ChocolateTycoon.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("StoreForm", store);
-            }
+                //Create
+                if (store.ID == 0)
+                {
+                    db.Stores.Add(store);
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Store");
+                }
 
-            //Create
-            if (store.ID == 0)
-            {
-                db.Stores.Add(store);
+                return View("StoreForm", store);
             }
             else // Update
             { 
@@ -146,13 +146,5 @@ namespace ChocolateTycoon.Controllers
 
             return PartialView("_StoreEmployees", viewModel);
         }
-
-        // restock
-        //public PartialViewResult Restock(Store store)
-        //{
-        //    var chocolatesOfMainStorage = db.MainStorages.Select(m => m.Chocolates);
-
-        //    return PartialView("_Restock");
-        //}
     }
 }

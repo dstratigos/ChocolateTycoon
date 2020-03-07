@@ -571,7 +571,6 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Home\Main.cshtml" />
     <Content Include="Views\Store\_StoreEmployees.cshtml" />
-    <Content Include="Views\Store\IndexAPI.cshtml" />
     <Content Include="Views\Store\Delete.cshtml" />
     <Content Include="Views\Factory\_ProductionResult.cshtml" />
     <Content Include="Views\Employee\EmployeeForm.cshtml" />
