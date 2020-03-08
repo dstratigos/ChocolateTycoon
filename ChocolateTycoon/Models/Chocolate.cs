@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,10 +8,19 @@ namespace ChocolateTycoon.Models
 {
     public enum Type
     {
+        [Display(Name = "Dark")]
         Dark = 1,
+
+        [Display(Name = "Milk")]
         Milk,
+
+        [Display(Name = "Milk w Almonds")]
         AlmondMilk,
+
+        [Display(Name = "Milk w Hazelnuts")]
         HazelnutMilk,
+
+        [Display(Name = "White")]
         White
     }
 
