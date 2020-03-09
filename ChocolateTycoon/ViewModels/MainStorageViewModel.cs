@@ -9,13 +9,7 @@ namespace ChocolateTycoon.ViewModels
 {
     public class MainStorageViewModel
     {
-        public MainStorage MainStorage { get; set; }
-        public int darkAvailable;
-        public int whiteAvailable;
-        public int milkAvailable;
-        public int almondsAvailable;
-        public int hazelnutsAvailable;
-        public int totalAvailable;
+        public MainStorage MainStorage { get; set; }        
         public IDictionary<string, int> availableStorage = new Dictionary<string, int>();
 
 

@@ -254,6 +254,7 @@
     <Compile Include="Models\Safe.cs" />
     <Compile Include="Models\StorageUnit.cs" />
     <Compile Include="Models\Store.cs" />
+    <Compile Include="Models\Supplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FactoryService.cs" />
     <Compile Include="Services\MaterialsCost.cs" />
