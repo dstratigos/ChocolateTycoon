@@ -235,6 +235,10 @@
     <Compile Include="Migrations\202003021809597_EmployeeValidations.Designer.cs">
       <DependentUpon>202003021809597_EmployeeValidations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003091426292_ChocolateStoreFk.cs" />
+    <Compile Include="Migrations\202003091426292_ChocolateStoreFk.Designer.cs">
+      <DependentUpon>202003091426292_ChocolateStoreFk.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Controllers\API\StoresController.cs" />
@@ -621,6 +625,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003021809597_EmployeeValidations.resx">
       <DependentUpon>202003021809597_EmployeeValidations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003091426292_ChocolateStoreFk.resx">
+      <DependentUpon>202003091426292_ChocolateStoreFk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

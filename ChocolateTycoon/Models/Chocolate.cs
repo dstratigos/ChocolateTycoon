@@ -26,10 +26,7 @@ namespace ChocolateTycoon.Models
         public int ChocolateStatusId { get; set; }
         public ChocolateStatus Status { get; set; }
 
-        //public int MainStorageID { get; } = 1;
-
-        //public MainStorage MainStorage { get; set; }
-
-        //public StorageUnit StorageUnit { get; set; }
+        public int? StoreId { get; set; }
+        public Store Store { get; set; }
     }
 }
