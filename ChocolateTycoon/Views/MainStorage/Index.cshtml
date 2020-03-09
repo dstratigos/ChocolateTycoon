@@ -9,49 +9,180 @@
 <h4>Inventory Report</h4>
 <hr />
 
-<table class="table table-bordered table-hover">
-    <tr style="background-color: darkslategray">
-        <th style="text-align: center">Chocolate Type</th>
-        <th colspan="3" style="text-align: center">Storage Amount (pcs)</th>
-    </tr>
+<div class="container">
+    <div class="col-xs-2 text-nowrap" style="padding: 0">
+        <table class="table table-bordered">
+            <thead style="background-color: darkslategray; font-weight: bold" class="text-center">
+                <tr>
+                    <td>Chocolate Type</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+            </thead>
 
-    <tr>
-        <th width="25%"></th>
-        <th style="text-align: center">Current</th>
-        <th style="text-align: center">Available</th>
-        <th style="text-align: center">Maximum</th>
-    </tr>
+            @using ChocolateTycoon.Helpers
+            @{
+                var enumValues = Enum.GetValues(typeof(ChocolateTycoon.Models.Type));
 
-    <tr>
-        <th>Dark</th>
-        <td style="text-align: center">@Model.dark</td>
-        <td style="text-align: center">@Model.darkAvailable</td>
-        <td style="text-align: center">@Model.MainStorage.maxPerShelf</td>
-    </tr>
-    <tr>
+                foreach (ChocolateTycoon.Models.Type item in enumValues)
+                {
+                    <tr>
+                        <th>@PosisionEnumHelper.GetDisplayName(item)</th>
+                    </tr>
+                }
+            }
+
+            <tfoot style="font-weight: bold">
+                <tr>
+                    <td>Total</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="col-xs-10 text-center" style="padding: 0">
+        <table class="table table-bordered">
+
+            <thead style="background-color: darkslategray; font-weight: bold">
+                <tr>
+                    <td colspan="3">Storage Amount (pcs)</td>
+                </tr>
+                <tr>
+                    <td>Current</td>
+                    <td>Available</td>
+                    <td>Maximum</td>
+                </tr>
+            </thead>
+
+            @for (int i = 0; i < Model.availableChocolates.Count; i++)
+            {
+                var types = Enum.GetNames(typeof(ChocolateTycoon.Models.Type));
+
+                <tr>
+                    <td style="text-align: center">
+                        @Model.availableChocolates[types[i]]
+                    </td>
+                    <td style="text-align: center">
+                        @Model.availableStorage[types[i]]
+                    </td>
+                    <td>
+                        @Model.MainStorage.maxPerShelf
+                    </td>
+                </tr>
+            }
+
+            <tr>
+                <td>@Model.Chocolates.Count()</td>
+                @{
+                    int total = 0;
+
+                    foreach (var value in Model.availableStorage.Values)
+                    {
+
+                        total += value;
+                    }
+
+                    <td>@total</td>
+                }
+
+                <td>@Model.MainStorage.MaxStorage</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+
+
+@*<div style="float: left; width: 25%">
+        <table class="table table-bordered table-hover">
+            <tr style="background-color: darkslategray">
+                <th style="text-align: center">Chocolate Type</th>
+            </tr>
+
+            <tr>
+                <th></th>
+            </tr>
+
+            @using ChocolateTycoon.Helpers
+            @{
+
+
+                var types = Enum.GetNames(typeof(ChocolateTycoon.Models.Type));
+                var enums = Enum.GetValues(typeof(ChocolateTycoon.Models.Type));
+
+
+                foreach (ChocolateTycoon.Models.Type item in enums)
+                {
+                    <tr>
+                        <th>@PosisionEnumHelper.GetDisplayName(item)</th>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+    <div style="float: right; width: 75%">
+        <table class="table table-bordered table-hover">
+            <tr style="background-color: darkslategray">
+                <th colspan="3" style="text-align: center">Storage Amount (pcs)</th>
+            </tr>
+
+            <tr>
+                <th style="text-align: center">Current</th>
+                <th style="text-align: center">Available</th>
+                <th style="text-align: center">Maximum</th>
+            </tr>
+
+
+            @for (int i = 0; i < Model.availableChocolates.Count; i++)
+            {
+                <tr>
+                    <td style="text-align: center">
+                        @Model.availableChocolates[types[i]]
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>*@
+
+@*////////////////////////////////////////////////////////////////////////////////////////////////////////////*@
+
+
+@*<td style="text-align: center">@Model.darkAvailable</td>
+    <td style="text-align: center">@Model.MainStorage.maxPerShelf</td>*@
+
+
+
+
+@*<tr>
         <th>Milk</th>
-        <td style="text-align: center">@Model.milk</td>
+        <td style="text-align: center">@Model.availableChocolates[1]</td>
         <td style="text-align: center">@Model.milkAvailable</td>
         <td style="text-align: center">@Model.MainStorage.maxPerShelf</td>
     </tr>
 
     <tr>
         <th>Milk w Almonds</th>
-        <td style="text-align: center">@Model.almonds</td>
+        <td style="text-align: center">@Model.availableChocolates[2]</td>
         <td style="text-align: center">@Model.almondsAvailable</td>
         <td style="text-align: center">@Model.MainStorage.maxPerShelf</td>
     </tr>
 
     <tr>
         <th>Milk w Hazelnuts</th>
-        <td style="text-align: center">@Model.hazelnuts</td>
+        <td style="text-align: center">@Model.availableChocolates[3]</td>
         <td style="text-align: center">@Model.hazelnutsAvailable</td>
         <td style="text-align: center">@Model.MainStorage.maxPerShelf</td>
     </tr>
 
     <tr>
         <th>White</th>
-        <td style="text-align: center">@Model.white</td>
+        <td style="text-align: center">@Model.availableChocolates[4]</td>
         <td style="text-align: center">@Model.whiteAvailable</td>
         <td style="text-align: center">@Model.MainStorage.maxPerShelf</td>
     </tr>
@@ -61,6 +192,5 @@
         <td style="text-align: center">@Model.Chocolates.Count()</td>
         <td style="text-align: center">@Model.totalAvailable</td>
         <td style="text-align: center">@Model.MainStorage.MaxStorage</td>
-    </tr>
-</table>
+    </tr>*@
 

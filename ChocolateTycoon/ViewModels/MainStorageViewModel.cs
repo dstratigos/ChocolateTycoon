@@ -16,36 +16,36 @@ namespace ChocolateTycoon.ViewModels
         public int almondsAvailable;
         public int hazelnutsAvailable;
         public int totalAvailable;
+        public IDictionary<string, int> availableStorage = new Dictionary<string, int>();
+
 
         public List<Chocolate> Chocolates { get; set; }
-        public int dark;
-        public int white;
-        public int milk;
-        public int almonds;
-        public int hazelnuts;
+        public IDictionary<string, int> availableChocolates = new Dictionary<string, int>();
 
         public MainStorageViewModel()
         {
             Chocolates = new List<Chocolate>();
         }
 
+
         public void GetChocolates()
         {
-            dark = Chocolates.Where(c => c.ChocolateType == Models.Type.Dark).Count();
-            white = Chocolates.Where(c => c.ChocolateType == Models.Type.White).Count();
-            milk = Chocolates.Where(c => c.ChocolateType == Models.Type.Milk).Count();
-            almonds = Chocolates.Where(c => c.ChocolateType == Models.Type.AlmondMilk).Count();
-            hazelnuts = Chocolates.Where(c => c.ChocolateType == Models.Type.HazelnutMilk).Count();
+           var types = Enum.GetNames(typeof(Models.Type)).ToList();
+
+            foreach (var type in types)
+            {
+                availableChocolates.Add(type, Chocolates.Where(c => c.ChocolateType.ToString() == type).Count());
+            }
         }
 
         public void GetStorage()
         {
-            darkAvailable = MainStorage.maxPerShelf - dark;
-            whiteAvailable = MainStorage.maxPerShelf - white;
-            milkAvailable = MainStorage.maxPerShelf - milk;
-            almondsAvailable = MainStorage.maxPerShelf - almonds;
-            hazelnutsAvailable = MainStorage.maxPerShelf - hazelnuts;
-            totalAvailable = MainStorage.MaxStorage - Chocolates.Count();
+            var types = Enum.GetNames(typeof(Models.Type)).ToList();
+
+            foreach (var type in types)
+            {
+                availableStorage.Add(type, MainStorage.maxPerShelf - availableChocolates[type]);
+            }
         }
     }
 }

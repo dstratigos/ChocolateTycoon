@@ -204,14 +204,13 @@ namespace ChocolateTycoon.Controllers
             {
                 TempData["ErrorMessage"] = FactoryService.Produce(factory, mainStorage);
 
-                TempData["SuccessMessage"] = mainStorage.SortChocolates(chocolatesStored);
-                
+                TempData["SuccessMessage"] = mainStorage.SortProducts(chocolatesStored);
+
                 var chocolatesProduced = mainStorage.newProducts.ToList();
 
                 foreach (var chocolate in chocolatesProduced)
-                {
                     db.Chocolates.Add(chocolate);
-                }
+
 
                 db.SaveChanges();
             }
