@@ -139,6 +139,9 @@ namespace ChocolateTycoon.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(Factory factory)
         {
+            if (factory == null)
+                return RedirectToAction("Index");
+
             var factories = db.Factories;
 
             var factoryToDelete = factories
@@ -147,8 +150,8 @@ namespace ChocolateTycoon.Controllers
                 .Include(f => f.Employees)
                 .SingleOrDefault(f => f.ID == factory.ID);
 
-            if (factory == null)
-                return HttpNotFound();
+            if (factoryToDelete == null)
+                return RedirectToAction("Index");
 
             if (factoryToDelete.ProductionUnit != null)
                 factoryToDelete.ProductionUnit = null;

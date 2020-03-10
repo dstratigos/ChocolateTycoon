@@ -16,7 +16,7 @@
         {
             <td>
                 @Html.HiddenFor(m => m.ID)
-                <button class="btn btn-link" type="submit" onclick="return confirm('This will cost 0.00 coins. Create?')"
+                <button class="btn btn-link create" type="submit"
                         style="padding: 0; color: #e74c3c;">
                     Create a Storage Unit first!
                 </button>
@@ -36,8 +36,7 @@
         {
             <td colspan="2">
                 @Html.HiddenFor(m => m.ID)
-                <button class="btn btn-link" type="submit" onclick="return confirm('This will cost 0.00 coins. Create?')"
-                        style="padding: 0; color: #e74c3c;">
+                <button id="createPU" class="btn btn-link create" type="submit" style="padding: 0; color: #e74c3c;">
                     Create a Production Unit first!
                 </button>
             </td>
@@ -59,3 +58,35 @@
         Html.RenderAction("FactoryEmployees", new { id = Model.ID });
     }
 </tr>
+
+<script type="text/javascript">
+
+    var puButton = document.getElementById("createPU");
+    
+    if (puButton != null) {
+        puButton.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            bootbox.confirm({
+                size: "small",
+                closeButton: false,
+                message: "Create?",
+                buttons: {
+                    confirm: {
+                        label: 'Let`s do this!',
+                        className: 'btn-success '
+                    },
+                    cancel: {
+                        label: 'Too expensive!',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+                        puButton.form.submit();
+                    };
+                }
+            });
+        });
+    }    
+</script>
