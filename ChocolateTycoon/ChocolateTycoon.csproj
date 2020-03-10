@@ -257,6 +257,7 @@
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FactoryService.cs" />
+    <Compile Include="Services\MainStorageService.cs" />
     <Compile Include="Services\MaterialsCost.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EmployeeFormViewModel.cs" />

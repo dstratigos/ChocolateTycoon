@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using ChocolateTycoon.ViewModels;
+using ChocolateTycoon.Services;
 
 namespace ChocolateTycoon.Controllers
 {
@@ -41,8 +42,8 @@ namespace ChocolateTycoon.Controllers
                 Chocolates = chocolates
             };
 
-            viewModel.GetChocolates();
-            viewModel.GetStorage();
+            MainStorageService.GetChocolates(viewModel);
+            MainStorageService.GetStorage(viewModel);
 
             return View(viewModel);
         }

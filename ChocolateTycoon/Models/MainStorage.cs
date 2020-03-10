@@ -23,38 +23,5 @@ namespace ChocolateTycoon.Models
             maxPerShelf = maxStorage / Enum.GetNames(typeof(Type)).Length;
             newProducts = new List<Chocolate>();
         }
-
-
-        public string SortProducts(List<Chocolate> chocolatesStored)
-        {
-            var types = Enum.GetNames(typeof(Type)).ToList();
-
-            var succeeded = 0;
-            var failed = 0;
-
-            foreach (var type in types)
-            {
-                var stored = chocolatesStored.Where(c => c.ChocolateType.ToString() == type).ToList();
-                var produced = newProducts.Where(c => c.ChocolateType.ToString() == type).ToList();
-
-                foreach (var product in produced)
-                {
-                    if (maxPerShelf - stored.Count() >= 1)
-                    {
-                        stored.Add(product);
-                        product.ChocolateStatusId = 2;
-                        succeeded++;
-                    }
-                    else
-                    {
-                        product.ChocolateStatusId = 5;
-                        failed++;
-                    }
-                }
-            }
-
-            return $"{succeeded} chocolates stored, {failed} chocolates given to charity!";
-        }
-        
     }
 }
