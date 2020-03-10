@@ -11,7 +11,7 @@ namespace ChocolateTycoon.Models
 
         public string Name { get; set; }
 
-        private readonly int maxStorage = 200 * Enum.GetNames(typeof(Type)).Length;
+        private readonly int maxStorage = 200 * Enum.GetNames(typeof(ChocolateType)).Length;
         public int MaxStorage => maxStorage;
 
         public int maxPerShelf;
@@ -20,7 +20,7 @@ namespace ChocolateTycoon.Models
 
         public MainStorage()
         {
-            maxPerShelf = maxStorage / Enum.GetNames(typeof(Type)).Length;
+            maxPerShelf = maxStorage / Enum.GetNames(typeof(ChocolateType)).Length;
             newProducts = new List<Chocolate>();
         }
     }

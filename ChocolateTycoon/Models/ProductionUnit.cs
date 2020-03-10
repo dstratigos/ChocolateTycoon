@@ -46,7 +46,7 @@ namespace ChocolateTycoon.Models
             {
                 var chocolate = new Chocolate
                 {
-                    ChocolateType = Type.Dark,
+                    ChocolateType = ChocolateType.Dark,
                     ChocolateStatusId = 1
                 };
 
@@ -56,7 +56,7 @@ namespace ChocolateTycoon.Models
             {
                 var chocolate = new Chocolate
                 {
-                    ChocolateType = Type.White,
+                    ChocolateType = ChocolateType.White,
                     ChocolateStatusId = 1
                 };
 
@@ -66,7 +66,7 @@ namespace ChocolateTycoon.Models
             {
                 var chocolate = new Chocolate
                 {
-                    ChocolateType = Type.Milk,
+                    ChocolateType = ChocolateType.Milk,
                     ChocolateStatusId = 1
                 };
 
@@ -76,7 +76,7 @@ namespace ChocolateTycoon.Models
             {
                 var chocolate = new Chocolate
                 {
-                    ChocolateType = Type.AlmondMilk,
+                    ChocolateType = ChocolateType.AlmondMilk,
                     ChocolateStatusId = 1
                 };
 
@@ -86,7 +86,7 @@ namespace ChocolateTycoon.Models
             {
                 var chocolate = new Chocolate
                 {
-                    ChocolateType = Type.HazelnutMilk,
+                    ChocolateType = ChocolateType.HazelnutMilk,
                     ChocolateStatusId = 1
                 };
 

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ChocolateTycoon.Models
 {
-    public enum Type
+    public enum ChocolateType
     {
         [Display(Name = "Dark")]
         Dark = 1,
@@ -29,7 +29,7 @@ namespace ChocolateTycoon.Models
     {
         public int ID { get; set; }
 
-        public Type ChocolateType { get; set; }
+        public ChocolateType ChocolateType { get; set; }
 
         public decimal Price { get; set; }
 

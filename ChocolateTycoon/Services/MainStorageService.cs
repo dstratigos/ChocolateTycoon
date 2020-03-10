@@ -11,7 +11,7 @@ namespace ChocolateTycoon.Services
     {
         public static string SortProducts(MainStorage mainStorage, List<Chocolate> chocolatesStored)
         {
-            var types = Enum.GetNames(typeof(Models.Type)).ToList();
+            var types = Enum.GetNames(typeof(Models.ChocolateType)).ToList();
 
             var succeeded = 0;
             var failed = 0;
@@ -42,7 +42,7 @@ namespace ChocolateTycoon.Services
 
         public static void GetChocolates(MainStorageViewModel viewModel)
         {
-            var types = Enum.GetNames(typeof(Models.Type)).ToList();
+            var types = Enum.GetNames(typeof(Models.ChocolateType)).ToList();
 
             foreach (var type in types)
             {
@@ -52,7 +52,7 @@ namespace ChocolateTycoon.Services
 
         public static void GetStorage(MainStorageViewModel viewModel)
         {
-            var types = Enum.GetNames(typeof(Models.Type)).ToList();
+            var types = Enum.GetNames(typeof(Models.ChocolateType)).ToList();
 
             foreach (var type in types)
             {
