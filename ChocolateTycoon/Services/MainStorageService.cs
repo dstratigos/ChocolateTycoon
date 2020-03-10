@@ -18,15 +18,15 @@ namespace ChocolateTycoon.Services
 
             foreach (var type in types)
             {
-                var stored = chocolatesStored.Where(c => c.ChocolateType.ToString() == type).ToList();
+                var stored = chocolatesStored.Where(c => c.ChocolateType.ToString() == type).Count();
                 var produced = mainStorage.newProducts.Where(c => c.ChocolateType.ToString() == type).ToList();
 
                 foreach (var product in produced)
                 {
-                    if (mainStorage.maxPerShelf - stored.Count() >= 1)
+                    if (mainStorage.maxPerShelf - stored >= 1)
                     {
-                        stored.Add(product);
                         product.ChocolateStatusId = 2;
+                        stored++;
                         succeeded++;
                     }
                     else
