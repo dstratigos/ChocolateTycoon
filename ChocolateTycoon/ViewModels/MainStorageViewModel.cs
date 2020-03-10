@@ -9,13 +9,7 @@ namespace ChocolateTycoon.ViewModels
 {
     public class MainStorageViewModel
     {
-        public MainStorage MainStorage { get; set; }
-        public int darkAvailable;
-        public int whiteAvailable;
-        public int milkAvailable;
-        public int almondsAvailable;
-        public int hazelnutsAvailable;
-        public int totalAvailable;
+        public MainStorage MainStorage { get; set; }        
         public IDictionary<string, int> availableStorage = new Dictionary<string, int>();
 
 
@@ -25,27 +19,6 @@ namespace ChocolateTycoon.ViewModels
         public MainStorageViewModel()
         {
             Chocolates = new List<Chocolate>();
-        }
-
-
-        public void GetChocolates()
-        {
-           var types = Enum.GetNames(typeof(Models.Type)).ToList();
-
-            foreach (var type in types)
-            {
-                availableChocolates.Add(type, Chocolates.Where(c => c.ChocolateType.ToString() == type).Count());
-            }
-        }
-
-        public void GetStorage()
-        {
-            var types = Enum.GetNames(typeof(Models.Type)).ToList();
-
-            foreach (var type in types)
-            {
-                availableStorage.Add(type, MainStorage.maxPerShelf - availableChocolates[type]);
-            }
         }
     }
 }

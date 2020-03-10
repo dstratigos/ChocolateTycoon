@@ -239,6 +239,10 @@
     <Compile Include="Migrations\202003091426292_ChocolateStoreFk.Designer.cs">
       <DependentUpon>202003091426292_ChocolateStoreFk.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003100652472_AddedSupplier.cs" />
+    <Compile Include="Migrations\202003100652472_AddedSupplier.Designer.cs">
+      <DependentUpon>202003100652472_AddedSupplier.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Controllers\API\StoresController.cs" />
@@ -254,8 +258,10 @@
     <Compile Include="Models\Safe.cs" />
     <Compile Include="Models\StorageUnit.cs" />
     <Compile Include="Models\Store.cs" />
+    <Compile Include="Models\Supplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FactoryService.cs" />
+    <Compile Include="Services\MainStorageService.cs" />
     <Compile Include="Services\MaterialsCost.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EmployeeFormViewModel.cs" />
@@ -628,6 +634,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003091426292_ChocolateStoreFk.resx">
       <DependentUpon>202003091426292_ChocolateStoreFk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003100652472_AddedSupplier.resx">
+      <DependentUpon>202003100652472_AddedSupplier.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

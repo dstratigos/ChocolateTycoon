@@ -29,6 +29,7 @@ namespace ChocolateTycoon.Models
         public DbSet<ProductionUnit> ProductionUnits { get; set; }
         public DbSet<StorageUnit> StorageUnits { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
 
         public ApplicationDbContext()
             : base("ChocolateTycoonContext", throwIfV1Schema: false)
