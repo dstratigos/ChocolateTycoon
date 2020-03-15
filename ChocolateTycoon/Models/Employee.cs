@@ -49,7 +49,6 @@ namespace ChocolateTycoon.Models
         [Required]
         public EmployeePosition Position { get; set; }
 
-        [DataType(DataType.Currency)]
         [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = true)]
         public decimal Salary { get; set; }
 
