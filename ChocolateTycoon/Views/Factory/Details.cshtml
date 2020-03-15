@@ -6,7 +6,7 @@
     <td style="text-align: center">Raw Materials (Kg)</td>
     <td colspan="2" style="text-align: center">Production per Day (units)</td>
     <td style="text-align: center">Managers</td>
-    <td style="text-align: center">Production</td>
+    <td style="text-align: center">Engineers</td>
 </tr>
 
 <tr>
@@ -16,8 +16,7 @@
         {
             <td>
                 @Html.HiddenFor(m => m.ID)
-                <button class="btn btn-link create" type="submit"
-                        style="padding: 0; color: #e74c3c;">
+                <button id="createSU" class="btn btn-link create" type="submit" style="padding: 0; color: #e74c3c;">
                     Create a Storage Unit first!
                 </button>
             </td>
@@ -36,7 +35,7 @@
         {
             <td colspan="2">
                 @Html.HiddenFor(m => m.ID)
-                <button id="createPU" class="btn btn-link create" type="submit" style="padding: 0; color: #e74c3c;">
+                <button id="createPU" class="btn btn-link" type="submit" style="padding: 0; color: #e74c3c;">
                     Create a Production Unit first!
                 </button>
             </td>
@@ -61,8 +60,41 @@
 
 <script type="text/javascript">
 
-    var puButton = document.getElementById("createPU");
-    
+    // Create Storage Unit Button
+    var suButton = document.getElementById("createSU");
+
+    // Create Production Unit Button
+    var puButton = document.getElementById("createPU");    
+
+    // Bootbox confirmation for new Storage Unit
+    if (suButton != null) {
+        suButton.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            bootbox.confirm({
+                size: "small",
+                closeButton: false,
+                message: "Create Storage Unit?" + "<p style='color: orange; font-style: italic;'>" + "This will cost 0.00 coins" + "</p>",
+                buttons: {
+                    confirm: {
+                        label: 'Let`s do this!',
+                        className: 'btn-success '
+                    },
+                    cancel: {
+                        label: 'Too expensive!',
+                        className: 'btn-danger'
+                    }
+                },
+                callback: function (result) {
+                    if (result) {
+                        suButton.form.submit();
+                    };
+                }
+            });
+        });
+    }
+
+    // Bootbox confirmation for new Production Unit
     if (puButton != null) {
         puButton.addEventListener("click", function (e) {
             e.preventDefault();
@@ -70,7 +102,7 @@
             bootbox.confirm({
                 size: "small",
                 closeButton: false,
-                message: "Create?",
+                message: "Create Production Unit?" + "<p style='color: orange; font-style: italic;'>" + "This will cost 0.00 coins" + "</p>",
                 buttons: {
                     confirm: {
                         label: 'Let`s do this!',
@@ -88,5 +120,5 @@
                 }
             });
         });
-    }    
+    }
 </script>
