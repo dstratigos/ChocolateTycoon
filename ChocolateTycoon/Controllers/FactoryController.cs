@@ -43,6 +43,8 @@ namespace ChocolateTycoon.Controllers
         [ChildActionOnly]
         public PartialViewResult Details(int? id)
         {
+            var factoryService = new FactoryService();
+
             var factory = db.Factories
                 .Include(f => f.ProductionUnit)
                 .Include(f => f.StorageUnit)
@@ -53,7 +55,7 @@ namespace ChocolateTycoon.Controllers
                 .Include(c => c.Status)
                 .ToList();
 
-            ViewBag.ChocolateCount = FactoryService.PopulateChocolates(chocolates);
+            ViewBag.ChocolateCount = factoryService.PopulateChocolates(chocolates);
             ViewBag.ProductionError = TempData["ErrorMessage"];
             ViewBag.ProductionSuccess = TempData["SuccessMessage"];
 
@@ -189,6 +191,8 @@ namespace ChocolateTycoon.Controllers
         // GET: /Factory/Produce
         public ActionResult Produce(int id)
         {
+            var factoryService = new FactoryService();
+            
             var factory = db.Factories
                 .Include(f => f.ProductionUnit)
                 .Include(f => f.StorageUnit)
@@ -205,7 +209,7 @@ namespace ChocolateTycoon.Controllers
                 TempData["ErrorMessage"] = "Storage Unit not available!";
             else
             {
-                TempData["ErrorMessage"] = FactoryService.Produce(factory, mainStorage);
+                TempData["ErrorMessage"] = factoryService.Produce(factory, mainStorage);
 
                 TempData["SuccessMessage"] = MainStorageService.SortProducts(mainStorage, chocolatesStored);
 

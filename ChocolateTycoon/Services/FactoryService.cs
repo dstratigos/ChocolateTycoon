@@ -9,7 +9,7 @@ namespace ChocolateTycoon.Services
 {
     public class FactoryService
     {
-        public static int PopulateChocolates(List<Chocolate> chocolates)
+        public int PopulateChocolates(List<Chocolate> chocolates)
         {
             var count = chocolates.Where(c => c.ChocolateStatusId == 1).Count();
 
@@ -17,7 +17,7 @@ namespace ChocolateTycoon.Services
         }
 
 
-        public static string Produce(Factory factory, MainStorage mainStorage)
+        public string Produce(Factory factory, MainStorage mainStorage)
         {
             var productionUnit = factory.ProductionUnit;
             var storageUnit = factory.StorageUnit;

@@ -86,8 +86,6 @@ namespace ChocolateTycoon.Models
                 default:
                     return 0;
             }
-        }
-
-        
+        }        
     }
 }

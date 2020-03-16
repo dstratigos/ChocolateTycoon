@@ -20,5 +20,14 @@ namespace ChocolateTycoon.Models
         public decimal PricePerKilo { get; set; }
 
         public int ShippedAmount { get; set; }
+
+
+
+
+
+
+
+
+
     }
 }
