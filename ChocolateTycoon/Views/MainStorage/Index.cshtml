@@ -9,87 +9,72 @@
 <h4>Inventory Report</h4>
 <hr />
 
-<div class="container">
-    <div class="col-xs-2 text-nowrap" style="padding: 0">
-        <table class="table table-bordered">
-            <thead style="background-color: darkslategray; font-weight: bold" class="text-center">
-                <tr>
-                    <td>Chocolate Type</td>
-                </tr>
-                <tr>
-                    <td>&nbsp;</td>
-                </tr>
-            </thead>
+<div class="container-fluid text-center">
+    <table id="table" class="table table-bordered">
+        <thead style="background-color: darkslategray; font-weight: bold">
+            <tr>
+                <td>Sections</td>
+                <td colspan="3">Storage Amount (pcs)</td>
+            </tr>
+            <tr>
+                <td>Chocolate Type</td>
+                <td>Current</td>
+                <td>Available</td>
+                <td>Maximum</td>
+            </tr>
+        </thead>
 
-            @using ChocolateTycoon.Helpers
-            @*@{
-                var enumValues = Enum.GetValues(typeof(ChocolateTycoon.Models.ChocolateType));
-
-                foreach (ChocolateTycoon.Models.ChocolateType item in enumValues)
-                {
-                    <tr>
-                        <th>@PosisionEnumHelper.GetDisplayName(item)</th>
-                    </tr>
-                }
-            }*@
-
-            <tfoot style="font-weight: bold">
-                <tr>
-                    <td>Total</td>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-
-    <div class="col-xs-10 text-center" style="padding: 0">
-        <table class="table table-bordered">
-
-            <thead style="background-color: darkslategray; font-weight: bold">
-                <tr>
-                    <td colspan="3">Storage Amount (pcs)</td>
-                </tr>
-                <tr>
-                    <td>Current</td>
-                    <td>Available</td>
-                    <td>Maximum</td>
-                </tr>
-            </thead>
-
-            @for (int i = 0; i < Model.availableChocolates.Count; i++)
-            {
-                var types = Enum.GetNames(typeof(ChocolateTycoon.Models.ChocolateType));
-                var names = Model.enumNames;
-
-        <tr>
-            <th>@names[i]</th>
-            <td style="text-align: center">
-                @Model.availableChocolates[types[i]]
-            </td>
-            <td style="text-align: center">
-                @Model.availableStorage[types[i]]
-            </td>
-            <td>
-                @Model.MainStorage.maxPerShelf
-            </td>
-        </tr>
-            }
+        @for (int i = 0; i < Model.availableChocolates.Count; i++)
+        {
+            var types = Enum.GetNames(typeof(ChocolateTycoon.Models.ChocolateType));
+            var names = Model.enumNames;
 
             <tr>
-                <td>@Model.Chocolates.Count()</td>
-                @{
-                    int total = 0;
+                <th>@names[i]</th>
+                <td style="text-align: center">
+                    @Model.availableChocolates[types[i]]
+                </td>
+                <td style="text-align: center">
+                    @Model.availableStorage[types[i]]
+                </td>
+                <td>
+                    @Model.MainStorage.maxPerShelf
+                </td>
+            </tr>
+        }
 
-                    foreach (var value in Model.availableStorage.Values)
-                    {
+        <tr>
+            <th>Total</th>
+            <td>@Model.Chocolates.Count()</td>
+            @{
+                int total = 0;
 
-                        total += value;
-                    }
+                foreach (var value in Model.availableStorage.Values)
+                {
 
-                    <td>@total</td>
+                    total += value;
                 }
 
-                <td>@Model.MainStorage.MaxStorage</td>
-            </tr>
-        </table>
-    </div>
+                <td>@total</td>
+            }
+
+            <td>@Model.MainStorage.MaxStorage</td>
+        </tr>
+    </table>
 </div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#table').dataTable({
+                "order": [[ 1, "asc" ]],
+                "columnDefs": [{"orderable": false, "targets": 0}],
+                "searching": false,
+                "paging": false,
+                "bInfo": false
+               
+            });
+        });
+    </script>
+}

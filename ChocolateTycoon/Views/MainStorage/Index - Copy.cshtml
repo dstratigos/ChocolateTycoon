@@ -1,0 +1,95 @@
+﻿@model ChocolateTycoon.ViewModels.MainStorageViewModel
+
+@{
+    ViewBag.Title = "Main Storage";
+}
+
+<h2>Main Storage</h2>
+<hr />
+<h4>Inventory Report</h4>
+<hr />
+
+<div class="container">
+    <div class="col-xs-2 text-nowrap" style="padding: 0">
+        <table class="table table-bordered">
+            <thead style="background-color: darkslategray; font-weight: bold" class="text-center">
+                <tr>
+                    <td>Chocolate Type</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+            </thead>
+
+            @using ChocolateTycoon.Helpers
+            @*@{
+                var enumValues = Enum.GetValues(typeof(ChocolateTycoon.Models.ChocolateType));
+
+                foreach (ChocolateTycoon.Models.ChocolateType item in enumValues)
+                {
+                    <tr>
+                        <th>@PosisionEnumHelper.GetDisplayName(item)</th>
+                    </tr>
+                }
+            }*@
+
+            <tfoot style="font-weight: bold">
+                <tr>
+                    <td>Total</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="col-xs-10 text-center" style="padding: 0">
+        <table class="table table-bordered">
+
+            <thead style="background-color: darkslategray; font-weight: bold">
+                <tr>
+                    <td colspan="3">Storage Amount (pcs)</td>
+                </tr>
+                <tr>
+                    <td>Current</td>
+                    <td>Available</td>
+                    <td>Maximum</td>
+                </tr>
+            </thead>
+
+            @for (int i = 0; i < Model.availableChocolates.Count; i++)
+            {
+                var types = Enum.GetNames(typeof(ChocolateTycoon.Models.ChocolateType));
+                var names = Model.enumNames;
+
+        <tr>
+            <th>@names[i]</th>
+            <td style="text-align: center">
+                @Model.availableChocolates[types[i]]
+            </td>
+            <td style="text-align: center">
+                @Model.availableStorage[types[i]]
+            </td>
+            <td>
+                @Model.MainStorage.maxPerShelf
+            </td>
+        </tr>
+            }
+
+            <tr>
+                <td>@Model.Chocolates.Count()</td>
+                @{
+                    int total = 0;
+
+                    foreach (var value in Model.availableStorage.Values)
+                    {
+
+                        total += value;
+                    }
+
+                    <td>@total</td>
+                }
+
+                <td>@Model.MainStorage.MaxStorage</td>
+            </tr>
+        </table>
+    </div>
+</div>

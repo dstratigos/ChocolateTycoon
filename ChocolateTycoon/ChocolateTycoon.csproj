@@ -590,6 +590,7 @@
     <Content Include="Views\Factory\_ProductionResult.cshtml" />
     <Content Include="Views\Employee\EmployeeForm.cshtml" />
     <Content Include="Views\MainStorage\Index.cshtml" />
+    <Content Include="Views\MainStorage\Index - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
