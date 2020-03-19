@@ -30,3 +30,9 @@ textarea {
 .input-validation-error {
     border: 2px solid red;
 }
+
+/* Temporary fix for Supplier offer tables, if somethings else breaks, delete this style below. */
+td, th {
+    padding: 0;
+    padding-left: inherit;
+}

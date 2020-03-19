@@ -5,7 +5,6 @@
 }
 
 <h2>Index</h2>
-<script type="text/javascript" src="~/Scripts/jquery-3.4.1.js"></script>
 
 @foreach (var supplier in Model)
 {
@@ -14,12 +13,10 @@
             <thead style="background-color: darkslategray;">
                 <tr style="background-color: darkslategray">
                     <th class="text-center">Offer @supplier.Id</th>
-                    @*<th style="display: none"></th>*@
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    @*<th>Supplier</th>*@
                     <td id="@supplier.Id"></td>
                 </tr>
             </tbody>
@@ -82,7 +79,7 @@
             //    ]
             //});
 
-            // Start of Antwnhs implementation to get offers.
+            // ** Start of Antwnhs implementation to get offers.
 
             // Offer 1
             let offer1 = $('#1');
@@ -93,7 +90,6 @@
 
             }).then(function (data) {
 
-                console.log(data);
                 const supplier = JSON.parse(data);
 
                 offer1.append($('<td></td>').text('Name:'));
@@ -115,7 +111,6 @@
 
             }).then(function (data) {
 
-                console.log(data);
                 const supplier = JSON.parse(data);
 
                 offer2.append($('<td></td>').text('Name:'));
@@ -137,7 +132,6 @@
 
             }).then(function (data) {
 
-                console.log(data);
                 const supplier = JSON.parse(data);
 
                 offer3.append($('<td></td>').text('Name:'));
@@ -151,7 +145,6 @@
             })
 
             // End of Antwnhs implementation to get offers.
-
 
         });
     </script>
