@@ -183,6 +183,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\FactoriesController.cs" />
+    <Compile Include="Controllers\API\SuppliersController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\FactoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -191,10 +192,12 @@
     <Compile Include="Controllers\ProductionUnitController.cs" />
     <Compile Include="Controllers\StorageUnitController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="DTOs\FactoryDTO.cs" />
     <Compile Include="DTOs\ProductionUnitDTO.cs" />
     <Compile Include="DTOs\StorageUnitDTO.cs" />
     <Compile Include="DTOs\StoreDTO.cs" />
+    <Compile Include="DTOs\SupplierDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -273,6 +276,7 @@
     <Compile Include="ViewModels\FactoryEmployeesViewModel.cs" />
     <Compile Include="ViewModels\MainStorageViewModel.cs" />
     <Compile Include="ViewModels\StoreEmployeesViewModel.cs" />
+    <Compile Include="ViewModels\SupplierViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -591,6 +595,7 @@
     <Content Include="Views\Employee\EmployeeForm.cshtml" />
     <Content Include="Views\MainStorage\Index.cshtml" />
     <Content Include="Views\MainStorage\Index - Copy.cshtml" />
+    <Content Include="Views\Supplier\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
