@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Http;
 using AutoMapper;
 using System.Net;
+using ChocolateTycoon.Data;
 
 namespace ChocolateTycoon.Models.API
 {

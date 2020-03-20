@@ -15,9 +15,13 @@ namespace ChocolateTycoon.Models
         public string Name { get; set; }
         public byte Level { get; private set; }
 
+        //public int SupplierId { get; set; }
+
         public ProductionUnit ProductionUnit { get; set; }
         public StorageUnit StorageUnit { get; set; }
         public ICollection<Employee> Employees { get; set; }
+        //public Supplier Supplier { get; set; }
+        
 
 
         public Factory()

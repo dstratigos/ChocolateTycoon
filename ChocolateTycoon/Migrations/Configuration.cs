@@ -5,14 +5,14 @@ namespace ChocolateTycoon.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ChocolateTycoon.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ChocolateTycoon.Data.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(ChocolateTycoon.Models.ApplicationDbContext context)
+        protected override void Seed(ChocolateTycoon.Data.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

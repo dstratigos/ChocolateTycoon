@@ -17,28 +17,4 @@ namespace ChocolateTycoon.Models
             return userIdentity;
         }
     }
-
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public DbSet<Store> Stores { get; set; }
-        public DbSet<Factory> Factories { get; set; }
-        public DbSet<MainStorage> MainStorages { get; set; }
-        public DbSet<Safe> Safes { get; set; }
-        public DbSet<Player> Players { get; set; }
-        public DbSet<Chocolate> Chocolates { get; set; }
-        public DbSet<ProductionUnit> ProductionUnits { get; set; }
-        public DbSet<StorageUnit> StorageUnits { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<Supplier> Suppliers { get; set; }
-
-        public ApplicationDbContext()
-            : base("ChocolateTycoonContext", throwIfV1Schema: false)
-        {
-        }
-
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
-        }
-    }
 }

@@ -1,4 +1,5 @@
-﻿using ChocolateTycoon.Models;
+﻿using ChocolateTycoon.Data;
+using ChocolateTycoon.Models;
 using ChocolateTycoon.Services;
 using ChocolateTycoon.ViewModels;
 using System;

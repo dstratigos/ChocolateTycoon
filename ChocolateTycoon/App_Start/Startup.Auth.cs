@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using ChocolateTycoon.Models;
+using ChocolateTycoon.Data;
 
 namespace ChocolateTycoon
 {

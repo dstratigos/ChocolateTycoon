@@ -7,6 +7,7 @@ using System.Data.Entity;
 using ChocolateTycoon.DTOs;
 using AutoMapper;
 using System.Web.Http;
+using ChocolateTycoon.Data;
 
 namespace ChocolateTycoon.Controllers.API
 {

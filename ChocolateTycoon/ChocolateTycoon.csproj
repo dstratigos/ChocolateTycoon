@@ -193,6 +193,7 @@
     <Compile Include="Controllers\StorageUnitController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Data\ApplicationDbContext.cs" />
     <Compile Include="DTOs\FactoryDTO.cs" />
     <Compile Include="DTOs\ProductionUnitDTO.cs" />
     <Compile Include="DTOs\StorageUnitDTO.cs" />

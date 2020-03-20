@@ -1,4 +1,5 @@
-﻿using ChocolateTycoon.Models;
+﻿using ChocolateTycoon.Data;
+using ChocolateTycoon.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

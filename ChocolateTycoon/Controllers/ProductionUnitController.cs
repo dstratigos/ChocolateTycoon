@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using ChocolateTycoon.Data;
 
 namespace ChocolateTycoon.Controllers
 {

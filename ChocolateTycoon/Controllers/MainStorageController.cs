@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using ChocolateTycoon.ViewModels;
 using ChocolateTycoon.Services;
+using ChocolateTycoon.Data;
 
 namespace ChocolateTycoon.Controllers
 {
