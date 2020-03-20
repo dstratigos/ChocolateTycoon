@@ -23,7 +23,7 @@ namespace ChocolateTycoon.Models
 
         //public int FactoryId { get; set; }
 
-        //public Factory Factory { get; set; }
+        public List<Factory> Factories { get; set; }
 
 
 

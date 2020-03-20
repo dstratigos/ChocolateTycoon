@@ -251,6 +251,10 @@
     <Compile Include="Migrations\202003161950261_PopulateSuppliers.Designer.cs">
       <DependentUpon>202003161950261_PopulateSuppliers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003201418137_AddedFactorySupplierRelationship.cs" />
+    <Compile Include="Migrations\202003201418137_AddedFactorySupplierRelationship.Designer.cs">
+      <DependentUpon>202003201418137_AddedFactorySupplierRelationship.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Controllers\API\StoresController.cs" />
@@ -653,6 +657,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003161950261_PopulateSuppliers.resx">
       <DependentUpon>202003161950261_PopulateSuppliers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003201418137_AddedFactorySupplierRelationship.resx">
+      <DependentUpon>202003201418137_AddedFactorySupplierRelationship.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
