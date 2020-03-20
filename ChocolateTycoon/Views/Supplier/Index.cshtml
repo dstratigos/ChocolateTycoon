@@ -11,14 +11,12 @@
     <div class="container-fluid col-md-4">
         <table id="table-@supplier.Id" class="table table-bordered">
             <thead style="background-color: darkslategray;">
-                <tr style="background-color: darkslategray">
-                    <th class="text-center">Offer @supplier.Id</th>
+                <tr>
+                    <th class="text-center" colspan="2">Offer @supplier.Id</th>
+                    <th style="display: none"></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td id="@supplier.Id"></td>
-                </tr>
+            <tbody style="text-wrap: none">
             </tbody>
         </table>
     </div>
@@ -28,124 +26,45 @@
 {
     <script>
         $(document).ready(function () {
-            //let tables = $(".table");
+            let tables = $(".table");
 
-            //for (var i = 0; i < tables.length; i++) {
-            //    let table = "#" + tables[i].getAttribute("id");
+            for (var i = 0; i < tables.length; i++) {
+                let table = "#" + tables[i].getAttribute("id");
 
-            //function getData() {
-            //    return $.ajax({
-            //        type: "GET",
-            //        url: "/api/suppliers/1",
-            //        data: "",
-            //        dataType: "JSON",
-            //        success: function (data) {
-            // Retrieve the object
-            //var result = data['name'];
-            // Grab name from the object
-            //console.log(result['name']);
-            //data = response['name'];
-            //},
-            //error: function () {
-            //    alert('Ajax request fail');
-            //}
-            //complete: function (response) {
-            //    return response['name']
-            //}
-            //    });
-            //};
+                fetch("/api/suppliers/" + (i + 1)).then(function (response) {
 
-            //var x = getData().done(function (response) { return response['name'] });
+                    return response.text();
 
-            //var value = i + 1;
+                }).then(function (data) {
 
-            //$('#table').DataTable({
-            //    bPaginate: false,
-            //    bInfo: false,
-            //    searching: false,
-            //    ajax: {
-            //        //type: "GET",
-            //        url: "/api/suppliers/1",
-            //        //dataType: "JSON",
-            //        dataSrc: "",
-            //        data: ""
-            //    },
-            //    columns: [
-            //        {
-            //            //title: "Offer " + value,
-            //            //className: "text-center",
-            //            data: "name"
-            //        }
-            //    ]
-            //});
+                    const supplier = JSON.parse(data);
 
-            // ** Start of Antwnhs implementation to get offers.
 
-            // Offer 1
-            let offer1 = $('#1');
-
-            fetch("/api/suppliers/1").then(function (response) {
-
-                return response.text();
-
-            }).then(function (data) {
-
-                const supplier = JSON.parse(data);
-
-                offer1.append($('<td></td>').text('Name:'));
-                offer1.append($('<td></td>').text(supplier.name));
-                offer1.append($('<tr></tr>'));
-                offer1.append($('<td></td>').text('Ammount:'));
-                offer1.append($('<td></td>').text(supplier.offerAmount));
-                offer1.append($('<tr></tr>'));
-                offer1.append($('<td></td>').text('Price/KG:'));
-                offer1.append($('<td></td>').text(supplier.pricePerKilo));
-            })
-
-            // Offer 2
-            let offer2 = $('#2');
-
-            fetch("/api/suppliers/2").then(function (response) {
-
-                return response.text();
-
-            }).then(function (data) {
-
-                const supplier = JSON.parse(data);
-
-                offer2.append($('<td></td>').text('Name:'));
-                offer2.append($('<td></td>').text(supplier.name));
-                offer2.append($('<tr></tr>'));
-                offer2.append($('<td></td>').text('Ammount:'));
-                offer2.append($('<td></td>').text(supplier.offerAmount));
-                offer2.append($('<tr></tr>'));
-                offer2.append($('<td></td>').text('Price/KG:'));
-                offer2.append($('<td></td>').text(supplier.pricePerKilo));
-            })
-
-            // Offer 3
-            let offer3 = $('#3');
-
-            fetch("/api/suppliers/3").then(function (response) {
-
-                return response.text();
-
-            }).then(function (data) {
-
-                const supplier = JSON.parse(data);
-
-                offer3.append($('<td></td>').text('Name:'));
-                offer3.append($('<td></td>').text(supplier.name));
-                offer3.append($('<tr></tr>'));
-                offer3.append($('<td></td>').text('Ammount:'));
-                offer3.append($('<td></td>').text(supplier.offerAmount));
-                offer3.append($('<tr></tr>'));
-                offer3.append($('<td></td>').text('Price/KG:'));
-                offer3.append($('<td></td>').text(supplier.pricePerKilo));
-            })
-
-            // End of Antwnhs implementation to get offers.
-
+                    $(table).DataTable({
+                        bPaginate: false,
+                        bInfo: false,
+                        searching: false,
+                        ordering: false,
+                        columns: [
+                            {},
+                            {}
+                        ]
+                    })
+                        .row.add([
+                            "Supplier",
+                            supplier.name
+                        ])
+                        .row.add([
+                            "Offer Amount (Kg)",
+                            supplier.offerAmount
+                        ])
+                        .row.add([
+                            "Price per Kg",
+                            supplier.pricePerKilo
+                        ])
+                        .draw();
+                });
+            };
         });
     </script>
 }
