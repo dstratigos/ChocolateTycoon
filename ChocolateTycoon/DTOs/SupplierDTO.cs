@@ -1,12 +1,14 @@
-﻿using System;
+﻿using ChocolateTycoon.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace ChocolateTycoon.DTOs
 {
-    public class SupplierDTO
+    public class SupplierDto
     {
         public int Id { get; set; }
 
@@ -20,5 +22,12 @@ namespace ChocolateTycoon.DTOs
         public decimal PricePerKilo { get; set; }
 
         public int ShippedAmount { get; set; }
+
+        public ICollection<FactoryDto> Factories { get; set; }
+
+        public SupplierDto()
+        {
+            Factories = new Collection<FactoryDto>();
+        }
     }
 }

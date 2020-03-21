@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -27,7 +28,7 @@ namespace ChocolateTycoon.Models
         public Factory()
         {
             Level = 1;
-            Employees = new List<Employee>();
+            Employees = new Collection<Employee>();
         }
 
         //checks if the factory personel meets the required minimum for the factory to operate

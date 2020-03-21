@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Serialization;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace ChocolateTycoon.App_Start
             var settings = config.Formatters.JsonFormatter.SerializerSettings;
             settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             settings.Formatting = Newtonsoft.Json.Formatting.Indented;
+            settings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
 
             //Exports to JSON format.
             config.Formatters.JsonFormatter.SupportedMediaTypes

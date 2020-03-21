@@ -3,6 +3,7 @@ using ChocolateTycoon.DTOs;
 using ChocolateTycoon.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -23,19 +24,19 @@ namespace ChocolateTycoon.Controllers.API
         [HttpGet]
         public IHttpActionResult GetSuppliers()
         {
-            var suppliers = db.Suppliers.ToList();
+            var suppliers = db.Suppliers.ToList();            
 
-            var suppliersDTO = new List<SupplierDTO>();
+            var suppliersDTO = new List<SupplierDto>();
 
             foreach (var supplier in suppliers)
             {
-                var supplierDTO = new SupplierDTO
+                var supplierDTO = new SupplierDto
                 {
                     Id = supplier.Id,
                     Name = supplier.Name,
                     OfferAmount = supplier.OfferAmount,
                     PricePerKilo = supplier.PricePerKilo,
-                    ShippedAmount = supplier.ShippedAmount
+                    ShippedAmount = supplier.ShippedAmount                    
                 };
 
                 suppliersDTO.Add(supplierDTO);
@@ -51,21 +52,11 @@ namespace ChocolateTycoon.Controllers.API
         [HttpGet]
         public IHttpActionResult GetSupplier(int id)
         {
-            var supplierDb = db.Suppliers.Single(s => s.Id == id);
+            var supplierDb = db.Suppliers.Include(s => s.Factories.Where(f => f.SupplierId == id)).Single(s => s.Id == id);
+            
 
-            var supplierDTO = new SupplierDTO
-            {
-                Id = supplierDb.Id,
-                Name = supplierDb.Name,
-                OfferAmount = supplierDb.OfferAmount,
-                PricePerKilo = supplierDb.PricePerKilo,
-                ShippedAmount = supplierDb.ShippedAmount
-            };
 
-            if (supplierDTO == null)
-                return NotFound();
-
-            return Ok(supplierDTO);
+            return Ok(supplierDb);
         }
     }
 }

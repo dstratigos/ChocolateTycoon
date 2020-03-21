@@ -194,11 +194,11 @@
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Data\ApplicationDbContext.cs" />
-    <Compile Include="DTOs\FactoryDTO.cs" />
-    <Compile Include="DTOs\ProductionUnitDTO.cs" />
-    <Compile Include="DTOs\StorageUnitDTO.cs" />
+    <Compile Include="DTOs\FactoryDto.cs" />
+    <Compile Include="DTOs\ProductionUnitDto.cs" />
+    <Compile Include="DTOs\StorageUnitDto.cs" />
     <Compile Include="DTOs\StoreDTO.cs" />
-    <Compile Include="DTOs\SupplierDTO.cs" />
+    <Compile Include="DTOs\SupplierDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -251,9 +251,9 @@
     <Compile Include="Migrations\202003161950261_PopulateSuppliers.Designer.cs">
       <DependentUpon>202003161950261_PopulateSuppliers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003201418137_AddedFactorySupplierRelationship.cs" />
-    <Compile Include="Migrations\202003201418137_AddedFactorySupplierRelationship.Designer.cs">
-      <DependentUpon>202003201418137_AddedFactorySupplierRelationship.cs</DependentUpon>
+    <Compile Include="Migrations\202003202008449_AddedFactorySupplierRelationship.cs" />
+    <Compile Include="Migrations\202003202008449_AddedFactorySupplierRelationship.Designer.cs">
+      <DependentUpon>202003202008449_AddedFactorySupplierRelationship.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -658,8 +658,8 @@
     <EmbeddedResource Include="Migrations\202003161950261_PopulateSuppliers.resx">
       <DependentUpon>202003161950261_PopulateSuppliers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003201418137_AddedFactorySupplierRelationship.resx">
-      <DependentUpon>202003201418137_AddedFactorySupplierRelationship.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003202008449_AddedFactorySupplierRelationship.resx">
+      <DependentUpon>202003202008449_AddedFactorySupplierRelationship.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

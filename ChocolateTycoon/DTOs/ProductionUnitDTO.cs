@@ -6,12 +6,12 @@ using System.Web;
 
 namespace ChocolateTycoon.DTOs
 {
-    public class ProductionUnitDTO
+    public class ProductionUnitDto
     {
         [Required]
         public int FactoryID { get; set; }
         public int MaxProductionPerDay { get; set; }
 
-        public FactoryDTO FactoryDTO { get; set; }
+        public FactoryDto FactoryDTO { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -23,10 +24,13 @@ namespace ChocolateTycoon.Models
 
         //public int FactoryId { get; set; }
 
-        public List<Factory> Factories { get; set; }
+        public ICollection<Factory> Factories { get; set; }
 
 
-
+        public Supplier()
+        {
+            Factories = new Collection<Factory>();
+        }
 
 
 

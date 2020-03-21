@@ -6,7 +6,7 @@ using System.Web;
 
 namespace ChocolateTycoon.DTOs
 {
-    public class StorageUnitDTO
+    public class StorageUnitDto
     {
         [Required]
         public int FactoryID { get; set; }
@@ -17,7 +17,7 @@ namespace ChocolateTycoon.DTOs
         //public int _productsStored;
 
 
-        public FactoryDTO FactoryDTO { get; set; }
+        public FactoryDto FactoryDTO { get; set; }
         //public ICollection<ChocolateDTO> ChocolatesDTO { get; set; }
 
         

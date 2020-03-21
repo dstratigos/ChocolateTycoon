@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChocolateTycoon.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Web;
 
 namespace ChocolateTycoon.DTOs
 {
-    public class FactoryDTO
+    public class FactoryDto
     {
         public int ID { get; set; }
 
@@ -15,7 +16,9 @@ namespace ChocolateTycoon.DTOs
         public string Name { get; set; }
         public byte Level { get; private set; }
 
-        public ProductionUnitDTO ProductionUnitDTO { get; set; }
-        public StorageUnitDTO StorageUnitDTO { get; set; }
+        public ProductionUnitDto ProductionUnitDTO { get; set; }
+        public StorageUnitDto StorageUnitDTO { get; set; }
+
+        public Supplier Supplier { get; set; }
     }
 }

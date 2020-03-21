@@ -13,7 +13,7 @@ namespace ChocolateTycoon.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202003201418137_AddedFactorySupplierRelationship"; }
+            get { return "202003202008449_AddedFactorySupplierRelationship"; }
         }
         
         string IMigrationMetadata.Source
