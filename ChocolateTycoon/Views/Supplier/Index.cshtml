@@ -6,21 +6,23 @@
 
 <h2>Index</h2>
 
-@foreach (var supplier in Model)
-{
-    <div class="container-fluid col-md-4">
-        <table id="table-@supplier.Id" class="table table-bordered">
-            <thead style="background-color: darkslategray;">
-                <tr>
-                    <th class="text-center" colspan="2">Offer @supplier.Id</th>
-                    <th style="display: none"></th>
-                </tr>
-            </thead>
-            <tbody style="text-wrap: none">
-            </tbody>
-        </table>
-    </div>
-}
+<div class="container-fluid">
+    @foreach (var supplier in Model)
+    {
+        <div class="container-fluid col-md-4">
+            <table id="table-@supplier.Id" class="table table-bordered">
+                <thead style="background-color: darkslategray;">
+                    <tr>
+                        <th class="text-center" colspan="2">Offer @supplier.Id</th>
+                        <th style="display: none"></th>
+                    </tr>
+                </thead>
+                <tbody style="text-wrap: none">
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
 
 @section scripts
 {
@@ -39,6 +41,22 @@
 
                     const supplier = JSON.parse(data);
 
+                    function GetNames() {
+                        var names = [];
+
+                        $.each(supplier.factories, function (key, value) {
+                            $.each(value, function (key, val) {
+                                if (key == 'name') {
+                                    
+                                    names.push(val+" ");
+                                };
+                            })
+                        });
+
+                        names.sort((a, b) => a.localeCompare(b));
+
+                        return names;
+                    }
 
                     $(table).DataTable({
                         bPaginate: false,
@@ -61,6 +79,10 @@
                         .row.add([
                             "Price per Kg",
                             supplier.pricePerKilo
+                        ])
+                        .row.add([
+                            "Currently Serves",
+                            GetNames()
                         ])
                         .draw();
                 });

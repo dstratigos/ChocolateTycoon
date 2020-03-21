@@ -24,7 +24,6 @@ namespace ChocolateTycoon.Models
         public Supplier Supplier { get; set; }
         
 
-
         public Factory()
         {
             Level = 1;
