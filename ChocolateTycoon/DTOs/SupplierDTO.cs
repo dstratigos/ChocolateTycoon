@@ -23,11 +23,11 @@ namespace ChocolateTycoon.DTOs
 
         public int ShippedAmount { get; set; }
 
-        public ICollection<FactoryDto> Factories { get; set; }
+        public ICollection<SuppliedFactoryDto> Factories { get; set; }
 
         public SupplierDto()
         {
-            Factories = new Collection<FactoryDto>();
+            Factories = new Collection<SuppliedFactoryDto>();
         }
     }
 }

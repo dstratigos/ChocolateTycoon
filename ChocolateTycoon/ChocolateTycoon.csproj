@@ -177,7 +177,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
-    <Compile Include="App_Start\OrganizationProfile.cs" />
+    <Compile Include="App_Start\MapperProfile.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -194,6 +194,7 @@
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Data\ApplicationDbContext.cs" />
+    <Compile Include="DTOs\SuppliedFactoryDto.cs" />
     <Compile Include="DTOs\FactoryDto.cs" />
     <Compile Include="DTOs\ProductionUnitDto.cs" />
     <Compile Include="DTOs\StorageUnitDto.cs" />

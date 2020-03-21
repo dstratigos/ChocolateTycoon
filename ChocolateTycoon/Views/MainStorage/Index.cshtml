@@ -10,14 +10,14 @@
 <hr />
 
 <div class="container-fluid text-center">
-    <table id="table" class="table table-bordered">
+    <table id="table" class="table table-hover">
         <thead style="background-color: darkslategray; font-weight: bold">
             <tr>
-                <td>Sections</td>
+                <td rowspan="2">Sections</td>
                 <td colspan="3">Storage Amount (pcs)</td>
             </tr>
             <tr>
-                <td>Chocolate Type</td>
+                @*<td>Chocolate Type</td>*@
                 <td>Current</td>
                 <td>Available</td>
                 <td>Maximum</td>
@@ -43,9 +43,9 @@
             </tr>
         }
 
-        <tr>
+        <tr style="font-size: 13pt; color: darkorange">
             <th>Total</th>
-            <td>@Model.Chocolates.Count()</td>
+            <td style="font-weight: bold">@Model.Chocolates.Count()</td>
             @{
                 int total = 0;
 
@@ -55,10 +55,10 @@
                     total += value;
                 }
 
-                <td>@total</td>
+                <td style="font-weight: bold">@total</td>
             }
 
-            <td>@Model.MainStorage.MaxStorage</td>
+            <td style="font-weight: bold">@Model.MainStorage.MaxStorage</td>
         </tr>
     </table>
 </div>
@@ -68,7 +68,7 @@
     <script>
         $(document).ready(function () {
             $('#table').dataTable({
-                "order": [[ 1, "asc" ]],
+                "order": [[ 2, "asc" ]],
                 "columnDefs": [{"orderable": false, "targets": 0}],
                 "searching": false,
                 "paging": false,

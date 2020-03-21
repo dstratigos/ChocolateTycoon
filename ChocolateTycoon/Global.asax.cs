@@ -15,7 +15,7 @@ namespace ChocolateTycoon
     {
         protected void Application_Start()
         {
-            Mapper.Initialize(c => c.AddProfile<OrganizationProfile>());
+            Mapper.Initialize(c => c.AddProfile<MapperProfile>());
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
 

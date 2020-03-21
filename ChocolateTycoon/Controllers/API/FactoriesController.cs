@@ -21,11 +21,11 @@ namespace ChocolateTycoon.Controllers.API
         }
 
         // GET: api/factories
-        public IEnumerable<Factory> GetFactories()
+        public IEnumerable<FactoryDto> GetFactories()
         {
             return db.Factories.Include(f => f.Supplier)
-            .ToList();
-            /*.Select(Mapper.Map<Factory, FactoryDto>)*/;
+            .ToList()
+            .Select(Mapper.Map<Factory, FactoryDto>);
         }
 
 
