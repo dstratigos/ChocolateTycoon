@@ -19,6 +19,13 @@
                 </thead>
                 <tbody style="text-wrap: none">
                 </tbody>
+                <tfoot>
+                    <tr class="text-center">
+                        <td colspan="2">
+                            <a href="#" class="btn btn-sm btn-primary js-contract" data-supplier-id="@supplier.Id">Make Contract</a>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     }
@@ -47,8 +54,8 @@
                         $.each(supplier.factories, function (key, value) {
                             $.each(value, function (key, val) {
                                 if (key == 'name') {
-                                    
-                                    names.push(val+" ");
+
+                                    names.push(" " + val);
                                 };
                             })
                         });
@@ -57,6 +64,21 @@
 
                         return names;
                     }
+
+                    var objects = [];
+
+                    Object.keys(supplier.factories).forEach(function (key) {
+
+                        objects.push(supplier.factories[key]);
+                    });
+
+
+
+                    if (objects.length == 0)
+                        console.log("nothing to show");
+                    else
+                        objects.forEach(o => console.log(o.name));
+
 
                     $(table).DataTable({
                         bPaginate: false,
@@ -85,8 +107,46 @@
                             GetNames()
                         ])
                         .draw();
+
+
+                    $(table).on('click', '.js-contract', function (e) {
+                        let button = $(this);
+
+                        //console.log(button.attr('data-supplier-id'));
+
+
+
+                        bootbox.prompt({
+                            title: "Select a Factory",
+                            inputType: 'select',
+                            inputOptions: [
+                                objects.forEach(o => { text: (o.name), value: 1 })
+                                
+                            ],
+                            callback: function (result) {
+                                console.log(result);
+                            }
+                        });
+
+                    });
+
+
+
+
+
+
+
+
+
+
+
                 });
             };
+
+
+
+
+
         });
     </script>
 }
