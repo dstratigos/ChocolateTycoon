@@ -42,5 +42,12 @@ namespace ChocolateTycoon.Controllers.API
 
             return Ok(Mapper.Map<SupplierDto>(supplierDb));
         }
+
+        // PUT: /api/suppliers
+        [HttpPut]
+        public IHttpActionResult BreakContract(SupplierDto supplierDto)
+        {
+            return Ok();
+        }
     }
 }

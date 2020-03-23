@@ -22,7 +22,7 @@
                 <tfoot>
                     <tr class="text-center">
                         <td colspan="2">
-                            <a href="#" class="btn btn-sm btn-primary js-contract" data-supplier-id="@supplier.Id">Make Contract</a>
+                            <a href="#" class="btn btn-sm btn-primary js-delete-factory" data-supplier-id="@supplier.Id">Break Contract</a>
                         </td>
                     </tr>
                 </tfoot>
@@ -48,7 +48,7 @@
 
                     const supplier = JSON.parse(data);
 
-                    function GetNames() {
+                    function GetFactoryNames() {
                         var names = [];
 
                         $.each(supplier.factories, function (key, value) {
@@ -62,22 +62,32 @@
 
                         names.sort((a, b) => a.localeCompare(b));
 
-                        return names;
+                        return names.length > 0 ? names : "None";
+                    };
+
+                    function GetSuppliedFactories() {
+                        var factories = [];
+
+                        var defaultValue = { text: "Select", value: 0 };
+                        factories.push(defaultValue);
+
+                        (supplier.factories).forEach(function (key, value) {
+
+                            var factory = { text: key.name, value: key.id };
+                            factories.push(factory);
+                        });                     
+
+                        return factories.length < 2 ? [{ text: "Nothing to show", value: 0 }] : factories;
+                    };
+
+                    function BreakContract(factoryId) {
+                        var indexToDelete = supplier.factories.findIndex(f => f.id == factoryId);
+
+                        supplier.factories.splice(indexToDelete, 1);
+                        format(supplier.factories);
+
+                        return supplier.factories;
                     }
-
-                    var objects = [];
-
-                    Object.keys(supplier.factories).forEach(function (key) {
-
-                        objects.push(supplier.factories[key]);
-                    });
-
-
-
-                    if (objects.length == 0)
-                        console.log("nothing to show");
-                    else
-                        objects.forEach(o => console.log(o.name));
 
 
                     $(table).DataTable({
@@ -104,27 +114,27 @@
                         ])
                         .row.add([
                             "Currently Serves",
-                            GetNames()
+                            GetFactoryNames()
                         ])
                         .draw();
 
 
-                    $(table).on('click', '.js-contract', function (e) {
+                    $(table).on('click', '.js-delete-factory', function (e) {
                         let button = $(this);
 
-                        //console.log(button.attr('data-supplier-id'));
-
-
-
                         bootbox.prompt({
-                            title: "Select a Factory",
+                            title: "Select a Contract to Break",
                             inputType: 'select',
-                            inputOptions: [
-                                objects.forEach(o => { text: (o.name), value: 1 })
-                                
-                            ],
-                            callback: function (result) {
-                                console.log(result);
+                            inputOptions: GetSuppliedFactories(),
+                            value: 0,
+                            callback: function (factoryId) {
+
+                                if (factoryId == 0)
+                                    return;
+
+                                var factoryIndex = BreakContract(factoryId);                              
+                                console.log(factoryIndex);
+                                //console.log(supplier);
                             }
                         });
 
