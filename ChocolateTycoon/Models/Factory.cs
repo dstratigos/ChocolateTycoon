@@ -20,14 +20,14 @@ namespace ChocolateTycoon.Models
 
         public ProductionUnit ProductionUnit { get; set; }
         public StorageUnit StorageUnit { get; set; }
-        public ICollection<Employee> Employees { get; set; }
+        public List<Employee> Employees { get; set; }
         public Supplier Supplier { get; set; }
         
 
         public Factory()
         {
             Level = 1;
-            Employees = new Collection<Employee>();
+            Employees = new List<Employee>();
         }
 
         //checks if the factory personel meets the required minimum for the factory to operate
@@ -48,6 +48,11 @@ namespace ChocolateTycoon.Models
             }
 
             return false;
+        }
+
+        public void BreakContract()
+        {
+            Supplier = null;
         }
 
     }

@@ -18,11 +18,11 @@ namespace ChocolateTycoon.DTOs
         public decimal PricePerKilo { get; set; }
         public int ShippedAmount { get; set; }
 
-        public ICollection<SuppliedFactoryDto> Factories { get; set; }
+        public List<SuppliedFactoryDto> Factories { get; set; }
 
         public SupplierDto()
         {
-            Factories = new Collection<SuppliedFactoryDto>();
+            Factories = new List<SuppliedFactoryDto>();
         }
     }
 }

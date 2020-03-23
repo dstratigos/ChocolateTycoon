@@ -19,6 +19,7 @@ namespace ChocolateTycoon.App_Start
             CreateMap<FactoryDto, Factory>();
 
             CreateMap<Factory, SuppliedFactoryDto>();
+            CreateMap<SuppliedFactoryDto, Factory>();
 
             CreateMap<ProductionUnit, ProductionUnitDto>();
             CreateMap<ProductionUnitDto, ProductionUnit>();
@@ -27,6 +28,7 @@ namespace ChocolateTycoon.App_Start
             CreateMap<StorageUnitDto, StorageUnit>();
 
             CreateMap<Supplier, SupplierDto>();
+            CreateMap<SupplierDto, Supplier>();
         }
     }
 }

@@ -24,12 +24,12 @@ namespace ChocolateTycoon.Models
 
         //public int FactoryId { get; set; }
 
-        public ICollection<Factory> Factories { get; set; }
+        public List<Factory> Factories { get; set; }
 
 
         public Supplier()
         {
-            Factories = new Collection<Factory>();
+            Factories = new List<Factory>();
         }
 
 

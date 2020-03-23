@@ -11,7 +11,5 @@ namespace ChocolateTycoon.DTOs
     {
         public int ID { get; set; }
         public string Name { get; set; }
-
-        //public StorageUnitDto StorageUnitDTO { get; set; }
     }
 }

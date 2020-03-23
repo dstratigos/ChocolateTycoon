@@ -28,6 +28,19 @@ namespace ChocolateTycoon.Controllers.API
             .Select(Mapper.Map<Factory, FactoryDto>);
         }
 
+        // PUT: /api/factories/id
+        [HttpPut]
+        public IHttpActionResult BreakContract(int id)
+        {
+            var factory = db.Factories.Include(f => f.Supplier).Single(f => f.ID == id);
+
+            factory.BreakContract();
+
+            db.SaveChanges();
+
+            return Ok();
+        }
+
 
     }
 }

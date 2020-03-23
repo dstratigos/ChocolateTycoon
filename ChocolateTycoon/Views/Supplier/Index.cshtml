@@ -22,7 +22,7 @@
                 <tfoot>
                     <tr class="text-center">
                         <td colspan="2">
-                            <a href="#" class="btn btn-sm btn-primary js-delete-factory" data-supplier-id="@supplier.Id">Break Contract</a>
+                            <a href="#" class="btn btn-sm btn-primary js-break-contract">Break Contract</a>
                         </td>
                     </tr>
                 </tfoot>
@@ -46,18 +46,14 @@
 
                 }).then(function (data) {
 
-                    const supplier = JSON.parse(data);
+                    const supplier = JSON.parse(data);                    
 
+                    // get the names of the factories supplied by each supplier
                     function GetFactoryNames() {
                         var names = [];
 
-                        $.each(supplier.factories, function (key, value) {
-                            $.each(value, function (key, val) {
-                                if (key == 'name') {
-
-                                    names.push(" " + val);
-                                };
-                            })
+                        (supplier.factories).forEach(function (key, value) {                                                        
+                            names.push(" " + key.name);
                         });
 
                         names.sort((a, b) => a.localeCompare(b));
@@ -65,32 +61,42 @@
                         return names.length > 0 ? names : "None";
                     };
 
+                    // get the names and ids of supplied factories to fill select prompt
                     function GetSuppliedFactories() {
                         var factories = [];
 
                         var defaultValue = { text: "Select", value: 0 };
-                        factories.push(defaultValue);
+                        factories.push(defaultValue);                          // define default selection
 
                         (supplier.factories).forEach(function (key, value) {
 
                             var factory = { text: key.name, value: key.id };
                             factories.push(factory);
-                        });                     
+                        });
 
                         return factories.length < 2 ? [{ text: "Nothing to show", value: 0 }] : factories;
                     };
 
-                    function BreakContract(factoryId) {
-                        var indexToDelete = supplier.factories.findIndex(f => f.id == factoryId);
+                    
+                    //function GetFactoryNames() {
+                    //    var names = [];
 
-                        supplier.factories.splice(indexToDelete, 1);
-                        format(supplier.factories);
+                    //    $.each(supplier.factories, function (key, value) {
+                    //        $.each(value, function (key, val) {
+                    //            if (key == 'name') {
 
-                        return supplier.factories;
-                    }
+                    //                names.push(" " + val);
+                    //            };
+                    //        })
+                    //    });
+
+                    //    names.sort((a, b) => a.localeCompare(b));
+
+                    //    return names.length > 0 ? names : "None";
+                    //};                    
 
 
-                    $(table).DataTable({
+                   $(table).DataTable({
                         bPaginate: false,
                         bInfo: false,
                         searching: false,
@@ -118,9 +124,8 @@
                         ])
                         .draw();
 
-
-                    $(table).on('click', '.js-delete-factory', function (e) {
-                        let button = $(this);
+                    // executes the break contract command
+                    $(table).on('click', '.js-break-contract', function () {
 
                         bootbox.prompt({
                             title: "Select a Contract to Break",
@@ -129,34 +134,23 @@
                             value: 0,
                             callback: function (factoryId) {
 
-                                if (factoryId == 0)
-                                    return;
+                                if (factoryId != 0 && factoryId != null) {
 
-                                var factoryIndex = BreakContract(factoryId);                              
-                                console.log(factoryIndex);
-                                //console.log(supplier);
+                                    $.ajax({
+                                        url: "/api/factories/" + factoryId,
+                                        method: "PUT",
+                                        success: function () {
+                                            location.reload();
+                                            console.log("success!")
+                                        }
+                                    });
+                                }
                             }
                         });
 
                     });
-
-
-
-
-
-
-
-
-
-
-
                 });
             };
-
-
-
-
-
         });
     </script>
 }
