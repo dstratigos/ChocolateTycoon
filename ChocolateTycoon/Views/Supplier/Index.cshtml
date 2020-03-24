@@ -96,7 +96,7 @@
                     //};                    
 
 
-                   $(table).DataTable({
+                   var x = $(table).DataTable({
                         bPaginate: false,
                         bInfo: false,
                         searching: false,
@@ -121,8 +121,9 @@
                         .row.add([
                             "Currently Serves",
                             GetFactoryNames()
-                        ])
+                        ])                       
                         .draw();
+                    
 
                     // executes the break contract command
                     $(table).on('click', '.js-break-contract', function () {
@@ -140,15 +141,14 @@
                                         url: "/api/factories/" + factoryId,
                                         method: "PUT",
                                         success: function () {
-                                            location.reload();
-                                            console.log("success!")
+                                            location.reload();                                            
+                                            console.log("success!");
                                         }
                                     });
                                 }
                             }
                         });
-
-                    });
+                    });                    
                 });
             };
         });

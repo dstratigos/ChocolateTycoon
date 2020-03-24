@@ -601,8 +601,8 @@
     <Content Include="Views\Employee\EmployeeForm.cshtml" />
     <Content Include="Views\MainStorage\Index.cshtml" />
     <Content Include="Views\MainStorage\Index - Copy.cshtml" />
+    <Content Include="Views\Supplier\Index - Intitial.cshtml" />
     <Content Include="Views\Supplier\Index.cshtml" />
-    <Content Include="Views\Supplier\Index - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
