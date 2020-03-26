@@ -21,11 +21,13 @@ namespace ChocolateTycoon.Controllers.API
         }
 
         // GET: api/factories
-        public IEnumerable<FactoryDto> GetFactories()
+        public IHttpActionResult GetFactories()
         {
-            return db.Factories.Include(f => f.Supplier)
-            .ToList()
-            .Select(Mapper.Map<Factory, FactoryDto>);
+            var factories = db.Factories.Include(f => f.Supplier).ToList();
+
+            var factoriesDto = new List<FactoryDto>();
+            
+            return Ok(Mapper.Map(factories, factoriesDto));
         }
 
         // PUT: /api/factories/id
@@ -39,6 +41,23 @@ namespace ChocolateTycoon.Controllers.API
             db.SaveChanges();
 
             return Ok();
+        }
+
+        // POST: /api/factories/id
+        [HttpPost]
+        public IHttpActionResult MakeContract(SuppliedFactoryDto suppliedFactory)
+        {
+            var factory = db.Factories.Include(f => f.Supplier).SingleOrDefault(f => f.ID == suppliedFactory.Id);
+            var supplier = db.Suppliers.SingleOrDefault(s => s.Id == suppliedFactory.supplierId);
+
+            if (factory == null || supplier == null)
+                return BadRequest();
+
+            var message = factory.MakeContract(supplier);
+
+            db.SaveChanges();
+
+            return Ok(message);
         }
 
 

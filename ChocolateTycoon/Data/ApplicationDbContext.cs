@@ -32,13 +32,6 @@ namespace ChocolateTycoon.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<Supplier>()
-            //    .HasMany(s => s.Factories);
-
-            //modelBuilder.Entity<Factory>()
-            //    .HasOptional(f => f.Supplier);
-                
-            
             base.OnModelCreating(modelBuilder);
         }
     }

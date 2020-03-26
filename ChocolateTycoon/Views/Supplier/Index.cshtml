@@ -13,7 +13,7 @@
             <table id="table-@supplier.Id" class="table table-bordered">
                 <thead style="background-color: darkslategray;">
                     <tr>
-                        <th class="text-center" colspan="2">Offer @supplier.Id</th>
+                        <th class="text-center" colspan="2">Offer #@supplier.Id</th>
                         <th style="display: none"></th>
                     </tr>
                 </thead>
@@ -23,7 +23,9 @@
                     <tr class="text-center">
                         <td colspan="2">
                             <a href="#" class="btn btn-sm btn-primary js-break-contract">Break Contract</a>
+                            <a href="#" class="btn btn-sm btn-primary js-make-contract">Make Contract</a>
                         </td>
+
                     </tr>
                 </tfoot>
             </table>
@@ -37,7 +39,26 @@
         $(document).ready(function () {
             let tables = $(".table");
 
-            for (var i = 0; i < tables.length; i++) {
+            function GetAllFactoryNames() {
+                let allNames = [];
+
+                let defaultValue = { text: "Select", value: 0 };
+                allNames.push(defaultValue);
+
+                $.getJSON("/api/factories", function (result) {
+                    $.each(result, function (key, value) {
+                        let single = { text: value.name, value: value.id };
+                        allNames.push(single);
+                    })
+                });
+
+                return allNames;
+            }
+
+            let allFactoryNames = GetAllFactoryNames();
+
+            
+            for (let i = 0; i < tables.length; i++) {
                 let table = "#" + tables[i].getAttribute("id");
 
                 fetch("/api/suppliers/" + (i + 1)).then(function (response) {
@@ -46,13 +67,13 @@
 
                 }).then(function (data) {
 
-                    const supplier = JSON.parse(data);                    
+                    const supplier = JSON.parse(data);
 
                     // get the names of the factories supplied by each supplier
                     function GetFactoryNames() {
-                        var names = [];
+                        let names = [];
 
-                        (supplier.factories).forEach(function (key, value) {                                                        
+                        (supplier.factories).forEach(function (key, value) {
                             names.push(" " + key.name);
                         });
 
@@ -63,14 +84,14 @@
 
                     // get the names and ids of supplied factories to fill select prompt
                     function GetSuppliedFactories() {
-                        var factories = [];
+                        let factories = [];
 
-                        var defaultValue = { text: "Select", value: 0 };
+                        let defaultValue = { text: "Select", value: 0 };
                         factories.push(defaultValue);                          // define default selection
 
                         (supplier.factories).forEach(function (key, value) {
 
-                            var factory = { text: key.name, value: key.id };
+                            let factory = { text: key.name, value: key.id };
                             factories.push(factory);
                         });
 
@@ -78,25 +99,7 @@
                     };
 
                     
-                    //function GetFactoryNames() {
-                    //    var names = [];
-
-                    //    $.each(supplier.factories, function (key, value) {
-                    //        $.each(value, function (key, val) {
-                    //            if (key == 'name') {
-
-                    //                names.push(" " + val);
-                    //            };
-                    //        })
-                    //    });
-
-                    //    names.sort((a, b) => a.localeCompare(b));
-
-                    //    return names.length > 0 ? names : "None";
-                    //};                    
-
-
-                   var x = $(table).DataTable({
+                    $(table).DataTable({
                         bPaginate: false,
                         bInfo: false,
                         searching: false,
@@ -121,9 +124,9 @@
                         .row.add([
                             "Currently Serves",
                             GetFactoryNames()
-                        ])                       
+                        ])
                         .draw();
-                    
+
 
                     // executes the break contract command
                     $(table).on('click', '.js-break-contract', function () {
@@ -141,16 +144,55 @@
                                         url: "/api/factories/" + factoryId,
                                         method: "PUT",
                                         success: function () {
-                                            location.reload();                                            
+                                            location.reload();
                                             console.log("success!");
                                         }
                                     });
                                 }
                             }
                         });
-                    });                    
+                    });
+
+
+                    $(table).on('click', '.js-make-contract', function () {
+
+                        bootbox.prompt({
+                            title: "Select a Factory",
+                            inputType: 'select',
+                            inputOptions: allFactoryNames,
+                            value: 0,
+                            callback: function (factoryId) {
+
+                                if (factoryId != 0 && factoryId != null) {
+
+                                    //console.log(factory);
+
+                                    $.ajax({
+                                        url: "/api/factories/",
+                                        method: "POST",
+                                        data: { "Id": factoryId, "supplierId": supplier.id},
+                                        success: function (response) {
+                                            //location.reload();
+                                            console.log(response);
+                                        }
+                                    });
+                                };
+                            }
+                        });
+                    });
+
+
+
+
+
+
+
+
+
+
                 });
             };
+
         });
     </script>
 }

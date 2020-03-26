@@ -10,7 +10,7 @@ namespace ChocolateTycoon.Models
     public class Factory
     {
         public int ID { get; set; }
-        
+
         [Required]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "Please enter at least 3 characters")]
         public string Name { get; set; }
@@ -22,7 +22,7 @@ namespace ChocolateTycoon.Models
         public StorageUnit StorageUnit { get; set; }
         public List<Employee> Employees { get; set; }
         public Supplier Supplier { get; set; }
-        
+
 
         public Factory()
         {
@@ -53,6 +53,15 @@ namespace ChocolateTycoon.Models
         public void BreakContract()
         {
             Supplier = null;
+        }
+
+        public string MakeContract(Supplier supplier)
+        {
+            if (Supplier != null && supplier.Id == Supplier.Id)                
+                return "This Supplier already has a valid Contract with this Factory!";
+
+            Supplier = supplier;
+            return "A contract has been made with this Factory";
         }
 
     }
