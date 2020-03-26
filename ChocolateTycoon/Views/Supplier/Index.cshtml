@@ -39,6 +39,7 @@
         $(document).ready(function () {
             let tables = $(".table");
 
+            // get the names of all existing factories
             function getAllFactoryNames() {
                 let allNames = [];
 
@@ -98,7 +99,7 @@
                         return factories.length < 2 ? [{ text: "Nothing to show", value: 0 }] : factories;
                     };
 
-
+                    // creates the base tables
                     $(table).DataTable({
                         bPaginate: false,
                         bInfo: false,
@@ -198,7 +199,7 @@
                         });
                     });
 
-
+                    // executes the make contract command
                     $(table).on('click', '.js-make-contract', function () {
 
                         bootbox.prompt({
