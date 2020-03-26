@@ -57,7 +57,7 @@
 
             let allFactoryNames = GetAllFactoryNames();
 
-            
+
             for (let i = 0; i < tables.length; i++) {
                 let table = "#" + tables[i].getAttribute("id");
 
@@ -98,7 +98,7 @@
                         return factories.length < 2 ? [{ text: "Nothing to show", value: 0 }] : factories;
                     };
 
-                    
+
                     $(table).DataTable({
                         bPaginate: false,
                         bInfo: false,
@@ -165,15 +165,24 @@
 
                                 if (factoryId != 0 && factoryId != null) {
 
-                                    //console.log(factory);
-
-                                    $.ajax({
-                                        url: "/api/factories/",
-                                        method: "POST",
-                                        data: { "Id": factoryId, "supplierId": supplier.id},
-                                        success: function (response) {
-                                            //location.reload();
-                                            console.log(response);
+                                    bootbox.confirm({
+                                        message: "Are you sure?",
+                                        callback: function (result) {
+                                            if (result) {
+                                                $.ajax({
+                                                    url: "/api/factories/",
+                                                    method: "POST",
+                                                    data: { "Id": factoryId, "supplierId": supplier.id },
+                                                    success: function (response) {
+                                                        bootbox.alert({
+                                                            message: response,
+                                                            callback: function () {
+                                                                location.reload();
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                            }
                                         }
                                     });
                                 };
