@@ -39,7 +39,7 @@
         $(document).ready(function () {
             let tables = $(".table");
 
-            function GetAllFactoryNames() {
+            function getAllFactoryNames() {
                 let allNames = [];
 
                 let defaultValue = { text: "Select", value: 0 };
@@ -55,7 +55,7 @@
                 return allNames;
             }
 
-            let allFactoryNames = GetAllFactoryNames();
+            let allFactoryNames = getAllFactoryNames();
 
 
             for (let i = 0; i < tables.length; i++) {
@@ -70,7 +70,7 @@
                     const supplier = JSON.parse(data);
 
                     // get the names of the factories supplied by each supplier
-                    function GetFactoryNames() {
+                    function getFactoryNames() {
                         let names = [];
 
                         (supplier.factories).forEach(function (key, value) {
@@ -83,7 +83,7 @@
                     };
 
                     // get the names and ids of supplied factories to fill select prompt
-                    function GetSuppliedFactories() {
+                    function getSuppliedFactories() {
                         let factories = [];
 
                         let defaultValue = { text: "Select", value: 0 };
@@ -123,7 +123,7 @@
                         ])
                         .row.add([
                             "Currently Serves",
-                            GetFactoryNames()
+                            getFactoryNames()
                         ])
                         .draw();
 
@@ -134,7 +134,7 @@
                         bootbox.prompt({
                             title: "Select a Contract to Break",
                             inputType: 'select',
-                            inputOptions: GetSuppliedFactories(),
+                            inputOptions: getSuppliedFactories(),
                             value: 0,
                             callback: function (factoryId) {
 
@@ -183,6 +183,16 @@
                                         }
                                     });
                                 };
+
+                                bootbox.alert({
+                                    message: 'Nothing selected!',
+                                    buttons: {
+                                        ok: {
+                                            label: 'Opps.. my bad',
+                                            className: 'btn-danger'
+                                        }
+                                    }
+                                });
                             }
                         });
                     });
@@ -233,7 +243,13 @@
                                                     },
                                                     error: function (response) {
                                                         bootbox.alert({
-                                                            message: response.responseJSON.message
+                                                            message: response.responseJSON.message,
+                                                            buttons: {
+                                                                ok: {
+                                                                    label: 'Opps.. my bad',
+                                                                    className: 'btn-danger'
+                                                                }
+                                                            }
                                                         })
                                                     }
                                                 });
@@ -241,19 +257,19 @@
                                         }
                                     });
                                 };
+
+                                bootbox.alert({
+                                    message: 'Nothing selected!',
+                                    buttons: {
+                                        ok: {
+                                            label: 'Opps.. my bad',
+                                            className: 'btn-danger'
+                                        }
+                                    }
+                                });
                             }
                         });
                     });
-
-
-
-
-
-
-
-
-
-
                 });
             };
 
