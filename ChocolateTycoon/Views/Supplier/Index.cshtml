@@ -139,16 +139,33 @@
                             callback: function (factoryId) {
 
                                 if (factoryId != 0 && factoryId != null) {
+                                    let factoryName = supplier.factories.find(f => f.id == factoryId).name;
 
-                                    $.ajax({
-                                        url: "/api/factories/" + factoryId,
-                                        method: "PUT",
-                                        success: function () {
-                                            location.reload();
-                                            console.log("success!");
+                                    bootbox.confirm({
+                                        message: function () {
+                                            return `Are you SURE you want to break the Contract with ${factoryName}?`;
+                                                },
+                                        callback: function (result) {
+                                            if (result) {
+                                                $.ajax({
+                                                    url: "/api/factories/" + factoryId,
+                                                    method: "PUT",
+                                                    success: function (response) {
+                                                        bootbox.alert({
+                                                            message: response,
+                                                            callback: function () { location.reload() }
+                                                        });
+                                                    },
+                                                    error: function (response) {
+                                                        bootbox.alert({
+                                                            message: `${response.responseJSON.message}.. Try again.`
+                                                        })
+                                                    }
+                                                });
+                                            }                                            
                                         }
                                     });
-                                }
+                                };
                             }
                         });
                     });

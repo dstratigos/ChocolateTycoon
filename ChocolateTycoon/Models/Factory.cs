@@ -50,9 +50,18 @@ namespace ChocolateTycoon.Models
             return false;
         }
 
-        public void BreakContract()
+        public string BreakContract()
         {
-            Supplier = null;
+            if(Supplier != null)
+            {
+                var supplierName = Supplier.Name;
+                Supplier = null;
+
+                return $"{supplierName} broke the Contract with {Name} Factory";
+            }
+
+            return "Something went wrong. Try again";
+            
         }
 
         public string MakeContract(Supplier supplier)

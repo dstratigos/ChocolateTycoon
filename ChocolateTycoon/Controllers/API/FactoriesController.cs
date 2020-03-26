@@ -36,11 +36,14 @@ namespace ChocolateTycoon.Controllers.API
         {
             var factory = db.Factories.Include(f => f.Supplier).Single(f => f.ID == id);
 
-            factory.BreakContract();
+            if (factory == null)
+                return BadRequest();
+
+            var message = factory.BreakContract();
 
             db.SaveChanges();
 
-            return Ok();
+            return Ok(message);
         }
 
         // POST: /api/factories/id
