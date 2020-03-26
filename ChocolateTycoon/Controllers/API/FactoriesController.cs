@@ -26,7 +26,7 @@ namespace ChocolateTycoon.Controllers.API
             var factories = db.Factories.Include(f => f.Supplier).ToList();
 
             var factoriesDto = new List<FactoryDto>();
-            
+
             return Ok(Mapper.Map(factories, factoriesDto));
         }
 
@@ -50,13 +50,24 @@ namespace ChocolateTycoon.Controllers.API
         [HttpPost]
         public IHttpActionResult MakeContract(SuppliedFactoryDto suppliedFactory)
         {
-            var factory = db.Factories.Include(f => f.Supplier).SingleOrDefault(f => f.ID == suppliedFactory.Id);
+            var factories = db.Factories
+                .Include(f => f.Supplier)                
+                .ToList();
+            var contractFactory = factories.Find(f => f.ID == suppliedFactory.Id);
             var supplier = db.Suppliers.SingleOrDefault(s => s.Id == suppliedFactory.supplierId);
 
-            if (factory == null || supplier == null)
+            var message = "";
+
+            if (factories == null || supplier == null)
                 return BadRequest();
 
-            var message = factory.MakeContract(supplier);
+            if(Factory.HasActiveContract(factories, contractFactory.ID))
+            {
+                message = $"{contractFactory.Name} already has an active Contract. Break that Contract first.";
+                return BadRequest(message);
+            }
+
+            message = contractFactory.MakeContract(supplier);
 
             db.SaveChanges();
 

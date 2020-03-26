@@ -52,26 +52,35 @@ namespace ChocolateTycoon.Models
 
         public string BreakContract()
         {
-            if(Supplier != null)
+            if (Supplier != null)
             {
                 var supplierName = Supplier.Name;
                 Supplier = null;
 
-                return $"{supplierName} broke the Contract with {Name} Factory";
+                return $"{Name} Factory broke it's Contract with {supplierName}";
             }
 
             return "Something went wrong. Try again";
-            
+
         }
 
         public string MakeContract(Supplier supplier)
         {
-            if (Supplier != null && supplier.Id == Supplier.Id)                
-                return "This Supplier already has a valid Contract with this Factory!";
-
+            //if (Supplier != null && supplier.Id == Supplier.Id)                
+            //    return "This Supplier already has a valid Contract with this Factory!";
             Supplier = supplier;
-            return "A contract has been made with this Factory";
+            return $"A Contract has been made between {supplier.Name} and {Name} Factory";
         }
 
+        public static bool HasActiveContract(List<Factory> factories, int factoryId)
+        {
+            var suppliedFactories = factories.Where(f => f.Supplier != null).ToList();
+
+            if (suppliedFactories != null)
+                if (suppliedFactories.Exists(f => f.ID == factoryId))
+                    return true;
+
+            return false;
+        }
     }
 }

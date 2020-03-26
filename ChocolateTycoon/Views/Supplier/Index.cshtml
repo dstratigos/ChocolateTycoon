@@ -142,9 +142,20 @@
                                     let factoryName = supplier.factories.find(f => f.id == factoryId).name;
 
                                     bootbox.confirm({
+                                        closeButton: false,
                                         message: function () {
-                                            return `Are you SURE you want to break the Contract with ${factoryName}?`;
-                                                },
+                                            return `Are you SURE you want to break ${factoryName}'s Contract with ${supplier.name}?`;
+                                        },
+                                        buttons: {
+                                            confirm: {
+                                                label: 'They are thieves!',
+                                                className: 'btn-danger pull-left'
+                                            },
+                                            cancel: {
+                                                label: 'Let\'s not get carried away',
+                                                className: 'btn-success pull-right'
+                                            }
+                                        },
                                         callback: function (result) {
                                             if (result) {
                                                 $.ajax({
@@ -153,6 +164,12 @@
                                                     success: function (response) {
                                                         bootbox.alert({
                                                             message: response,
+                                                            buttons: {
+                                                                ok: {
+                                                                    label: 'yack, yack... now move on!',
+                                                                    className: 'btn-success'
+                                                                }
+                                                            },
                                                             callback: function () { location.reload() }
                                                         });
                                                     },
@@ -162,7 +179,7 @@
                                                         })
                                                     }
                                                 });
-                                            }                                            
+                                            }
                                         }
                                     });
                                 };
@@ -184,6 +201,16 @@
 
                                     bootbox.confirm({
                                         message: "Are you sure?",
+                                        buttons: {
+                                            confirm: {
+                                                label: 'They are the best!',
+                                                className: 'btn-success pull-left'
+                                            },
+                                            cancel: {
+                                                label: 'I can do better!',
+                                                className: 'btn-danger pull-right'
+                                            }
+                                        },
                                         callback: function (result) {
                                             if (result) {
                                                 $.ajax({
@@ -193,10 +220,21 @@
                                                     success: function (response) {
                                                         bootbox.alert({
                                                             message: response,
+                                                            buttons: {
+                                                                ok: {
+                                                                    label: 'yack, yack... now move on!',
+                                                                    className: 'btn-success'
+                                                                }
+                                                            },
                                                             callback: function () {
                                                                 location.reload();
                                                             }
                                                         });
+                                                    },
+                                                    error: function (response) {
+                                                        bootbox.alert({
+                                                            message: response.responseJSON.message
+                                                        })
                                                     }
                                                 });
                                             }
