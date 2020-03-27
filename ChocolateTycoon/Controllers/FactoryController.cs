@@ -26,6 +26,8 @@ namespace ChocolateTycoon.Controllers
             db.Dispose();
         }
 
+        // POST: /factory/replenish
+
 
         // GET: Factory
         public ActionResult Index(int? id)
@@ -190,10 +192,11 @@ namespace ChocolateTycoon.Controllers
 
 
         // GET: /Factory/Produce
+        [AcceptVerbs(HttpVerbs.Post | HttpVerbs.Get)]
         public ActionResult Produce(int id)
         {
             var factoryService = new FactoryService();
-            
+
             var factory = db.Factories
                 .Include(f => f.ProductionUnit)
                 .Include(f => f.StorageUnit)

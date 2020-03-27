@@ -3,7 +3,7 @@
 <br />
 
 <tr>
-    <td style="text-align: center">Raw Materials (Kg)</td>
+    <td colspan="2" style="text-align: center">Raw Materials (Kg)</td>
     <td colspan="2" style="text-align: center">Production per Day (units)</td>
     <td style="text-align: center">Managers</td>
     <td style="text-align: center">Engineers</td>
@@ -26,6 +26,9 @@
     {
         <td>
             @Html.DisplayFor(model => model.StorageUnit.RawMaterialAmount)
+        </td>
+        <td>
+            @Html.ActionLink("replenish", "#", new { id = Model.ID }, new { @class = "btn btn-link text-success", @style = "padding: 0" })
         </td>
     }
 

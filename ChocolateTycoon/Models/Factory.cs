@@ -66,8 +66,6 @@ namespace ChocolateTycoon.Models
 
         public string MakeContract(Supplier supplier)
         {
-            //if (Supplier != null && supplier.Id == Supplier.Id)                
-            //    return "This Supplier already has a valid Contract with this Factory!";
             Supplier = supplier;
             return $"A Contract has been made between {supplier.Name} and {Name} Factory";
         }
