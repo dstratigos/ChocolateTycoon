@@ -76,9 +76,10 @@ namespace ChocolateTycoon.Models
         public static bool HasActiveContract(List<Factory> factories, int factoryId)
         {
             var suppliedFactories = factories.Where(f => f.Supplier != null).ToList();
+            var hasSupplier = suppliedFactories.Exists(f => f.ID == factoryId);
 
             if (suppliedFactories != null)
-                if (suppliedFactories.Exists(f => f.ID == factoryId))
+                if (hasSupplier)
                     return true;
 
             return false;
