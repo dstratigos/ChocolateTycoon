@@ -99,6 +99,33 @@
                         return factories.length < 2 ? [{ text: "Nothing to show", value: 0 }] : factories;
                     };
 
+                    // creates a bootbox alert error message
+                    function whatThe(message) {
+                        bootbox.alert({
+                            closeButton: false,
+                            message: message,
+                            buttons: {
+                                ok: {
+                                    label: 'What the...',
+                                    className: 'btn-danger'
+                                }
+                            }
+                        });
+                    };
+
+                    function yackAndReload(message) {
+                        bootbox.alert({
+                            message: message,
+                            buttons: {
+                                ok: {
+                                    label: 'yack, yack... now move on!',
+                                    className: 'btn-success'
+                                }
+                            },
+                            callback: function () { location.reload() }
+                        });
+                    }
+
                     // creates the base tables
                     $(table).DataTable({
                         bPaginate: false,
@@ -123,23 +150,36 @@
                             supplier.pricePerKilo
                         ])
                         .row.add([
+                            "Shipment Size (Kg)",
+                            supplier.shippedAmount
+                        ])
+                        .row.add([
                             "Currently Serves",
                             getFactoryNames()
                         ])
                         .draw();
 
 
-                    // executes the break contract command
+                    // executes the BREAK contract command
                     $(table).on('click', '.js-break-contract', function () {
 
                         bootbox.prompt({
+                            closeButton: false,
                             title: "Select a Contract to Break",
                             inputType: 'select',
                             inputOptions: getSuppliedFactories(),
                             value: 0,
                             callback: function (factoryId) {
 
-                                if (factoryId != 0 && factoryId != null) {
+                                // actions when canceled is NOT clicked
+                                if (factoryId != null) {
+
+                                    // actions when nothing is selected
+                                    if (factoryId == 0) {
+                                        whatThe('Nothing selected!');
+                                        return false;
+                                    }
+
                                     let factoryName = supplier.factories.find(f => f.id == factoryId).name;
 
                                     bootbox.confirm({
@@ -158,39 +198,19 @@
                                             }
                                         },
                                         callback: function (result) {
+
+                                            // actions if OK button is clicked
                                             if (result) {
                                                 $.ajax({
                                                     url: "/api/factories/" + factoryId,
                                                     method: "PUT",
                                                     success: function (response) {
-                                                        bootbox.alert({
-                                                            message: response,
-                                                            buttons: {
-                                                                ok: {
-                                                                    label: 'yack, yack... now move on!',
-                                                                    className: 'btn-success'
-                                                                }
-                                                            },
-                                                            callback: function () { location.reload() }
-                                                        });
+                                                        yackAndReload(response);
                                                     },
                                                     error: function (response) {
-                                                        bootbox.alert({
-                                                            message: `${response.responseJSON.message}.. Try again.`
-                                                        })
+                                                        whatThe(`${response.responseJSON.message}.. try again.`);
                                                     }
                                                 });
-                                            }
-                                        }
-                                    });
-                                }
-                                else {
-                                    bootbox.alert({
-                                        message: 'Nothing selected!',
-                                        buttons: {
-                                            ok: {
-                                                label: 'Opps.. my bad',
-                                                className: 'btn-danger'
                                             }
                                         }
                                     });
@@ -199,19 +219,28 @@
                         });
                     });
 
-                    // executes the make contract command
+                    // executes the MAKE contract command
                     $(table).on('click', '.js-make-contract', function () {
 
                         bootbox.prompt({
+                            closeButton: false,
                             title: "Select a Factory",
                             inputType: 'select',
                             inputOptions: allFactoryNames,
                             value: 0,
                             callback: function (factoryId) {
 
-                                if (factoryId != 0 && factoryId != null) {
+                                // actions when canceled is NOT clicked
+                                if (factoryId != null) {
+
+                                    // actions when nothing is selected
+                                    if (factoryId == 0) {
+                                        whatThe('Nothing selected!');
+                                        return false;
+                                    }
 
                                     bootbox.confirm({
+                                        closeButton: false,
                                         message: "Are you sure?",
                                         buttons: {
                                             confirm: {
@@ -224,52 +253,23 @@
                                             }
                                         },
                                         callback: function (result) {
+                                            // actions if OK button is clicked
                                             if (result) {
                                                 $.ajax({
                                                     url: "/api/factories/",
                                                     method: "POST",
                                                     data: { "Id": factoryId, "supplierId": supplier.id },
                                                     success: function (response) {
-                                                        bootbox.alert({
-                                                            message: response,
-                                                            buttons: {
-                                                                ok: {
-                                                                    label: 'yack, yack... now move on!',
-                                                                    className: 'btn-success'
-                                                                }
-                                                            },
-                                                            callback: function () {
-                                                                location.reload();
-                                                            }
-                                                        });
+                                                        yackAndReload(response);
                                                     },
                                                     error: function (response) {
-                                                        bootbox.alert({
-                                                            message: response.responseJSON.message,
-                                                            buttons: {
-                                                                ok: {
-                                                                    label: 'Opps.. my bad',
-                                                                    className: 'btn-danger'
-                                                                }
-                                                            }
-                                                        })
+                                                        whatThe(response.responseJSON.message);
                                                     }
                                                 });
-                                            }
+                                            };
                                         }
                                     });
-                                }
-                                else {
-                                    bootbox.alert({
-                                        message: 'Nothing selected!',
-                                        buttons: {
-                                            ok: {
-                                                label: 'Opps.. my bad',
-                                                className: 'btn-danger'
-                                            }
-                                        }
-                                    });
-                                }
+                                };
                             }
                         });
                     });

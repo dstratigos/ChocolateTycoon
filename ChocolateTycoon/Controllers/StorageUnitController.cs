@@ -18,28 +18,15 @@ namespace ChocolateTycoon.Controllers
             db = new ApplicationDbContext();
         }
 
-
-        //// GET: StorageUnit/Create
-        //public ActionResult Create(int id)
-        //{
-        //    var factory = db.Factories
-        //        .Include(f => f.StorageUnit)
-        //        .SingleOrDefault(f => f.ID == id);           
-
-        //    return View(factory);
-        //}
-
-        // POST: StorageUnit/Create
+        // POST: /factory/details/id
         [HttpPost, ActionName("Create")]
         public ActionResult CreatePost(Factory factory)
         {
             StorageUnit storageUnit = new StorageUnit
             {
-                FactoryID = factory.ID,
-                RawMaterialAmount = 100
+                FactoryID = factory.ID
             };
 
-            //db.Entry(factory).State = EntityState.Modified;
             db.StorageUnits.Add(storageUnit);
             db.SaveChanges();
 

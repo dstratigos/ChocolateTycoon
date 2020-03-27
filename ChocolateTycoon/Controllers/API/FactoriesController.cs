@@ -34,7 +34,10 @@ namespace ChocolateTycoon.Controllers.API
         [HttpPut]
         public IHttpActionResult BreakContract(int id)
         {
-            var factory = db.Factories.Include(f => f.Supplier).Single(f => f.ID == id);
+            var factory = db.Factories
+                .Include(f => f.StorageUnit)
+                .Include(f => f.Supplier)
+                .Single(f => f.ID == id);
 
             if (factory == null)
                 return BadRequest();
@@ -51,7 +54,8 @@ namespace ChocolateTycoon.Controllers.API
         public IHttpActionResult MakeContract(SuppliedFactoryDto suppliedFactory)
         {
             var factories = db.Factories
-                .Include(f => f.Supplier)                
+                .Include(f => f.StorageUnit)
+                .Include(f => f.Supplier)
                 .ToList();
             var contractFactory = factories.Find(f => f.ID == suppliedFactory.Id);
             var supplier = db.Suppliers.SingleOrDefault(s => s.Id == suppliedFactory.supplierId);
@@ -61,7 +65,13 @@ namespace ChocolateTycoon.Controllers.API
             if (factories == null || supplier == null)
                 return BadRequest();
 
-            if(Factory.HasActiveContract(factories, contractFactory.ID))
+            else if (contractFactory.StorageUnit == null)
+            {
+                message = $"{contractFactory.Name} does not have a Storage Unit. Create one first!";
+                return BadRequest(message);
+            }
+
+            else if (Factory.HasActiveContract(factories, contractFactory.ID))
             {
                 message = $"{contractFactory.Name} already has an active Contract. Break that Contract first.";
                 return BadRequest(message);

@@ -13,20 +13,12 @@ namespace ChocolateTycoon.Models
         [ForeignKey("Factory")]
         public int FactoryID { get; set; }
         
-        [Range(0, double.MaxValue, ErrorMessage = "No materials left!")]
+        [Range(0, double.MaxValue)]
         public double RawMaterialAmount { get; set; }
-        //public int _productsStored;
-        public ICollection<Chocolate> _chocolates;
-
-
-
+        public double ShipmentsReceived { get; private set; }
         public Factory Factory { get; set; }
-        
 
-        public StorageUnit()
-        {
-            _chocolates = new List<Chocolate>();
-        }
+        
 
         public bool MaterialsSuffice(double materialsNeeded)
         {
@@ -34,6 +26,17 @@ namespace ChocolateTycoon.Models
                 return true;
 
             return false;
+        }
+
+        public void Replenish(Supplier supplier)
+        {
+            ShipmentsReceived += supplier.ShippedAmount;
+            RawMaterialAmount += supplier.ShippedAmount;
+        }
+
+        public void ResetSupplier()
+        {
+            ShipmentsReceived = 0;
         }
     }
 }

@@ -56,18 +56,21 @@ namespace ChocolateTycoon.Models
             {
                 var supplierName = Supplier.Name;
                 Supplier = null;
+                StorageUnit.ResetSupplier();
 
                 return $"{Name} Factory broke it's Contract with {supplierName}";
             }
 
             return "Something went wrong. Try again";
-
         }
 
         public string MakeContract(Supplier supplier)
         {
             Supplier = supplier;
-            return $"A Contract has been made between {supplier.Name} and {Name} Factory";
+            StorageUnit.Replenish(supplier);
+
+            return $"A Contract has been made between {supplier.Name} and {Name} Factory." +
+                   $" <br/> First Load ({supplier.ShippedAmount} Kg) has been shipped.";
         }
 
         public static bool HasActiveContract(List<Factory> factories, int factoryId)
