@@ -256,6 +256,10 @@
     <Compile Include="Migrations\202003202008449_AddedFactorySupplierRelationship.Designer.cs">
       <DependentUpon>202003202008449_AddedFactorySupplierRelationship.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003271551239_AddedShipmentsReceivedToStorageUnit.cs" />
+    <Compile Include="Migrations\202003271551239_AddedShipmentsReceivedToStorageUnit.Designer.cs">
+      <DependentUpon>202003271551239_AddedShipmentsReceivedToStorageUnit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Controllers\API\StoresController.cs" />
@@ -661,6 +665,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003202008449_AddedFactorySupplierRelationship.resx">
       <DependentUpon>202003202008449_AddedFactorySupplierRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003271551239_AddedShipmentsReceivedToStorageUnit.resx">
+      <DependentUpon>202003271551239_AddedShipmentsReceivedToStorageUnit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
