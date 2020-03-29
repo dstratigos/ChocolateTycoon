@@ -19,26 +19,26 @@
         <th colspan="3"></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var factory in Model)
     {
         string selected = "";
 
-        if (item.ID == ViewBag.SelectedId)
+        if (factory.ID == ViewBag.SelectedId)
         {
             selected = "success";
         }
 
         <tr class=@selected>
-            <td>@Html.DisplayFor(modelItem => item.Name)</td>
-            <td>@Html.DisplayFor(modelItem => item.Level)</td>
+            <td>@Html.DisplayFor(modelItem => factory.Name)</td>
+            <td>@Html.DisplayFor(modelItem => factory.Level)</td>
             <td style="text-align: right">
-                @Html.ActionLink("Details", null, new { id = item.ID }, new { @style = "text-decoration: none" })
+                @Html.ActionLink("Details", null, new { id = factory.ID }, new { @style = "text-decoration: none" })
             </td>
             <td style="text-align: left">
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }, new { @style = "text-decoration: none" })
+                @Html.ActionLink("Edit", "Edit", new { id = factory.ID }, new { @style = "text-decoration: none" })
             </td>
             <td style="text-align: right">
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID }, new
+                @Html.ActionLink("Delete", "Delete", new { id = factory.ID }, new
                 {
                     @class = "text-danger",
                     @style = "text-decoration: none"
@@ -57,12 +57,12 @@
             <th colspan="2" style="text-align: center">Personel</th>
         </tr>
 
-        @foreach (var item in Model)
+        @foreach (var factory in Model)
         {
-            if (ViewBag.SelectedId == item.ID)
+            if (ViewBag.SelectedId == factory.ID)
             {
                 {
-                    Html.RenderAction("Details", new { id = item.ID });
+                    Html.RenderAction("Details", new { id = factory.ID });
                 }
             }
         }

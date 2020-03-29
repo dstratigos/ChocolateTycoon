@@ -6,9 +6,10 @@ using System.Web;
 
 namespace ChocolateTycoon.ViewModels
 {
-    public class FactoryEmployeesViewModel
+    public class FactoryViewModel
     {
         public Factory Factory { get; set; }
+
         public IEnumerable<Employee> Employees { get; set; }
         public int _total;
         public int _managers;

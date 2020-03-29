@@ -179,7 +179,7 @@ namespace ChocolateTycoon.Controllers
         // GET: Factory employees by position
         public PartialViewResult FactoryEmployees(int? id)
         {
-            var viewModel = new FactoryEmployeesViewModel
+            var viewModel = new FactoryViewModel
             {
                 Factory = db.Factories.SingleOrDefault(f => f.ID == id),
                 Employees = db.Employees.Where(e => e.FactoryID == id).ToList()

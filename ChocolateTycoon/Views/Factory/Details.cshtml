@@ -16,7 +16,7 @@
         {
             <td>
                 @Html.HiddenFor(m => m.ID)
-                <button id="createSU" class="btn btn-link create" type="submit" style="padding: 0; color: #e74c3c;">
+                <button id="createSU" class="btn btn-link text-danger create" type="submit" style="padding: 0;">
                     Create a Storage Unit first!
                 </button>
             </td>
@@ -31,8 +31,8 @@
         {
             <td>
                 @Html.HiddenFor(m => m.ID)
-                <button id="replenish" class="btn btn-link btn-success" type="submit" style="padding: 0; color: #e74c3c;">
-                    replenish
+                <button id="replenish" class="btn btn-link text-success" type="submit" style="padding: 0;">
+                    Replenish
                 </button>
                 <p class="text-danger">@Model.StorageUnit._message</p>
 
@@ -46,7 +46,7 @@
         {
             <td colspan="2">
                 @Html.HiddenFor(m => m.ID)
-                <button id="createPU" class="btn btn-link btn-success" type="submit" style="padding: 0; color: #e74c3c;">
+                <button id="createPU" class="btn btn-link text-danger" type="submit" style="padding: 0;">
                     Create a Production Unit first!
                 </button>
             </td>

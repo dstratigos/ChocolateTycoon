@@ -16,7 +16,7 @@ namespace ChocolateTycoon.Models
         [Range(0, double.MaxValue)]
         public double RawMaterialAmount { get; set; }
         public double ShipmentsReceived { get; private set; }
-        public string _message = "";
+        public string _message;
         public Factory Factory { get; set; }
 
 
@@ -36,7 +36,7 @@ namespace ChocolateTycoon.Models
                 if (ShipmentsReceived >= supplier.OfferAmount)
                 {
                     Factory.BreakContract();
-                    _message = "Supplier's quota has been reached. Make a new Contract first!";
+                    //_message = "Supplier's quota has been reached. Make a new Contract first!";
                     return;
                 }
 
@@ -44,7 +44,7 @@ namespace ChocolateTycoon.Models
                 RawMaterialAmount += supplier.ShippedAmount;
             }
 
-            _message = "Make a Contract with a Supplier first!";
+            //_message = "Make a Contract with a Supplier first!";
         }
 
         public void ResetSupplier()

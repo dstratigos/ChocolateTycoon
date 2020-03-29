@@ -283,7 +283,7 @@
     <Compile Include="Services\StorageUnitService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EmployeeFormViewModel.cs" />
-    <Compile Include="ViewModels\FactoryEmployeesViewModel.cs" />
+    <Compile Include="ViewModels\FactoryViewModel.cs" />
     <Compile Include="ViewModels\MainStorageViewModel.cs" />
     <Compile Include="ViewModels\StoreEmployeesViewModel.cs" />
     <Compile Include="ViewModels\SupplierViewModel.cs" />
