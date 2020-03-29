@@ -12,13 +12,14 @@ namespace ChocolateTycoon.Models
         [Key]
         [ForeignKey("Factory")]
         public int FactoryID { get; set; }
-        
+
         [Range(0, double.MaxValue)]
         public double RawMaterialAmount { get; set; }
         public double ShipmentsReceived { get; private set; }
+        public string _message = "";
         public Factory Factory { get; set; }
 
-        
+
 
         public bool MaterialsSuffice(double materialsNeeded)
         {
@@ -28,10 +29,22 @@ namespace ChocolateTycoon.Models
             return false;
         }
 
-        public void Replenish(Supplier supplier)
+        public void Replenish(List<Factory> factories, Supplier supplier)
         {
-            ShipmentsReceived += supplier.ShippedAmount;
-            RawMaterialAmount += supplier.ShippedAmount;
+            if (Factory.HasActiveContract(factories, FactoryID))
+            {
+                if (ShipmentsReceived >= supplier.OfferAmount)
+                {
+                    Factory.BreakContract();
+                    _message = "Supplier's quota has been reached. Make a new Contract first!";
+                    return;
+                }
+
+                ShipmentsReceived += supplier.ShippedAmount;
+                RawMaterialAmount += supplier.ShippedAmount;
+            }
+
+            _message = "Make a Contract with a Supplier first!";
         }
 
         public void ResetSupplier()

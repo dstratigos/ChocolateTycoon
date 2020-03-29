@@ -32,5 +32,21 @@ namespace ChocolateTycoon.Controllers
 
             return RedirectToAction("Index", "Factory", new { id = factory.ID });
         }
+
+        [HttpPost]
+        public ActionResult Replenish(int id)
+        {
+            var factories = db.Factories
+                .Include(f => f.StorageUnit)
+                .Include(f => f.Supplier)
+                .ToList();
+            var factory = factories.Where(f => f.ID == id).Single();
+
+            factory.StorageUnit.Replenish(factories, factory.Supplier);
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Factory", new { id });
+        }
     }
 }

@@ -31,10 +31,10 @@ namespace ChocolateTycoon.Models
         }
 
         //checks if the factory personel meets the required minimum for the factory to operate
-        public bool PersonelSuffice(Factory factory)
+        public bool PersonelSuffice()
         {
-            var managersEmployed = factory.Employees.Where(e => e.Position == EmployeePosition.FactoryManager).Count();
-            var employeesEmployed = factory.Employees.Where(e => e.Position == EmployeePosition.ProductionEngineer).Count();
+            var managersEmployed = Employees.Where(e => e.Position == EmployeePosition.FactoryManager).Count();
+            var employeesEmployed = Employees.Where(e => e.Position == EmployeePosition.ProductionEngineer).Count();
 
             if (Level == 1)
             {
@@ -67,10 +67,10 @@ namespace ChocolateTycoon.Models
         public string MakeContract(Supplier supplier)
         {
             Supplier = supplier;
-            StorageUnit.Replenish(supplier);
+            //StorageUnit.Replenish(supplier);
 
-            return $"A Contract has been made between {supplier.Name} and {Name} Factory." +
-                   $" <br/> First Load ({supplier.ShippedAmount} Kg) has been shipped.";
+            return $"A Contract has been made between {supplier.Name} and {Name} Factory.";
+                   //+ $" <br/> First Load ({supplier.ShippedAmount} Kg) has been shipped.";
         }
 
         public static bool HasActiveContract(List<Factory> factories, int factoryId)

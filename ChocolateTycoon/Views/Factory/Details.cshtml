@@ -27,9 +27,17 @@
         <td>
             @Html.DisplayFor(model => model.StorageUnit.RawMaterialAmount)
         </td>
-        <td>
-            @Html.ActionLink("replenish", "#", new { id = Model.ID }, new { @class = "btn btn-link text-success", @style = "padding: 0" })
-        </td>
+        using (Html.BeginForm("Replenish", "StorageUnit"))
+        {
+            <td>
+                @Html.HiddenFor(m => m.ID)
+                <button id="replenish" class="btn btn-link btn-success" type="submit" style="padding: 0; color: #e74c3c;">
+                    replenish
+                </button>
+                <p class="text-danger">@Model.StorageUnit._message</p>
+
+            </td>
+        }
     }
 
     @if (Model.ProductionUnit == null)
@@ -38,7 +46,7 @@
         {
             <td colspan="2">
                 @Html.HiddenFor(m => m.ID)
-                <button id="createPU" class="btn btn-link" type="submit" style="padding: 0; color: #e74c3c;">
+                <button id="createPU" class="btn btn-link btn-success" type="submit" style="padding: 0; color: #e74c3c;">
                     Create a Production Unit first!
                 </button>
             </td>
@@ -67,7 +75,7 @@
     var suButton = document.getElementById("createSU");
 
     // Create Production Unit Button
-    var puButton = document.getElementById("createPU");    
+    var puButton = document.getElementById("createPU");
 
     // Bootbox confirmation for new Storage Unit
     if (suButton != null) {
