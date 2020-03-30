@@ -36,3 +36,13 @@ td, th {
     padding: 0;
     padding-left: inherit;
 }
+
+/* Creates bootstrap round buttons */
+.btn-circle {
+    width: 25px;
+    height: 25px;
+    padding: 0px 5px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 13px;
+}

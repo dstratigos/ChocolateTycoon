@@ -15,10 +15,10 @@
     {
         using (Html.BeginForm("Create", "StorageUnit"))
         {
-            <td>
+            <td colspan="3">
                 @Html.HiddenFor(m => m.ID)
                 <button id="createSU" class="btn btn-link text-danger create" type="submit" style="padding: 0;">
-                    Create a Storage Unit first!
+                    <i class="glyphicon glyphicon-plus text-warning"></i>
                 </button>
             </td>
         }
@@ -32,114 +32,119 @@
         {
             <td>
                 @Html.HiddenFor(m => m.ID)
-                <button id="replenish" class="btn btn-link text-success" type="submit" style="padding: 0;">
-                    Replenish
+                <button id="replenish" class="btn btn-link" type="submit" style="padding: 0;">
+                    <i class="glyphicon glyphicon-plus text-success"></i>
                 </button>
                 <p class="text-danger">@ViewBag.StorageMessage</p>
-
             </td>
         }
 
-        if (@Model.SupplierId != null)
+        <td>
+            @if (@Model.SupplierId != null)
+            {
+                @Model.Supplier.Name
+            }
+            else
+            {
+            <span>None</span>
+            }
+        </td>
+    }
+
+
+        @if (Model.ProductionUnit == null)
         {
-            <td>@Model.Supplier.Name</td>
+            using (Html.BeginForm("Create", "ProductionUnit"))
+            {
+                <td colspan="2">
+                    @Html.HiddenFor(m => m.ID)
+                    <button id="createPU" class="btn btn-link text-danger" type="submit" style="padding: 0;">
+                        <i class="glyphicon glyphicon-plus text-warning"></i>
+                    </button>
+                </td>
+            }
         }
         else
         {
-            <td>None</td>
-        }
-    }
-
-    @if (Model.ProductionUnit == null)
-    {
-        using (Html.BeginForm("Create", "ProductionUnit"))
-        {
-            <td colspan="2">
-                @Html.HiddenFor(m => m.ID)
-                <button id="createPU" class="btn btn-link text-danger" type="submit" style="padding: 0;">
-                    Create a Production Unit first!
-                </button>
+            <td>
+                @Html.DisplayFor(model => model.ProductionUnit.MaxProductionPerDay)
+            </td>
+            <td>
+                @*@Html.ActionLink("Produce", "Produce", new { id = Model.ID }, new { @class = "btn btn-primary btn-sm", @style = "padding: 0" })*@
+                <a href="@Url.Action("Produce", new { id = Model.ID })" class="btn btn-link" style="padding: 0">
+                    <i class="glyphicon glyphicon-plus text-success"></i>
+                </a>
+                <p class="text-danger" style="font-style: italic; font-size: small;">@ViewBag.ProductionError</p>
+                <p class="text-warning" style="font-style: italic; font-size: small;">@ViewBag.ProductionSuccess</p>
             </td>
         }
-    }
-    else
-    {
-        <td>
-            @Html.DisplayFor(model => model.ProductionUnit.MaxProductionPerDay)
-        </td>
-        <td>
-            @Html.ActionLink("produce", "Produce", new { id = Model.ID }, new { @class = "btn btn-link text-success", @style = "padding: 0" })
-            <p class="text-danger">@ViewBag.ProductionError</p>
-            <p class="text-warning">@ViewBag.ProductionSuccess</p>
-        </td>
-    }
 
-    @{
-        Html.RenderAction("FactoryEmployees", new { id = Model.ID });
-    }
-</tr>
+        @{
+            Html.RenderAction("FactoryEmployees", new { id = Model.ID });
+        }
+    </tr>
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    // Create Storage Unit Button
-    var suButton = document.getElementById("createSU");
+        // Create Storage Unit Button
+        var suButton = document.getElementById("createSU");
 
-    // Create Production Unit Button
-    var puButton = document.getElementById("createPU");
+        // Create Production Unit Button
+        var puButton = document.getElementById("createPU");
 
-    // Bootbox confirmation for new Storage Unit
-    if (suButton != null) {
-        suButton.addEventListener("click", function (e) {
-            e.preventDefault();
+        // Bootbox confirmation for new Storage Unit
+        if (suButton != null) {
+            suButton.addEventListener("click", function (e) {
+                e.preventDefault();
 
-            bootbox.confirm({
-                size: "small",
-                closeButton: false,
-                message: "Create Storage Unit?" + "<p style='color: orange; font-style: italic;'>" + "This will cost 0.00 coins" + "</p>",
-                buttons: {
-                    confirm: {
-                        label: 'Let`s do this!',
-                        className: 'btn-success '
+                bootbox.confirm({
+                    size: "small",
+                    closeButton: false,
+                    message: "Create Storage Unit?" + "<p style='color: orange; font-style: italic;'>" + "This will cost 0.00 coins" + "</p>",
+                    buttons: {
+                        confirm: {
+                            label: 'Let`s do this!',
+                            className: 'btn-success '
+                        },
+                        cancel: {
+                            label: 'Too expensive!',
+                            className: 'btn-danger'
+                        }
                     },
-                    cancel: {
-                        label: 'Too expensive!',
-                        className: 'btn-danger'
+                    callback: function (result) {
+                        if (result) {
+                            suButton.form.submit();
+                        };
                     }
-                },
-                callback: function (result) {
-                    if (result) {
-                        suButton.form.submit();
-                    };
-                }
+                });
             });
-        });
-    }
+        }
 
-    // Bootbox confirmation for new Production Unit
-    if (puButton != null) {
-        puButton.addEventListener("click", function (e) {
-            e.preventDefault();
+        // Bootbox confirmation for new Production Unit
+        if (puButton != null) {
+            puButton.addEventListener("click", function (e) {
+                e.preventDefault();
 
-            bootbox.confirm({
-                size: "small",
-                closeButton: false,
-                message: "Create Production Unit?" + "<p style='color: orange; font-style: italic;'>" + "This will cost 0.00 coins" + "</p>",
-                buttons: {
-                    confirm: {
-                        label: 'Let`s do this!',
-                        className: 'btn-success '
+                bootbox.confirm({
+                    size: "small",
+                    closeButton: false,
+                    message: "Create Production Unit?" + "<p style='color: orange; font-style: italic;'>" + "This will cost 0.00 coins" + "</p>",
+                    buttons: {
+                        confirm: {
+                            label: 'Let`s do this!',
+                            className: 'btn-success '
+                        },
+                        cancel: {
+                            label: 'Too expensive!',
+                            className: 'btn-danger'
+                        }
                     },
-                    cancel: {
-                        label: 'Too expensive!',
-                        className: 'btn-danger'
+                    callback: function (result) {
+                        if (result) {
+                            puButton.form.submit();
+                        };
                     }
-                },
-                callback: function (result) {
-                    if (result) {
-                        puButton.form.submit();
-                    };
-                }
+                });
             });
-        });
-    }
-</script>
+        }
+    </script>
