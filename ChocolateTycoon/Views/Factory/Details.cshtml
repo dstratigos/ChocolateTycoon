@@ -3,10 +3,11 @@
 <br />
 
 <tr>
-    <td colspan="2" style="text-align: center">Raw Materials (Kg)</td>
-    <td colspan="2" style="text-align: center">Production per Day (units)</td>
-    <td style="text-align: center">Managers</td>
-    <td style="text-align: center">Engineers</td>
+    <td colspan="2">Raw Materials (Kg)</td>
+    <td>Active Contract</td>
+    <td colspan="2">Production per Day (units)</td>
+    <td>Managers</td>
+    <td>Engineers</td>
 </tr>
 
 <tr>
@@ -34,9 +35,18 @@
                 <button id="replenish" class="btn btn-link text-success" type="submit" style="padding: 0;">
                     Replenish
                 </button>
-                <p class="text-danger">@Model.StorageUnit._message</p>
+                <p class="text-danger">@ViewBag.StorageMessage</p>
 
             </td>
+        }
+
+        if (@Model.SupplierId != null)
+        {
+            <td>@Model.Supplier.Name</td>
+        }
+        else
+        {
+            <td>None</td>
         }
     }
 

@@ -26,8 +26,6 @@ namespace ChocolateTycoon.Controllers
             db.Dispose();
         }
 
-        // POST: /factory/replenish
-
 
         // GET: Factory
         public ActionResult Index(int? id)
@@ -51,6 +49,7 @@ namespace ChocolateTycoon.Controllers
             var factory = db.Factories
                 .Include(f => f.ProductionUnit)
                 .Include(f => f.StorageUnit)
+                .Include(f => f.Supplier)
                 .Include(f => f.Employees)
                 .FirstOrDefault(f => f.ID == id);
 
@@ -61,6 +60,7 @@ namespace ChocolateTycoon.Controllers
             ViewBag.ChocolateCount = factoryService.PopulateChocolates(chocolates);
             ViewBag.ProductionError = TempData["ErrorMessage"];
             ViewBag.ProductionSuccess = TempData["SuccessMessage"];
+            ViewBag.StorageMessage = TempData["StorageMessage"];
 
             return PartialView(factory);
         }

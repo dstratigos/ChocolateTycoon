@@ -36,15 +36,17 @@ namespace ChocolateTycoon.Models
                 if (ShipmentsReceived >= supplier.OfferAmount)
                 {
                     Factory.BreakContract();
-                    //_message = "Supplier's quota has been reached. Make a new Contract first!";
+                    _message = "Supplier's quota has been reached. Contract terminated.";
                     return;
                 }
 
                 ShipmentsReceived += supplier.ShippedAmount;
                 RawMaterialAmount += supplier.ShippedAmount;
+
+                return;
             }
 
-            //_message = "Make a Contract with a Supplier first!";
+            _message = "Make a Contract with a Supplier first!";
         }
 
         public void ResetSupplier()
