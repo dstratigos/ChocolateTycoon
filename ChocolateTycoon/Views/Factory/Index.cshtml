@@ -7,12 +7,16 @@
 <h2>Factories</h2>
 
 <hr />
-<button type="button" class="btn-link">
-    @Html.ActionLink("Create", "Create")
+<button type="button" class="btn-link btn-lg" style="padding: 0 20px">
+    @Html.ActionLink(" ", "Create", null, new
+    {
+        @class = "glyphicon glyphicon-plus",
+        @style = "text-decoration: none"
+    })
 </button>
 <hr />
 
-<table class="table table-hover">
+<table class="table">
     <tr style="background-color: darkslategray">
         <th>Name</th>
         <th>Level</th>
@@ -25,22 +29,30 @@
 
         if (factory.ID == ViewBag.SelectedId)
         {
-            selected = "success";
+            selected = "dimgrey";
         }
 
-        <tr class=@selected>
+        <tr style="background-color: @selected">
             <td>@Html.DisplayFor(modelItem => factory.Name)</td>
             <td>@Html.DisplayFor(modelItem => factory.Level)</td>
             <td style="text-align: right">
-                @Html.ActionLink("Details", null, new { id = factory.ID }, new { @style = "text-decoration: none" })
-            </td>
-            <td style="text-align: left">
-                @Html.ActionLink("Edit", "Edit", new { id = factory.ID }, new { @style = "text-decoration: none" })
+                @Html.ActionLink(" ", null, new { id = factory.ID }, new
+                {
+                    @class = "glyphicon glyphicon-option-horizontal",
+                    @style = "text-decoration: none"
+                })
             </td>
             <td style="text-align: right">
-                @Html.ActionLink("Delete", "Delete", new { id = factory.ID }, new
+                @Html.ActionLink(" ", "Edit", new { id = factory.ID }, new
                 {
-                    @class = "text-danger",
+                    @class = "glyphicon glyphicon-wrench text-warning",
+                    @style = "text-decoration: none"
+                })
+            </td>
+            <td style="text-align: right">
+                @Html.ActionLink(" ", "Delete", new { id = factory.ID }, new
+                {
+                    @class = "glyphicon glyphicon-remove text-danger",
                     @style = "text-decoration: none"
                 })
             </td>

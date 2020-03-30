@@ -4,7 +4,7 @@
 
 <tr>
     <td colspan="2">Raw Materials (Kg)</td>
-    <td>Active Contract</td>
+    <td>Supplier</td>
     <td colspan="2">Production per Day (units)</td>
     <td>Managers</td>
     <td>Engineers</td>
@@ -17,7 +17,7 @@
         {
             <td colspan="3">
                 @Html.HiddenFor(m => m.ID)
-                <button id="createSU" class="btn btn-link text-danger create" type="submit" style="padding: 0;">
+                <button id="createSU" class="btn btn-link btn-lg create" type="submit" style="padding: 0;">
                     <i class="glyphicon glyphicon-plus text-warning"></i>
                 </button>
             </td>
@@ -32,10 +32,10 @@
         {
             <td>
                 @Html.HiddenFor(m => m.ID)
-                <button id="replenish" class="btn btn-link" type="submit" style="padding: 0;">
+                <button id="replenish" class="btn btn-link  btn-sm" type="submit" style="padding: 0;">
                     <i class="glyphicon glyphicon-plus text-success"></i>
                 </button>
-                <p class="text-danger">@ViewBag.StorageMessage</p>
+                <p class="text-danger" style="font-style: italic; font-size: small;">@ViewBag.StorageMessage</p>
             </td>
         }
 
@@ -46,7 +46,9 @@
             }
             else
             {
-            <span>None</span>
+            <a href="/Supplier" class="btn btn-link btn-lg" style="padding: 0">
+                <i class="glyphicon glyphicon-plus text-warning"></i>
+            </a>
             }
         </td>
     }
@@ -58,7 +60,7 @@
             {
                 <td colspan="2">
                     @Html.HiddenFor(m => m.ID)
-                    <button id="createPU" class="btn btn-link text-danger" type="submit" style="padding: 0;">
+                    <button id="createPU" class="btn btn-link btn-lg" type="submit" style="padding: 0;">
                         <i class="glyphicon glyphicon-plus text-warning"></i>
                     </button>
                 </td>
@@ -70,8 +72,7 @@
                 @Html.DisplayFor(model => model.ProductionUnit.MaxProductionPerDay)
             </td>
             <td>
-                @*@Html.ActionLink("Produce", "Produce", new { id = Model.ID }, new { @class = "btn btn-primary btn-sm", @style = "padding: 0" })*@
-                <a href="@Url.Action("Produce", new { id = Model.ID })" class="btn btn-link" style="padding: 0">
+                <a href="@Url.Action("Produce", new { id = Model.ID })" class="btn btn-link btn-sm" style="padding: 0">
                     <i class="glyphicon glyphicon-plus text-success"></i>
                 </a>
                 <p class="text-danger" style="font-style: italic; font-size: small;">@ViewBag.ProductionError</p>

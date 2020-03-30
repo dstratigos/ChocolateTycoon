@@ -41,7 +41,7 @@ namespace ChocolateTycoon.Controllers
         }
 
         // GET: Factory/Details/id
-        [ChildActionOnly]
+        //[ChildActionOnly]
         public PartialViewResult Details(int? id)
         {
             var factoryService = new FactoryService();

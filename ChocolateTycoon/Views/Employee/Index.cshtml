@@ -47,17 +47,23 @@
             </td>
 
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id },
-           new { @class = "btn btn-link text-warning", @style = "padding: 0" })
+                @Html.ActionLink(" ", "Edit", new { id = item.Id }, new
+           {
+               @class = "glyphicon glyphicon-edit text-warning",
+               @style = "text-decoration: none"
+           })
             </td>
 
             <td>
-                @using (Html.BeginForm("Delete", "Employee", new { id = item.Id }, FormMethod.Post, new { @class = "del-form" }))
+                @using (Html.BeginForm("Delete", "Employee",
+                    new { id = item.Id },
+                    FormMethod.Post,
+                    new { @class = "del-form" }))
                 {
                     @Html.AntiForgeryToken()
 
-                    <button id="btn" class="btn btn-link" type="submit" style="padding: 0; color: #e74c3c;">
-                        Delete
+                    <button id="btn" class="btn btn-link" type="submit" style="padding: 0;">
+                        <i class="glyphicon glyphicon-remove text-danger"></i>
                     </button>
                 }
             </td>
@@ -77,7 +83,7 @@
                 bootbox.confirm({
                     size: "small",
                     closeButton: false,
-                    message: "Send this employee to" + "<br/>" + "unemployment office?",                    
+                    message: "Send this employee to" + "<br/>" + "unemployment office?",
                     buttons: {
                         confirm: {
                             label: 'Sack them!',
