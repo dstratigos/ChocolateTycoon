@@ -7,7 +7,13 @@
 
 <h2>Employees</h2>
 <hr />
-<button type="button" class="btn-link">@Html.ActionLink("Create", "Create")</button>
+<button type="button" class="btn-link btn-lg" style="padding: 0 20px">
+    @Html.ActionLink(" ", "Create", null, new
+    {
+        @class = "glyphicon glyphicon-plus",
+        @style = "text-decoration: none"
+    })
+</button>
 <hr />
 
 <table class="table table-hover">
