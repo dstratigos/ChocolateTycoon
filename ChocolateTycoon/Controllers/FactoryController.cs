@@ -88,6 +88,7 @@ namespace ChocolateTycoon.Controllers
         public ActionResult Save(Factory factory)
         {
             var factories = db.Factories;
+            var vault = db.Safes.Where(s => s.ID == 1).Single();
 
             if (factory.ID == 0)
             {
@@ -106,6 +107,7 @@ namespace ChocolateTycoon.Controllers
                 };
 
                 factories.Add(newFactory);
+                vault.Deposit -= 2000;
             }
             else
             {

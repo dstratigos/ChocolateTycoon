@@ -2,14 +2,14 @@
 
 
 <h2>Factory</h2>
-<hr/>
+<hr />
 
 @{
     string title = (Model == null) ? "Create" : "Edit";
 
     <h4>@title</h4>
 }
-<hr/>
+<hr />
 
 @using (Html.BeginForm("Save", "Factory"))
 {
@@ -25,9 +25,9 @@
     {
         @Html.HiddenFor(model => model.ID)
     }
-
-    <button type="submit" class="btn btn-sm btn-primary">
-        Save
+    
+    <button id="saveButton" type="submit" class="btn btn-primary">
+        Pay 2000<i class="glyphicon glyphicon-bitcoin"></i>
     </button>
 }
 

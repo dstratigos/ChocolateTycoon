@@ -190,6 +190,7 @@
     <Compile Include="Controllers\MainStorageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductionUnitController.cs" />
+    <Compile Include="Controllers\SafeController.cs" />
     <Compile Include="Controllers\StorageUnitController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
@@ -607,10 +608,12 @@
     <Content Include="Views\MainStorage\Index - Copy.cshtml" />
     <Content Include="Views\Supplier\Index - Intitial.cshtml" />
     <Content Include="Views\Supplier\Index.cshtml" />
+    <Content Include="Views\Shared\_VaultPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\ProductionUnit\" />
+    <Folder Include="Views\Safe\" />
     <Folder Include="Views\StorageUnit\" />
   </ItemGroup>
   <ItemGroup>

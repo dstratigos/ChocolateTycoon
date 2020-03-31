@@ -28,6 +28,7 @@
                     <li>@Html.ActionLink("Suppliers", "Index", "Supplier")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
+                @{Html.RenderAction("Vault", "Safe");}
             </div>
         </div>
     </div>
