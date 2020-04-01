@@ -10,6 +10,7 @@
 <button type="button" class="btn-link btn-lg" style="padding: 0 20px">
     @Html.ActionLink(" ", "Create", null, new
     {
+        @id = "createBtn",
         @class = "glyphicon glyphicon-plus",
         @style = "text-decoration: none"
     })
@@ -79,4 +80,32 @@
             }
         }
     </table>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            let button = $('#createBtn');
+
+            $(button).on("click", function (e) {
+                e.preventDefault();
+                let self = this;
+                bootbox.confirm({
+                    closeButton: false,
+                    size: 'small',
+                    message: "<p class='text-warning'>Costs 2000 <i class='glyphicon glyphicon-bitcoin'></i></p> Proceed?",
+                    callback: function (result) {
+                        if (result)
+                            window.location = self.href;
+
+                    }
+                });
+
+
+
+                    
+            });
+        });
+    </script>
 }

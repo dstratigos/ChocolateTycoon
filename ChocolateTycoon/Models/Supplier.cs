@@ -22,8 +22,6 @@ namespace ChocolateTycoon.Models
 
         public int ShippedAmount { get; set; }
 
-        //public int FactoryId { get; set; }
-
         public List<Factory> Factories { get; set; }
 
 

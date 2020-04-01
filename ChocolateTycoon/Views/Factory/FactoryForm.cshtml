@@ -1,5 +1,8 @@
 ﻿@model ChocolateTycoon.Models.Factory
 
+@{
+    ViewBag.Title = "Factory Form";
+}
 
 <h2>Factory</h2>
 <hr />
@@ -21,14 +24,31 @@
         @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
     </div>
 
-    if (Model != null)
-    {
-        @Html.HiddenFor(model => model.ID)
-    }
-    
-    <button id="saveButton" type="submit" class="btn btn-primary">
-        Pay 2000<i class="glyphicon glyphicon-bitcoin"></i>
-    </button>
+    <table>
+        <tr>
+            <td>
+                @{
+                    var text = "";
+                    if (Model != null)
+                    {
+                        @Html.HiddenFor(model => model.ID)
+                        text = "Save changes";
+                    }
+                    else
+                    {
+                        text = "Pay the man!";
+                    }
+                }
+                <button type="submit" class="btn btn-success btn-sm" style="margin-right: 15px">
+                    @text
+                </button>
+            </td>
+
+            <td>
+                @Html.ActionLink("Take me back!", "Index", null, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    </table>
 }
 
 @section Scripts {
