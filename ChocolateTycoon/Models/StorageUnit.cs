@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChocolateTycoon.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -36,7 +37,7 @@ namespace ChocolateTycoon.Models
                 if (ShipmentsReceived >= supplier.OfferAmount)
                 {
                     Factory.BreakContract();
-                    _message = "Supplier's quota has been reached. Contract terminated.";
+                    _message = PosisionEnumHelper.GetDisplayName(MessageEnum.SupplierQuotaError);
                     return;
                 }
 
@@ -46,7 +47,7 @@ namespace ChocolateTycoon.Models
                 return;
             }
 
-            _message = "Make a Contract with a Supplier first!";
+            _message = PosisionEnumHelper.GetDisplayName(MessageEnum.NoSupplierError);
         }
 
         public void ResetSupplier()

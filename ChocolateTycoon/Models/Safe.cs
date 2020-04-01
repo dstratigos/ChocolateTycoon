@@ -10,7 +10,7 @@ namespace ChocolateTycoon.Models
     {
         public int ID { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:N2}")]
         public decimal Deposit { get; set; }
     }
 }

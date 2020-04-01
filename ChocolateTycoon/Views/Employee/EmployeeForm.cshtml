@@ -32,17 +32,27 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.Employee.Position, new { @class = "control-label" })
-        @Html.EnumDropDownListFor(model => model.Employee.Position, new { @class = "form-control", @id = "drop" })
+        @Html.EnumDropDownListFor(model => model.Employee.Position, new
+            {
+                @class = "form-control",
+                @id = "drop"
+            })
     </div>
-    
+
     <div id="factoryChoice" class="form-group">
         @Html.Label("Assign to Factory")
-        @Html.DropDownListFor(model => model.Employee.FactoryID, new SelectList(Model.Factories, "ID", "Name"), "Select", new { @class = "form-control" })
+        @Html.DropDownListFor(model => model.Employee.FactoryID,
+            new SelectList(Model.Factories, "ID", "Name"), "Select",
+            new { @class = "form-control" }
+        )
     </div>
 
     <div id="storeChoice" class="form-group">
         @Html.Label("Assign to Store")
-        @Html.DropDownListFor(model => model.Employee.StoreID, new SelectList(Model.Stores, "ID", "Name"), "Select", new { @class = "form-control" })
+        @Html.DropDownListFor(model => model.Employee.StoreID,
+            new SelectList(Model.Stores, "ID", "Name"),
+            "Select", new { @class = "form-control" }
+        )
     </div>
 
     if (Model.Employee != null)
@@ -50,9 +60,19 @@
         @Html.HiddenFor(model => model.Employee.Id)
     }
 
-    <button class="btn btn-primary" type="submit">
-        Save
-    </button>
+    <table>
+        <tr>
+            <td>
+                <button type="submit" class="btn btn-success btn-sm" style="margin-right: 15px">
+                    Save
+                </button>
+            </td>
+
+            <td>
+                @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        </tr>
+    </table>
 }
 
 @section Scripts {

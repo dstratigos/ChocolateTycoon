@@ -193,7 +193,7 @@ namespace ChocolateTycoon.Controllers
         }
 
 
-        // GET: /Factory/Produce
+        // GET/POST: /Factory/Produce
         [AcceptVerbs(HttpVerbs.Post | HttpVerbs.Get)]
         public ActionResult Produce(int id)
         {
