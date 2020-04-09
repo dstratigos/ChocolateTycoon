@@ -106,8 +106,13 @@ namespace ChocolateTycoon.Controllers
                     Name = factory.Name,
                 };
 
-                factories.Add(newFactory);
-                vault.Deposit -= 2000;
+                
+                if (vault.MoneySuffice(factory.CreateCost))
+                {
+                    factories.Add(newFactory);
+                    vault.Deposit -= factory.CreateCost;
+                }
+                
             }
             else
             {

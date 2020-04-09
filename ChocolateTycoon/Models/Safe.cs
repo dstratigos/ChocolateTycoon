@@ -12,5 +12,15 @@ namespace ChocolateTycoon.Models
 
         [DisplayFormat(DataFormatString = "{0:N2}")]
         public decimal Deposit { get; set; }
-    }
+
+
+
+        public bool MoneySuffice(int cost)
+        {
+            if (Deposit >= cost)
+                return true;
+
+            return false;
+        }
+    }    
 }
