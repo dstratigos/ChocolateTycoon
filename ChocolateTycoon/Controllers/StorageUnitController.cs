@@ -47,7 +47,7 @@ namespace ChocolateTycoon.Controllers
 
             db.SaveChanges();
 
-            TempData["StorageMessage"] = factory.StorageUnit._message;
+            TempData["ErrorMessage"] = Message.ErrorMessage;
 
             return RedirectToAction("Index", "Factory", new { id });
         }

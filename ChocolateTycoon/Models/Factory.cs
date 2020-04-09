@@ -69,10 +69,8 @@ namespace ChocolateTycoon.Models
         public string MakeContract(Supplier supplier)
         {
             Supplier = supplier;
-            //StorageUnit.Replenish(supplier);
 
             return $"A Contract has been made between {supplier.Name} and {Name} Factory.";
-                   //+ $" <br/> First Load ({supplier.ShippedAmount} Kg) has been shipped.";
         }
 
         public static bool HasActiveContract(List<Factory> factories, int factoryId)

@@ -11,6 +11,8 @@ namespace ChocolateTycoon.Models
         public static string ErrorMessage {get; private set;}
         public static string Notification { get; private set; }
 
+
+
         public static void SetErrorMessage(MessageEnum? received)
         {
             if (received != null)

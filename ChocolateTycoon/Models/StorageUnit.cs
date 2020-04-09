@@ -39,6 +39,7 @@ namespace ChocolateTycoon.Models
                     Factory.BreakContract();
                     //Message.SetErrorMessage(MessageEnum.NoSupplierError);
                     //_message = Message.ErrorMessage;
+                    Message.SetErrorMessage(MessageEnum.SupplierQuotaError);
                     return;
                 }
 
@@ -48,7 +49,8 @@ namespace ChocolateTycoon.Models
                 return;
             }
 
-            _message = PosisionEnumHelper.GetDisplayName(MessageEnum.NoSupplierError);
+            //_message = PosisionEnumHelper.GetDisplayName(MessageEnum.NoSupplierError);
+            Message.SetErrorMessage(MessageEnum.NoSupplierError);
         }
 
         public void ResetSupplier()
