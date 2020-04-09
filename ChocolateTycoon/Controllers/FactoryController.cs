@@ -37,6 +37,8 @@ namespace ChocolateTycoon.Controllers
             if (id != null)
                 ViewBag.SelectedId = id.Value;
 
+            ViewBag.Message = TempData["ErrorMessage"];
+
             return View(factories);
         }
 
@@ -68,6 +70,14 @@ namespace ChocolateTycoon.Controllers
         // GET: Factory/Create
         public ActionResult Create()
         {
+            var vault = db.Safes.Where(s => s.ID == 1).Single();
+
+            if (!vault.MoneySuffice(Factory.CreateCost))
+            {
+                TempData["ErrorMessage"] = Message.ErrorMessage;
+                return RedirectToAction("Index");
+            }            
+
             return View("FactoryForm");
         }
 
@@ -101,18 +111,10 @@ namespace ChocolateTycoon.Controllers
                     }
                 }
 
-                var newFactory = new Factory
-                {
-                    Name = factory.Name,
-                };
+                var newFactory = new Factory { Name = factory.Name };
 
-                
-                if (vault.MoneySuffice(factory.CreateCost))
-                {
-                    factories.Add(newFactory);
-                    vault.Deposit -= factory.CreateCost;
-                }
-                
+                factories.Add(newFactory);
+                vault.Deposit -= Factory.CreateCost;
             }
             else
             {

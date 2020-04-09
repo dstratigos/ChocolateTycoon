@@ -9,12 +9,17 @@
 <hr />
 <button type="button" class="btn-link btn-lg" style="padding: 0 20px">
     @Html.ActionLink(" ", "Create", null, new
-    {
-        @id = "createBtn",
-        @class = "glyphicon glyphicon-plus",
-        @style = "text-decoration: none"
-    })
+{
+    @id = "createBtn",
+    @class = "glyphicon glyphicon-plus",
+    @style = "text-decoration: none"
+})
 </button>
+
+<span class="text-danger pl-2">@ViewBag.Message</span>
+
+
+
 <hr />
 
 <table class="table">
@@ -104,7 +109,7 @@
 
 
 
-                    
+
             });
         });
     </script>

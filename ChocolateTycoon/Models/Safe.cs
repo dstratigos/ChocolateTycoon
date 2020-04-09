@@ -20,6 +20,8 @@ namespace ChocolateTycoon.Models
             if (Deposit >= cost)
                 return true;
 
+            Message.SetErrorMessage(MessageEnum.NotEnoughMoneyError);
+
             return false;
         }
     }    

@@ -15,9 +15,9 @@ namespace ChocolateTycoon.Models
         [StringLength(100, MinimumLength = 3, ErrorMessage = "Please enter at least 3 characters")]
         public string Name { get; set; }
         public byte Level { get; private set; }
-        const int _createCost = 2000;
-        public int CreateCost => _createCost;
-
+        private const int _createCost = 2000;
+        public static int CreateCost => _createCost;
+        public string _message;
         public int? SupplierId { get; set; }
 
         public ProductionUnit ProductionUnit { get; set; }

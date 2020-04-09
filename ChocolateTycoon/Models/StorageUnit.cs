@@ -37,7 +37,8 @@ namespace ChocolateTycoon.Models
                 if (ShipmentsReceived >= supplier.OfferAmount)
                 {
                     Factory.BreakContract();
-                    _message = PosisionEnumHelper.GetDisplayName(MessageEnum.SupplierQuotaError);
+                    //Message.SetErrorMessage(MessageEnum.NoSupplierError);
+                    //_message = Message.ErrorMessage;
                     return;
                 }
 

@@ -13,6 +13,9 @@ namespace ChocolateTycoon.Models
         SupplierQuotaError = 1,
 
         [Display(Name = "Make a Contract with a Supplier first!")]
-        NoSupplierError = 2
+        NoSupplierError = 2,
+
+        [Display(Name = "Make some money first!")]
+        NotEnoughMoneyError = 3
     }
 }
