@@ -37,6 +37,7 @@ namespace ChocolateTycoon.Models
         }
 
         // Creates the daily amount of products
+        // Run foreach on an ILookup??
         public List<Chocolate> DailyProduction()
         {
             var materialsNeeded = MaterialsNeeded();

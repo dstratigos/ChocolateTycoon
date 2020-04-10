@@ -7,16 +7,24 @@
 <h2>Factories</h2>
 
 <hr />
-<button type="button" class="btn-link btn-lg" style="padding: 0 20px">
-    @Html.ActionLink(" ", "Create", null, new
-{
-    @id = "createBtn",
-    @class = "glyphicon glyphicon-plus",
-    @style = "text-decoration: none"
-})
-</button>
-
-<span class="text-danger pl-2">@ViewBag.Message</span>
+<div class="container container-fluid">
+    <div class="row">
+        <div class="col col-sm-6">
+            <button type="button" class="btn-link btn-lg" style="padding: 0 20px">
+                @Html.ActionLink(" ", "Create", null, new
+           {
+               @id = "createBtn",
+               @class = "glyphicon glyphicon-plus",
+               @style = "text-decoration: none"
+           })
+            </button>
+        </div>
+        <div class="col col-sm-6 text-danger " style="text-align: end; font-weight: bold; font-style: italic">
+            <p class="@(ViewBag.Message != null ? "glyphicon glyphicon-exclamation-sign" : "")" style="font-size: 15pt;"></p>
+            <span style="margin: 0 20px 0 10px;">@ViewBag.Message</span>
+        </div>
+    </div>
+</div>
 
 <hr />
 

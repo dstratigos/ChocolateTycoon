@@ -52,6 +52,7 @@ namespace ChocolateTycoon.Models
             return false;
         }
 
+        // Breaks the Contract with an active Supplier and returns a message
         public string BreakContract()
         {
             if (Supplier != null)
@@ -66,6 +67,8 @@ namespace ChocolateTycoon.Models
             return "Something went wrong. Try again";
         }
 
+        // Makes a new contract with the Supplier it takes as a parameter
+        // and returns a message on success
         public string MakeContract(Supplier supplier)
         {
             Supplier = supplier;
@@ -73,6 +76,8 @@ namespace ChocolateTycoon.Models
             return $"A Contract has been made between {supplier.Name} and {Name} Factory.";
         }
 
+        // Checks whether a Factory from a list of Factories, has an active Contract with
+        // any Supplier and returns a boolean value
         public static bool HasActiveContract(List<Factory> factories, int factoryId)
         {
             var suppliedFactories = factories.Where(f => f.Supplier != null).ToList();

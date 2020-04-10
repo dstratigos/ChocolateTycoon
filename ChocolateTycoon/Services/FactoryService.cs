@@ -16,12 +16,10 @@ namespace ChocolateTycoon.Services
             return count;
         }
 
-
         public string Produce(Factory factory, MainStorage mainStorage)
         {
             var productionUnit = factory.ProductionUnit;
             var storageUnit = factory.StorageUnit;
-
 
             var materialsNeeded = productionUnit.MaterialsNeeded();
             var materialsSuffice = storageUnit.MaterialsSuffice(materialsNeeded);

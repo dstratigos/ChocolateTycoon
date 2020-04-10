@@ -214,14 +214,14 @@ namespace ChocolateTycoon.Controllers
 
             var mainStorage = db.MainStorages.SingleOrDefault(m => m.ID == 1);
 
-            var chocolatesStored = db.Chocolates
-                .Where(c => c.ChocolateStatusId == 2)
-                .ToList();
-
             if (factory.StorageUnit == null)
                 TempData["ErrorMessage"] = "Storage Unit not available!";
             else
             {
+                var chocolatesStored = db.Chocolates
+                .Where(c => c.ChocolateStatusId == 2)
+                .ToList();
+
                 TempData["ErrorMessage"] = factoryService.Produce(factory, mainStorage);
 
                 TempData["SuccessMessage"] = MainStorageService.SortProducts(mainStorage, chocolatesStored);
