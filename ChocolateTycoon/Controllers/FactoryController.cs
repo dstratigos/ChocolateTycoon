@@ -38,6 +38,7 @@ namespace ChocolateTycoon.Controllers
                 ViewBag.SelectedId = id.Value;
 
             ViewBag.Message = TempData["ErrorMessage"];
+            ViewBag.MainStorageInfo = TempData["MainStorageInfo"];
 
             return View(factories);
         }
@@ -60,9 +61,9 @@ namespace ChocolateTycoon.Controllers
                 .ToList();
 
             ViewBag.ChocolateCount = factoryService.PopulateChocolates(chocolates);
-            ViewBag.ProductionError = TempData["ErrorMessage"];
-            ViewBag.ProductionSuccess = TempData["SuccessMessage"];
-            ViewBag.StorageMessage = TempData["StorageMessage"];
+            //ViewBag.ProductionError = TempData["ErrorMessage"];
+            //ViewBag.ProductionSuccess = TempData["SuccessMessage"];
+            ViewBag.MainStorageInfo = TempData["MainStorageInfo"];
 
             return PartialView(factory);
         }
@@ -215,25 +216,30 @@ namespace ChocolateTycoon.Controllers
             var mainStorage = db.MainStorages.SingleOrDefault(m => m.ID == 1);
 
             if (factory.StorageUnit == null)
-                TempData["ErrorMessage"] = "Storage Unit not available!";
+            {
+                Message.SetErrorMessage(MessageEnum.MainStorageNullError);
+                
+            }                
             else
             {
                 var chocolatesStored = db.Chocolates
                 .Where(c => c.ChocolateStatusId == 2)
                 .ToList();
 
-                TempData["ErrorMessage"] = factoryService.Produce(factory, mainStorage);
+                factoryService.Produce(factory, mainStorage);
 
-                TempData["SuccessMessage"] = MainStorageService.SortProducts(mainStorage, chocolatesStored);
+                MainStorageService.SortProducts(mainStorage, chocolatesStored);
 
                 var chocolatesProduced = mainStorage.newProducts;
 
                 foreach (var chocolate in chocolatesProduced)
                     db.Chocolates.Add(chocolate);
 
+                TempData["MainStorageInfo"] = Message.MainStorageInfo;
 
                 db.SaveChanges();
             }
+            TempData["ErrorMessage"] = Message.ErrorMessage;
 
             return RedirectToAction("Index", new { id });
         }

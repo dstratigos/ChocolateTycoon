@@ -9,10 +9,9 @@ namespace ChocolateTycoon.Services
 {
     public class MainStorageService
     {
-        public static string SortProducts(MainStorage mainStorage, List<Chocolate> chocolatesStored)
+        public static void SortProducts(MainStorage mainStorage, List<Chocolate> chocolatesStored)
         {
             var types = Enum.GetNames(typeof(Models.ChocolateType)).ToList();
-
             var succeeded = 0;
             var failed = 0;
 
@@ -21,23 +20,27 @@ namespace ChocolateTycoon.Services
                 var stored = chocolatesStored.Where(c => c.ChocolateType.ToString() == type).Count();
                 var produced = mainStorage.newProducts.Where(c => c.ChocolateType.ToString() == type).ToList();
 
-                foreach (var product in produced)
+                if (produced.Count() > 0)
                 {
-                    if (mainStorage.maxPerShelf - stored >= 1)
+                    foreach (var product in produced)
                     {
-                        product.ChocolateStatusId = 2;
-                        stored++;
-                        succeeded++;
-                    }
-                    else
-                    {
-                        product.ChocolateStatusId = 5;
-                        failed++;
+                        if (mainStorage.maxPerShelf - stored >= 1)
+                        {
+                            product.ChocolateStatusId = 2;
+                            stored++;
+                            succeeded++;
+                        }
+                        else
+                        {
+                            product.ChocolateStatusId = 5;
+                            failed++;
+                        }
                     }
                 }
             }
 
-            return $"{succeeded} chocolates stored, {failed} chocolates given to charity!";
+            if (succeeded > 0 || failed > 0)
+                Message.SetMainStorageInfo(succeeded, failed);
         }
 
         public static void GetChocolates(MainStorageViewModel viewModel)

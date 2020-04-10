@@ -9,8 +9,11 @@ namespace ChocolateTycoon.Models
     public enum MessageEnum
     {
         // error messages
+        [Display(Name = "Storage Unit not available!")]
+        MainStorageNullError = 1,
+
         [Display(Name = "Supplier's quota has been reached. Contract terminated.")]
-        SupplierQuotaError = 1,
+        SupplierQuotaError,
 
         [Display(Name = "Make a Contract with a Supplier first!")]
         NoSupplierError,
@@ -18,10 +21,19 @@ namespace ChocolateTycoon.Models
         [Display(Name = "Make some money first!")]
         NotEnoughMoneyError,
 
-        [Display(Name = "Make some money first!")]
+        [Display(Name = "Hire some people first!")]
+        PersonelError,
+
+        [Display(Name = "Replenish the Storage Unit first!")]
+        RawMaterialsError,
+
+        // info messages
+        [Display(Name = "chocolates stored")]
         ProducedInfo,
 
-        [Display(Name = "Make some money first!")]
+        [Display(Name = "chocolates sent to charity!")]
         CharityInfo
+
+
     }
 }

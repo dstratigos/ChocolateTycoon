@@ -16,7 +16,7 @@ namespace ChocolateTycoon.Services
             return count;
         }
 
-        public string Produce(Factory factory, MainStorage mainStorage)
+        public void Produce(Factory factory, MainStorage mainStorage)
         {
             var productionUnit = factory.ProductionUnit;
             var storageUnit = factory.StorageUnit;
@@ -32,11 +32,9 @@ namespace ChocolateTycoon.Services
                 mainStorage.newProducts.AddRange(products);
             }
             else if (!personelSuffice)
-                return "Not enough personel to start production!";
+                Message.SetErrorMessage(MessageEnum.PersonelError);
             else
-                return "Not enough raw materials in Storage!";
-
-            return "";
+                Message.SetErrorMessage(MessageEnum.RawMaterialsError);
         }
 
         
