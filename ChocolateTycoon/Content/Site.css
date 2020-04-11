@@ -23,10 +23,12 @@ textarea {
     max-width: 280px;
 }
 
+/* Set field validation text color */
 .field-validation-error {
     color: red;
 }
 
+/* Set input validation border */
 .input-validation-error {
     border: 2px solid red;
 }
@@ -45,4 +47,11 @@ td, th {
     border-radius: 15px;
     text-align: center;
     font-size: 13px;
+}
+
+#messageContainer {
+    border-top: 1px solid #464545;
+    /*border-bottom: 1px solid #464545;*/
+    padding: 10px 0;
+    margin-right: 15px
 }

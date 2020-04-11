@@ -4,38 +4,39 @@
     ViewBag.Title = "Factories";
 }
 
-<h2>Factories</h2>
-
-<hr />
 <div class="container container-fluid">
     <div class="row">
-        <div class="col col-sm-6">
-            <button type="button" class="btn-link btn-lg" style="padding: 0 20px">
+        <h2>
+            Factories
+            <span type="button" class="btn btn-link btn-lg" style="padding-left: 15px">
                 @Html.ActionLink(" ", "Create", null, new
-           {
+            {
                @id = "createBtn",
                @class = "glyphicon glyphicon-plus",
                @style = "text-decoration: none"
-           })
-            </button>
-        </div>
-        @*<div class="col col-sm-6 text-danger " style="text-align: end; font-weight: bold; font-style: italic">
-            <p class="@(ViewBag.Message != null ? "glyphicon glyphicon-exclamation-sign" : "")" style="font-size: 15pt;"></p>
-            <span style="margin: 0 20px 0 10px;">@ViewBag.Message</span>
-            <span style="margin: 0 20px 0 10px;">@ViewBag.MainStorageMessage</span>
-        </div>*@
-        <div class="col col-sm-6 text-danger " style="text-align: end; font-weight: bold; font-style: italic">
-            <div class="@(ViewBag.Message != null ? "glyphicon glyphicon-exclamation-sign" : string.Empty)" style="font-size: 15pt;"></div>
-            <span style="margin: 0 20px 0 10px;">@ViewBag.Message</span>
-            <p style="margin: 0 20px 0 10px;">@ViewBag.MainStorageInfo</p>
-        </div>
+            })
+            </span>
+        </h2>
     </div>
 </div>
 
-<hr />
+<div class="container container-fluid">
+    <div id="messageContainer" class="row text-center">
+        <div id="errorContainer" class="row text-danger hidden" style="padding: 0; margin: 0 5px">
+            <h3 class="glyphicon glyphicon-exclamation-sign"></h3>
+            <span id="errorMessage" style="padding-left: 10px;">@ViewBag.Message</span>
+        </div>
+        <div id="infoContainer" class="row text-warning hidden">
+            <h3 class="glyphicon glyphicon-info-sign"></h3>
+            <span id="infoMessage" style="padding-left: 10px;">@ViewBag.MainStorageInfo</span>
+        </div>
+
+    </div>
+</div>
 
 <table class="table">
-    <tr style="background-color: darkslategray">
+    <tr style="        background-color: darkslategray
+">
         <th>Name</th>
         <th>Level</th>
         <th colspan="3"></th>
@@ -115,14 +116,22 @@
                     callback: function (result) {
                         if (result)
                             window.location = self.href;
-
                     }
                 });
-
-
-
-
             });
+
+            let messageContainer = $("#messageContainer");
+            let errorMessage = $("#errorMessage").text();
+            let infoMessage = $("#infoMessage").text();
+
+            if (errorMessage.length > 0) {
+                $("#errorContainer").toggleClass("hidden").hide().slideDown();
+            };
+
+            if (infoMessage.length > 0) {
+                $("#infoContainer").toggleClass("hidden").hide().slideDown();
+            };
+
         });
     </script>
 }

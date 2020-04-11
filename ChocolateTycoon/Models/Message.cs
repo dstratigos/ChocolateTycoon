@@ -16,7 +16,7 @@ namespace ChocolateTycoon.Models
 
         public static void SetErrorMessage(MessageEnum? received)
         {
-            ErrorMessage = string.Empty;
+            ErrorMessage = null;
             if (received != null)
                 ErrorMessage = PosisionEnumHelper.GetDisplayName(received);
         }

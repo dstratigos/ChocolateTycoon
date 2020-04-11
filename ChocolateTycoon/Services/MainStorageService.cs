@@ -40,7 +40,11 @@ namespace ChocolateTycoon.Services
             }
 
             if (succeeded > 0 || failed > 0)
-                Message.SetMainStorageInfo(succeeded, failed);
+            {
+                Message.SetErrorMessage(null);
+                
+            }
+            Message.SetMainStorageInfo(succeeded, failed);
         }
 
         public static void GetChocolates(MainStorageViewModel viewModel)

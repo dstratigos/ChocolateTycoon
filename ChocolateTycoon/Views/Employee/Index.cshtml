@@ -1,20 +1,26 @@
 ﻿@model ICollection<ChocolateTycoon.Models.Employee>
 
-
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Employees</h2>
-<hr />
-<button type="button" class="btn-link btn-lg" style="padding: 0 20px">
-    @Html.ActionLink(" ", "Create", null, new
-    {
-        @class = "glyphicon glyphicon-plus",
-        @style = "text-decoration: none"
-    })
-</button>
-<hr />
+<div class="container container-fluid">
+    <div class="row">
+        <h2>
+            Employees
+            <span type="button" class="btn btn-link btn-lg" style="padding-left: 15px">
+                @Html.ActionLink(" ", "Create", null, new
+            {
+               @id = "createBtn",
+               @class = "glyphicon glyphicon-plus",
+               @style = "text-decoration: none"
+            })
+            </span>
+        </h2>
+    </div>
+</div>
+
+<hr style="margin-top: 0" />
 
 <table class="table table-hover">
 

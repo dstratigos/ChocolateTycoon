@@ -15,6 +15,7 @@ namespace ChocolateTycoon.Models
         public int FactoryID { get; set; }
 
         [Range(0, double.MaxValue)]
+        [DisplayFormat(DataFormatString = "{0:#,0.00}", ApplyFormatInEditMode = true)]
         public double RawMaterialAmount { get; set; }
         public double ShipmentsReceived { get; private set; }
         public string _message;

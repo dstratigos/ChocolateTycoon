@@ -4,10 +4,10 @@
     ViewBag.Title = "Main Storage";
 }
 
-<h2>Main Storage</h2>
-<hr />
-<h4>Inventory Report</h4>
-<hr />
+<h2 style="padding-top: 10px">Main Storage</h2>
+    <hr />
+    <h4>Inventory Report</h4>
+    <hr />
 
 <div class="container-fluid text-center">
     <table id="table" class="table table-hover">
@@ -67,8 +67,8 @@
     <script>
         $(document).ready(function () {
             $('#table').dataTable({
-                "order": [[ 2, "asc" ]],
-                "columnDefs": [{"orderable": false, "targets": 0}],
+                "order": [[2, "asc"]],
+                "columnDefs": [{ "orderable": false, "targets": 0 }],
                 "searching": false,
                 "paging": false,
                 "bInfo": false
