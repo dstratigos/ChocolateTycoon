@@ -38,16 +38,23 @@ namespace ChocolateTycoon.Models
             var materialsNeeded = ProductionUnit.MaterialsNeeded();
             var materialsSuffice = StorageUnit.MaterialsSuffice(materialsNeeded);
 
-            if (PersonelSuffice() && materialsSuffice)
+            if (!ProductionUnit.ProducedDailyProduction)
             {
-                var products = ProductionUnit.DailyProduction();
+                if (PersonelSuffice() && materialsSuffice)
+                {
+                    var products = ProductionUnit.DailyProduction();
 
-                mainStorage.newProducts.AddRange(products);
+                    mainStorage.newProducts.AddRange(products);
+
+                    ProductionUnit.ProducedDailyProduction = true;
+                }
+                else if (!PersonelSuffice())
+                    Message.SetErrorMessage(MessageEnum.PersonelError);
+                else
+                    Message.SetErrorMessage(MessageEnum.RawMaterialsError);
             }
-            else if (!PersonelSuffice())
-                Message.SetErrorMessage(MessageEnum.PersonelError);
             else
-                Message.SetErrorMessage(MessageEnum.RawMaterialsError);
+                Message.SetErrorMessage(MessageEnum.ProductionTurnError);
         }
 
         //checks if the factory personel meets the required minimum for the factory to operate

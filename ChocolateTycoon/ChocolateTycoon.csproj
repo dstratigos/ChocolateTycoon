@@ -194,6 +194,7 @@
     <Compile Include="Controllers\StorageUnitController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\TurnController.cs" />
     <Compile Include="Data\ApplicationDbContext.cs" />
     <Compile Include="DTOs\SuppliedFactoryDto.cs" />
     <Compile Include="DTOs\FactoryDto.cs" />
@@ -261,6 +262,10 @@
     <Compile Include="Migrations\202003271551239_AddedShipmentsReceivedToStorageUnit.Designer.cs">
       <DependentUpon>202003271551239_AddedShipmentsReceivedToStorageUnit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004121713421_AddedProducedDailyProduction.cs" />
+    <Compile Include="Migrations\202004121713421_AddedProducedDailyProduction.Designer.cs">
+      <DependentUpon>202004121713421_AddedProducedDailyProduction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Controllers\API\StoresController.cs" />
@@ -279,6 +284,7 @@
     <Compile Include="Models\StorageUnit.cs" />
     <Compile Include="Models\Store.cs" />
     <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\Turn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\FactoryService.cs" />
     <Compile Include="Services\MainStorageService.cs" />
@@ -617,6 +623,7 @@
     <Folder Include="Views\ProductionUnit\" />
     <Folder Include="Views\Safe\" />
     <Folder Include="Views\StorageUnit\" />
+    <Folder Include="Views\Turn\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -673,6 +680,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003271551239_AddedShipmentsReceivedToStorageUnit.resx">
       <DependentUpon>202003271551239_AddedShipmentsReceivedToStorageUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004121713421_AddedProducedDailyProduction.resx">
+      <DependentUpon>202004121713421_AddedProducedDailyProduction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

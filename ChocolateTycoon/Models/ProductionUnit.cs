@@ -14,6 +14,7 @@ namespace ChocolateTycoon.Models
         [ForeignKey("Factory")]
         public int FactoryID { get; set; }
         public int MaxProductionPerDay { get; private set; }
+        public bool ProducedDailyProduction { get; set; }
 
         public Factory Factory { get; set; }
 
