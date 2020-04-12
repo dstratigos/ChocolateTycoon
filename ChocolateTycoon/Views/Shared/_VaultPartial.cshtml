@@ -1,7 +1,13 @@
-﻿@model ChocolateTycoon.Models.Safe    
+﻿@model ChocolateTycoon.Models.Safe
 
-<ul class="nav navbar-brand navbar-right" >
-    <li style="color: darkslateblue; font-weight: bold; padding-right: 30px">
-        @Model.Deposit <i class="glyphicon glyphicon-bitcoin"></i>
-    </li>
-</ul>
+@*<ul class="nav navbar-brand navbar-right" >
+        <li style="color: darkslateblue; font-weight: bold; padding-right: 30px">
+            @Model.Deposit <i class="glyphicon glyphicon-bitcoin"></i>
+        </li>
+    </ul>*@
+
+<span class="navbar-brand" style="padding-right: 20px; color: gold">
+    <span id="count" class="count">@Model.Deposit</span> <i class="glyphicon glyphicon-bitcoin"></i>
+</span>
+
+

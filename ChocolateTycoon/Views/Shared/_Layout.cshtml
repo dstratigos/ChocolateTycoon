@@ -17,7 +17,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+
+                @{Html.RenderAction("Vault", "Safe");}
+
+
                 @Html.ActionLink("Chocolate Tycoon", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -40,7 +46,7 @@
                 </ul>
 
                 @Html.Partial("_LoginPartial")
-                @{Html.RenderAction("Vault", "Safe");}
+
             </div>
         </div>
     </div>
@@ -53,8 +59,46 @@
     </div>
 
     @Scripts.Render("~/bundles/lib")
-    @*@Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+<script>
+    $(document).ready(function () {
+        let vaultVal = $("#count");
+        let thisVal = $("#count").text();
+
+        let target = $("#count");
+
+        let observer = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+                console.info("EVENT TRIGGERED " + mutation.target.id);
+            });
+        });
+
+        let config = { attributes: true, childList: true, characterData: true };
+
+        observer.observe(target, config);
+
+        function simulateChange() {
+            target.innerText = "CHANGE";
+        }
+
+        setTimeout(simulateChange, 2000);
+
+
+        function counter() {
+            vaultVal.prop('Counter', 0).animate({
+                Counter: vaultVal.text()
+            }, {
+                duration: 1000,
+                easing: 'swing',
+                step: function (now) {
+                    //vaultVal.text(Math.ceil(now));
+                    vaultVal.text(now.toFixed(2));               
+                }
+            });
+        };
+        
+    });
+</script>
