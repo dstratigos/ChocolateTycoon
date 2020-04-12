@@ -64,31 +64,10 @@
 </html>
 
 <script>
-    $(document).ready(function () {
+    $(window).ready(function () {
         let vaultVal = $("#count");
-        let thisVal = $("#count").text();
 
-        let target = $("#count")[0];
-
-        console.log(target);           
-
-        let observer = new MutationObserver(function (mutations) {
-            mutations.forEach(function (mutation) {
-                console.log("EVENT TRIGGERED " + mutation.target.id);
-                //counter();
-            });
-        });
-
-        let config = { attributes: true, childList: true, characterData: true, subtree: true, innerText: true };
-
-        observer.observe(target, config);
-
-        //function simulateChange() {
-        //    target.innerText = "CHANGE";
-        //}
-
-        //setTimeout(simulateChange, 2000);
-
+        //counter();
 
         function counter() {
             vaultVal.prop('Counter', 0).animate({
@@ -98,10 +77,10 @@
                 easing: 'swing',
                 step: function (now) {
                     //vaultVal.text(Math.ceil(now));
-                    vaultVal.text(now.toFixed(2));               
+                    vaultVal.text(now.toFixed(2));
                 }
             });
         };
-        
+
     });
 </script>
