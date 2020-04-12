@@ -24,5 +24,16 @@ namespace ChocolateTycoon.Models
 
             return false;
         }
+
+        // for testing purposes
+        public void depositAmount()
+        {
+            Deposit += 2000;
+        }
+
+        public void withdrawAmount()
+        {
+            Deposit -= 1000;
+        }
     }    
 }

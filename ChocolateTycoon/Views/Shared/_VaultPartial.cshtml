@@ -6,8 +6,15 @@
         </li>
     </ul>*@
 
-<span class="navbar-brand" style="padding-right: 20px; color: gold">
-    <span id="count" class="count">@Model.Deposit</span> <i class="glyphicon glyphicon-bitcoin"></i>
-</span>
+    <span class="navbar-brand" style="padding-right: 20px; color: gold">
+        <span id="count" class="count">@Model.Deposit</span> <i class="glyphicon glyphicon-bitcoin"></i>
+        <span>
+            @Html.ActionLink("+", "Deposit", "Safe", null, new { @style = "text-decoration: none; color: white;" })
+        </span>
+        <span>
+            @Html.ActionLink("-", "Withdraw", "Safe", null, new { @style = "text-decoration: none; color: white;" })
+        </span>
+    </span>
+
 
 

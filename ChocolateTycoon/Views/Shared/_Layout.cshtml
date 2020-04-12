@@ -68,23 +68,26 @@
         let vaultVal = $("#count");
         let thisVal = $("#count").text();
 
-        let target = $("#count");
+        let target = $("#count")[0];
+
+        console.log(target);           
 
         let observer = new MutationObserver(function (mutations) {
             mutations.forEach(function (mutation) {
-                console.info("EVENT TRIGGERED " + mutation.target.id);
+                console.log("EVENT TRIGGERED " + mutation.target.id);
+                //counter();
             });
         });
 
-        let config = { attributes: true, childList: true, characterData: true };
+        let config = { attributes: true, childList: true, characterData: true, subtree: true, innerText: true };
 
         observer.observe(target, config);
 
-        function simulateChange() {
-            target.innerText = "CHANGE";
-        }
+        //function simulateChange() {
+        //    target.innerText = "CHANGE";
+        //}
 
-        setTimeout(simulateChange, 2000);
+        //setTimeout(simulateChange, 2000);
 
 
         function counter() {
