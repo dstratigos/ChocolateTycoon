@@ -10,7 +10,7 @@ namespace ChocolateTycoon.Models
     {
         // error messages
         [Display(Name = "Storage Unit not available!")]
-        MainStorageNullError = 1,
+        StorageUnitNullError = 1,
 
         [Display(Name = "Supplier's quota has been reached. Contract terminated.")]
         SupplierQuotaError,

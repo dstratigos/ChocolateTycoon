@@ -10,7 +10,7 @@ namespace ChocolateTycoon.Models
 {
     public enum EmployeePosition
     {
-        [Display(Name ="Factory Manager")]
+        [Display(Name = "Factory Manager")]
         FactoryManager,
 
         [Display(Name = "Store Manager")]
@@ -38,13 +38,7 @@ namespace ChocolateTycoon.Models
         public string LastName { get; set; }
 
         [Display(Name = "Fullname")]
-        public string FullName
-        {
-            get
-            {
-                return FirstName + " " + LastName;
-            }
-        }
+        public string FullName { get { return FirstName + " " + LastName; } }
 
         [Required]
         public EmployeePosition Position { get; set; }
@@ -52,12 +46,8 @@ namespace ChocolateTycoon.Models
         [DisplayFormat(DataFormatString = "{0:N2}", ApplyFormatInEditMode = true)]
         public decimal Salary { get; set; }
 
-
-
         public int? StoreID { get; set; }
         public int? FactoryID { get; set; }
-
-
         public Store Store { get; set; }
         public Factory Factory { get; set; }
 
@@ -72,7 +62,7 @@ namespace ChocolateTycoon.Models
             switch ((int)employee.Position)
             {
                 case 0:
-                    return 1700;                   
+                    return 1700;
 
                 case 1:
                     return 1500;
@@ -86,6 +76,6 @@ namespace ChocolateTycoon.Models
                 default:
                     return 0;
             }
-        }        
+        }
     }
 }

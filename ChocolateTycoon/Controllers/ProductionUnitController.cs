@@ -36,7 +36,7 @@ namespace ChocolateTycoon.Controllers
             ProductionUnit productionUnit = new ProductionUnit
             {
                 FactoryID = factory.ID,
-                MaxProductionPerDay = 200
+                //MaxProductionPerDay = 200
             };
 
             db.ProductionUnits.Add(productionUnit);

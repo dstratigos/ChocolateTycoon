@@ -48,7 +48,6 @@ namespace ChocolateTycoon.Models
                 return;
             }
 
-            //_message = PosisionEnumHelper.GetDisplayName(MessageEnum.NoSupplierError);
             Message.SetErrorMessage(MessageEnum.NoSupplierError);
         }
 

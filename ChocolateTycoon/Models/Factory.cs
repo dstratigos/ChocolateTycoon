@@ -17,7 +17,8 @@ namespace ChocolateTycoon.Models
         public byte Level { get; private set; }
         private const int _createCost = 2000;
         public static int CreateCost => _createCost;
-        public string _message;
+        //public string _message;
+
         public int? SupplierId { get; set; }
 
         public ProductionUnit ProductionUnit { get; set; }
@@ -30,6 +31,23 @@ namespace ChocolateTycoon.Models
         {
             Level = 1;
             Employees = new List<Employee>();
+        }
+
+        public void Produce(MainStorage mainStorage)
+        {
+            var materialsNeeded = ProductionUnit.MaterialsNeeded();
+            var materialsSuffice = StorageUnit.MaterialsSuffice(materialsNeeded);
+
+            if (PersonelSuffice() && materialsSuffice)
+            {
+                var products = ProductionUnit.DailyProduction();
+
+                mainStorage.newProducts.AddRange(products);
+            }
+            else if (!PersonelSuffice())
+                Message.SetErrorMessage(MessageEnum.PersonelError);
+            else
+                Message.SetErrorMessage(MessageEnum.RawMaterialsError);
         }
 
         //checks if the factory personel meets the required minimum for the factory to operate

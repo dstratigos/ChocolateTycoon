@@ -121,20 +121,6 @@ namespace ChocolateTycoon.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Employee/Delete/Id
-        //public ActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-        //    var employee = db.Employees.SingleOrDefault(e => e.Id == id);
-
-        //    if (employee == null)
-        //        return HttpNotFound();
-
-        //    return View(employee);
-        //}
-
         // POST: Employee/Delete/Id
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -77,7 +77,7 @@ namespace ChocolateTycoon.Controllers
             {
                 TempData["ErrorMessage"] = Message.ErrorMessage;
                 return RedirectToAction("Index");
-            }            
+            }
 
             return View("FactoryForm");
         }
@@ -216,17 +216,14 @@ namespace ChocolateTycoon.Controllers
             var mainStorage = db.MainStorages.SingleOrDefault(m => m.ID == 1);
 
             if (factory.StorageUnit == null)
-            {
-                Message.SetErrorMessage(MessageEnum.MainStorageNullError);
-                
-            }                
+                Message.SetErrorMessage(MessageEnum.StorageUnitNullError);
             else
             {
                 var chocolatesStored = db.Chocolates
                 .Where(c => c.ChocolateStatusId == 2)
                 .ToList();
 
-                factoryService.Produce(factory, mainStorage);
+                factory.Produce(mainStorage);
 
                 MainStorageService.SortProducts(mainStorage, chocolatesStored);
 
@@ -243,9 +240,5 @@ namespace ChocolateTycoon.Controllers
 
             return RedirectToAction("Index", new { id });
         }
-
-
-
-
     }
 }
