@@ -14,7 +14,6 @@ namespace ChocolateTycoon.Models
         public decimal Deposit { get; set; }
 
 
-
         public bool MoneySuffice(int cost)
         {
             if (Deposit >= cost)
@@ -34,6 +33,29 @@ namespace ChocolateTycoon.Models
         public void withdrawAmount()
         {
             Deposit -= 1000;
+        }
+
+        public void FactoryRefund()
+        {
+            var price = Factory.CreateCost;
+
+            decimal refund = price * 0.2M; // 20% of factory price when deleting
+
+            Deposit += refund;
+        }
+
+        public void ReplenishExpenses(Supplier supplier)
+        {
+            decimal shippedAmount = Convert.ToDecimal(supplier.ShippedAmount);
+            Deposit += supplier.PricePerKilo * shippedAmount;
+        }
+
+        public void BreakContractPenalty(StorageUnit storage, Supplier supplier)
+        {
+            decimal shipments = Convert.ToDecimal(storage.ShipmentsReceived);
+            decimal offerAmount = Convert.ToDecimal(supplier.OfferAmount);
+            var remainder = shipments - offerAmount;
+            Deposit += remainder * 0.5M;
         }
     }    
 }

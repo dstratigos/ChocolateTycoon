@@ -32,6 +32,21 @@ namespace ChocolateTycoon.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Chocolate>()
+                .HasRequired(c => c.Status)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Store>()
+                .HasRequired(s => s.MainStorage)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Store>()
+                .HasRequired(s => s.Safe)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
             base.OnModelCreating(modelBuilder);
         }
     }
