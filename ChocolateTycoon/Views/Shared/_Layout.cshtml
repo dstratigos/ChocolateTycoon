@@ -20,6 +20,11 @@
 
                 @{Html.RenderAction("Vault", "Safe");}
 
+                @*@{Html.RenderPartial("EndTurn");}*@
+
+                <span class="navbar-brand" style="padding: 8px 30px; color: gold">
+                    @Html.ActionLink("Call it a Day", "EndTurn", "Turn", null, new { @id = "endTurnBtn", @class = "btn btn-danger" })
+                </span>
 
                 @Html.ActionLink("Chocolate Tycoon", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 
@@ -69,6 +74,7 @@
 
         //counter();
 
+        //uncomment the above to use
         function counter() {
             vaultVal.prop('Counter', 0).animate({
                 Counter: vaultVal.text()
@@ -81,6 +87,19 @@
                 }
             });
         };
+
+        $('#endTurnBtn').on('click', function (e) {
+            e.preventDefault();
+
+            let self = this;
+
+            bootbox.confirm({
+                message: "Are you sure?",
+                callback: function (result) {
+                    window.location = self.href;
+                }
+            });
+        });
 
     });
 </script>

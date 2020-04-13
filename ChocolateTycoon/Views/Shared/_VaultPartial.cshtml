@@ -1,11 +1,5 @@
 ﻿@model ChocolateTycoon.Models.Safe
 
-@*<ul class="nav navbar-brand navbar-right" >
-        <li style="color: darkslateblue; font-weight: bold; padding-right: 30px">
-            @Model.Deposit <i class="glyphicon glyphicon-bitcoin"></i>
-        </li>
-    </ul>*@
-
 <span class="navbar-brand" style="padding-right: 20px; color: gold">
     <span id="count">@Model.Deposit</span> <i class="glyphicon glyphicon-bitcoin"></i>
     <span>
@@ -15,21 +9,6 @@
         @Html.ActionLink("-", "Withdraw", "Safe", null, new { @style = "text-decoration: none; color: white;" })
     </span>
 </span>
-
-
-@*<script>
-
-        let curVal = '@Model.Deposit';
-        console.log(curVal);
-        document.getElementById('count').value = curVal.toString();
-        let newVal = document.getElementById('count').value;
-
-        document.getElementById('count').addEventListener('input', function () {
-            console.log("changed");
-        })
-
-    </script>*@
-
 
 
 

@@ -20,21 +20,20 @@ namespace ChocolateTycoon.Controllers
 
         public ActionResult EndTurn()
         {
-            var factories = db.Factories
-                .Include(f => f.ProductionUnit)
-                .Where(f => f.ProductionUnit != null)
-                .ToList();
+            var productionUnits = db.ProductionUnits.ToList();
 
-            if (factories.Count() == 0)
-                return HttpNotFound();
+            var turn = new Turn();
 
-            if(Turn.LooseEnds(factories))
-                return View()
+            //if (productionUnits.Count() == 0)
+            //    return HttpNotFound();
 
+            if (!Turn.LooseEnds(productionUnits))
+            {
+                Turn.EndTurn(productionUnits);
+                db.SaveChanges();                
+            }
 
-
-
-
+            return Redirect(Request.UrlReferrer.PathAndQuery);
         }
     }
 }

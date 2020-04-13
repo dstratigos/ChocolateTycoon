@@ -36,7 +36,5 @@ namespace ChocolateTycoon.Models
 
         [Display(Name = "chocolates sent to charity!")]
         CharityInfo
-
-
     }
 }
