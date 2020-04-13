@@ -1,25 +1,29 @@
 ﻿@model ChocolateTycoon.Models.Store
 
 
-<hr />
-<table class="table">
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Level</th>
-        <th>Total Employees</th>
-        <th>Managers</th>
-        <th>Sales Department</th>
+<table class="table table-bordered text-center" id="subTable">
+    <tr style="background-color: darkslategrey">
+        <th style="text-align: center">Chocolate Stock</th>
+        <th style="text-align: center">Chocolates</th>
+        <th style="text-align: center">Total Employees</th>
+        <th style="text-align: center">Managers</th>
+        <th style="text-align: center">Sales Department</th>
     </tr>
 
     <tr>
-        <td>@Model.ID</td>
-        <td>@Model.Name</td>
-        <td>@Model.Level</td>
+        <td>@Model.AvailableStock()</td>
+        <td>
+            @Html.ActionLink("Sell Chocolates", "SellChocolates", new { id = Model.ID }, new { @class = "btn btn-link text-success", @style = "padding: 0", @onclick = "dataReload();" })
+            <p class="text-danger">@ViewBag.SellingProcess</p>
+        </td>
         @{
             Html.RenderAction("StoreEmployees", new { id = Model.ID });
         }
     </tr>
 </table>
 
-
+<script>
+    function dataReload() {
+        $('#subTable').load("#subTable");
+    }
+</script>

@@ -18,23 +18,23 @@ namespace ChocolateTycoon.Controllers
             db = new ApplicationDbContext();
         }
 
-        public ActionResult EndTurn()
-        {
-            var factories = db.Factories
-                .Include(f => f.ProductionUnit)
-                .Where(f => f.ProductionUnit != null)
-                .ToList();
+        //public ActionResult EndTurn()
+        //{
+        //    var factories = db.Factories
+        //        .Include(f => f.ProductionUnit)
+        //        .Where(f => f.ProductionUnit != null)
+        //        .ToList();
 
-            if (factories.Count() == 0)
-                return HttpNotFound();
+        //    if (factories.Count() == 0)
+        //        return HttpNotFound();
 
-            if(Turn.LooseEnds(factories))
-                return View()
-
-
+        //    if(Turn.LooseEnds(factories))
+        //        return View()
 
 
 
-        }
+
+
+        //}
     }
 }

@@ -266,6 +266,14 @@
     <Compile Include="Migrations\202004121713421_AddedProducedDailyProduction.Designer.cs">
       <DependentUpon>202004121713421_AddedProducedDailyProduction.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004131336004_MergeStoreChanges.cs" />
+    <Compile Include="Migrations\202004131336004_MergeStoreChanges.Designer.cs">
+      <DependentUpon>202004131336004_MergeStoreChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004131348289_PopulateStoreFK.cs" />
+    <Compile Include="Migrations\202004131348289_PopulateStoreFK.Designer.cs">
+      <DependentUpon>202004131348289_PopulateStoreFK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Controllers\API\StoresController.cs" />
@@ -295,6 +303,7 @@
     <Compile Include="ViewModels\FactoryViewModel.cs" />
     <Compile Include="ViewModels\MainStorageViewModel.cs" />
     <Compile Include="ViewModels\StoreEmployeesViewModel.cs" />
+    <Compile Include="ViewModels\StoreFormViewModel.cs" />
     <Compile Include="ViewModels\SupplierViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -617,6 +626,7 @@
     <Content Include="Views\Supplier\Index - Intitial.cshtml" />
     <Content Include="Views\Supplier\Index.cshtml" />
     <Content Include="Views\Shared\_VaultPartial.cshtml" />
+    <Content Include="Views\Store\_SellResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -683,6 +693,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004121713421_AddedProducedDailyProduction.resx">
       <DependentUpon>202004121713421_AddedProducedDailyProduction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004131336004_MergeStoreChanges.resx">
+      <DependentUpon>202004131336004_MergeStoreChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004131348289_PopulateStoreFK.resx">
+      <DependentUpon>202004131348289_PopulateStoreFK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

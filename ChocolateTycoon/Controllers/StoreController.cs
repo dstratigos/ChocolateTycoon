@@ -13,9 +13,9 @@ namespace ChocolateTycoon.Controllers
 {
     public class StoreController : Controller
     {
-        private ApplicationDbContext db; 
+        private ApplicationDbContext db;
 
-        public StoreController() 
+        public StoreController()
         {
             db = new ApplicationDbContext();
         }
@@ -25,10 +25,47 @@ namespace ChocolateTycoon.Controllers
             db.Dispose();
         }
 
+        public ActionResult SellChocolates(int id)
+        {
+            var chocolates = db.Chocolates
+                .Include(c => c.Status)
+                .Where(c => c.StoreId == id)
+                .ToList();
+
+            var store = db.Stores
+                .Include(s => s.Employees)
+                .Include(s => s.Chocolates)
+                .Include(s => s.MainStorage)
+                .Include(s => s.Safe)
+                .Where(s => s.ID == id).SingleOrDefault();
+
+            TempData["Message"] = store.Sell(chocolates);
+
+            //var newChocolates = store.Chocolates.Where(c => c.StatusID == 3);
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index", new { id });
+        }
+
         // GET: Store
         public ActionResult Index(int? id)
         {
-            var stores = db.Stores;
+            var stores = db.Stores
+                .Include(s => s.Safe);
+
+            if (id != null)
+            {
+                ViewBag.SelectedId = id.Value;
+            }
+
+            return View(stores);
+        }
+
+        public ActionResult IndexTest(int? id)
+        {
+            var stores = db.Stores
+                .Include(s => s.Safe);
 
             if (id != null)
             {
@@ -40,60 +77,78 @@ namespace ChocolateTycoon.Controllers
 
         public ActionResult Details(int? id)
         {
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
             var store = db.Stores
+                .Include(s => s.Chocolates)
                 .SingleOrDefault(s => s.ID == id);
 
             if (store == null)
                 return HttpNotFound();
 
+            ViewBag.SellingProcess = TempData["Message"];
+
             return PartialView("_Details", store);
         }
 
-        public ActionResult New()
+        public ActionResult Create()
         {
-            return View("StoreForm");
+            var viewModel = new StoreFormViewModel
+            {
+                Heading = "Add a Store"
+            };
+
+            return View("StoreForm", viewModel);
         }
 
-        // GET
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            var store = db.Stores
+                .Single(s => s.ID == id);
 
-            var store = db.Stores.SingleOrDefault(s => s.ID == id);
+            var chocolates = db.Chocolates.Where(c => c.Status.Id == 3 && c.StoreId == id).ToList();
 
-            if (store == null)
-                return HttpNotFound();
+            var viewModel = new StoreFormViewModel
+            {
+                ID = store.ID,
+                Name = store.Name,
+                Heading = "Edit a Store"
+            };
 
-            return View("StoreForm", store);
+            return View("StoreForm", viewModel);
         }
 
-        // POST
+        // POST: Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(Store store)
+        public ActionResult Create(StoreFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
             {
-                //Create
-                if (store.ID == 0)
-                {
-                    db.Stores.Add(store);
-                    db.SaveChanges();
-                    return RedirectToAction("Index", "Store");
-                }
+                return View("StoreForm", viewModel);
+            }
 
-                return View("StoreForm", store);
+            var store = new Store
+            {
+                Name = viewModel.Name,
+            };
+
+            db.Stores.Add(store);
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Store");
+        }
+
+        // POST: Update
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(StoreFormViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("StoreForm", viewModel);
             }
-            else // Update
-            { 
-                var storeInDb = db.Stores.Single(m => m.ID == store.ID);
-                storeInDb.Name = store.Name;
-                storeInDb.Level = store.Level;
-            }
+
+            var store = db.Stores.Single(s => s.ID == viewModel.ID);
+            store.Name = viewModel.Name;
 
             db.SaveChanges();
 
@@ -109,7 +164,6 @@ namespace ChocolateTycoon.Controllers
             }
 
             Store store = db.Stores
-                //.Include(s => s.Chocolates)
                 .SingleOrDefault(s => s.ID == id);
 
             if (store == null)
@@ -125,7 +179,6 @@ namespace ChocolateTycoon.Controllers
         public ActionResult DeleteConfirmed(int? id)
         {
             Store store = db.Stores
-                //.Include(s => s.Chocolates)
                 .SingleOrDefault(s => s.ID == id);
 
             db.Stores.Remove(store);
