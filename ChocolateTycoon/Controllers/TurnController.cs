@@ -21,17 +21,23 @@ namespace ChocolateTycoon.Controllers
         public ActionResult EndTurn()
         {
             var productionUnits = db.ProductionUnits.ToList();
+            var employees = db.Employees.ToList();
+            var safe = db.Safes.SingleOrDefault(s => s.ID == 1);
 
-            var turn = new Turn();
+            var turn = new Turn(productionUnits, employees, safe);
 
-            //if (productionUnits.Count() == 0)
-            //    return HttpNotFound();
+            if (productionUnits.Count() == 0)
+                return HttpNotFound();
 
-            if (!Turn.LooseEnds(productionUnits))
-            {
-                Turn.EndTurn(productionUnits);
-                db.SaveChanges();                
-            }
+            //if (!turn.LooseEnds(productionUnits))
+            //{
+            //    turn.EndTurn();
+            //    db.SaveChanges();                
+            //}
+
+            turn.EndTurn();
+
+            db.SaveChanges();
 
             return Redirect(Request.UrlReferrer.PathAndQuery);
         }

@@ -7,10 +7,24 @@ namespace ChocolateTycoon.Models
 {
     public class Turn
     {
-        public static string TurnMessage { get; private set; }
-        public static bool LooseEnds(List<ProductionUnit> productionUnits)
+        public string TurnMessage { get; private set; }
+        public List<ProductionUnit> ProductionUnits { get; private set; }
+        public List<Employee> Employees { get; private set; }
+        public Safe Safe { get; private set; }
+
+        protected Turn()
+        { }
+
+        public Turn(List<ProductionUnit> productionUnits, List<Employee> employees, Safe safe)
         {
-            var notProduced = productionUnits.Any(pu => pu.ProducedDailyProduction == false);
+            ProductionUnits = productionUnits;
+            Employees = employees;
+            Safe = safe;
+        }
+
+        public bool LooseEnds()
+        {
+            var notProduced = ProductionUnits.Any(pu => pu.ProducedDailyProduction == false);
 
             if (notProduced)
             {
@@ -21,10 +35,13 @@ namespace ChocolateTycoon.Models
             return false;
         }
 
-        public static void EndTurn(List<ProductionUnit> productionUnits)
+        public void EndTurn()
         {
-            foreach (var productionUnit in productionUnits)
+            foreach (var productionUnit in ProductionUnits)
                 productionUnit.ProducedDailyProduction = false;
+
+            var wages = Safe.calculateTotalWages(Employees);
+            Safe.Deposit -= wages;
         }
     }
 }

@@ -57,5 +57,18 @@ namespace ChocolateTycoon.Models
             var remainder = shipments - offerAmount;
             Deposit += remainder * 0.5M;
         }
+
+        public decimal calculateTotalWages(List<Employee> employees)
+        {
+            decimal total = 0;
+
+            foreach (var employee in employees)
+            {
+                if (employee.FactoryID != null || employee.StoreID != null)
+                    total += employee.Salary;
+            }
+
+            return total;
+        }
     }    
 }
