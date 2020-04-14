@@ -56,14 +56,14 @@ namespace ChocolateTycoon.Models
         public void ReplenishExpenses(Supplier supplier)
         {
             decimal shippedAmount = Convert.ToDecimal(supplier.ShippedAmount);
-            Deposit -= supplier.PricePerKilo * shippedAmount;
+            Deposit -= shippedAmount * supplier.PricePerKilo;
         }
 
         public void BreakContractPenalty(StorageUnit storage, Supplier supplier)
         {
             decimal shipments = Convert.ToDecimal(storage.ShipmentsReceived);
             decimal offerAmount = Convert.ToDecimal(supplier.OfferAmount);
-            var remainder = shipments - offerAmount;
+            var remainder = offerAmount - shipments;
             Deposit -= remainder * 0.5M;
         }
 

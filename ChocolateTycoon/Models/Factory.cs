@@ -86,7 +86,7 @@ namespace ChocolateTycoon.Models
                 Supplier = null;
                 StorageUnit.ResetSupplier();
 
-                return $"{Name} Factory broke it's Contract with {supplierName}";
+                return $"{Name} Factory broke it's Contract with {supplierName}. You got a penalty charge..";
             }
 
             return "Something went wrong. Try again";

@@ -151,8 +151,7 @@ namespace ChocolateTycoon.Controllers
             };
 
             db.Stores.Add(store);
-            var safe = stores.Select(s => s.Safe).SingleOrDefault();
-            safe.Deposit -= Store.CreateCost;
+            store.Safe.Deposit -= Store.CreateCost;
 
             db.SaveChanges();
 
