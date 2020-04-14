@@ -293,7 +293,12 @@
     <Compile Include="Models\Store.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\Turn.cs" />
+    <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ChocolateRepository.cs" />
+    <Compile Include="Repositories\EmployeeRepository.cs" />
+    <Compile Include="Repositories\SafeRepository.cs" />
+    <Compile Include="Repositories\StoreRepository.cs" />
     <Compile Include="Services\FactoryService.cs" />
     <Compile Include="Services\MainStorageService.cs" />
     <Compile Include="Services\MaterialsCost.cs" />
