@@ -40,9 +40,9 @@ namespace ChocolateTycoon.Controllers
 
             db.SaveChanges();
 
-
-            return Redirect(Request.UrlReferrer.PathAndQuery);
+            //return Redirect(Request.UrlReferrer.PathAndQuery);
             //return View("EndTurn", turn);
+            return Content(Turn.TurnMessage);
         }
     }
 }

@@ -72,9 +72,6 @@
 </html>
 
 <script>
-
-
-
     $(window).ready(function () {
         let vaultVal = $("#count");
 
@@ -106,14 +103,9 @@
                         $.get(
                             self.href,
                             function (result) {
-                                
-                            })
-                            .then(function () {
-                                //debugger;
-                                let turnMessage = '@ChocolateTycoon.Models.Turn.TurnMessage';
+                                let turnMessage = result;
                                 turnAlert(turnMessage);
                             })
-
                     }
                 }
             });
