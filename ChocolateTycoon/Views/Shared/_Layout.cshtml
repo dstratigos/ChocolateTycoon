@@ -106,11 +106,14 @@
                         $.get(
                             self.href,
                             function (result) {
-                                debugger;
+                                
+                            })
+                            .then(function () {
+                                //debugger;
                                 let turnMessage = '@ChocolateTycoon.Models.Turn.TurnMessage';
                                 turnAlert(turnMessage);
-                            });
-                        
+                            })
+
                     }
                 }
             });
