@@ -91,10 +91,18 @@ namespace ChocolateTycoon.Controllers
 
         public ActionResult Create()
         {
+            var safe = db.Safes.SingleOrDefault();
+
             var viewModel = new StoreFormViewModel
             {
                 Heading = "Add a Store"
             };
+
+            if (!safe.MoneySuffice(Store.CreateCost))
+            {
+                TempData["ErrorMessage"] = Message.ErrorMessage;
+                return RedirectToAction("Index");
+            }
 
             return View("StoreForm", viewModel);
         }
@@ -103,8 +111,6 @@ namespace ChocolateTycoon.Controllers
         {
             var store = db.Stores
                 .Single(s => s.ID == id);
-
-            var chocolates = db.Chocolates.Where(c => c.Status.Id == 3 && c.StoreId == id).ToList();
 
             var viewModel = new StoreFormViewModel
             {
@@ -121,9 +127,22 @@ namespace ChocolateTycoon.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(StoreFormViewModel viewModel)
         {
+            var stores = db.Stores
+                .Include(s => s.Safe)
+                .ToList();
+
             if (!ModelState.IsValid)
             {
                 return View("StoreForm", viewModel);
+            }
+
+            foreach (var s in stores)
+            {
+                if (s.Name == viewModel.Name)
+                {
+                    ModelState.AddModelError("Name", "This name already exists!");
+                    break;
+                }
             }
 
             var store = new Store
@@ -132,6 +151,9 @@ namespace ChocolateTycoon.Controllers
             };
 
             db.Stores.Add(store);
+            var safe = stores.Select(s => s.Safe).SingleOrDefault();
+            safe.Deposit -= Store.CreateCost;
+
             db.SaveChanges();
 
             return RedirectToAction("Index", "Store");

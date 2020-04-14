@@ -1,26 +1,25 @@
 ﻿@model ChocolateTycoon.Models.Store
 
+<br/>
 
-<table class="table table-bordered text-center" id="subTable">
-    <tr style="background-color: darkslategrey">
-        <th style="text-align: center">Chocolate Stock</th>
-        <th style="text-align: center">Chocolates</th>
-        <th style="text-align: center">Total Employees</th>
-        <th style="text-align: center">Managers</th>
-        <th style="text-align: center">Sales Department</th>
-    </tr>
+<tr>
+    <th style="text-align: center">Chocolate Stock</th>
+    <th style="text-align: center">Sell</th>
+    <th style="text-align: center">Total Employees</th>
+    <th style="text-align: center">Managers</th>
+    <th style="text-align: center">Sales Department</th>
+</tr>
 
-    <tr>
-        <td>@Model.AvailableStock()</td>
-        <td>
-            @Html.ActionLink("Sell Chocolates", "SellChocolates", new { id = Model.ID }, new { @class = "btn btn-link text-success", @style = "padding: 0", @onclick = "dataReload();" })
-            <p class="text-danger">@ViewBag.SellingProcess</p>
-        </td>
-        @{
-            Html.RenderAction("StoreEmployees", new { id = Model.ID });
-        }
-    </tr>
-</table>
+<tr>
+    <td>@Model.AvailableStock()</td>
+    <td>
+        @Html.ActionLink("Sell Chocolates", "SellChocolates", new { id = Model.ID }, new { @class = "btn btn-link text-success", @style = "padding: 0", @onclick = "dataReload();" })
+        <p class="text-danger">@ViewBag.SellingProcess</p>
+    </td>
+    @{
+        Html.RenderAction("StoreEmployees", new { id = Model.ID });
+    }
+</tr>
 
 <script>
     function dataReload() {
