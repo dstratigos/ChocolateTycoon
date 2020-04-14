@@ -274,6 +274,10 @@
     <Compile Include="Migrations\202004131348289_PopulateStoreFK.Designer.cs">
       <DependentUpon>202004131348289_PopulateStoreFK.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004142006195_DailySalesProp.cs" />
+    <Compile Include="Migrations\202004142006195_DailySalesProp.Designer.cs">
+      <DependentUpon>202004142006195_DailySalesProp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Controllers\API\StoresController.cs" />
@@ -704,6 +708,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004131348289_PopulateStoreFK.resx">
       <DependentUpon>202004131348289_PopulateStoreFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004142006195_DailySalesProp.resx">
+      <DependentUpon>202004142006195_DailySalesProp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

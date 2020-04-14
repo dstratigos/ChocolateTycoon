@@ -22,6 +22,8 @@ namespace ChocolateTycoon.Models
 
         private const int _maxStorageCapacity = 100;
 
+        public bool CompletedDailySales { get; set; }
+
         public int MainStorageID { get; set; } = 1;
 
         public int SafeID { get; set; } = 1;
@@ -100,6 +102,7 @@ namespace ChocolateTycoon.Models
                 {
                     Safe.Deposit = Earnings(chocolates);
                     chocolate.MarkAsSold();
+                    CompletedDailySales = true;
                 }
 
                 return $"Done! New Safe Deposit {Safe.Deposit}";
