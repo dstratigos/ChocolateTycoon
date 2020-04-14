@@ -31,7 +31,7 @@ namespace ChocolateTycoon.Models
             return false;
         }
 
-        public void Replenish(List<Factory> factories, Supplier supplier)
+        public void Replenish(List<Factory> factories, Supplier supplier, Safe safe)
         {
             if (Factory.HasActiveContract(factories, FactoryID))
             {
@@ -42,6 +42,7 @@ namespace ChocolateTycoon.Models
                     return;
                 }
 
+                safe.ReplenishExpenses(supplier);
                 ShipmentsReceived += supplier.ShippedAmount;
                 RawMaterialAmount += supplier.ShippedAmount;
                 Message.SetErrorMessage(null);

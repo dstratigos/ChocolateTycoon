@@ -123,6 +123,7 @@
                                     .done(function () {
                                         link.parents("tr").fadeOut(function () {
                                             $(this).remove();
+                                            location.reload(true); // to reload page so as to update deposit on navbar
                                         });
                                     })
                                     .fail(function () {

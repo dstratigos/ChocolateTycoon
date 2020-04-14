@@ -42,8 +42,9 @@ namespace ChocolateTycoon.Controllers
                 .Include(f => f.Supplier)
                 .ToList();
             var factory = factories.Where(f => f.ID == id).Single();
+            var safe = db.Safes.SingleOrDefault();
 
-            factory.StorageUnit.Replenish(factories, factory.Supplier);
+            factory.StorageUnit.Replenish(factories, factory.Supplier, safe);
 
             db.SaveChanges();
 
