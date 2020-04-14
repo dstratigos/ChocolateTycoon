@@ -8,12 +8,36 @@
 @using (Html.BeginForm(Model.Action, "Store"))
 {
     @Html.AntiForgeryToken()
+
     <div class="form-group">
         @Html.LabelFor(v => v.Name)
         @Html.TextBoxFor(v => v.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
     </div>
+
     @Html.HiddenFor(v => v.ID)
-    <button type="submit" class="btn btn-primary">Save</button>
+
+    <table>
+        <tr>
+            <td>
+                @if (Model.ID != 0)
+                {
+                    <button type="submit" class="btn btn-info btn-sm" style="margin-right: 15px">
+                        Save changes
+                    </button>
+                }
+                else
+                {
+                    <button type="submit" class="btn btn-success btn-sm" style="margin-right: 15px">
+                        Build it up
+                    </button>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Take me back!", "Index", null, new { @class = "btn btn-default btn-sm" })
+            </td>
+        </tr>
+    </table>
 }
 
 

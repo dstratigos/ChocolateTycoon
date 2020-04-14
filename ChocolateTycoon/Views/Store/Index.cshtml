@@ -3,13 +3,30 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Stores</h2>
+<div class="container container-fluid">
+    <div class="row">
+        <h2>
+            Stores
+            <span type="button" class="btn btn-link btn-lg" style="padding-left: 15px">
+                @Html.ActionLink(" ", "Create", null, new
+            {
+               @id = "create",
+               @class = "glyphicon glyphicon-plus",
+               @style = "text-decoration: none"
+            })
+            </span>
+        </h2>
+    </div>
+</div>
 
-<hr />
-<button type="button" class="btn-link">
-    @Html.ActionLink("Create New", "Create")
-</button>
-<hr />
+<div class="container container-fluid">
+    <div id="messageBox" class="row text-center">
+        <div id="errorBox" class="row text-danger hidden" style="padding: 0; margin: 0 5px">
+            <h3 class="glyphicon glyphicon-exclamation-sign"></h3>
+            <span id="error" style="padding-left: 10px;">@ViewBag.Message</span>
+        </div>
+    </div>
+</div>
 
 <table id="stores" class="table">
     <thead>
@@ -29,7 +46,7 @@
                 selected = "dimgrey";
             }
 
-            <tr class=@selected>
+            <tr style="background-color: @selected">
                 <td>@store.Name</td>
                 <td>@store.Level</td>
                 <td style="text-align: right">
@@ -45,7 +62,7 @@
                 </td>
                 <td style="text-align: right">
                     <a href="#" class="glyphicon glyphicon-remove text-danger js-delete-store"
-                       style = "text-decoration: none" data-store-id="@store.ID"></a>
+                       style="text-decoration: none" data-store-id="@store.ID"></a>
                 </td>
             </tr>
         }
@@ -55,15 +72,22 @@
 
 @if (ViewBag.SelectedId != null)
 {
-    foreach (var store in Model)
-    {
-        if (ViewBag.SelectedId == store.ID)
+    <table class="table table-bordered text-center">
+        <tr style="background-color: darkslategrey">
+            <th colspan="2" style="text-align: center">Chocolates</th>
+            <th colspan="3" style="text-align: center">Employees</th>
+        </tr>
+
+        @foreach (var store in Model)
         {
+            if (ViewBag.SelectedId == store.ID)
             {
-                Html.RenderAction("Details", new { id = store.ID });
+                {
+                    Html.RenderAction("Details", new { id = store.ID });
+                }
             }
         }
-    }
+    </table>
 }
 
 @section scripts
@@ -109,6 +133,28 @@
                     }
                 });
             });
+
+            let button = $('#create');
+
+            $(button).on("click", function (e) {
+                e.preventDefault();
+                let self = this;
+                bootbox.confirm({
+                    closeButton: false,
+                    size: 'small',
+                    message: "<p class='text-warning'>Costs 1500 <i class='glyphicon glyphicon-bitcoin'></i></p> Proceed?",
+                    callback: function (result) {
+                        if (result)
+                            window.location = self.href;
+                    }
+                });
+            });
+
+            let errorMessage = $("#error").text();
+
+            if (errorMessage.length > 0) {
+                $("#errorBox").toggleClass("hidden").hide().slideDown();
+            };
         });
     </script>
 }

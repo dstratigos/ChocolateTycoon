@@ -44,10 +44,19 @@ namespace ChocolateTycoon.Models
             Deposit += refund;
         }
 
+        public void StoreRefund()
+        {
+            var price = Store.CreateCost;
+
+            decimal refund = price * 0.2M; // 20% of store price when deleting
+
+            Deposit += refund;
+        }
+
         public void ReplenishExpenses(Supplier supplier)
         {
             decimal shippedAmount = Convert.ToDecimal(supplier.ShippedAmount);
-            Deposit += supplier.PricePerKilo * shippedAmount;
+            Deposit -= supplier.PricePerKilo * shippedAmount;
         }
 
         public void BreakContractPenalty(StorageUnit storage, Supplier supplier)
@@ -55,7 +64,7 @@ namespace ChocolateTycoon.Models
             decimal shipments = Convert.ToDecimal(storage.ShipmentsReceived);
             decimal offerAmount = Convert.ToDecimal(supplier.OfferAmount);
             var remainder = shipments - offerAmount;
-            Deposit += remainder * 0.5M;
+            Deposit -= remainder * 0.5M;
         }
     }    
 }

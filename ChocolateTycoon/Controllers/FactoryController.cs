@@ -159,6 +159,8 @@ namespace ChocolateTycoon.Controllers
 
             var factories = db.Factories;
 
+            var safe = db.Safes.SingleOrDefault();
+
             var factoryToDelete = factories
                 .Include(f => f.ProductionUnit)
                 .Include(f => f.StorageUnit)
@@ -177,6 +179,8 @@ namespace ChocolateTycoon.Controllers
             if (factoryToDelete.Employees.Count() > 0)
                 factoryToDelete.Employees.Clear();
 
+
+            safe.FactoryRefund();
 
             factories.Remove(factoryToDelete);
 

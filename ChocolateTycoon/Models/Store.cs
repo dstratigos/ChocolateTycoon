@@ -17,6 +17,11 @@ namespace ChocolateTycoon.Models
 
         public byte Level { get; private set; }
 
+        private const int _createCost = 1500;
+        public static int CreateCost => _createCost;
+
+        private const int _maxStorageCapacity = 100;
+
         public int MainStorageID { get; set; } = 1;
 
         public int SafeID { get; set; } = 1;
@@ -27,23 +32,23 @@ namespace ChocolateTycoon.Models
 
         public string ImageBase64 { get; set; }
 
-        public ICollection<Employee> Employees { get; set; }
+        public List<Employee> Employees { get; set; }
 
-        public ICollection<Chocolate> Chocolates { get; private set; }
+        public List<Chocolate> Chocolates { get; private set; }
 
         public Store()
         {
             Level = 1;
-            Employees = new Collection<Employee>();
-            Chocolates = new Collection<Chocolate>();
+            Employees = new List<Employee>();
+            Chocolates = new List<Chocolate>();
         }
 
         public Store(string name)
         {
             Name = name;
             Level = 1;
-            Employees = new Collection<Employee>();
-            Chocolates = new Collection<Chocolate>();
+            Employees = new List<Employee>();
+            Chocolates = new List<Chocolate>();
         }
 
         public int AvailableStock()
@@ -91,8 +96,6 @@ namespace ChocolateTycoon.Models
 
             if (personnel && stock)
             {
-                //chocolates.ForEach(c => c.MarkAsSold());
-
                 foreach (var chocolate in chocolates)
                 {
                     Safe.Deposit = Earnings(chocolates);
@@ -117,17 +120,23 @@ namespace ChocolateTycoon.Models
             return Safe.Deposit;
         }
 
-        public void Order(MainStorage mainStorage)
+        public void Order(List<Chocolate> chocolates) // * After every round if chocolates sold there sould be a new order
         {
+            List<Chocolate> chocolatesMainStorage = new List<Chocolate>();
+
             if (!EnoughChocolates())
             {
-                for (int i = 0; i < 100; i++)
+                for (int i = 0; i < _maxStorageCapacity; i++)
                 {
-                    var chocolates = mainStorage.newProducts.ToList();
-                    chocolates.ForEach(c => c.ToStore());
-                    Chocolates = chocolates;
+                     foreach (var chocolate in chocolates)
+                    {
+                        if (chocolate.ChocolateStatusId == 2)
+                            chocolatesMainStorage.Add(chocolate);
+                    }
                 }
             }
+
+            chocolatesMainStorage.ForEach(c => Chocolates.Add(c));
         }
     }
 }

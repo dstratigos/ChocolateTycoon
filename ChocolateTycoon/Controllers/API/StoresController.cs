@@ -7,6 +7,7 @@ using System.Web.Http;
 using AutoMapper;
 using System.Net;
 using ChocolateTycoon.Data;
+using System.Data.Entity;
 
 namespace ChocolateTycoon.Models.API
 {
@@ -73,10 +74,14 @@ namespace ChocolateTycoon.Models.API
         [HttpDelete]
         public void DeleteStore(int id)
         {
-            var storeDb = db.Stores.SingleOrDefault(s => s.ID == id);
+            var storeDb = db.Stores
+                .Include(s => s.Safe)
+                .SingleOrDefault(s => s.ID == id);
 
             if (storeDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            storeDb.Safe.StoreRefund();
 
             db.Stores.Remove(storeDb);
             db.SaveChanges();
