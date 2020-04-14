@@ -102,9 +102,8 @@ namespace ChocolateTycoon.Models
                 {
                     Safe.Deposit = Earnings(chocolates);
                     chocolate.MarkAsSold();
-                    CompletedDailySales = true;
                 }
-
+                CompletedDailySales = true;
                 return $"Done! New Safe Deposit {Safe.Deposit}";
             }
             else if (!EnoughChocolates())
