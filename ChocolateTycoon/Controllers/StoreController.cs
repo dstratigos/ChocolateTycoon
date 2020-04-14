@@ -8,16 +8,19 @@ using System.Data.Entity;
 using System.Net;
 using ChocolateTycoon.ViewModels;
 using ChocolateTycoon.Data;
+using ChocolateTycoon.Persistence;
 
 namespace ChocolateTycoon.Controllers
 {
     public class StoreController : Controller
     {
-        private ApplicationDbContext db;
+        private readonly ApplicationDbContext db;
+        private readonly UnitOfWork unitOfWork;
 
         public StoreController()
         {
             db = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(db);
         }
 
         protected override void Dispose(bool disposing)
@@ -27,23 +30,13 @@ namespace ChocolateTycoon.Controllers
 
         public ActionResult SellChocolates(int id)
         {
-            var chocolates = db.Chocolates
-                .Include(c => c.Status)
-                .Where(c => c.StoreId == id)
-                .ToList();
+            var chocolates = unitOfWork.Chocolates.GetChocolatesWithStatus(id).ToList();
 
-            var store = db.Stores
-                .Include(s => s.Employees)
-                .Include(s => s.Chocolates)
-                .Include(s => s.MainStorage)
-                .Include(s => s.Safe)
-                .Where(s => s.ID == id).SingleOrDefault();
+            var store = unitOfWork.Stores.GetStoreWithAllDetails(id);
 
             TempData["Message"] = store.Sell(chocolates);
 
-            //var newChocolates = store.Chocolates.Where(c => c.StatusID == 3);
-
-            db.SaveChanges();
+            unitOfWork.Complete();
 
             return RedirectToAction("Index", new { id });
         }
@@ -51,8 +44,7 @@ namespace ChocolateTycoon.Controllers
         // GET: Store
         public ActionResult Index(int? id)
         {
-            var stores = db.Stores
-                .Include(s => s.Safe);
+            var stores = unitOfWork.Stores.GetStoresWithSafe();
 
             if (id != null)
             {
@@ -75,11 +67,9 @@ namespace ChocolateTycoon.Controllers
             return View(stores);
         }
 
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            var store = db.Stores
-                .Include(s => s.Chocolates)
-                .SingleOrDefault(s => s.ID == id);
+            var store = unitOfWork.Stores.GetStoreWithChocolates(id);
 
             if (store == null)
                 return HttpNotFound();
@@ -91,7 +81,7 @@ namespace ChocolateTycoon.Controllers
 
         public ActionResult Create()
         {
-            var safe = db.Safes.SingleOrDefault();
+            var safe = unitOfWork.Safes.GetSafe();
 
             var viewModel = new StoreFormViewModel
             {
@@ -109,8 +99,7 @@ namespace ChocolateTycoon.Controllers
 
         public ActionResult Edit(int id)
         {
-            var store = db.Stores
-                .Single(s => s.ID == id);
+            var store = unitOfWork.Stores.GetStore(id);
 
             var viewModel = new StoreFormViewModel
             {
@@ -127,9 +116,7 @@ namespace ChocolateTycoon.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(StoreFormViewModel viewModel)
         {
-            var stores = db.Stores
-                .Include(s => s.Safe)
-                .ToList();
+            var stores = unitOfWork.Stores.GetStoresWithSafe();
 
             if (!ModelState.IsValid)
             {
@@ -153,7 +140,7 @@ namespace ChocolateTycoon.Controllers
             db.Stores.Add(store);
             store.Safe.Deposit -= Store.CreateCost;
 
-            db.SaveChanges();
+            unitOfWork.Complete();
 
             return RedirectToAction("Index", "Store");
         }
@@ -168,53 +155,50 @@ namespace ChocolateTycoon.Controllers
                 return View("StoreForm", viewModel);
             }
 
-            var store = db.Stores.Single(s => s.ID == viewModel.ID);
+            var store = unitOfWork.Stores.GetStore(viewModel.ID);
             store.Name = viewModel.Name;
 
-            db.SaveChanges();
+            unitOfWork.Complete();
 
             return RedirectToAction("Index", "Store");
         }
 
         // GET: Delete
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Store store = db.Stores
-                .SingleOrDefault(s => s.ID == id);
+            var store = unitOfWork.Stores.GetStore(id);
 
             if (store == null)
             {
                 return HttpNotFound();
             }
+
             return View(store);
         }
 
         // POST: Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int? id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Store store = db.Stores
-                .SingleOrDefault(s => s.ID == id);
+            var store = unitOfWork.Stores.GetStore(id);
+
+            if (store == null)
+                return HttpNotFound();
 
             db.Stores.Remove(store);
-            db.SaveChanges();
+            unitOfWork.Complete();
 
             return RedirectToAction("Index");
         }
 
         // GET: Store employees by position
-        public PartialViewResult StoreEmployees(int? id)
+        public PartialViewResult StoreEmployees(int id)
         {
             var viewModel = new StoreEmployeesViewModel
             {
-                Store = db.Stores.SingleOrDefault(s => s.ID == id),
-                Employees = db.Employees.Where(e => e.StoreID == id).ToList()
+                Store = unitOfWork.Stores.GetStore(id),
+                Employees = unitOfWork.Employees.GetEmployeesBasedOnStore(id).ToList()
             };
 
             viewModel.GetEmployees();
