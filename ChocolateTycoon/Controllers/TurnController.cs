@@ -32,14 +32,17 @@ namespace ChocolateTycoon.Controllers
             //if (!turn.LooseEnds(productionUnits))
             //{
             //    turn.EndTurn();
-            //    db.SaveChanges();                
+            //    db.SaveChanges();
             //}
+            //Turn.TurnMessage = "Hello!";
 
             turn.EndTurn();
 
             db.SaveChanges();
 
+
             return Redirect(Request.UrlReferrer.PathAndQuery);
+            //return View("EndTurn", turn);
         }
     }
 }

@@ -24,6 +24,9 @@
 
                 <span class="navbar-brand" style="padding: 8px 30px; color: gold">
                     @Html.ActionLink("Call it a Day", "EndTurn", "Turn", null, new { @id = "endTurnBtn", @class = "btn btn-danger" })
+                    @*@Ajax.ActionLink("Call it a Day", "EndTurn", "Turn", null,
+                        new AjaxOptions {HttpMethod = "GET",  AllowCache = false, OnSuccess = "turnAlert()"},
+                        new { @id = "endTurnBtn", @class = "btn btn-danger" })*@
                 </span>
 
                 @Html.ActionLink("Chocolate Tycoon", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
@@ -69,10 +72,13 @@
 </html>
 
 <script>
+
+
+
     $(window).ready(function () {
         let vaultVal = $("#count");
 
-        counter();
+        //counter();
 
         //uncomment the above to use
         function counter() {
@@ -96,10 +102,28 @@
             bootbox.confirm({
                 message: "Are you sure?",
                 callback: function (result) {
-                    window.location = self.href;
+                    if (result) {
+                        $.get(
+                            self.href,
+                            function (result) {
+                                debugger;
+                                let turnMessage = '@ChocolateTycoon.Models.Turn.TurnMessage';
+                                turnAlert(turnMessage);
+                            });
+                        
+                    }
                 }
             });
         });
 
+        function turnAlert(turnMessage) {
+            bootbox.alert({
+                size: "small",
+                message: turnMessage,
+                callback: function () {
+                    location.reload();
+                }
+            });
+        };
     });
 </script>

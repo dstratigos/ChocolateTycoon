@@ -623,10 +623,10 @@
     <Content Include="Views\Employee\EmployeeForm.cshtml" />
     <Content Include="Views\MainStorage\Index.cshtml" />
     <Content Include="Views\MainStorage\Index - Copy.cshtml" />
-    <Content Include="Views\Supplier\Index - Intitial.cshtml" />
     <Content Include="Views\Supplier\Index.cshtml" />
     <Content Include="Views\Shared\_VaultPartial.cshtml" />
     <Content Include="Views\Store\_SellResult.cshtml" />
+    <Content Include="Views\Shared\EndTurn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

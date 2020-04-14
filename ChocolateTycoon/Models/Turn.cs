@@ -7,7 +7,7 @@ namespace ChocolateTycoon.Models
 {
     public class Turn
     {
-        public string TurnMessage { get; private set; }
+        public static string TurnMessage { get; set; }
         public List<ProductionUnit> ProductionUnits { get; private set; }
         public List<Employee> Employees { get; private set; }
         public Safe Safe { get; private set; }
@@ -22,7 +22,7 @@ namespace ChocolateTycoon.Models
             Safe = safe;
         }
 
-        public bool LooseEnds()
+        private bool LooseEnds()
         {
             var notProduced = ProductionUnits.Any(pu => pu.ProducedDailyProduction == false);
 
@@ -37,11 +37,22 @@ namespace ChocolateTycoon.Models
 
         public void EndTurn()
         {
-            foreach (var productionUnit in ProductionUnits)
-                productionUnit.ProducedDailyProduction = false;
+            TurnMessage = "";
 
             var wages = Safe.calculateTotalWages(Employees);
-            Safe.Deposit -= wages;
+            if (Safe.Deposit >= wages)
+            {
+                Safe.Deposit -= wages;
+
+                foreach (var productionUnit in ProductionUnits)
+                    productionUnit.ProducedDailyProduction = false;
+
+                TurnMessage = $"{wages} have been deducted from vault. Go make some money!";
+
+                return;
+            }
+
+            TurnMessage = $"Not enough money to pay wages! This is going to be a loooong day!";
         }
     }
 }
