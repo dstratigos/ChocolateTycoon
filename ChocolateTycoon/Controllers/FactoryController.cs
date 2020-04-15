@@ -36,7 +36,7 @@ namespace ChocolateTycoon.Controllers
             if (id != null)
                 ViewBag.SelectedId = id.Value;
 
-            ViewBag.Message = TempData["ErrorMessage"];
+            //ViewBag.Message = TempData["ErrorMessage"];
             ViewBag.MainStorageInfo = TempData["MainStorageInfo"];
 
             return View(factories);
@@ -72,7 +72,7 @@ namespace ChocolateTycoon.Controllers
 
             if (!vault.MoneySuffice(Factory.CreateCost))
             {
-                TempData["ErrorMessage"] = Message.ErrorMessage;
+                //TempData["ErrorMessage"] = Message.ErrorMessage;
                 return RedirectToAction("Index");
             }
 
@@ -244,7 +244,7 @@ namespace ChocolateTycoon.Controllers
 
                 db.SaveChanges();
             }
-            TempData["ErrorMessage"] = Message.ErrorMessage;
+            //TempData["ErrorMessage"] = Message.ErrorMessage;
 
             return RedirectToAction("Index", new { id });
         }
