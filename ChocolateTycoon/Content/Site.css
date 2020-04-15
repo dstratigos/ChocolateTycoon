@@ -70,6 +70,41 @@ td, th {
     background-color: transparent;
     color: gold;
     transform: translateX(150%);
-
-
 }
+
+/*#helpButton {
+    background-color: transparent;
+    border: none;
+    
+}*/
+
+#userLogin {
+    padding-right: 10px;
+}
+
+#helpButton {
+    padding-right: 25px;
+    padding-top: 10px;
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+    text-align: center;
+    background: rgb(0,125,255);
+    background: radial-gradient(circle, rgba(0,125,255,1) 0%, rgba(0,114,232,1) 30%, rgba(0,107,218,1) 70%, rgba(0,73,234,1) 85%, rgba(0,0,0,1) 95%);
+    border: none;
+}
+
+    #helpButton:hover {
+        border: none;
+        filter: brightness(110%);
+    }
+
+    #helpButton:focus {
+        border: none;
+        box-shadow: none;
+        outline: none;
+        filter: brightness(80%);
+    }
