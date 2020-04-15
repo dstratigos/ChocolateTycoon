@@ -12,7 +12,7 @@ namespace ChocolateTycoon.Models
         public int ID { get; set; }
 
         [Required]
-        [StringLength(100)]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "Store Name should contain at least 3 charactes.")]
         public string Name { get; set; }
 
         public byte Level { get; private set; }

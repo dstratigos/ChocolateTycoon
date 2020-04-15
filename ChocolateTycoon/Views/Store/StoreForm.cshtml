@@ -10,9 +10,9 @@
     @Html.AntiForgeryToken()
 
     <div class="form-group">
-        @Html.LabelFor(v => v.Name)
+        @Html.LabelFor(v => v.Name, new { @class = "control-label" })
         @Html.TextBoxFor(v => v.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        @Html.ValidationMessageFor(v => v.Name, "", new { @class = "text-danger" })
     </div>
 
     @Html.HiddenFor(v => v.ID)
@@ -40,4 +40,6 @@
     </table>
 }
 
-
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
