@@ -39,14 +39,14 @@ namespace ChocolateTycoon.Controllers.API
                 .Include(f => f.Supplier)
                 .Single(f => f.ID == id);
 
-            var safe = db.Safes.SingleOrDefault();
+            var vault = db.Safes.SingleOrDefault();
 
             if (factory == null)
                 return BadRequest();
 
-            safe.BreakContractPenalty(factory.StorageUnit, factory.Supplier);
+            //safe.BreakContractPenalty(factory.StorageUnit, factory.Supplier);
 
-            var message = factory.BreakContract();
+            var message = factory.BreakContract(vault);
 
             db.SaveChanges();
 

@@ -77,15 +77,25 @@ namespace ChocolateTycoon.Models
         }
 
         // Breaks the Contract with an active Supplier and returns a message
-        public string BreakContract()
+        public string BreakContract(Safe vault)
         {
             if (Supplier != null)
             {
+                decimal shipments = Convert.ToDecimal(StorageUnit.ShipmentsReceived);
+                decimal offerAmount = Convert.ToDecimal(Supplier.OfferAmount);
+                var penalty = (offerAmount - shipments) * Supplier.PricePerKilo * 0.5M;
                 var supplierName = Supplier.Name;
-                Supplier = null;
-                StorageUnit.ResetSupplier();
 
-                return $"{Name} Factory broke it's Contract with {supplierName}. You got a penalty charge..";
+                if (vault.MoneySuffice(penalty))
+                {
+                    Supplier = null;
+                    StorageUnit.ResetSupplier();
+                    vault.Deposit -= penalty;
+
+                    return $"{Name} Factory broke it's Contract with {supplierName}. You got charged with {penalty:F2}";
+                }
+
+                return $"The penalty is {penalty:F2}! Seems you're stuck with these guys for now...";
             }
 
             return "Something went wrong. Try again";
