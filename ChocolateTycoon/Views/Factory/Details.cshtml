@@ -86,10 +86,11 @@
     <script type="text/javascript">
 
         // Create Storage Unit Button
-        var suButton = document.getElementById("createSU");
-
+        let suButton = document.getElementById("createSU");
         // Create Production Unit Button
-        var puButton = document.getElementById("createPU");
+        let puButton = document.getElementById("createPU");
+        // Get Production & Storage Unit cost
+        let cost = '@ChocolateTycoon.Models.StorageUnit.CreateCost'
 
         // Bootbox confirmation for new Storage Unit
         if (suButton != null) {
@@ -99,7 +100,8 @@
                 bootbox.confirm({
                     size: "small",
                     closeButton: false,
-                    message: "Create Storage Unit?" + "<p style='color: orange; font-style: italic;'> This will cost 0.00 coins</p>",
+                    message: "Create Storage Unit?" +
+                        `<p style='color: orange; font-style: italic;'> This will cost ${cost} coins</p>`,
                     buttons: {
                         confirm: {
                             label: 'Let`s do this!',
@@ -127,7 +129,8 @@
                 bootbox.confirm({
                     size: "small",
                     closeButton: false,
-                    message: "Create Production Unit?" + "<p style='color: orange; font-style: italic;'>" + "This will cost 0.00 coins" + "</p>",
+                    message: "Create Production Unit?" +
+                        `<p style='color: orange; font-style: italic;'> This will cost ${ cost } coins</p>`,
                     buttons: {
                         confirm: {
                             label: 'Let`s do this!',

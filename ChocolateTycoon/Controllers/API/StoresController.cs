@@ -81,7 +81,7 @@ namespace ChocolateTycoon.Models.API
             if (storeDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            storeDb.Safe.StoreRefund();
+            storeDb.Safe.Refund(Store.CreateCost);
 
             db.Stores.Remove(storeDb);
             db.SaveChanges();

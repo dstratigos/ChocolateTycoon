@@ -17,7 +17,6 @@ namespace ChocolateTycoon.Models
         public byte Level { get; private set; }
         private const int _createCost = 2000;
         public static int CreateCost => _createCost;
-        //public string _message;
 
         public int? SupplierId { get; set; }
 

@@ -1,12 +1,12 @@
 ﻿@model ChocolateTycoon.Models.Safe
 
-<span class="navbar-brand" style="padding-right: 20px; color: gold">
+<span class="navbar-brand navbar-btn" style="padding-right: 20px; color: gold">
     <span id="count">@Model.Deposit</span> <i class="glyphicon glyphicon-bitcoin"></i>
     <span>
-        @Html.ActionLink("+", "Deposit", "Safe", null, new { @style = "text-decoration: none; color: white;" })
+        @Html.ActionLink("+", "CheatDeposit", "Safe", null, new { @style = "text-decoration: none; color: white;" })
     </span>
     <span>
-        @Html.ActionLink("-", "Withdraw", "Safe", null, new { @style = "text-decoration: none; color: white;" })
+        @Html.ActionLink("-", "CheatWithdraw", "Safe", null, new { @style = "text-decoration: none; color: white;" })
     </span>
 </span>
 
