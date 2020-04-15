@@ -61,8 +61,6 @@ namespace ChocolateTycoon.Controllers
                 .ToList();
 
             ViewBag.ChocolateCount = factoryService.PopulateChocolates(chocolates);
-            //ViewBag.ProductionError = TempData["ErrorMessage"];
-            //ViewBag.ProductionSuccess = TempData["SuccessMessage"];
             ViewBag.MainStorageInfo = TempData["MainStorageInfo"];
 
             return PartialView(factory);
