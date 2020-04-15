@@ -56,8 +56,7 @@ namespace ChocolateTycoon.Controllers
 
         public ActionResult IndexTest(int? id)
         {
-            var stores = db.Stores
-                .Include(s => s.Safe);
+            var stores = unitOfWork.Stores.GetStoresWithSafe();
 
             if (id != null)
             {
@@ -123,21 +122,13 @@ namespace ChocolateTycoon.Controllers
                 return View("StoreForm", viewModel);
             }
 
-            foreach (var s in stores)
-            {
-                if (s.Name == viewModel.Name)
-                {
-                    ModelState.AddModelError("Name", "This name already exists!");
-                    break;
-                }
-            }
-
             var store = new Store
             {
                 Name = viewModel.Name,
+                Safe = stores.Select(s => s.Safe).FirstOrDefault()
             };
 
-            db.Stores.Add(store);
+            unitOfWork.Stores.Add(store);
             store.Safe.Deposit -= Store.CreateCost;
 
             unitOfWork.Complete();
@@ -186,7 +177,7 @@ namespace ChocolateTycoon.Controllers
             if (store == null)
                 return HttpNotFound();
 
-            db.Stores.Remove(store);
+            unitOfWork.Stores.Remove(store);
             unitOfWork.Complete();
 
             return RedirectToAction("Index");

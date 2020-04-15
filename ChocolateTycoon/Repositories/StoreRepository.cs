@@ -45,5 +45,15 @@ namespace ChocolateTycoon.Repositories
                 .Include(s => s.Chocolates)
                 .SingleOrDefault(s => s.ID == id);
         }
+
+        public void Add(Store store)
+        {
+            _db.Stores.Add(store);
+        }
+
+        public void Remove(Store store)
+        {
+            _db.Stores.Remove(store);
+        }
     }
 }
