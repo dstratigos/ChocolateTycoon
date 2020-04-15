@@ -27,7 +27,7 @@
     <tr style="background-color: darkslategray">
         <th>FullName</th>
         <th>Position</th>
-        <th>Salary</th>
+        <th>Daily Wage</th>
         <th>Working place</th>
         <th></th>
         <th></th>
@@ -41,7 +41,7 @@
             @using ChocolateTycoon.Helpers
             <td>@item.Position.GetDisplayName()</td>
 
-            <td>@item.Salary</td>
+            <td>@item.Salary <i class="glyphicon glyphicon-bitcoin"></i></td>
 
             <td>
                 @if (item.FactoryID != null)
