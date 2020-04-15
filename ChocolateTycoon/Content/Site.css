@@ -69,4 +69,7 @@ td, th {
 #endTurnBtn {
     background-color: transparent;
     color: gold;
+    transform: translateX(150%);
+
+
 }

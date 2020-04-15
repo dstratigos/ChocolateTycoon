@@ -21,9 +21,6 @@
 
                 @{Html.RenderAction("Vault", "Safe");}
 
-                <span class="navbar-brand navbar-btn" style="padding: 8px 30px; color: gold">
-                    @Html.ActionLink("Call it a Day", "EndTurn", "Turn", null, new { @id = "endTurnBtn", @class = "btn btn-danger" })
-                </span>
 
 
 
@@ -55,6 +52,9 @@
 
 
 
+                    <span class="navbar-brand navbar-btn" style="padding: 8px 30px; color: gold">
+                        @Html.ActionLink("Call it a Day", "EndTurn", "Turn", null, new { @id = "endTurnBtn", @class = "btn btn-danger text-center" })
+                    </span>
 
 
                 </ul>
