@@ -22,36 +22,56 @@ namespace ChocolateTycoon.Models
             Message.SetErrorMessage(MessageEnum.NotEnoughMoneyError);
 
             return false;
+        }        
+
+        public void depositAmount(decimal amount)
+        {
+            Deposit += amount;
+        }
+
+        public void withdrawAmount(decimal amount)
+        {
+            Deposit -= amount;
         }
 
         // for testing purposes
-        public void depositAmount()
+        public void cheatDepositAmount()
         {
-            Deposit += 2000;
+            Deposit += 1000;
         }
 
-        public void withdrawAmount()
+        // for testing purposes
+        public void cheatWithdrawAmount()
         {
             Deposit -= 1000;
         }
 
-        public void FactoryRefund()
+        public void Refund(decimal createCost)
         {
             var price = Factory.CreateCost;
 
-            decimal refund = price * 0.2M; // 20% of factory price when deleting
+            decimal refund = createCost * 0.2M; // 20% of factory price when deleting
 
             Deposit += refund;
         }
 
-        public void StoreRefund()
-        {
-            var price = Store.CreateCost;
+        //public void FactoryRefund()
+        //{
+        //    var price = Factory.CreateCost;
 
-            decimal refund = price * 0.2M; // 20% of store price when deleting
+        //    decimal refund = price * 0.2M; // 20% of factory price when deleting
 
-            Deposit += refund;
-        }
+        //    Deposit += refund;
+        //}
+
+        //public void StoreRefund()
+        //{
+        //    var price = Store.CreateCost;
+
+        //    decimal refund = price * 0.2M; // 20% of store price when deleting
+
+        //    Deposit += refund;
+        //}
 
         public void ReplenishExpenses(Supplier supplier)
         {
@@ -79,5 +99,5 @@ namespace ChocolateTycoon.Models
 
             return total;
         }
-    }    
+    }
 }

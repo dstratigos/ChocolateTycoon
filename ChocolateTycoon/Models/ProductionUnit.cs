@@ -15,6 +15,8 @@ namespace ChocolateTycoon.Models
         public int FactoryID { get; set; }
         public int MaxProductionPerDay { get; private set; }
         public bool ProducedDailyProduction { get; set; }
+        private const int _createCost = 750;
+        public static int CreateCost => _createCost;
 
         public Factory Factory { get; set; }
 

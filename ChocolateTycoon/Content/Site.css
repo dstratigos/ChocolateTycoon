@@ -51,7 +51,22 @@ td, th {
 
 #messageContainer {
     border-top: 1px solid #464545;
-    /*border-bottom: 1px solid #464545;*/
     padding: 10px 0;
     margin-right: 15px
+}
+
+/* Change navbar background color */
+.navbar-inverse {
+    background-color: #742e00;
+}
+
+    /* Change navbar items hover color */
+    .navbar-inverse .navbar-nav > li > a:hover {
+        color: gold;
+    }
+
+/* End-turn bautton style */
+#endTurnBtn {
+    background-color: transparent;
+    color: gold;
 }

@@ -154,6 +154,8 @@ namespace ChocolateTycoon.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(Factory factory)
         {
+            decimal totalCost = Factory.CreateCost;
+
             if (factory == null)
                 return RedirectToAction("Index");
 
@@ -171,18 +173,23 @@ namespace ChocolateTycoon.Controllers
                 return RedirectToAction("Index");
 
             if (factoryToDelete.ProductionUnit != null)
+            {
                 factoryToDelete.ProductionUnit = null;
+                totalCost += ProductionUnit.CreateCost;
+            }
 
             if (factoryToDelete.StorageUnit != null)
+            {
                 factoryToDelete.StorageUnit = null;
+                totalCost += StorageUnit.CreateCost;
+            }
 
             if (factoryToDelete.Employees.Count() > 0)
-                factoryToDelete.Employees.Clear();
-
-
-            safe.FactoryRefund();
+                factoryToDelete.Employees.Clear();            
 
             factories.Remove(factoryToDelete);
+
+            safe.Refund(totalCost);
 
             db.SaveChanges();
 

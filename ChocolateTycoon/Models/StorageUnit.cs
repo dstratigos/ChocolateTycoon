@@ -19,9 +19,9 @@ namespace ChocolateTycoon.Models
         public double RawMaterialAmount { get; set; }
         public double ShipmentsReceived { get; private set; }
         public string _message;
+        private const int _createCost = 750;
+        public static int CreateCost => _createCost;
         public Factory Factory { get; set; }
-
-
 
         public bool MaterialsSuffice(double materialsNeeded)
         {
@@ -35,6 +35,12 @@ namespace ChocolateTycoon.Models
         {
             if (Factory.HasActiveContract(factories, FactoryID))
             {
+                if(supplier.ShippedAmount * supplier.PricePerKilo >= safe.Deposit)
+                {
+                    Message.SetErrorMessage(MessageEnum.NotEnoughMoneyError);
+                    return;
+                }
+
                 if (ShipmentsReceived >= supplier.OfferAmount)
                 {
                     Factory.BreakContract();            

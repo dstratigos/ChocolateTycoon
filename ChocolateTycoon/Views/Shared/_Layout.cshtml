@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Chocolate Tycoon</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/fontawesome-all.css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
@@ -20,37 +21,42 @@
 
                 @{Html.RenderAction("Vault", "Safe");}
 
-                @*@{Html.RenderPartial("EndTurn");}*@
-
-                <span class="navbar-brand" style="padding: 8px 30px; color: gold">
+                <span class="navbar-brand navbar-btn" style="padding: 8px 30px; color: gold">
                     @Html.ActionLink("Call it a Day", "EndTurn", "Turn", null, new { @id = "endTurnBtn", @class = "btn btn-danger" })
-                    @*@Ajax.ActionLink("Call it a Day", "EndTurn", "Turn", null,
-                        new AjaxOptions {HttpMethod = "GET",  AllowCache = false, OnSuccess = "turnAlert()"},
-                        new { @id = "endTurnBtn", @class = "btn btn-danger" })*@
                 </span>
 
-                @Html.ActionLink("Chocolate Tycoon", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
 
 
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Stores", "Index", "Store")</li>
-                    <li class="dropdown">
+                    <li class="nav navbar-btn">
+                        @Html.ActionLink("Main", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                    </li>
+                    <li class="nav navbar-btn dropdown">
                         <a href="#" class="dropdown-toggle"
                            data-toggle="dropdown" role="button"
                            aria-haspopup="true"
                            aria-expanded="false">
-                            Factory
+                            Start
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Stores", "Index", "Store")</li>
                             <li>@Html.ActionLink("Factories", "Index", "Factory")</li>
                             <li>@Html.ActionLink("Suppliers", "Index", "Supplier")</li>
+                            <li>@Html.ActionLink("Employees", "Index", "Employee")</li>
+                            <li>@Html.ActionLink("Main Storage", "Index", "MainStorage")</li>
+
+
                         </ul>
                     </li>
-                    <li>@Html.ActionLink("Employees", "Index", "Employee")</li>
-                    <li>@Html.ActionLink("Main Storage", "Index", "MainStorage")</li>
+
+
+
+
+
                 </ul>
 
                 @Html.Partial("_LoginPartial")

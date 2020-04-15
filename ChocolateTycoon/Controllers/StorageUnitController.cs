@@ -23,12 +23,21 @@ namespace ChocolateTycoon.Controllers
         [HttpPost, ActionName("Create")]
         public ActionResult CreatePost(Factory factory)
         {
+            var vault = db.Safes.SingleOrDefault(s => s.ID == 1);
+
+            if (!vault.MoneySuffice(StorageUnit.CreateCost))
+            {
+                TempData["ErrorMessage"] = Message.ErrorMessage;
+                return RedirectToAction("Index", "Factory", new { id = factory.ID });
+            }
+            
             StorageUnit storageUnit = new StorageUnit
             {
                 FactoryID = factory.ID
-            };
+            };            
 
             db.StorageUnits.Add(storageUnit);
+            vault.withdrawAmount(StorageUnit.CreateCost);
             db.SaveChanges();
 
             return RedirectToAction("Index", "Factory", new { id = factory.ID });
