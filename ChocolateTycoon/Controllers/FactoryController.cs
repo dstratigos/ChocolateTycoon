@@ -26,7 +26,6 @@ namespace ChocolateTycoon.Controllers
             db.Dispose();
         }
 
-
         // GET: Factory
         public ActionResult Index(int? id)
         {
@@ -234,7 +233,7 @@ namespace ChocolateTycoon.Controllers
 
                 factory.Produce(mainStorage);
 
-                MainStorageService.SortProducts(mainStorage, chocolatesStored);
+                mainStorage.SortProducts(chocolatesStored);
 
                 var chocolatesProduced = mainStorage.newProducts;
 

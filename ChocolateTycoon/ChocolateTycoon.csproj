@@ -305,8 +305,7 @@
     <Compile Include="Repositories\StoreRepository.cs" />
     <Compile Include="Services\FactoryService.cs" />
     <Compile Include="Services\MainStorageService.cs" />
-    <Compile Include="Services\MaterialsCost.cs" />
-    <Compile Include="Services\StorageUnitService.cs" />
+    <Compile Include="Models\MaterialsCost.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\EmployeeFormViewModel.cs" />
     <Compile Include="ViewModels\FactoryViewModel.cs" />

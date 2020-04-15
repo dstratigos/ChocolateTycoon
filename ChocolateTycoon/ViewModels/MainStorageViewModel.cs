@@ -40,5 +40,25 @@ namespace ChocolateTycoon.ViewModels
 
             return names;
         }
+
+        public void GetChocolates()
+        {
+            var types = Enum.GetNames(typeof(ChocolateType)).ToList();
+
+            foreach (var type in types)
+            {
+               availableChocolates.Add(type, Chocolates.Where(c => c.ChocolateType.ToString() == type).Count());
+            }
+        }
+
+        public void GetStorage()
+        {
+            var types = Enum.GetNames(typeof(ChocolateType)).ToList();
+
+            foreach (var type in types)
+            {
+                availableStorage.Add(type, MainStorage.maxPerShelf - availableChocolates[type]);
+            }
+        }
     }
 }

@@ -5,6 +5,7 @@
 <tr>
     <td colspan="2">Raw Materials (Kg)</td>
     <td>Supplier</td>
+    <td>Received (Kg)</td>
     <td colspan="2">Production per Day (units)</td>
     <td>Managers</td>
     <td>Engineers</td>
@@ -15,7 +16,7 @@
     {
         using (Html.BeginForm("Create", "StorageUnit"))
         {
-            <td colspan="3">
+            <td colspan="4">
                 @Html.HiddenFor(m => m.ID)
                 <button id="createSU" class="btn btn-link btn-lg create" type="submit" style="padding: 0;">
                     <i class="glyphicon glyphicon-plus text-warning"></i>
@@ -38,51 +39,54 @@
             </td>
         }
 
-        <td>
-            @if (@Model.SupplierId != null)
-            {
-                @Model.Supplier.Name
-            }
-            else
-            {
-            <a href="/Supplier" class="btn btn-link btn-lg" style="padding: 0">
-                <i class="glyphicon glyphicon-plus text-warning"></i>
-            </a>
-            }
-        </td>
-    }
 
-
-        @if (Model.ProductionUnit == null)
+        if (@Model.SupplierId != null)
         {
-            using (Html.BeginForm("Create", "ProductionUnit"))
-            {
-                <td colspan="2">
-                    @Html.HiddenFor(m => m.ID)
-                    <button id="createPU" class="btn btn-link btn-lg" type="submit" style="padding: 0;">
-                        <i class="glyphicon glyphicon-plus text-warning"></i>
-                    </button>
-                </td>
-            }
+            <td>@Model.Supplier.Name</td>
+            <td>@Model.StorageUnit.ShipmentsReceived</td>
         }
         else
         {
             <td>
-                @Html.DisplayFor(model => model.ProductionUnit.MaxProductionPerDay)
-            </td>
-            <td>
-                <a href="@Url.Action("Produce", new { id = Model.ID })" class="btn btn-link btn-sm" style="padding: 0">
-                    <i class="glyphicon glyphicon-plus text-success"></i>
+                <a href="/Supplier" class="btn btn-link btn-lg" style="padding: 0">
+                    <i class="glyphicon glyphicon-plus text-warning"></i>
                 </a>
             </td>
+            <td>-</td>
         }
+    }
 
-        @{
-            Html.RenderAction("FactoryEmployees", new { id = Model.ID });
+
+    @if (Model.ProductionUnit == null)
+    {
+        using (Html.BeginForm("Create", "ProductionUnit"))
+        {
+            <td colspan="2">
+                @Html.HiddenFor(m => m.ID)
+                <button id="createPU" class="btn btn-link btn-lg" type="submit" style="padding: 0;">
+                    <i class="glyphicon glyphicon-plus text-warning"></i>
+                </button>
+            </td>
         }
-    </tr>
+    }
+    else
+    {
+        <td>
+            @Html.DisplayFor(model => model.ProductionUnit.MaxProductionPerDay)
+        </td>
+        <td>
+            <a href="@Url.Action("Produce", new { id = Model.ID })" class="btn btn-link btn-sm" style="padding: 0">
+                <i class="glyphicon glyphicon-plus text-success"></i>
+            </a>
+        </td>
+    }
 
-    <script type="text/javascript">
+    @{
+        Html.RenderAction("FactoryEmployees", new { id = Model.ID });
+    }
+</tr>
+
+<script type="text/javascript">
 
         // Create Storage Unit Button
         let suButton = document.getElementById("createSU");
@@ -148,4 +152,4 @@
                 });
             });
         }
-    </script>
+</script>

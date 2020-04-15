@@ -43,8 +43,8 @@ namespace ChocolateTycoon.Controllers
                 Chocolates = chocolates
             };
 
-            MainStorageService.GetChocolates(viewModel);
-            MainStorageService.GetStorage(viewModel);
+            viewModel.GetChocolates();
+            viewModel.GetStorage();
 
             return View(viewModel);
         }
