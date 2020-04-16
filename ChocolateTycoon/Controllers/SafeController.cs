@@ -25,28 +25,6 @@ namespace ChocolateTycoon.Controllers
             return PartialView("_VaultPartial", vault);
         }
 
-        //public ActionResult Deposit()
-        //{
-        //    var vault = db.Safes.Where(s => s.ID == 1).Single();
-
-        //    vault.depositAmount();
-
-        //    db.SaveChanges();
-
-        //    return RedirectToAction("Index", "Factory");
-        //}
-
-        //public ActionResult Withdraw()
-        //{
-        //    var vault = db.Safes.Where(s => s.ID == 1).Single();
-
-        //    vault.withdrawAmount();
-
-        //    db.SaveChanges();
-
-        //    return RedirectToAction("Index", "Factory");
-        //}
-
         public ActionResult CheatDeposit()
         {
             var vault = db.Safes.Where(s => s.ID == 1).Single();

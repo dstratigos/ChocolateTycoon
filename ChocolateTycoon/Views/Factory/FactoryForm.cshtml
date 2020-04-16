@@ -1,4 +1,4 @@
-﻿@model ChocolateTycoon.Models.Factory
+﻿@model ChocolateTycoon.ViewModels.FactoryViewModel
 
 @{
     ViewBag.Title = "Factory Form";
@@ -19,9 +19,9 @@
     @Html.AntiForgeryToken()
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Name, new { @class = "control-label" })
-        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        @Html.LabelFor(model => model.Factory.Name, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Factory.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Factory.Name, "", new { @class = "text-danger" })
     </div>
 
     <table>
@@ -31,7 +31,7 @@
                     var text = "";
                     if (Model != null)
                     {
-                        @Html.HiddenFor(model => model.ID)
+                        @Html.HiddenFor(model => model.Factory.ID)
                         text = "Save changes";
                     }
                     else

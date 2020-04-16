@@ -43,16 +43,21 @@ namespace ChocolateTycoon.Controllers
         }
 
         // GET: Factory/Details/id
-        public PartialViewResult Details(int? id)
+        public ActionResult Details(int? id)
         {
-            var viewModel = new FactoryViewModel()
-            {
-                Factory = db.Factories
+            var factory = db.Factories
                 .Include(f => f.ProductionUnit)
                 .Include(f => f.StorageUnit)
                 .Include(f => f.Supplier)
                 .Include(f => f.Employees)
-                .SingleOrDefault(f => f.ID == id)
+                .SingleOrDefault(f => f.ID == id);
+
+            if (factory == null)
+                return HttpNotFound();
+
+            var viewModel = new FactoryViewModel
+            {
+                Factory = factory
             };
 
             viewModel.GetEmployees();
@@ -66,6 +71,9 @@ namespace ChocolateTycoon.Controllers
         public ActionResult Create()
         {
             var vault = db.Safes.Where(s => s.ID == 1).Single();
+
+            if (vault == null)
+                return HttpNotFound();
 
             if (!vault.MoneySuffice(Factory.CreateCost))
             {
@@ -84,7 +92,9 @@ namespace ChocolateTycoon.Controllers
             if (factory == null)
                 return HttpNotFound();
 
-            return View("FactoryForm", factory);
+            var viewModel = new FactoryViewModel { Factory = factory };
+
+            return View("FactoryForm", viewModel);
         }
 
         // POST: Factory/Save
@@ -109,7 +119,7 @@ namespace ChocolateTycoon.Controllers
                 var newFactory = new Factory { Name = factory.Name };
 
                 factories.Add(newFactory);
-                vault.Deposit -= Factory.CreateCost;
+                vault.withdrawAmount(Factory.CreateCost);
             }
             else
             {
@@ -195,8 +205,6 @@ namespace ChocolateTycoon.Controllers
         [AcceptVerbs(HttpVerbs.Post | HttpVerbs.Get)]
         public ActionResult Produce(int id)
         {
-            var factoryService = new FactoryService();
-
             var factory = db.Factories
                 .Include(f => f.ProductionUnit)
                 .Include(f => f.StorageUnit)
