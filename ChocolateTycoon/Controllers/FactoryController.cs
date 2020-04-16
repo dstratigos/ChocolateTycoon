@@ -55,10 +55,7 @@ namespace ChocolateTycoon.Controllers
             if (factory == null)
                 return HttpNotFound();
 
-            var viewModel = new FactoryViewModel
-            {
-                Factory = factory
-            };
+            var viewModel = new FactoryViewModel { Factory = factory };
 
             viewModel.GetEmployees();
 

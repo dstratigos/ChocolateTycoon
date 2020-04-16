@@ -29,10 +29,10 @@
         <td>
             @Html.DisplayFor(model => model.Factory.StorageUnit.RawMaterialAmount)
         </td>
-        using (Html.BeginForm("Replenish", "StorageUnit"))
+        using (Html.BeginForm("Replenish", "StorageUnit", new {id = Model.Factory.ID }))
         {
             <td>
-                @Html.HiddenFor(m => m.Factory.ID)
+                @*@Html.HiddenFor(m => m.Factory.ID)*@
                 <button id="replenish" class="btn btn-link  btn-sm" type="submit" style="padding: 0;">
                     <i class="glyphicon glyphicon-plus text-success"></i>
                 </button>

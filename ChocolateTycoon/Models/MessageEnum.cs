@@ -12,7 +12,7 @@ namespace ChocolateTycoon.Models
         [Display(Name = "Storage Unit not available!")]
         StorageUnitNullError = 1,
 
-        [Display(Name = "Factory reached it's maximum Production for today!")]
+        [Display(Name = "Factory reached it's maximum Production capacity for today!")]
         ProductionTurnError,
 
         [Display(Name = "Supplier's quota has been reached. Contract terminated.")]
