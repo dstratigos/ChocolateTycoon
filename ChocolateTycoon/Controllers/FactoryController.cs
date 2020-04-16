@@ -119,7 +119,7 @@ namespace ChocolateTycoon.Controllers
                 var newFactory = new Factory { Name = factory.Name };
 
                 factories.Add(newFactory);
-                vault.withdrawAmount(Factory.CreateCost);
+                vault.WithdrawAmount(Factory.CreateCost);
             }
             else
             {

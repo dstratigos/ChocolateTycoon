@@ -90,7 +90,7 @@ namespace ChocolateTycoon.Models
                 {
                     Supplier = null;
                     StorageUnit.ResetSupplier();
-                    vault.withdrawAmount(penalty);
+                    vault.WithdrawAmount(penalty);
 
                     return $"{Name} Factory broke it's Contract with {supplierName}. You got charged with {penalty:F2}";
                 }

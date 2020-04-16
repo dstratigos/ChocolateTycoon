@@ -29,7 +29,7 @@ namespace ChocolateTycoon.Controllers
         {
             var vault = db.Safes.Where(s => s.ID == 1).Single();
 
-            vault.cheatDepositAmount();
+            vault.CheatDepositAmount();
 
             db.SaveChanges();
 
@@ -40,7 +40,7 @@ namespace ChocolateTycoon.Controllers
         {
             var vault = db.Safes.Where(s => s.ID == 1).Single();
 
-            vault.cheatWithdrawAmount();
+            vault.CheatWithdrawAmount();
 
             db.SaveChanges();
 

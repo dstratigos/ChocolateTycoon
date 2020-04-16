@@ -24,24 +24,24 @@ namespace ChocolateTycoon.Models
             return false;
         }        
 
-        public void depositAmount(decimal amount)
+        public void DepositAmount(decimal amount)
         {
             Deposit += amount;
         }
 
-        public void withdrawAmount(decimal amount)
+        public void WithdrawAmount(decimal amount)
         {
             Deposit -= amount;
         }
 
         // for testing purposes
-        public void cheatDepositAmount()
+        public void CheatDepositAmount()
         {
             Deposit += 1000;
         }
 
         // for testing purposes
-        public void cheatWithdrawAmount()
+        public void CheatWithdrawAmount()
         {
             Deposit -= 1000;
         }
@@ -55,39 +55,13 @@ namespace ChocolateTycoon.Models
             Deposit += refund;
         }
 
-        //public void FactoryRefund()
-        //{
-        //    var price = Factory.CreateCost;
-
-        //    decimal refund = price * 0.2M; // 20% of factory price when deleting
-
-        //    Deposit += refund;
-        //}
-
-        //public void StoreRefund()
-        //{
-        //    var price = Store.CreateCost;
-
-        //    decimal refund = price * 0.2M; // 20% of store price when deleting
-
-        //    Deposit += refund;
-        //}
-
         public void ReplenishExpenses(Supplier supplier)
         {
             decimal shippedAmount = Convert.ToDecimal(supplier.ShippedAmount);
             Deposit -= shippedAmount * supplier.PricePerKilo;
         }
 
-        //public void BreakContractPenalty(StorageUnit storage, Supplier supplier)
-        //{
-        //    decimal shipments = Convert.ToDecimal(storage.ShipmentsReceived);
-        //    decimal offerAmount = Convert.ToDecimal(supplier.OfferAmount);
-        //    var remainder = offerAmount - shipments;
-        //    Deposit -= remainder * 0.5M;
-        //}
-
-        public decimal calculateTotalWages(List<Employee> employees)
+        public decimal CalculateTotalWages(List<Employee> employees)
         {
             decimal total = 0;
 

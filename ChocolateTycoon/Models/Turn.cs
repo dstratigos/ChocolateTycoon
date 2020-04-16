@@ -39,7 +39,7 @@ namespace ChocolateTycoon.Models
         {
             TurnMessage = "";
 
-            var wages = Safe.calculateTotalWages(Employees);
+            var wages = Safe.CalculateTotalWages(Employees);
             if (Safe.Deposit >= wages)
             {
                 Safe.Deposit -= wages;
