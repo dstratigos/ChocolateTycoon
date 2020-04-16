@@ -13,11 +13,11 @@
     <table id="table" class="table table-hover">
         <thead style="background-color: darkslategray; font-weight: bold">
             <tr>
-                <td rowspan="2">Sections</td>
-                <td colspan="3">Storage Amount (pcs)</td>
+                <td rowspan="2">Storage Sections</td>
+                <td colspan="3">Storage Space (pcs)</td>
             </tr>
             <tr>
-                <td>Current</td>
+                <td>Occupied</td>
                 <td>Available</td>
                 <td>Maximum</td>
             </tr>
@@ -29,7 +29,7 @@
             var names = Model.enumNames;
 
             <tr>
-                <th>@names[i]</th>
+                <th>@names[i] Chocolate</th>
                 <td style="text-align: center">
                     @Model.availableChocolates[types[i]]
                 </td>

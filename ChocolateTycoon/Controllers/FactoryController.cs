@@ -36,33 +36,30 @@ namespace ChocolateTycoon.Controllers
             if (id != null)
                 ViewBag.SelectedId = id.Value;
 
-            //ViewBag.Message = TempData["ErrorMessage"];
+            ViewBag.Message = TempData["ErrorMessage"];
             ViewBag.MainStorageInfo = TempData["MainStorageInfo"];
 
             return View(factories);
         }
 
         // GET: Factory/Details/id
-        //[ChildActionOnly]
         public PartialViewResult Details(int? id)
         {
-            var factoryService = new FactoryService();
-
-            var factory = db.Factories
+            var viewModel = new FactoryViewModel()
+            {
+                Factory = db.Factories
                 .Include(f => f.ProductionUnit)
                 .Include(f => f.StorageUnit)
                 .Include(f => f.Supplier)
                 .Include(f => f.Employees)
-                .FirstOrDefault(f => f.ID == id);
+                .SingleOrDefault(f => f.ID == id)
+            };
 
-            var chocolates = db.Chocolates
-                .Include(c => c.Status)
-                .ToList();
+            viewModel.GetEmployees();
 
-            ViewBag.ChocolateCount = factoryService.PopulateChocolates(chocolates);
             ViewBag.MainStorageInfo = TempData["MainStorageInfo"];
 
-            return PartialView(factory);
+            return PartialView(viewModel);
         }
 
         // GET: Factory/Create
@@ -72,7 +69,7 @@ namespace ChocolateTycoon.Controllers
 
             if (!vault.MoneySuffice(Factory.CreateCost))
             {
-                //TempData["ErrorMessage"] = Message.ErrorMessage;
+                TempData["ErrorMessage"] = Message.ErrorMessage;
                 return RedirectToAction("Index");
             }
 
@@ -182,7 +179,7 @@ namespace ChocolateTycoon.Controllers
             }
 
             if (factoryToDelete.Employees.Count() > 0)
-                factoryToDelete.Employees.Clear();            
+                factoryToDelete.Employees.Clear();
 
             factories.Remove(factoryToDelete);
 
@@ -193,21 +190,6 @@ namespace ChocolateTycoon.Controllers
             return RedirectToAction("Index");
 
         }
-
-        // GET: Factory employees by position
-        public PartialViewResult FactoryEmployees(int? id)
-        {
-            var viewModel = new FactoryViewModel
-            {
-                Factory = db.Factories.SingleOrDefault(f => f.ID == id),
-                Employees = db.Employees.Where(e => e.FactoryID == id).ToList()
-            };
-
-            viewModel.GetEmployees();
-
-            return PartialView("_FactoryEmployees", viewModel);
-        }
-
 
         // GET/POST: /Factory/Produce
         [AcceptVerbs(HttpVerbs.Post | HttpVerbs.Get)]
@@ -244,7 +226,7 @@ namespace ChocolateTycoon.Controllers
 
                 db.SaveChanges();
             }
-            //TempData["ErrorMessage"] = Message.ErrorMessage;
+            TempData["ErrorMessage"] = Message.ErrorMessage;
 
             return RedirectToAction("Index", new { id });
         }

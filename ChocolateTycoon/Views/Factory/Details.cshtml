@@ -1,4 +1,4 @@
-﻿@model ChocolateTycoon.Models.Factory
+﻿@model ChocolateTycoon.ViewModels.FactoryViewModel
 
 <br />
 
@@ -12,12 +12,12 @@
 </tr>
 
 <tr>
-    @if (Model.StorageUnit == null)
+    @if (Model.Factory.StorageUnit == null)
     {
         using (Html.BeginForm("Create", "StorageUnit"))
         {
             <td colspan="4">
-                @Html.HiddenFor(m => m.ID)
+                @Html.HiddenFor(m => m.Factory.ID)
                 <button id="createSU" class="btn btn-link btn-lg create" type="submit" style="padding: 0;">
                     <i class="glyphicon glyphicon-plus text-warning"></i>
                 </button>
@@ -27,12 +27,12 @@
     else
     {
         <td>
-            @Html.DisplayFor(model => model.StorageUnit.RawMaterialAmount)
+            @Html.DisplayFor(model => model.Factory.StorageUnit.RawMaterialAmount)
         </td>
         using (Html.BeginForm("Replenish", "StorageUnit"))
         {
             <td>
-                @Html.HiddenFor(m => m.ID)
+                @Html.HiddenFor(m => m.Factory.ID)
                 <button id="replenish" class="btn btn-link  btn-sm" type="submit" style="padding: 0;">
                     <i class="glyphicon glyphicon-plus text-success"></i>
                 </button>
@@ -40,10 +40,10 @@
         }
 
 
-        if (@Model.SupplierId != null)
+        if (@Model.Factory.SupplierId != null)
         {
-            <td>@Model.Supplier.Name</td>
-            <td>@Model.StorageUnit.ShipmentsReceived</td>
+            <td>@Model.Factory.Supplier.Name</td>
+            <td>@Model.Factory.StorageUnit.ShipmentsReceived</td>
         }
         else
         {
@@ -57,12 +57,12 @@
     }
 
 
-    @if (Model.ProductionUnit == null)
+    @if (Model.Factory.ProductionUnit == null)
     {
         using (Html.BeginForm("Create", "ProductionUnit"))
         {
             <td colspan="2">
-                @Html.HiddenFor(m => m.ID)
+                @Html.HiddenFor(m => m.Factory.ID)
                 <button id="createPU" class="btn btn-link btn-lg" type="submit" style="padding: 0;">
                     <i class="glyphicon glyphicon-plus text-warning"></i>
                 </button>
@@ -72,18 +72,17 @@
     else
     {
         <td>
-            @Html.DisplayFor(model => model.ProductionUnit.MaxProductionPerDay)
+            @Html.DisplayFor(model => model.Factory.ProductionUnit.MaxProductionPerDay)
         </td>
         <td>
-            <a href="@Url.Action("Produce", new { id = Model.ID })" class="btn btn-link btn-sm" style="padding: 0">
+            <a href="@Url.Action("Produce", new { id = Model.Factory.ID })" class="btn btn-link btn-sm" style="padding: 0">
                 <i class="glyphicon glyphicon-plus text-success"></i>
             </a>
         </td>
     }
 
-    @{
-        Html.RenderAction("FactoryEmployees", new { id = Model.ID });
-    }
+    @{ Html.RenderPartial("_FactoryEmployees", Model); }
+
 </tr>
 
 <script type="text/javascript">
