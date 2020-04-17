@@ -19,16 +19,6 @@ namespace ChocolateTycoon.Controllers
             db = new ApplicationDbContext();
         }
 
-        //// GET: ProductionUnit/Create
-        //public ActionResult Create(int id)
-        //{
-        //    var factory = db.Factories
-        //        .Include(f => f.ProductionUnit)
-        //        .SingleOrDefault(f => f.ID == id);
-
-        //    return View(factory);
-        //}
-
         // POST: ProductionUnit/Create
         [HttpPost, ActionName("Create")]
         public ActionResult CreatePost(Factory factory)
@@ -41,10 +31,7 @@ namespace ChocolateTycoon.Controllers
                 return RedirectToAction("Index", "Factory", new { id = factory.ID });
             }
 
-            ProductionUnit productionUnit = new ProductionUnit
-            {
-                FactoryID = factory.ID,
-            };
+            ProductionUnit productionUnit = new ProductionUnit { FactoryID = factory.ID };
 
             db.ProductionUnits.Add(productionUnit);
             vault.WithdrawAmount(ProductionUnit.CreateCost);

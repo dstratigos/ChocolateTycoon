@@ -39,13 +39,10 @@ namespace ChocolateTycoon.Controllers
         // GET: Employee/Create
         public ActionResult Create()
         {
-            var factories = db.Factories.ToList();
-            var stores = db.Stores.ToList();
-
             var viewModel = new EmployeeFormViewModel
             {
-                Factories = factories,
-                Stores = stores
+                Factories = db.Factories.ToList(),
+                Stores = db.Stores.ToList()
             };
 
             return View("EmployeeForm", viewModel);

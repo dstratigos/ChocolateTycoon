@@ -195,19 +195,15 @@ namespace ChocolateTycoon.Controllers
                 .Where(c => c.ChocolateStatusId == 2)
                 .ToList();
 
-                factory.Produce(mainStorage);
+                factory.Produce(mainStorage, chocolatesStored);
 
-                mainStorage.SortProducts(chocolatesStored);
-
-                var chocolatesProduced = mainStorage.newProducts;
-
-                foreach (var chocolate in chocolatesProduced)
-                    db.Chocolates.Add(chocolate);
+                db.Chocolates.AddRange(mainStorage.newProducts);
 
                 TempData["MainStorageInfo"] = Message.MainStorageInfo;
 
                 db.SaveChanges();
             }
+
             TempData["ErrorMessage"] = Message.ErrorMessage;
 
             return RedirectToAction("Index", new { id });

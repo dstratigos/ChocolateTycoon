@@ -29,19 +29,10 @@ namespace ChocolateTycoon.Controllers
             if (productionUnits.Count() == 0)
                 return HttpNotFound();
 
-            //if (!turn.LooseEnds(productionUnits))
-            //{
-            //    turn.EndTurn();
-            //    db.SaveChanges();
-            //}
-            //Turn.TurnMessage = "Hello!";
-
             turn.EndTurn();
 
             db.SaveChanges();
 
-            //return Redirect(Request.UrlReferrer.PathAndQuery);
-            //return View("EndTurn", turn);
             return Content(Turn.TurnMessage);
         }
     }

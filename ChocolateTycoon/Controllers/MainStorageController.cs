@@ -30,7 +30,6 @@ namespace ChocolateTycoon.Controllers
                 return HttpNotFound();
 
             var chocolates = db.Chocolates
-                .Include(c => c.Status)
                 .Where(c => c.ChocolateStatusId == 2)
                 .ToList();
 
