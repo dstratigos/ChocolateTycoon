@@ -44,8 +44,6 @@ namespace ChocolateTycoon.Controllers.API
             if (factory == null)
                 return BadRequest();
 
-            //safe.BreakContractPenalty(factory.StorageUnit, factory.Supplier);
-
             var message = factory.BreakContract(vault);
 
             db.SaveChanges();

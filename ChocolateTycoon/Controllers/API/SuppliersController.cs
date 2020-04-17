@@ -21,19 +21,6 @@ namespace ChocolateTycoon.Controllers.API
             db = new ApplicationDbContext();
         }
 
-        // GET: /Api/Suppliers/
-        //[HttpGet]
-        //public IHttpActionResult GetSuppliers()
-        //{
-        //    var suppliers = db.Suppliers.Include(s => s.Factories).ToList();
-
-        //    var suppliersDto = new List<SupplierDto>();
-
-        //    suppliersDto = Mapper.Map<List<SupplierDto>>(suppliers);
-            
-        //    return Ok(suppliersDto);
-        //}
-
         // GET: /Api/Suppliers/Id
         [HttpGet]
         public IHttpActionResult GetSupplier(int id)
