@@ -56,7 +56,11 @@ namespace ChocolateTycoon.Models
                     Message.SetErrorMessage(MessageEnum.RawMaterialsError);
             }
             else
+            {
                 Message.SetErrorMessage(MessageEnum.ProductionTurnError);
+                Message.SetMainStorageInfo(0 ,0);
+            }
+                
         }
 
         // checks if the factory personel meets the required minimum for the factory to operate
