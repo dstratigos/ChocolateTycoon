@@ -278,6 +278,14 @@
     <Compile Include="Migrations\202004142006195_DailySalesProp.Designer.cs">
       <DependentUpon>202004142006195_DailySalesProp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004151742110_StoreChanges.cs" />
+    <Compile Include="Migrations\202004151742110_StoreChanges.Designer.cs">
+      <DependentUpon>202004151742110_StoreChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004171657432_stock.cs" />
+    <Compile Include="Migrations\202004171657432_stock.Designer.cs">
+      <DependentUpon>202004171657432_stock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Controllers\API\StoresController.cs" />
@@ -753,6 +761,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004142006195_DailySalesProp.resx">
       <DependentUpon>202004142006195_DailySalesProp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004151742110_StoreChanges.resx">
+      <DependentUpon>202004151742110_StoreChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004171657432_stock.resx">
+      <DependentUpon>202004171657432_stock.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

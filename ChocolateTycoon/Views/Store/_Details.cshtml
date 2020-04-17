@@ -3,6 +3,7 @@
 <br/>
 
 <tr>
+    <th style="text-align: center">Restock</th>
     <th style="text-align: center">Chocolate Stock</th>
     <th style="text-align: center">Sell</th>
     <th style="text-align: center">Total Employees</th>
@@ -11,7 +12,10 @@
 </tr>
 
 <tr>
-    <td>@Model.AvailableStock()</td>
+    <td>
+        @Html.ActionLink("Restock", "Restock", new { id = Model.ID }, new { @class = "btn btn-link text-success", @style = "padding: 0", @onclick = "dataReload();" })
+    </td>
+    <td>@Model.Stock</td>
     <td>
         @Html.ActionLink("Sell Chocolates", "SellChocolates", new { id = Model.ID }, new { @class = "btn btn-link text-success", @style = "padding: 0", @onclick = "dataReload();" })
         <p class="text-danger">@ViewBag.SellingProcess</p>

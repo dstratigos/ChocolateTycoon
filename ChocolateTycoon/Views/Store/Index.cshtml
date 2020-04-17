@@ -23,7 +23,11 @@
     <div id="messageBox" class="row text-center">
         <div id="errorBox" class="row text-danger hidden" style="padding: 0; margin: 0 5px">
             <h3 class="glyphicon glyphicon-exclamation-sign"></h3>
-            <span id="error" style="padding-left: 10px;">@ViewBag.Message</span>
+            <span id="errorText" style="padding-left: 10px;">@ViewBag.ErrorMessage</span>
+        </div>
+        <div id="infoBox" class="row text-warning hidden">
+            <h3 class="glyphicon glyphicon-info-sign"></h3>
+            <span id="infoText" style="padding-left: 10px;">@ViewBag.MainStorageInfo</span>
         </div>
     </div>
 </div>
@@ -74,7 +78,7 @@
 {
     <table class="table table-bordered text-center">
         <tr style="background-color: darkslategrey">
-            <th colspan="2" style="text-align: center">Chocolates</th>
+            <th colspan="3" style="text-align: center">Chocolates</th>
             <th colspan="3" style="text-align: center">Employees</th>
         </tr>
 
@@ -151,10 +155,15 @@
                 });
             });
 
-            let errorMessage = $("#error").text();
+            let errorMessage = $("#errorText").text();
+            let infoMessage = $("#infoText").text();
 
             if (errorMessage.length > 0) {
                 $("#errorBox").toggleClass("hidden").hide().slideDown();
+            };
+
+            if (infoMessage.length > 0) {
+                $("#infoBox").toggleClass("hidden").hide().slideDown();
             };
         });
     </script>

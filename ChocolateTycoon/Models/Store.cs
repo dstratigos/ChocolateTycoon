@@ -24,6 +24,8 @@ namespace ChocolateTycoon.Models
 
         public bool CompletedDailySales { get; set; }
 
+        public int Stock { get => AvailableStock(); }
+
         public int MainStorageID { get; set; } = 1;
 
         public int SafeID { get; set; } = 1;
@@ -31,8 +33,6 @@ namespace ChocolateTycoon.Models
         public MainStorage MainStorage { get; set; }
 
         public Safe Safe { get; set; }
-
-        public string ImageBase64 { get; set; }
 
         public List<Employee> Employees { get; set; }
 
@@ -55,7 +55,10 @@ namespace ChocolateTycoon.Models
 
         public int AvailableStock()
         {
-            var chocolatesInStock = Chocolates.Where(c => c.ChocolateStatusId == 3).ToList().Count();
+            var chocolatesInStock = Chocolates
+                .Where(c => c.ChocolateStatusId == 3 && c.StoreId == ID)
+                .ToList()
+                .Count();
 
             return chocolatesInStock;
         }
@@ -83,20 +86,15 @@ namespace ChocolateTycoon.Models
         {
             var count = Chocolates.Where(c => c.StoreId == ID && c.ChocolateStatusId == 3).Count();
 
-            bool enoughChocolates = true;
-
-            if (count > 1)
-                return enoughChocolates;
+            if (count > _maxStorageCapacity)
+                return true;
             else
-                return !enoughChocolates;
+                return false;
         }
 
         public string Sell(List<Chocolate> chocolates)
         {
-            var personnel = EnoughPersonnel();
-            var stock = EnoughChocolates();
-
-            if (personnel && stock)
+            if (EnoughPersonnel() && EnoughChocolates())
             {
                 foreach (var chocolate in chocolates)
                 {
@@ -104,41 +102,53 @@ namespace ChocolateTycoon.Models
                     chocolate.MarkAsSold();
                 }
                 CompletedDailySales = true;
-                return $"Done! New Safe Deposit {Safe.Deposit}";
+                return $"Done! New Safe Deposit {Safe.Deposit}.";
             }
             else if (!EnoughChocolates())
-                return "Not enough chocolate stock";
+                return "Not enough chocolate stock. Please restock";
             else if (!EnoughPersonnel())
-                return "Not enough employees";
+                return "Not enough employees.";
             else
-                return "Something went wrong";
+                return "Something went wrong.";
         }
 
         private decimal Earnings(List<Chocolate> chocolates)
         {
             foreach (var chocolate in chocolates)
-                Safe.Deposit += chocolate.Price;
+                Safe.DepositAmount(chocolate.Price);
 
             return Safe.Deposit;
         }
 
-        public void Order(List<Chocolate> chocolates) // * After every round if chocolates sold there sould be a new order
+        private void Pricing(List<Chocolate> chocolates)
         {
-            List<Chocolate> chocolatesMainStorage = new List<Chocolate>();
+            foreach (var chocolate in chocolates)
+            {
+                if (chocolate.ChocolateType == ChocolateType.Dark)
+                    chocolate.Price = 5;
+                else if (chocolate.ChocolateType == ChocolateType.AlmondMilk || chocolate.ChocolateType == ChocolateType.HazelnutMilk)
+                    chocolate.Price = 4.5M;
+                else if (chocolate.ChocolateType == ChocolateType.Milk)
+                    chocolate.Price = 4;
+                else
+                    chocolate.Price = 4;
+            }
+        }
 
-            if (!EnoughChocolates())
+        public void Order(List<Chocolate> chocolates)
+        {
+            if (EnoughPersonnel() && !EnoughChocolates())
             {
                 for (int i = 0; i < _maxStorageCapacity; i++)
                 {
                      foreach (var chocolate in chocolates)
                     {
-                        if (chocolate.ChocolateStatusId == 2)
-                            chocolatesMainStorage.Add(chocolate);
+                        chocolate.ToStore(ID);
                     }
                 }
-            }
 
-            chocolatesMainStorage.ForEach(c => Chocolates.Add(c));
+                Pricing(chocolates);
+            }
         }
     }
 }

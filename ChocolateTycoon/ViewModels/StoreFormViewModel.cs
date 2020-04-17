@@ -1,4 +1,5 @@
 ﻿using ChocolateTycoon.Controllers;
+using ChocolateTycoon.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,6 +17,24 @@ namespace ChocolateTycoon.ViewModels
         [Required]
         public string Name { get; set; }
 
+        public byte Level { get; }
+
+        public int Stock { get; }
+
+        public int MainStorageID { get; }
+
+        public int SafeID { get; }
+
+        public MainStorage MainStorage { get; set; }
+
+        public Safe Safe { get; set; }
+
+        public ICollection<Employee> Employees { get; set; }
+
+        public List<Chocolate> Chocolates { get; }
+
+        public string Message { get; set; }
+
         public string Heading { get; set; }
 
         public string Action
@@ -32,6 +51,22 @@ namespace ChocolateTycoon.ViewModels
                 return actionName;
             }
         }
-    }
 
+        public StoreFormViewModel(Store store)
+        {
+            ID = store.ID;
+            Name = store.Name;
+            Level = store.Level;
+            Stock = store.Stock;
+            MainStorageID = store.MainStorageID;
+            SafeID = store.SafeID;
+            Employees = store.Employees;
+            Chocolates = store.Chocolates;
+        }
+
+        public StoreFormViewModel()
+        {
+
+        }
+    }
 }
