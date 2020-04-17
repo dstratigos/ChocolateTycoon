@@ -31,10 +31,7 @@ namespace ChocolateTycoon.Controllers
                 return RedirectToAction("Index", "Factory", new { id = factory.ID });
             }
             
-            StorageUnit storageUnit = new StorageUnit
-            {
-                FactoryID = factory.ID
-            };            
+            StorageUnit storageUnit = new StorageUnit { FactoryID = factory.ID };            
 
             db.StorageUnits.Add(storageUnit);
             vault.WithdrawAmount(StorageUnit.CreateCost);
