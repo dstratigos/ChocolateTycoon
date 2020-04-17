@@ -32,6 +32,7 @@ namespace ChocolateTycoon.Models
             Employees = new List<Employee>();
         }
 
+        // starts the production sequence and sets the appropraite messages
         public void Produce(MainStorage mainStorage)
         {
             var materialsNeeded = ProductionUnit.MaterialsNeeded();
@@ -56,7 +57,7 @@ namespace ChocolateTycoon.Models
                 Message.SetErrorMessage(MessageEnum.ProductionTurnError);
         }
 
-        //checks if the factory personel meets the required minimum for the factory to operate
+        // checks if the factory personel meets the required minimum for the factory to operate
         public bool PersonelSuffice()
         {
             var managersEmployed = Employees.Where(e => e.Position == EmployeePosition.FactoryManager).Count();
@@ -76,7 +77,7 @@ namespace ChocolateTycoon.Models
             return false;
         }
 
-        // Breaks the Contract with an active Supplier and returns a message
+        // breaks the Contract with an active Supplier and returns a message
         public string BreakContract(Safe vault)
         {
             if (Supplier != null)
@@ -122,6 +123,23 @@ namespace ChocolateTycoon.Models
                     return true;
 
             return false;
+        }
+
+        public void DoDelete(Safe vault)
+        {
+            var totalCost = _createCost;
+
+            if (ProductionUnit != null)
+                totalCost += ProductionUnit.CreateCost;
+
+            if (StorageUnit != null)
+                totalCost += StorageUnit.CreateCost;
+
+            ProductionUnit = null;
+            StorageUnit = null;
+            Employees.Clear();
+
+            vault.Refund(totalCost);
         }
     }
 }

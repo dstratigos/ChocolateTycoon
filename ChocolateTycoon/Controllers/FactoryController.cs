@@ -153,49 +153,26 @@ namespace ChocolateTycoon.Controllers
         // POST: Factory/Delete/id
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(Factory factory)
+        public ActionResult DeletePost(int id)
         {
-            decimal totalCost = Factory.CreateCost;
+            var vault = db.Safes.SingleOrDefault();
 
-            if (factory == null)
-                return RedirectToAction("Index");
-
-            var factories = db.Factories;
-
-            var safe = db.Safes.SingleOrDefault();
-
-            var factoryToDelete = factories
+            var factoryToDelete = db.Factories
                 .Include(f => f.ProductionUnit)
                 .Include(f => f.StorageUnit)
                 .Include(f => f.Employees)
-                .SingleOrDefault(f => f.ID == factory.ID);
+                .SingleOrDefault(f => f.ID == id);
 
             if (factoryToDelete == null)
                 return RedirectToAction("Index");
 
-            if (factoryToDelete.ProductionUnit != null)
-            {
-                factoryToDelete.ProductionUnit = null;
-                totalCost += ProductionUnit.CreateCost;
-            }
+            factoryToDelete.DoDelete(vault);
 
-            if (factoryToDelete.StorageUnit != null)
-            {
-                factoryToDelete.StorageUnit = null;
-                totalCost += StorageUnit.CreateCost;
-            }
-
-            if (factoryToDelete.Employees.Count() > 0)
-                factoryToDelete.Employees.Clear();
-
-            factories.Remove(factoryToDelete);
-
-            safe.Refund(totalCost);
+            db.Factories.Remove(factoryToDelete);
 
             db.SaveChanges();
 
             return RedirectToAction("Index");
-
         }
 
         // GET/POST: /Factory/Produce

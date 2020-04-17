@@ -43,7 +43,7 @@
     </tr>
 </table>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(new { id = Model.ID }))
 {
     @Html.AntiForgeryToken()
 

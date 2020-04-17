@@ -1,5 +1,5 @@
 ﻿@model ChocolateTycoon.ViewModels.FactoryViewModel
-
+@Html.AntiForgeryToken()
 <br />
 
 <tr>
@@ -29,10 +29,9 @@
         <td>
             @Html.DisplayFor(model => model.Factory.StorageUnit.RawMaterialAmount)
         </td>
-        using (Html.BeginForm("Replenish", "StorageUnit", new {id = Model.Factory.ID }))
+        using (Html.BeginForm("Replenish", "StorageUnit", new { id = Model.Factory.ID }))
         {
             <td>
-                @*@Html.HiddenFor(m => m.Factory.ID)*@
                 <button id="replenish" class="btn btn-link  btn-sm" type="submit" style="padding: 0;">
                     <i class="glyphicon glyphicon-plus text-success"></i>
                 </button>
@@ -75,7 +74,7 @@
             @Html.DisplayFor(model => model.Factory.ProductionUnit.MaxProductionPerDay)
         </td>
         <td>
-            <a href="@Url.Action("Produce", new { id = Model.Factory.ID })" class="btn btn-link btn-sm" style="padding: 0">
+        <a href="@Url.Action("Produce", new { id = Model.Factory.ID })" class="btn btn-link btn-sm" style="padding: 0">
                 <i class="glyphicon glyphicon-plus text-success"></i>
             </a>
         </td>
