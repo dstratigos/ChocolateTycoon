@@ -33,7 +33,7 @@ namespace ChocolateTycoon.Models
         }
 
         // starts the production sequence and sets the appropraite messages
-        public void Produce(MainStorage mainStorage)
+        public void Produce(MainStorage mainStorage, List<Chocolate> chocolatesStored)
         {
             var materialsNeeded = ProductionUnit.MaterialsNeeded();
             var materialsSuffice = StorageUnit.MaterialsSuffice(materialsNeeded);
@@ -45,6 +45,8 @@ namespace ChocolateTycoon.Models
                     var products = ProductionUnit.DailyProduction();
 
                     mainStorage.newProducts.AddRange(products);
+
+                    mainStorage.SortProducts(chocolatesStored);
 
                     ProductionUnit.ProducedDailyProduction = true;
                 }
