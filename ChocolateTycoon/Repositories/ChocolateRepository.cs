@@ -23,5 +23,16 @@ namespace ChocolateTycoon.Repositories
                 .Include(c => c.Status)
                 .Where(c => c.StoreId == storeId);
         }
+
+        public IEnumerable<Chocolate> GetMainStorageChocolates()
+        {
+            return _db.Chocolates
+                .Where(c => c.ChocolateStatusId == 2);
+        }
+
+        public void Add(List<Chocolate> chocolates)
+        {
+            _db.Chocolates.AddRange(chocolates);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ChocolateTycoon.Data;
 using ChocolateTycoon.Models;
+using ChocolateTycoon.Persistence;
 using ChocolateTycoon.Services;
 using ChocolateTycoon.ViewModels;
 using System;
@@ -14,11 +15,13 @@ namespace ChocolateTycoon.Controllers
 {
     public class FactoryController : Controller
     {
-        private ApplicationDbContext db;
+        private readonly ApplicationDbContext db;
+        private readonly UnitOfWork unitOfWork;
 
         public FactoryController()
         {
             db = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(db);
         }
 
         protected override void Dispose(bool disposing)
@@ -29,9 +32,7 @@ namespace ChocolateTycoon.Controllers
         // GET: Factory
         public ActionResult Index(int? id)
         {
-            var factories = db.Factories
-                .Include(f => f.ProductionUnit)
-                .Include(f => f.StorageUnit);
+            var factories = unitOfWork.Factories.GetFactoriesWithProductionAndStorageUnit();
 
             if (id != null)
                 ViewBag.SelectedId = id.Value;
@@ -43,14 +44,9 @@ namespace ChocolateTycoon.Controllers
         }
 
         // GET: Factory/Details/id
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            var factory = db.Factories
-                .Include(f => f.ProductionUnit)
-                .Include(f => f.StorageUnit)
-                .Include(f => f.Supplier)
-                .Include(f => f.Employees)
-                .SingleOrDefault(f => f.ID == id);
+            var factory = unitOfWork.Factories.GetFactoryAllInclusive(id);
 
             if (factory == null)
                 return HttpNotFound();
@@ -67,7 +63,7 @@ namespace ChocolateTycoon.Controllers
         // GET: Factory/Create
         public ActionResult Create()
         {
-            var vault = db.Safes.Where(s => s.ID == 1).Single();
+            var vault = unitOfWork.Safes.GetSafe();
 
             if (vault == null)
                 return HttpNotFound();
@@ -82,9 +78,9 @@ namespace ChocolateTycoon.Controllers
         }
 
         // GET: Factory/Edit/id
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            var factory = db.Factories.SingleOrDefault(f => f.ID == id);
+            var factory = unitOfWork.Factories.GetFactory(id);
 
             if (factory == null)
                 return HttpNotFound();
@@ -99,7 +95,7 @@ namespace ChocolateTycoon.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(Factory factory)
         {
-            var factories = db.Factories;
+            var factories = unitOfWork.Factories.GetFactories().ToList();
             var vault = db.Safes.Where(s => s.ID == 1).Single();
 
             if (factory.ID == 0)
@@ -115,34 +111,27 @@ namespace ChocolateTycoon.Controllers
 
                 var newFactory = new Factory { Name = factory.Name };
 
-                factories.Add(newFactory);
+                unitOfWork.Factories.Add(newFactory);
                 vault.WithdrawAmount(Factory.CreateCost);
             }
             else
             {
-                var factoryDb = db.Factories.SingleOrDefault(f => f.ID == factory.ID);
+                var factoryDb = unitOfWork.Factories.GetFactory(factory.ID);
                 factoryDb.Name = factory.Name;
             }
 
             if (!ModelState.IsValid)
                 return View("FactoryForm");
 
-            db.SaveChanges();
+            unitOfWork.Complete();
 
             return RedirectToAction("Index");
         }
 
         // GET: Factory/Delete/id
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            var factory = db.Factories
-                .Include(f => f.ProductionUnit)
-                .Include(f => f.StorageUnit)
-                .Include(f => f.Employees)
-                .SingleOrDefault(f => f.ID == id);
+            var factory = unitOfWork.Factories.GetFactoryMinusSupplier(id);
 
             if (factory == null)
                 return HttpNotFound();
@@ -155,22 +144,18 @@ namespace ChocolateTycoon.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
-            var vault = db.Safes.SingleOrDefault();
+            var vault = unitOfWork.Safes.GetSafe();
 
-            var factoryToDelete = db.Factories
-                .Include(f => f.ProductionUnit)
-                .Include(f => f.StorageUnit)
-                .Include(f => f.Employees)
-                .SingleOrDefault(f => f.ID == id);
+            var factoryToDelete = unitOfWork.Factories.GetFactoryMinusSupplier(id);
 
             if (factoryToDelete == null)
                 return RedirectToAction("Index");
 
             factoryToDelete.DoDelete(vault);
 
-            db.Factories.Remove(factoryToDelete);
+            unitOfWork.Factories.Remove(factoryToDelete);
 
-            db.SaveChanges();
+            unitOfWork.Complete();
 
             return RedirectToAction("Index");
         }
@@ -179,29 +164,23 @@ namespace ChocolateTycoon.Controllers
         [AcceptVerbs(HttpVerbs.Post | HttpVerbs.Get)]
         public ActionResult Produce(int id)
         {
-            var factory = db.Factories
-                .Include(f => f.ProductionUnit)
-                .Include(f => f.StorageUnit)
-                .Include(f => f.Employees)
-                .SingleOrDefault(f => f.ID == id);
+            var factory = unitOfWork.Factories.GetFactoryMinusSupplier(id);
 
-            var mainStorage = db.MainStorages.SingleOrDefault(m => m.ID == 1);
+            var mainStorage = unitOfWork.MainStorage.GetMainStorage();
 
             if (factory.StorageUnit == null)
                 Message.SetErrorMessage(MessageEnum.StorageUnitNullError);
             else
             {
-                var chocolatesStored = db.Chocolates
-                .Where(c => c.ChocolateStatusId == 2)
-                .ToList();
+                var chocolatesStored = unitOfWork.Chocolates.GetMainStorageChocolates().ToList();
 
                 factory.Produce(mainStorage, chocolatesStored);
 
-                db.Chocolates.AddRange(mainStorage.newProducts);
+                unitOfWork.Chocolates.Add(mainStorage.newProducts);
 
                 TempData["MainStorageInfo"] = Message.MainStorageInfo;
 
-                db.SaveChanges();
+                unitOfWork.Complete();
             }
 
             TempData["ErrorMessage"] = Message.ErrorMessage;

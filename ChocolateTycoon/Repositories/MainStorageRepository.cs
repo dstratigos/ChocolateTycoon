@@ -7,19 +7,18 @@ using System.Web;
 
 namespace ChocolateTycoon.Repositories
 {
-    public class SafeRepository
+    public class MainStorageRepository
     {
         private readonly ApplicationDbContext _db;
 
-        public SafeRepository(ApplicationDbContext db)
+        public MainStorageRepository(ApplicationDbContext db)
         {
             _db = db;
         }
 
-        public Safe GetSafe()
+        public MainStorage GetMainStorage()
         {
-            return _db.Safes
-                .SingleOrDefault(s => s.ID == 1);
+            return _db.MainStorages.SingleOrDefault(ms => ms.ID == 1);
         }
     }
 }

@@ -301,6 +301,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ChocolateRepository.cs" />
     <Compile Include="Repositories\EmployeeRepository.cs" />
+    <Compile Include="Repositories\FactoryRepository.cs" />
+    <Compile Include="Repositories\MainStorageRepository.cs" />
     <Compile Include="Repositories\SafeRepository.cs" />
     <Compile Include="Repositories\StoreRepository.cs" />
     <Compile Include="Models\MaterialsCost.cs" />
