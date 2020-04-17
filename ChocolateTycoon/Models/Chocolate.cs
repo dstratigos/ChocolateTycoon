@@ -44,9 +44,10 @@ namespace ChocolateTycoon.Models
             ChocolateStatusId = 4;
         }
 
-        public void ToStore()
+        public void ToStore(int storeId)
         {
             ChocolateStatusId = 3;
+            StoreId = storeId;
         }
     }
 }

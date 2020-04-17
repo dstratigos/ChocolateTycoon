@@ -34,7 +34,26 @@ namespace ChocolateTycoon.Controllers
 
             var store = unitOfWork.Stores.GetStoreWithAllDetails(id);
 
-            TempData["Message"] = store.Sell(chocolates);
+            var viewModel = new StoreFormViewModel(store)
+            {
+                Message = store.Sell(chocolates)
+            };
+
+            //error message
+            //info message
+
+            unitOfWork.Complete();
+
+            return RedirectToAction("Index", viewModel);
+        }
+
+        public ActionResult Restock(int id)
+        {
+            var chocolates = unitOfWork.Chocolates.GetChocolatesOfMainStorage().ToList();
+
+            var store = unitOfWork.Stores.GetStoreWithAllDetails(id);
+
+            store.Order(chocolates);
 
             unitOfWork.Complete();
 
@@ -47,21 +66,7 @@ namespace ChocolateTycoon.Controllers
             var stores = unitOfWork.Stores.GetStoresWithSafe();
 
             if (id != null)
-            {
                 ViewBag.SelectedId = id.Value;
-            }
-
-            return View(stores);
-        }
-
-        public ActionResult IndexTest(int? id)
-        {
-            var stores = unitOfWork.Stores.GetStoresWithSafe();
-
-            if (id != null)
-            {
-                ViewBag.SelectedId = id.Value;
-            }
 
             return View(stores);
         }
@@ -100,10 +105,8 @@ namespace ChocolateTycoon.Controllers
         {
             var store = unitOfWork.Stores.GetStore(id);
 
-            var viewModel = new StoreFormViewModel
+            var viewModel = new StoreFormViewModel(store)
             {
-                ID = store.ID,
-                Name = store.Name,
                 Heading = "Edit a Store"
             };
 
@@ -129,7 +132,8 @@ namespace ChocolateTycoon.Controllers
             };
 
             unitOfWork.Stores.Add(store);
-            store.Safe.Deposit -= Store.CreateCost;
+            //store.Safe.Deposit -= Store.CreateCost;
+            store.Safe.WithdrawAmount(Store.CreateCost);
 
             unitOfWork.Complete();
 

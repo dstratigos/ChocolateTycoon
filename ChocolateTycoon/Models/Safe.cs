@@ -48,8 +48,6 @@ namespace ChocolateTycoon.Models
 
         public void Refund(decimal createCost)
         {
-            var price = Factory.CreateCost;
-
             decimal refund = createCost * 0.2M; // 20% of factory price when deleting
 
             Deposit += refund;
