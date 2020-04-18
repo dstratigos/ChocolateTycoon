@@ -313,6 +313,7 @@
     <Compile Include="Repositories\MainStorageRepository.cs" />
     <Compile Include="Repositories\ProductionUnitRepository.cs" />
     <Compile Include="Repositories\SafeRepository.cs" />
+    <Compile Include="Repositories\StorageUnitRepository.cs" />
     <Compile Include="Repositories\StoreRepository.cs" />
     <Compile Include="Models\MaterialsCost.cs" />
     <Compile Include="Startup.cs" />

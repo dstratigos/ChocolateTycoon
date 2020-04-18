@@ -7,23 +7,26 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using ChocolateTycoon.Data;
 using ChocolateTycoon.ViewModels;
+using ChocolateTycoon.Persistence;
 
 namespace ChocolateTycoon.Controllers
 {
     public class StorageUnitController : Controller
     {
-        private ApplicationDbContext db;
+        private readonly ApplicationDbContext db;
+        private readonly UnitOfWork unitOfWork;
 
         public StorageUnitController()
         {
             db = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(db);
         }
 
         // POST: /factory/details/id
         [HttpPost, ActionName("Create")]
         public ActionResult CreatePost(Factory factory)
         {
-            var vault = db.Safes.SingleOrDefault(s => s.ID == 1);
+            var vault = unitOfWork.Safes.GetSafe();
 
             if (!vault.MoneySuffice(StorageUnit.CreateCost))
             {
@@ -31,11 +34,11 @@ namespace ChocolateTycoon.Controllers
                 return RedirectToAction("Index", "Factory", new { id = factory.ID });
             }
             
-            StorageUnit storageUnit = new StorageUnit { FactoryID = factory.ID };            
+            StorageUnit storageUnit = new StorageUnit { FactoryID = factory.ID };
 
-            db.StorageUnits.Add(storageUnit);
+            unitOfWork.StorageUnits.Add(storageUnit);
             vault.WithdrawAmount(StorageUnit.CreateCost);
-            db.SaveChanges();
+            unitOfWork.Complete();
 
             return RedirectToAction("Index", "Factory", new { id = factory.ID });
         }
@@ -43,16 +46,13 @@ namespace ChocolateTycoon.Controllers
         [HttpPost]
         public ActionResult Replenish(int id)
         {
-            var factories = db.Factories
-                .Include(f => f.StorageUnit)
-                .Include(f => f.Supplier)
-                .ToList();
+            var factories = unitOfWork.Factories.GetFactoriesWithStorageUnitAndSupplier().ToList();
             var factory = factories.Where(f => f.ID == id).Single();
             var safe = db.Safes.SingleOrDefault();
 
             factory.StorageUnit.Replenish(factories, factory.Supplier, safe);
 
-            db.SaveChanges();
+            unitOfWork.Complete();
 
             TempData["ErrorMessage"] = Message.ErrorMessage;
 
