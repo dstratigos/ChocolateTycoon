@@ -8,16 +8,20 @@ using AutoMapper;
 using System.Net;
 using ChocolateTycoon.Data;
 using System.Data.Entity;
+using ChocolateTycoon.Persistence;
+using ChocolateTycoon.ViewModels;
 
 namespace ChocolateTycoon.Models.API
 {
     public class StoresController : ApiController
     {
-        private ApplicationDbContext db;
+        private readonly ApplicationDbContext db;
+        private readonly UnitOfWork unitOfWork;
 
         public StoresController()
         {
             db = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(db);
         }
 
         // GET api/stores

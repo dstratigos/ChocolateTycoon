@@ -26,6 +26,10 @@ namespace ChocolateTycoon.Models
 
         public int Stock { get => AvailableStock(); }
 
+        public bool AdequateStaff { get => EnoughPersonnel(); }
+
+        public bool AdequateChocolate { get => EnoughChocolates(); }
+
         public int MainStorageID { get; set; } = 1;
 
         public int SafeID { get; set; } = 1;
@@ -86,15 +90,15 @@ namespace ChocolateTycoon.Models
         {
             var count = Chocolates.Where(c => c.StoreId == ID && c.ChocolateStatusId == 3).Count();
 
-            if (count > _maxStorageCapacity)
+            if (count == _maxStorageCapacity)
                 return true;
             else
                 return false;
         }
 
-        public string Sell(List<Chocolate> chocolates)
+        public void Sell(List<Chocolate> chocolates)
         {
-            if (EnoughPersonnel() && EnoughChocolates())
+            if (AdequateStaff && AdequateChocolate)
             {
                 foreach (var chocolate in chocolates)
                 {
@@ -102,14 +106,14 @@ namespace ChocolateTycoon.Models
                     chocolate.MarkAsSold();
                 }
                 CompletedDailySales = true;
-                return $"Done! New Safe Deposit {Safe.Deposit}.";
+                //return $"Done! New Safe Deposit {Safe.Deposit}.";
             }
-            else if (!EnoughChocolates())
-                return "Not enough chocolate stock. Please restock";
-            else if (!EnoughPersonnel())
-                return "Not enough employees.";
-            else
-                return "Something went wrong.";
+            //else if (!EnoughChocolates())
+            //    return "Not enough chocolate stock. Please restock";
+            //else if (!AdequateStaff)
+            //    return "Not enough employees.";
+            //else
+            //    return "Something went wrong.";
         }
 
         private decimal Earnings(List<Chocolate> chocolates)
@@ -137,18 +141,24 @@ namespace ChocolateTycoon.Models
 
         public void Order(List<Chocolate> chocolates)
         {
-            if (EnoughPersonnel() && !EnoughChocolates())
+            if (AdequateStaff && !AdequateChocolate)
             {
                 for (int i = 0; i < _maxStorageCapacity; i++)
                 {
-                     foreach (var chocolate in chocolates)
+                    foreach (var chocolate in chocolates)
                     {
                         chocolate.ToStore(ID);
                     }
                 }
 
                 Pricing(chocolates);
+
+                //return "Restock completed";
             }
+            //else if (EnoughChocolates())
+            //    return "Your stock is already full!";
+            //else
+            //    return "You don't have enough employees yet...";
         }
     }
 }

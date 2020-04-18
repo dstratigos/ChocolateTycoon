@@ -19,19 +19,6 @@
     </div>
 </div>
 
-<div class="container container-fluid">
-    <div id="messageBox" class="row text-center">
-        <div id="errorBox" class="row text-danger hidden" style="padding: 0; margin: 0 5px">
-            <h3 class="glyphicon glyphicon-exclamation-sign"></h3>
-            <span id="errorText" style="padding-left: 10px;">@ViewBag.ErrorMessage</span>
-        </div>
-        <div id="infoBox" class="row text-warning hidden">
-            <h3 class="glyphicon glyphicon-info-sign"></h3>
-            <span id="infoText" style="padding-left: 10px;">@ViewBag.MainStorageInfo</span>
-        </div>
-    </div>
-</div>
-
 <table id="stores" class="table">
     <thead>
         <tr style="background-color: darkslategray">
@@ -155,16 +142,13 @@
                 });
             });
 
-            let errorMessage = $("#errorText").text();
-            let infoMessage = $("#infoText").text();
+            $("#sell").on("click", function () {
+                $("#sellMessage").removeClass("hidden");
+            });
 
-            if (errorMessage.length > 0) {
-                $("#errorBox").toggleClass("hidden").hide().slideDown();
-            };
-
-            if (infoMessage.length > 0) {
-                $("#infoBox").toggleClass("hidden").hide().slideDown();
-            };
+            $("#restock").on("click", function () {
+                $("#stockMessage").removeClass("hidden");
+            });
         });
     </script>
 }

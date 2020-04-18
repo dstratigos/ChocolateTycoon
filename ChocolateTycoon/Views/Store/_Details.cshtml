@@ -1,6 +1,36 @@
-﻿@model ChocolateTycoon.Models.Store
+﻿@model ChocolateTycoon.ViewModels.StoreFormViewModel
 
 <br/>
+
+<p class="text-danger hidden" id="sellMessage" style="text-align: center">
+    @if (!Model.Store.AdequateChocolate)
+    {
+        @Model.SellErrorStock;
+    }
+    else if (!Model.Store.AdequateStaff)
+    {
+        @Model.ErrorEmployees;
+    }
+    else
+    {
+        @Model.Success;
+    }
+</p>
+
+<p class="text-danger hidden" id="stockMessage" style="text-align: center">
+    @if (Model.Store.AdequateChocolate)
+    {
+        @Model.StockError;
+    }
+    else if (!Model.Store.AdequateStaff)
+    {
+        @Model.ErrorEmployees;
+    }
+    else
+    {
+        @Model.Success;
+    }
+</p>
 
 <tr>
     <th style="text-align: center">Restock</th>
@@ -12,21 +42,23 @@
 </tr>
 
 <tr>
-    <td>
-        @Html.ActionLink("Restock", "Restock", new { id = Model.ID }, new { @class = "btn btn-link text-success", @style = "padding: 0", @onclick = "dataReload();" })
+    <td id="restock">
+        @Html.ActionLink("Restock", "Restock", new { id = Model.Store.ID },
+       new { @class = "btn btn-link text-success", @style = "padding: 0"/*, @onclick = "dataReload();" */})
     </td>
-    <td>@Model.Stock</td>
-    <td>
-        @Html.ActionLink("Sell Chocolates", "SellChocolates", new { id = Model.ID }, new { @class = "btn btn-link text-success", @style = "padding: 0", @onclick = "dataReload();" })
-        <p class="text-danger">@ViewBag.SellingProcess</p>
+    <td>@Model.Store.Stock</td>
+    <td id="sell">
+        @Html.ActionLink("Sell Chocolates", "SellChocolates", new { id = Model.Store.ID },
+       new { @class = "btn btn-link text-success", @style = "padding: 0"/*, @onclick = "dataReload();"*/})
+        @*<p class="text-danger">@ViewBag.SellingProcess</p>*@
     </td>
     @{
-        Html.RenderAction("StoreEmployees", new { id = Model.ID });
+        Html.RenderAction("StoreEmployees", new { id = Model.Store.ID });
     }
 </tr>
 
-<script>
+@*<script>
     function dataReload() {
         $('#subTable').load("#subTable");
     }
-</script>
+</script>*@

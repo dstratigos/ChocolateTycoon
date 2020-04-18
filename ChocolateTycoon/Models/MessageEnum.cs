@@ -30,11 +30,17 @@ namespace ChocolateTycoon.Models
         [Display(Name = "Replenish the Storage Unit first!")]
         RawMaterialsError,
 
+        [Display(Name = "Not enough chocolate stock. Please restock!")]
+        SellStockError,
+
         // info messages
         [Display(Name = "chocolates stored")]
         ProducedInfo,
 
         [Display(Name = "chocolates sent to charity!")]
-        CharityInfo
+        CharityInfo,
+
+        [Display(Name = "Done!")]
+        SellInfo,
     }
 }
