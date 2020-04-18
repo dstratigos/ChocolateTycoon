@@ -166,7 +166,7 @@ namespace ChocolateTycoon.Controllers
         {
             var factory = unitOfWork.Factories.GetFactoryMinusSupplier(id);
 
-            var mainStorage = unitOfWork.MainStorage.GetMainStorage();
+            var mainStorage = unitOfWork.MainStorages.GetMainStorage();
 
             if (factory.StorageUnit == null)
                 Message.SetErrorMessage(MessageEnum.StorageUnitNullError);

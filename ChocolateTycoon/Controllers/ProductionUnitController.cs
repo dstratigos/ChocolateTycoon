@@ -7,23 +7,27 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using ChocolateTycoon.Data;
+using ChocolateTycoon.Persistence;
 
 namespace ChocolateTycoon.Controllers
 {
     public class ProductionUnitController : Controller
     {
-        ApplicationDbContext db;
+        private readonly ApplicationDbContext db;
+        private readonly UnitOfWork unitOfWork;
+
 
         public ProductionUnitController()
         {
             db = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(db);
         }
 
         // POST: ProductionUnit/Create
         [HttpPost, ActionName("Create")]
         public ActionResult CreatePost(Factory factory)
         {
-            var vault = db.Safes.SingleOrDefault(s => s.ID == 1);
+            var vault = unitOfWork.Safes.GetSafe();
 
             if (!vault.MoneySuffice(ProductionUnit.CreateCost))
             {
@@ -33,9 +37,9 @@ namespace ChocolateTycoon.Controllers
 
             ProductionUnit productionUnit = new ProductionUnit { FactoryID = factory.ID };
 
-            db.ProductionUnits.Add(productionUnit);
+            unitOfWork.ProductionUnits.Add(productionUnit);
             vault.WithdrawAmount(ProductionUnit.CreateCost);
-            db.SaveChanges();
+            unitOfWork.Complete();
 
             return RedirectToAction("Index", "Factory", new { id = factory.ID });
         }
