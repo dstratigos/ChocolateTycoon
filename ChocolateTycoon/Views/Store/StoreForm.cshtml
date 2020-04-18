@@ -10,17 +10,17 @@
     @Html.AntiForgeryToken()
 
     <div class="form-group">
-        @Html.LabelFor(v => v.Store.Name, new { @class = "control-label" })
-        @Html.TextBoxFor(v => v.Store.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(v => v.Store.Name, "", new { @class = "text-danger" })
+        @Html.LabelFor(v => v.Name, new { @class = "control-label" })
+        @Html.TextBoxFor(v => v.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(v => v.Name, "", new { @class = "text-danger" })
     </div>
 
-    @Html.HiddenFor(v => v.Store.ID)
+    @Html.HiddenFor(v => v.ID)
 
     <table>
         <tr>
             <td>
-                @if (Model.Store.ID != 0)
+                @if (Model.ID != 0)
                 {
                     <button type="submit" class="btn btn-info btn-sm" style="margin-right: 15px">
                         Save changes

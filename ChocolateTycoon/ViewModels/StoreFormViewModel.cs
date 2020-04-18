@@ -12,11 +12,22 @@ namespace ChocolateTycoon.ViewModels
 {
     public class StoreFormViewModel
     {
-        public Store Store { get; set; }
-        public string Success { get => "Done!"; }
-        public string ErrorEmployees { get => "Not enough employees.."; }
-        public string SellErrorStock { get => "Not enough stock. Please restock!"; }
-        public string StockError { get => "Already full stock."; }
+        public int ID { get; set; }
+
+        [Required]
+        [StringLength(100, MinimumLength = 3, ErrorMessage = "Store Name should contain at least 3 charactes.")]
+        public string Name { get; set; }
+
+        public byte Level { get; private set; }
+
+        public int MainStorageID { get; set; } = 1;
+
+        public int SafeID { get; set; } = 1;
+
+        public MainStorage MainStorage { get; set; }
+
+        public Safe Safe { get; set; }
+
         public string Heading { get; set; }
 
         public string Action
@@ -27,7 +38,7 @@ namespace ChocolateTycoon.ViewModels
 
                 Expression<Func<StoreController, ActionResult>> create = (c => c.Create(this));
 
-                var action = (Store.ID != 0) ? update : create;
+                var action = (ID != 0) ? update : create;
                 var actionName = (action.Body as MethodCallExpression).Method.Name;
 
                 return actionName;
@@ -36,7 +47,11 @@ namespace ChocolateTycoon.ViewModels
 
         public StoreFormViewModel(Store store)
         {
-            Store = store;
+            ID = store.ID;
+            Name = store.Name;
+            Level = store.Level;
+            MainStorageID = store.MainStorageID;
+            SafeID = store.SafeID;
         }
 
         public StoreFormViewModel()

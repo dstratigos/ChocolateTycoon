@@ -34,17 +34,11 @@ namespace ChocolateTycoon.Controllers
 
             var store = unitOfWork.Stores.GetStoreWithAllDetails(id);
 
-            //var viewModel = new StoreFormViewModel(store)
-            //{
-            //    Message = store.Sell(chocolates)
-            //};
-
-            //error message
-            //info message
+            store.Sell(chocolates);
 
             unitOfWork.Complete();
 
-            return RedirectToAction("Index", new { id });
+            return View("Index", new { id });
         }
 
         public ActionResult Restock(int id)
@@ -57,7 +51,7 @@ namespace ChocolateTycoon.Controllers
 
             unitOfWork.Complete();
 
-            return RedirectToAction("Index", new { id });
+            return View("Index", new { id });
         }
 
         // GET: Store
@@ -78,11 +72,9 @@ namespace ChocolateTycoon.Controllers
             if (store == null)
                 return HttpNotFound();
 
-            var viewModel = new StoreFormViewModel(store);
-
             //ViewBag.SellingProcess = TempData["Message"];
 
-            return PartialView("_Details", viewModel);
+            return PartialView("_Details", store);
         }
 
         public ActionResult Create()
@@ -129,7 +121,7 @@ namespace ChocolateTycoon.Controllers
 
             var store = new Store
             {
-                Name = viewModel.Store.Name,
+                Name = viewModel.Name,
                 Safe = stores.Select(s => s.Safe).FirstOrDefault()
             };
 
@@ -152,8 +144,8 @@ namespace ChocolateTycoon.Controllers
                 return View("StoreForm", viewModel);
             }
 
-            var store = unitOfWork.Stores.GetStore(viewModel.Store.ID);
-            store.Name = viewModel.Store.Name;
+            var store = unitOfWork.Stores.GetStore(viewModel.ID);
+            store.Name = viewModel.Name;
 
             unitOfWork.Complete();
 

@@ -1,36 +1,21 @@
-﻿@model ChocolateTycoon.ViewModels.StoreFormViewModel
+﻿@model ChocolateTycoon.Models.Store
 
-<br/>
+<br />
 
-<p class="text-danger hidden" id="sellMessage" style="text-align: center">
-    @if (!Model.Store.AdequateChocolate)
+<div class="alert hidden" id="sellMessage">
+    @if (!Model.AdequateStaff)
     {
-        @Model.SellErrorStock;
+        <p class="text-danger">Not enough employees.</p>
     }
-    else if (!Model.Store.AdequateStaff)
+    else if (!Model.AdequateChocolate)
     {
-        @Model.ErrorEmployees;
+        <p class="text-danger">Not enough stock.</p>
     }
     else
     {
-        @Model.Success;
+        <p class="text-success">Done!</p>
     }
-</p>
-
-<p class="text-danger hidden" id="stockMessage" style="text-align: center">
-    @if (Model.Store.AdequateChocolate)
-    {
-        @Model.StockError;
-    }
-    else if (!Model.Store.AdequateStaff)
-    {
-        @Model.ErrorEmployees;
-    }
-    else
-    {
-        @Model.Success;
-    }
-</p>
+</div>
 
 <tr>
     <th style="text-align: center">Restock</th>
@@ -43,22 +28,22 @@
 
 <tr>
     <td id="restock">
-        @Html.ActionLink("Restock", "Restock", new { id = Model.Store.ID },
+        @Html.ActionLink("Restock", "Restock", new { id = Model.ID },
        new { @class = "btn btn-link text-success", @style = "padding: 0"/*, @onclick = "dataReload();" */})
     </td>
-    <td>@Model.Store.Stock</td>
+    <td>@Model.Stock</td>
     <td id="sell">
-        @Html.ActionLink("Sell Chocolates", "SellChocolates", new { id = Model.Store.ID },
+        @Html.ActionLink("Sell Chocolates", "SellChocolates", new { id = Model.ID },
        new { @class = "btn btn-link text-success", @style = "padding: 0"/*, @onclick = "dataReload();"*/})
         @*<p class="text-danger">@ViewBag.SellingProcess</p>*@
     </td>
     @{
-        Html.RenderAction("StoreEmployees", new { id = Model.Store.ID });
+        Html.RenderAction("StoreEmployees", new { id = Model.ID });
     }
 </tr>
 
 @*<script>
-    function dataReload() {
-        $('#subTable').load("#subTable");
-    }
-</script>*@
+        function dataReload() {
+            $('#subTable').load("#subTable");
+        }
+    </script>*@
