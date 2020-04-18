@@ -29,6 +29,13 @@ namespace ChocolateTycoon.Repositories
                 .Include(f => f.StorageUnit);
         }
 
+        public IEnumerable<Factory> GetFactoriesWithStorageUnitAndSupplier()
+        {
+            return _db.Factories
+                .Include(f => f.StorageUnit)
+                .Include(f => f.Supplier);
+        }
+
         public Factory GetFactoryAllInclusive(int id)
         {
             return _db.Factories

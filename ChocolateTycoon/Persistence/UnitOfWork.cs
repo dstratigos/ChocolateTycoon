@@ -19,6 +19,8 @@ namespace ChocolateTycoon.Persistence
 
         public ProductionUnitRepository ProductionUnits { get; private set; }
 
+        public StorageUnitRepository StorageUnits { get; private set; }
+
         public ChocolateRepository Chocolates { get; set; }
 
         public SafeRepository Safes { get; set; }
@@ -32,6 +34,7 @@ namespace ChocolateTycoon.Persistence
             Factories = new FactoryRepository(db);
             MainStorages = new MainStorageRepository(db);
             ProductionUnits = new ProductionUnitRepository(db);
+            StorageUnits = new StorageUnitRepository(db);
             Chocolates = new ChocolateRepository(db);
             Safes = new SafeRepository(db);
             Employees = new EmployeeRepository(db);
