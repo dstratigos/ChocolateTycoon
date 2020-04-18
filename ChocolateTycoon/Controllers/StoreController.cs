@@ -41,7 +41,7 @@ namespace ChocolateTycoon.Controllers
             return RedirectToAction("Index", new { id });
         }
 
-        public ActionResult Restock(int id)
+        public ActionResult Restock(int id, bool restocked = false)
         {
             var chocolates = unitOfWork.Chocolates.GetChocolatesOfMainStorage().ToList();
 
@@ -51,7 +51,7 @@ namespace ChocolateTycoon.Controllers
 
             unitOfWork.Complete();
 
-            return RedirectToAction("Index", new { id });
+            return RedirectToAction("Index", new { id, restocked = true });
         }
 
         // GET: Store
@@ -67,7 +67,7 @@ namespace ChocolateTycoon.Controllers
 
         public ActionResult Details(int id)
         {
-            var store = unitOfWork.Stores.GetStoreWithChocolates(id);
+            var store = unitOfWork.Stores.GetStoreWithAllDetails(id);
 
             if (store == null)
                 return HttpNotFound();

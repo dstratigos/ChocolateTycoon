@@ -90,7 +90,7 @@ namespace ChocolateTycoon.Models
         {
             var count = Chocolates.Where(c => c.StoreId == ID && c.ChocolateStatusId == 3).Count();
 
-            if (count == _maxStorageCapacity)
+            if (count <= _maxStorageCapacity && count >= 1)
                 return true;
             else
                 return false;

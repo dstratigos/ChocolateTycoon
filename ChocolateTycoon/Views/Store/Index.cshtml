@@ -81,10 +81,13 @@
     </table>
 }
 
+
 @section scripts
 {
     <script>
         $(document).ready(function () {
+
+
 
             $(".js-delete-store").click(function (e) {
                 var link = $(e.target);
@@ -142,13 +145,16 @@
                 });
             });
 
-            $("#sell").on("click", function () {
-                $("#sellMessage").removeClass("hidden");
-            });
+            //$("#sell").on("click", function () {
+            //    $("#sellMessage").removeClass("hidden");
+            //});
 
-            $("#restock").on("click", function () {
-                $("#stockMessage").removeClass("hidden");
-            });
+            //$("#restock").on("click", function () {
+            //    $("#stockMessage").removeClass("hidden");
+            //});
+
+            restock();
+
         });
     </script>
 }

@@ -2,20 +2,55 @@
 
 <br />
 
-<div class="alert hidden" id="sellMessage">
-    @if (!Model.AdequateStaff)
-    {
-        <p class="text-danger">Not enough employees.</p>
-    }
-    else if (!Model.AdequateChocolate)
-    {
-        <p class="text-danger">Not enough stock.</p>
-    }
-    else
-    {
-        <p class="text-success">Done!</p>
-    }
+
+@if (!Model.AdequateStaff && !Model.AdequateChocolate)
+{
+
+    <div class="alert alert-warning" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Not enough employees!
+    </div>
+
+    <div class="alert alert-warning" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Not enough chocolate!
+    </div>
+
+}
+else if (!Model.AdequateStaff)
+{
+
+<div class="alert alert-warning" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    Not enough employees!
 </div>
+
+}
+else if (!Model.AdequateChocolate)
+{
+
+<div class="alert alert-warning" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    Not enough chocolate!
+</div>
+
+}
+else
+{
+
+<div class="alert alert-success hidden" role="alert" id="chocolateRestockSuccess">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Success:</span>
+    Chocolate restocked!
+</div>
+
+}
+
+
 
 <tr>
     <th style="text-align: center">Restock</th>
@@ -29,7 +64,7 @@
 <tr>
     <td id="restock">
         @Html.ActionLink("Restock", "Restock", new { id = Model.ID },
-       new { @class = "btn btn-link text-success", @style = "padding: 0"/*, @onclick = "dataReload();" */})
+       new { @class = "btn btn-link text-success", @style = "padding: 0"/*, @onclick = "restock()"*/})
     </td>
     <td>@Model.Stock</td>
     <td id="sell">
@@ -42,8 +77,13 @@
     }
 </tr>
 
-@*<script>
-        function dataReload() {
-            $('#subTable').load("#subTable");
-        }
-    </script>*@
+<script>
+    //function dataReload() {
+    //    $('#subTable').load("#subTable");
+    //}
+
+
+</script>
+
+
+
