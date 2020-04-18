@@ -38,7 +38,7 @@ namespace ChocolateTycoon.Controllers
 
             unitOfWork.Complete();
 
-            return View("Index", new { id });
+            return RedirectToAction("Index", new { id });
         }
 
         public ActionResult Restock(int id)
@@ -51,7 +51,7 @@ namespace ChocolateTycoon.Controllers
 
             unitOfWork.Complete();
 
-            return View("Index", new { id });
+            return RedirectToAction("Index", new { id });
         }
 
         // GET: Store
