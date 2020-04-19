@@ -26,7 +26,7 @@ namespace ChocolateTycoon.Models
 
         public int Stock { get => AvailableStock(); }
 
-        public bool AdequateStaff { get => EnoughPersonnel(); }
+        public bool AdequateStaff { get => EnoughPersonnel()/* ? "" : "Not enough employees"*/; }
 
         public bool AdequateChocolate { get => EnoughChocolates(); }
 
