@@ -28,7 +28,7 @@ namespace ChocolateTycoon.Controllers
             db.Dispose();
         }
 
-        public ActionResult SellChocolates(int id)
+        public ActionResult SellChocolates(int id, bool sold = false)
         {
             var chocolates = unitOfWork.Chocolates.GetChocolatesWithStatus(id).ToList();
 
@@ -38,7 +38,7 @@ namespace ChocolateTycoon.Controllers
 
             unitOfWork.Complete();
 
-            return RedirectToAction("Index", new { id });
+            return RedirectToAction("Index", new { id, sold = true });
         }
 
         public ActionResult Restock(int id, bool restocked = false)

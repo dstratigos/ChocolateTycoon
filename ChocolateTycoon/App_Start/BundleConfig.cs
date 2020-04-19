@@ -15,7 +15,7 @@ namespace ChocolateTycoon
                         "~/Scripts/datatables/jquery.datatables.js",
                         "~/Scripts/datatables/datatables.bootstrap.js",
                         "~/Scripts/toastr.js",
-                        "~/Scripts/applets/storeRestockMessages.js"));
+                        "~/Scripts/applets/storeActionObserver.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
