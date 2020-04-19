@@ -33,7 +33,7 @@ namespace ChocolateTycoon.Controllers
 
             db.SaveChanges();
 
-            return RedirectToAction("Index", "Factory");
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult CheatWithdraw()
@@ -44,7 +44,7 @@ namespace ChocolateTycoon.Controllers
 
             db.SaveChanges();
 
-            return RedirectToAction("Index", "Factory");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
