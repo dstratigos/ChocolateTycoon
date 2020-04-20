@@ -30,9 +30,6 @@ namespace ChocolateTycoon.App_Start
 
             CreateMap<Supplier, SupplierDto>();
             CreateMap<SupplierDto, Supplier>();
-
-            CreateMap<Employee, EmployeeFormViewModel>();
-            CreateMap<EmployeeFormViewModel, Employee>();
         }
     }
 }
