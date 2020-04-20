@@ -70,6 +70,15 @@ namespace ChocolateTycoon.Models
                 default:
                     return 0;
             }
-        }        
+        }
+
+        public bool NameExists(IEnumerable<Employee> employees)
+        {
+            foreach (var employee in employees)
+                if (FullName == employee.FullName)
+                    return true;
+
+            return false;
+        }
     }
 }

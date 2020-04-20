@@ -23,6 +23,11 @@ namespace ChocolateTycoon.Repositories
                 .Single(s => s.ID == id);
         }
 
+        public IEnumerable<Store> GetStores()
+        {
+            return _db.Stores;
+        }
+
         public Store GetStoreWithAllDetails(int id)
         {
             return _db.Stores
