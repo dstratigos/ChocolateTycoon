@@ -44,7 +44,7 @@ namespace ChocolateTycoon.Controllers
         public ActionResult Restock(int id, bool restocked = false)
         {
 
-            var chocolates = unitOfWork.Chocolates.GetMainStorageChocolates().ToList();
+            var chocolates = unitOfWork.Chocolates.GetMainStorageChocolates().Take(100).ToList();
 
             var store = unitOfWork.Stores.GetStoreWithAllDetails(id);
 

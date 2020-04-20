@@ -137,10 +137,8 @@ namespace ChocolateTycoon.Models
         {
             if (AdequateStaff && !AdequateChocolate && !CompletedDailySales)
             {
-                for (int i = 0; i < _maxStorageCapacity; i++)
-                {
-                    chocolates[i].ToStore(ID);
-                }
+                foreach (var chocolate in chocolates)
+                    chocolate.ToStore(ID);
 
                 Pricing(chocolates);
             }
