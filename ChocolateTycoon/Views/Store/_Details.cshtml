@@ -2,60 +2,38 @@
 
 <br />
 
-
-@if (!Model.AdequateStaff && !Model.AdequateChocolate)
+@if (!Model.AdequateStaff)
 {
-
     <div class="alert alert-warning" role="alert">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
         <span class="sr-only">Error:</span>
-        Not enough employees!
+        Not enough employees. Restock and Sell are disabled!
     </div>
-
-    <div class="alert alert-warning" role="alert">
-        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-        <span class="sr-only">Error:</span>
-        Not enough chocolate!
-    </div>
-
 }
-else if (!Model.AdequateStaff)
+else if (!Model.AdequateChocolate && Model.CompletedDailySales)
 {
-
-<div class="alert alert-warning" role="alert">
-    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-    <span class="sr-only">Error:</span>
-    Not enough employees!
-</div>
-
+    <div class="alert alert-success hidden" role="alert" id="sellSuccess">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Success:</span>
+        Store's daily sales completed! New Deposit @Model.Safe.Deposit
+    </div>
 }
 else if (!Model.AdequateChocolate)
 {
-
-<div class="alert alert-warning" role="alert">
-    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-    <span class="sr-only">Error:</span>
-    Not enough chocolate!
-</div>
-
+    <div class="alert alert-warning" role="alert">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Not enough chocolate. Please Restock in order to Sell!
+    </div>
 }
 else
 {
-
-<div class="alert alert-success hidden" role="alert" id="chocolateRestockSuccess">
-    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-    <span class="sr-only">Success:</span>
-    Chocolate restocked!
-</div>
-
+    <div class="alert alert-success hidden" role="alert" id="chocolateRestockSuccess">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Success:</span>
+        Chocolate restocked!
+    </div>
 }
-
-<div class="alert alert-success hidden" role="alert" id="sellSuccess">
-    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-    <span class="sr-only">Success:</span>
-    Chocolate sold!
-    <!-- TODO: Mention also amount earned. -->
-</div>
 
 <tr>
     <th style="text-align: center">Restock</th>

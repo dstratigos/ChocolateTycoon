@@ -51,12 +51,6 @@ namespace ChocolateTycoon.Models
         public Store Store { get; set; }
         public Factory Factory { get; set; }
 
-
-        public Employee()
-        {
-            Salary = SetSalary(this);
-        }
-
         public decimal SetSalary(Employee employee)
         {
             switch ((int)employee.Position)
@@ -76,6 +70,15 @@ namespace ChocolateTycoon.Models
                 default:
                     return 0;
             }
-        }        
+        }
+
+        public bool NameExists(IEnumerable<Employee> employees)
+        {
+            foreach (var employee in employees)
+                if (FullName == employee.FullName)
+                    return true;
+
+            return false;
+        }
     }
 }

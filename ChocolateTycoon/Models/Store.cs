@@ -26,9 +26,11 @@ namespace ChocolateTycoon.Models
 
         public int Stock { get => AvailableStock(); }
 
-        public bool AdequateStaff { get => EnoughPersonnel(); }
+        public bool AdequateStaff { get => EnoughPersonnel()/* ? "" : "Not enough employees"*/; }
 
         public bool AdequateChocolate { get => EnoughChocolates(); }
+
+        public bool SaleCompleted { get; }
 
         public int MainStorageID { get; set; } = 1;
 
@@ -90,7 +92,7 @@ namespace ChocolateTycoon.Models
         {
             var count = Chocolates.Where(c => c.StoreId == ID && c.ChocolateStatusId == 3).Count();
 
-            if (count <= _maxStorageCapacity && count >= 1)
+            if (count >= 1 && count <= _maxStorageCapacity )
                 return true;
             else
                 return false;
@@ -105,15 +107,9 @@ namespace ChocolateTycoon.Models
                     Safe.Deposit = Earnings(chocolates);
                     chocolate.MarkAsSold();
                 }
+
                 CompletedDailySales = true;
-                //return $"Done! New Safe Deposit {Safe.Deposit}.";
             }
-            //else if (!EnoughChocolates())
-            //    return "Not enough chocolate stock. Please restock";
-            //else if (!AdequateStaff)
-            //    return "Not enough employees.";
-            //else
-            //    return "Something went wrong.";
         }
 
         private decimal Earnings(List<Chocolate> chocolates)
@@ -152,13 +148,7 @@ namespace ChocolateTycoon.Models
                 }
 
                 Pricing(chocolates);
-
-                //return "Restock completed";
             }
-            //else if (EnoughChocolates())
-            //    return "Your stock is already full!";
-            //else
-            //    return "You don't have enough employees yet...";
         }
     }
 }

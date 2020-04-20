@@ -8,16 +8,20 @@ using System.Data.Entity;
 using ChocolateTycoon.ViewModels;
 using System.Net;
 using ChocolateTycoon.Data;
+using AutoMapper;
+using ChocolateTycoon.Persistence;
 
 namespace ChocolateTycoon.Controllers
 {
     public class EmployeeController : Controller
     {
-        private ApplicationDbContext db;
+        private readonly ApplicationDbContext db;
+        private readonly UnitOfWork unitOfWork;
 
         public EmployeeController()
         {
             db = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(db);
         }
 
         protected override void Dispose(bool disposing)
@@ -29,11 +33,11 @@ namespace ChocolateTycoon.Controllers
         // GET: Employee
         public ActionResult Index()
         {
-            var employees = db.Employees
-                .Include(e => e.Factory)
-                .Include(e => e.Store);
+            var employees = unitOfWork.Employees
+                .GetEmployeesWithStoresAndFactories()
+                .ToList();
 
-            return View(employees.ToList());
+            return View(employees);
         }
 
         // GET: Employee/Create
@@ -41,8 +45,8 @@ namespace ChocolateTycoon.Controllers
         {
             var viewModel = new EmployeeFormViewModel
             {
-                Factories = db.Factories.ToList(),
-                Stores = db.Stores.ToList()
+                Factories = unitOfWork.Factories.GetFactories().ToList(),
+                Stores = unitOfWork.Stores.GetStores().ToList()
             };
 
             return View("EmployeeForm", viewModel);
@@ -51,9 +55,9 @@ namespace ChocolateTycoon.Controllers
         // GET: Employee/Edit
         public ActionResult Edit(int id)
         {
-            var factories = db.Factories.ToList();
-            var stores = db.Stores.ToList();
-            var employee = db.Employees.SingleOrDefault(e => e.Id == id);
+            var factories = unitOfWork.Factories.GetFactories().ToList();
+            var stores = unitOfWork.Stores.GetStores().ToList();
+            var employee = unitOfWork.Employees.GetEmployee(id);
 
             if (employee == null)
                 return HttpNotFound();
@@ -68,24 +72,15 @@ namespace ChocolateTycoon.Controllers
             return View("EmployeeForm", viewModel);
         }
 
-        // POST: Employee/Save/Id?
+        // POST: Employee/Save/Id
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(EmployeeFormViewModel viewModel)
         {
-            var employees = db.Employees.ToList();
+            var employees = unitOfWork.Employees.GetEmployees().ToList();
 
             if (viewModel.Employee.Id == 0)
             {
-                foreach (var item in employees)
-                {
-                    if (item.FullName == viewModel.Employee.FullName)
-                    {
-                        ModelState.AddModelError("Name", "This name already exists!");
-                        break;
-                    }
-                }
-
                 var newEmployee = new Employee
                 {
                     FirstName = viewModel.Employee.FirstName,
@@ -96,11 +91,14 @@ namespace ChocolateTycoon.Controllers
                     StoreID = viewModel.Employee.StoreID
                 };
 
-                db.Employees.Add(newEmployee);
+                if (newEmployee.NameExists(employees))
+                    ModelState.AddModelError("Name", "This name already exists!");
+                else
+                    unitOfWork.Employees.Add(newEmployee);
             }
             else
             {
-                var employeeDb = db.Employees.SingleOrDefault(e => e.Id == viewModel.Employee.Id);
+                var employeeDb = unitOfWork.Employees.GetEmployee(viewModel.Employee.Id);
 
                 employeeDb.FirstName = viewModel.Employee.FirstName;
                 employeeDb.LastName = viewModel.Employee.LastName;
@@ -113,7 +111,7 @@ namespace ChocolateTycoon.Controllers
             if (!ModelState.IsValid)
                 return View("EmployeeForm");
 
-            db.SaveChanges();
+            unitOfWork.Complete();
 
             return RedirectToAction("Index");
         }
@@ -123,8 +121,7 @@ namespace ChocolateTycoon.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
         {
-            var employee = db.Employees
-                .SingleOrDefault(e => e.Id == id);
+            var employee = unitOfWork.Employees.GetEmployee(id);
 
             if (employee == null)
                 return HttpNotFound();
@@ -132,9 +129,9 @@ namespace ChocolateTycoon.Controllers
             employee.FactoryID = null;
             employee.StoreID = null;
 
-            db.Employees.Remove(employee);
+            unitOfWork.Employees.Remove(employee);
 
-            db.SaveChanges();
+            unitOfWork.Complete();
 
             return RedirectToAction("Index");
         }
