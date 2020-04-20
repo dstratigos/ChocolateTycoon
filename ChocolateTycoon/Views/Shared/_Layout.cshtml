@@ -10,61 +10,65 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
-                @{Html.RenderAction("Vault", "Safe");}
-
-
-
-
-
+                <!-- Add an id and customize it's look. -->
+                @Html.ActionLink("Chocolate Tycoon", "Index", "Home", new { area = "" }, new { @class = "navbar-brand game-name" })
             </div>
-            <div class="navbar-collapse collapse">
+
+
+
+            <div class="collapse navbar-collapse" id="main-navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="nav navbar-btn">
-                        @Html.ActionLink("Main", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                    </li>
-                    <li class="nav navbar-btn dropdown">
-                        <a href="#" class="dropdown-toggle"
-                           data-toggle="dropdown" role="button"
-                           aria-haspopup="true"
-                           aria-expanded="false">
-                            Start
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
+
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Menu<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Stores", "Index", "Store")</li>
                             <li>@Html.ActionLink("Factories", "Index", "Factory")</li>
                             <li>@Html.ActionLink("Suppliers", "Index", "Supplier")</li>
                             <li>@Html.ActionLink("Employees", "Index", "Employee")</li>
                             <li>@Html.ActionLink("Main Storage", "Index", "MainStorage")</li>
-
-
                         </ul>
                     </li>
 
 
+                    <li>
+                        @{Html.RenderAction("Vault", "Safe");}
+                    </li>
 
-                    <span class="navbar-brand navbar-btn" style="padding: 8px 30px; color: gold">
-                        @Html.ActionLink("Call it a Day", "EndTurn", "Turn", null, new { @id = "endTurnBtn", @class = "btn btn-danger text-center" })
-                    </span>
+
+
 
 
                 </ul>
 
-                <button type="button" class="navbar-right navbar-btn btn-circle btn-lg" id="helpButton">
-                    <i class="fa fa-question"></i>
-                </button>
+                <div class="nav navbar-collapse">
+
+                    @Html.ActionLink("END DAY!", "EndTurn", "Turn", null, new { @id = "endTurnBtn", @class = "btn btn-danger text-center" })
 
 
-                @Html.Partial("_LoginPartial")
+                    <span class="navbar-right" id="helpButton">
+                        <i class="fa fa-question"></i>
+                    </span>
+
+                    @Html.Partial("_LoginPartial")
+                </div>
+
+
+            </div>
+
 
 
 
@@ -72,14 +76,15 @@
 
 
             </div>
-        </div>
+    </nav>
 
 
-    </div>
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
+
+        <!-- Make it stick to the bot. -->
+        <footer class="footer">
             <p>&copy; @DateTime.Now.Year - PPGs</p>
         </footer>
     </div>

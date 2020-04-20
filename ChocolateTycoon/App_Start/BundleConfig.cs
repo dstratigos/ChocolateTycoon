@@ -29,7 +29,7 @@ namespace ChocolateTycoon
             //          "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrapDarkly.css",
+                      "~/Content/bootstrap-chocolate-tycoon.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/toastr.css"));

@@ -100,16 +100,15 @@ namespace ChocolateTycoon.Controllers
 
             if (factory.ID == 0)
             {
-                foreach (var f in factories)
-                {
-                    if (f.Name == factory.Name)
-                    {
-                        ModelState.AddModelError("Name", "This name already exists!");
-                        break;
-                    }
-                }
-
                 var newFactory = new Factory { Name = factory.Name };
+                newFactory.ID = newFactory.NameExists(factories);
+
+                if (newFactory.ID != 0)
+                {
+                    var viewModel = new FactoryViewModel { Factory = newFactory };
+                    ViewBag.Message = "This Factory already exists! You are now in Edit Mode!";
+                    return View("FactoryForm", viewModel);
+                }
 
                 unitOfWork.Factories.Add(newFactory);
                 vault.WithdrawAmount(Factory.CreateCost);
@@ -119,9 +118,6 @@ namespace ChocolateTycoon.Controllers
                 var factoryDb = unitOfWork.Factories.GetFactory(factory.ID);
                 factoryDb.Name = factory.Name;
             }
-
-            if (!ModelState.IsValid)
-                return View("FactoryForm");
 
             unitOfWork.Complete();
 

@@ -72,13 +72,13 @@ namespace ChocolateTycoon.Models
             }
         }
 
-        public bool NameExists(IEnumerable<Employee> employees)
+        public int NameExists(IEnumerable<Employee> employees)
         {
             foreach (var employee in employees)
                 if (FullName == employee.FullName)
-                    return true;
+                    return employee.Id;
 
-            return false;
+            return 0;
         }
     }
 }

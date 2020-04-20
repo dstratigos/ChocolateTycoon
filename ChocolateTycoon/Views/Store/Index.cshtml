@@ -9,19 +9,19 @@
             Stores
             <span type="button" class="btn btn-link btn-lg" style="padding-left: 15px">
                 @Html.ActionLink(" ", "Create", null, new
-            {
+           {
                @id = "create",
                @class = "glyphicon glyphicon-plus",
                @style = "text-decoration: none"
-            })
+           })
             </span>
         </h2>
     </div>
 </div>
 
-<table id="stores" class="table">
+<table id="stores" class="table table-bordered table-hover">
     <thead>
-        <tr style="background-color: darkslategray">
+        <tr @*style="background-color: lightgray; color: black;"*@>
             <th>Store Name</th>
             <th>Level</th>
             <th colspan="3"></th>
@@ -37,7 +37,7 @@
                 selected = "dimgrey";
             }
 
-            <tr style="background-color: @selected">
+            <tr @*style="background-color: @selected"*@>
                 <td>@store.Name</td>
                 <td>@store.Level</td>
                 <td style="text-align: right">
@@ -63,8 +63,8 @@
 
 @if (ViewBag.SelectedId != null)
 {
-    <table class="table table-bordered text-center">
-        <tr style="background-color: darkslategrey">
+    <table class="table table-bordered text-center table-hover">
+        <tr @*style="background-color: darkslategrey"*@>
             <th colspan="3" style="text-align: center">Chocolates</th>
             <th colspan="3" style="text-align: center">Employees</th>
         </tr>
