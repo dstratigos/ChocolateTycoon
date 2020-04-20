@@ -4,6 +4,14 @@
     url = url.replace("?", ''); // remove the ? in the url link.
     console.log(url);
 
+    if ($('#salesForTodayCompleted').length) 
+    {
+        $("#restockButton").addClass("disabled");
+        $("#sellButton").addClass("disabled");
+
+        $("#salesForTodayCompleted").removeClass("hidden");
+    }
+
     if (url === "restocked=True") {
         $("#chocolateRestockSuccess").removeClass("hidden");
         console.log("Restock function success.")
