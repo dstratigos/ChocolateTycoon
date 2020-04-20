@@ -101,23 +101,23 @@ namespace ChocolateTycoon.Controllers
             if (factory.ID == 0)
             {
                 var newFactory = new Factory { Name = factory.Name };
+                newFactory.ID = newFactory.NameExists(factories);
 
-                if (newFactory.NameExists(factories))
-                    ModelState.AddModelError("Name", "This name already exists!");
-                else
+                if (newFactory.ID != 0)
                 {
-                    unitOfWork.Factories.Add(newFactory);
-                    vault.WithdrawAmount(Factory.CreateCost);
+                    var viewModel = new FactoryViewModel { Factory = newFactory };
+                    ViewBag.Message = "This Factory already exists! You are now in Edit Mode!";
+                    return View("FactoryForm", viewModel);
                 }
+
+                unitOfWork.Factories.Add(newFactory);
+                vault.WithdrawAmount(Factory.CreateCost);
             }
             else
             {
                 var factoryDb = unitOfWork.Factories.GetFactory(factory.ID);
                 factoryDb.Name = factory.Name;
             }
-
-            if (!ModelState.IsValid)
-                return View("FactoryForm");
 
             unitOfWork.Complete();
 

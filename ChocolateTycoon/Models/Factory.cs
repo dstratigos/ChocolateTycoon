@@ -32,13 +32,13 @@ namespace ChocolateTycoon.Models
             Employees = new List<Employee>();
         }
 
-        public bool NameExists(IEnumerable<Factory> factories)
+        public int NameExists(IEnumerable<Factory> factories)
         {
             foreach (var factory in factories)
                 if (Name == factory.Name)
-                    return true;
+                    return factory.ID;
 
-            return false;
+            return 0;
         }
 
         // starts the production sequence and sets the appropraite messages

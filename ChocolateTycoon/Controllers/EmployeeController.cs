@@ -91,10 +91,18 @@ namespace ChocolateTycoon.Controllers
                     StoreID = viewModel.Employee.StoreID
                 };
 
-                if (newEmployee.NameExists(employees))
-                    ModelState.AddModelError("Name", "This name already exists!");
-                else
-                    unitOfWork.Employees.Add(newEmployee);
+                newEmployee.Id = newEmployee.NameExists(employees);
+
+                if (newEmployee.Id != 0)
+                {
+                    viewModel.Employee = newEmployee;
+                    viewModel.Factories = unitOfWork.Factories.GetFactories().ToList();
+                    viewModel.Stores = unitOfWork.Stores.GetStores().ToList();
+                    ViewBag.Message = "This employee already exists! You are now in Edit Mode!";
+                    return View("EmployeeForm", viewModel);
+                }
+
+                unitOfWork.Employees.Add(newEmployee);
             }
             else
             {
@@ -107,9 +115,6 @@ namespace ChocolateTycoon.Controllers
                 employeeDb.FactoryID = viewModel.Employee.FactoryID;
                 employeeDb.StoreID = viewModel.Employee.StoreID;
             }
-
-            if (!ModelState.IsValid)
-                return View("EmployeeForm");
 
             unitOfWork.Complete();
 
