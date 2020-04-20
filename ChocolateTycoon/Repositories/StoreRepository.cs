@@ -38,18 +38,20 @@ namespace ChocolateTycoon.Repositories
                 .Where(s => s.ID == id).SingleOrDefault();
         }
 
-        public IEnumerable<Store> GetStoresWithSafe()
+        public Store GetStoreWithSafe(int id)
         {
             return _db.Stores
-                .Include(s => s.Safe);
+                .Include(s => s.Safe)
+                .Where(s => s.ID == id)
+                .SingleOrDefault();
         }
 
-        public Store GetStoreWithChocolates(int id)
-        {
-            return _db.Stores
-                .Include(s => s.Chocolates)
-                .SingleOrDefault(s => s.ID == id);
-        }
+        //public Store GetStoreWithChocolates(int id)
+        //{
+        //    return _db.Stores
+        //        .Include(s => s.Chocolates)
+        //        .SingleOrDefault(s => s.ID == id);
+        //}
 
         public void Add(Store store)
         {

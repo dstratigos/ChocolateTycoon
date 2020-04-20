@@ -18,20 +18,12 @@ else if (!Model.AdequateChocolate && Model.CompletedDailySales)
         Store's daily sales completed! New Deposit @Model.Safe.Deposit
     </div>
 }
-else if (!Model.AdequateChocolate)
+else
 {
     <div class="alert alert-warning" role="alert">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
         <span class="sr-only">Error:</span>
         Not enough chocolate. Please Restock in order to Sell!
-    </div>
-}
-else
-{
-    <div class="alert alert-success hidden" role="alert" id="chocolateRestockSuccess">
-        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-        <span class="sr-only">Success:</span>
-        Chocolate restocked!
     </div>
 }
 
@@ -53,7 +45,6 @@ else
     <td id="sell">
         @Html.ActionLink("Sell Chocolates", "SellChocolates", new { id = Model.ID },
        new { @class = "btn btn-link text-success", @style = "padding: 0"/*, @onclick = "dataReload();"*/})
-        @*<p class="text-danger">@ViewBag.SellingProcess</p>*@
     </td>
     @{
         Html.RenderAction("StoreEmployees", new { id = Model.ID });

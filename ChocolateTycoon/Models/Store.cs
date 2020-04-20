@@ -26,11 +26,9 @@ namespace ChocolateTycoon.Models
 
         public int Stock { get => AvailableStock(); }
 
-        public bool AdequateStaff { get => EnoughPersonnel()/* ? "" : "Not enough employees"*/; }
+        public bool AdequateStaff { get => EnoughPersonnel(); }
 
         public bool AdequateChocolate { get => EnoughChocolates(); }
-
-        public bool SaleCompleted { get; }
 
         public int MainStorageID { get; set; } = 1;
 
@@ -100,7 +98,7 @@ namespace ChocolateTycoon.Models
 
         public void Sell(List<Chocolate> chocolates)
         {
-            if (AdequateStaff && AdequateChocolate)
+            if (AdequateStaff && AdequateChocolate && !CompletedDailySales)
             {
                 foreach (var chocolate in chocolates)
                 {
@@ -137,7 +135,7 @@ namespace ChocolateTycoon.Models
 
         public void Order(List<Chocolate> chocolates)
         {
-            if (AdequateStaff && !AdequateChocolate)
+            if (AdequateStaff && !AdequateChocolate && !CompletedDailySales)
             {
                 for (int i = 0; i < _maxStorageCapacity; i++)
                 {

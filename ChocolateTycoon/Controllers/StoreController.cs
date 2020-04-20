@@ -30,7 +30,7 @@ namespace ChocolateTycoon.Controllers
 
         public ActionResult SellChocolates(int id, bool sold = false)
         {
-            var chocolates = unitOfWork.Chocolates.GetChocolatesWithStatus(id).ToList();
+            var chocolates = unitOfWork.Chocolates.GetStoreChocolates(id).ToList();
 
             var store = unitOfWork.Stores.GetStoreWithAllDetails(id);
 
@@ -43,7 +43,7 @@ namespace ChocolateTycoon.Controllers
 
         public ActionResult Restock(int id, bool restocked = false)
         {
-            var chocolates = unitOfWork.Chocolates.GetChocolatesOfMainStorage().ToList();
+            var chocolates = unitOfWork.Chocolates.GetMainStorageChocolates().ToList();
 
             var store = unitOfWork.Stores.GetStoreWithAllDetails(id);
 
@@ -57,7 +57,7 @@ namespace ChocolateTycoon.Controllers
         // GET: Store
         public ActionResult Index(int? id)
         {
-            var stores = unitOfWork.Stores.GetStoresWithSafe();
+            var stores = unitOfWork.Stores.GetStores();
 
             if (id != null)
                 ViewBag.SelectedId = id.Value;
@@ -71,8 +71,6 @@ namespace ChocolateTycoon.Controllers
 
             if (store == null)
                 return HttpNotFound();
-
-            //ViewBag.SellingProcess = TempData["Message"];
 
             return PartialView("_Details", store);
         }
@@ -95,6 +93,32 @@ namespace ChocolateTycoon.Controllers
             return View("StoreForm", viewModel);
         }
 
+        // POST: Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(StoreFormViewModel viewModel)
+        {
+            var safe = unitOfWork.Safes.GetSafe();
+
+            if (!ModelState.IsValid)
+            {
+                return View("StoreForm", viewModel);
+            }
+
+            var store = new Store
+            {
+                Name = viewModel.Name,
+                Safe = safe
+            };
+
+            unitOfWork.Stores.Add(store);
+            safe.WithdrawAmount(Store.CreateCost);
+
+            unitOfWork.Complete();
+
+            return RedirectToAction("Index", "Store");
+        }
+
         public ActionResult Edit(int id)
         {
             var store = unitOfWork.Stores.GetStore(id);
@@ -105,33 +129,6 @@ namespace ChocolateTycoon.Controllers
             };
 
             return View("StoreForm", viewModel);
-        }
-
-        // POST: Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(StoreFormViewModel viewModel)
-        {
-            var stores = unitOfWork.Stores.GetStoresWithSafe();
-
-            if (!ModelState.IsValid)
-            {
-                return View("StoreForm", viewModel);
-            }
-
-            var store = new Store
-            {
-                Name = viewModel.Name,
-                Safe = stores.Select(s => s.Safe).FirstOrDefault()
-            };
-
-            unitOfWork.Stores.Add(store);
-            //store.Safe.Deposit -= Store.CreateCost;
-            store.Safe.WithdrawAmount(Store.CreateCost);
-
-            unitOfWork.Complete();
-
-            return RedirectToAction("Index", "Store");
         }
 
         // POST: Update
@@ -152,34 +149,34 @@ namespace ChocolateTycoon.Controllers
             return RedirectToAction("Index", "Store");
         }
 
-        // GET: Delete
-        public ActionResult Delete(int id)
-        {
-            var store = unitOfWork.Stores.GetStore(id);
+        //// GET: Delete
+        //public ActionResult Delete(int id)
+        //{
+        //    var store = unitOfWork.Stores.GetStore(id);
 
-            if (store == null)
-            {
-                return HttpNotFound();
-            }
+        //    if (store == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
 
-            return View(store);
-        }
+        //    return View(store);
+        //}
 
-        // POST: Delete
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            var store = unitOfWork.Stores.GetStore(id);
+        //// POST: Delete
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    var store = unitOfWork.Stores.GetStore(id);
 
-            if (store == null)
-                return HttpNotFound();
+        //    if (store == null)
+        //        return HttpNotFound();
 
-            unitOfWork.Stores.Remove(store);
-            unitOfWork.Complete();
+        //    unitOfWork.Stores.Remove(store);
+        //    unitOfWork.Complete();
 
-            return RedirectToAction("Index");
-        }
+        //    return RedirectToAction("Index");
+        //}
 
         // GET: Store employees by position
         public PartialViewResult StoreEmployees(int id)

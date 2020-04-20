@@ -22,9 +22,10 @@ namespace ChocolateTycoon.Controllers
         {
             var productionUnits = db.ProductionUnits.ToList();
             var employees = db.Employees.ToList();
+            var stores = db.Stores.ToList();
             var safe = db.Safes.SingleOrDefault(s => s.ID == 1);
 
-            var turn = new Turn(productionUnits, employees, safe);
+            var turn = new Turn(stores, productionUnits, employees, safe);
 
             if (productionUnits.Count() == 0)
                 return HttpNotFound();
