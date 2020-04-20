@@ -139,10 +139,7 @@ namespace ChocolateTycoon.Models
             {
                 for (int i = 0; i < _maxStorageCapacity; i++)
                 {
-                    foreach (var chocolate in chocolates)
-                    {
-                        chocolate.ToStore(ID);
-                    }
+                    chocolates[i].ToStore(ID);
                 }
 
                 Pricing(chocolates);
