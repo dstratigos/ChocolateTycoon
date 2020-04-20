@@ -20,7 +20,7 @@ namespace ChocolateTycoon.Models
         private const int _createCost = 1500;
         public static int CreateCost => _createCost;
 
-        private const int _maxStorageCapacity = 100;
+        public const int _maxStorageCapacity = 100;
 
         public bool CompletedDailySales { get; set; }
 
