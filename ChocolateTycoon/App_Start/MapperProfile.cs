@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ChocolateTycoon.DTOs;
 using ChocolateTycoon.Models;
+using ChocolateTycoon.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,9 @@ namespace ChocolateTycoon.App_Start
 
             CreateMap<Supplier, SupplierDto>();
             CreateMap<SupplierDto, Supplier>();
+
+            CreateMap<Employee, EmployeeFormViewModel>();
+            CreateMap<EmployeeFormViewModel, Employee>();
         }
     }
 }

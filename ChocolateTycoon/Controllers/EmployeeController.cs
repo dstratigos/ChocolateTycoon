@@ -8,6 +8,7 @@ using System.Data.Entity;
 using ChocolateTycoon.ViewModels;
 using System.Net;
 using ChocolateTycoon.Data;
+using AutoMapper;
 
 namespace ChocolateTycoon.Controllers
 {
@@ -31,9 +32,10 @@ namespace ChocolateTycoon.Controllers
         {
             var employees = db.Employees
                 .Include(e => e.Factory)
-                .Include(e => e.Store);
+                .Include(e => e.Store)
+                .ToList();
 
-            return View(employees.ToList());
+            return View(employees);
         }
 
         // GET: Employee/Create
