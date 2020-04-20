@@ -325,6 +325,7 @@
     <Compile Include="ViewModels\SupplierViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-chocolate-tycoon.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -368,6 +369,7 @@
     <Content Include="Content\DataTables\css\colReorder.jqueryui.min.css" />
     <Content Include="Content\DataTables\css\colReorder.semanticui.css" />
     <Content Include="Content\DataTables\css\colReorder.semanticui.min.css" />
+    <Content Include="Content\DataTables\css\datatables.bootstrap.chocolate.tycoon.css" />
     <Content Include="Content\DataTables\css\dataTables.bootstrap.css" />
     <Content Include="Content\DataTables\css\dataTables.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\dataTables.bootstrap4.css" />
