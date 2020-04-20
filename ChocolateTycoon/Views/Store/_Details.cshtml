@@ -2,19 +2,7 @@
 
 <br />
 
-
-
-@if (Model.CompletedDailySales)
-{
-    <div class="alert alert-warning hidden" id="salesForTodayCompleted">
-        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-        <span class="sr-only">Error:</span>
-        You completed today's work! Please press "END TURN" to start a new day!
-        <br />
-        Restock and Sell are disabled untill then!
-    </div>
-}
-else if (!Model.AdequateStaff)
+@if (!Model.AdequateStaff)
 {
     <div class="alert alert-warning" role="alert">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -28,6 +16,14 @@ else if (!Model.AdequateChocolate && Model.CompletedDailySales)
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
         <span class="sr-only">Success:</span>
         Store's daily sales completed! New Deposit @Model.Safe.Deposit
+    </div>
+
+    <div class="alert alert-warning hidden" id="salesForTodayCompleted">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        You completed today's work! Please press "END TURN" to start a new day!
+        <br />
+        Restock and Sell are disabled untill then!
     </div>
 }
 else
@@ -51,12 +47,12 @@ else
 <tr>
     <td id="restock">
         @Html.ActionLink("Restock", "Restock", new { id = Model.ID },
-       new { @class = "btn btn-link text-success", @style = "padding: 0"/*, @onclick = "restock()"*/, @id="restockButton"})
+       new { @class = "btn btn-link text-success", @style = "padding: 0"/*, @onclick = "restock()"*/, @id = "restockButton" })
     </td>
     <td>@Model.Stock</td>
     <td id="sell">
         @Html.ActionLink("Sell Chocolates", "SellChocolates", new { id = Model.ID },
-       new { @class = "btn btn-link text-success", @style = "padding: 0"/*, @onclick = "dataReload();"*/, @id="sellButton"})
+       new { @class = "btn btn-link text-success", @style = "padding: 0"/*, @onclick = "dataReload();"*/, @id = "sellButton" })
     </td>
     @{
         Html.RenderAction("StoreEmployees", new { id = Model.ID });
