@@ -47,6 +47,9 @@ namespace ChocolateTycoon.Controllers
 
             var chocolates = unitOfWork.Chocolates.GetMainStorageChocolates().Take(Store._maxStorageCapacity).ToList();
 
+            if (chocolates.Count() == 0)
+                return RedirectToAction("Index", new { id, restocked = false });
+
             store.Order(chocolates);
 
             unitOfWork.Complete();
@@ -55,7 +58,7 @@ namespace ChocolateTycoon.Controllers
         }
 
         // GET: Store
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? id, bool completed = false)
         {
             var stores = unitOfWork.Stores.GetStores();
 

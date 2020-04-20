@@ -26,7 +26,7 @@ else if (!Model.AdequateChocolate && Model.CompletedDailySales)
         Restock and Sell are disabled untill then!
     </div>
 }
-else
+else if (!Model.AdequateChocolate && !Model.CompletedDailySales)
 {
     <div class="alert alert-warning" role="alert">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
