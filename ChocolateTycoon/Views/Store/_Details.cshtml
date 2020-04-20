@@ -26,7 +26,7 @@ else if (!Model.AdequateChocolate && Model.CompletedDailySales)
         Restock and Sell are disabled untill then!
     </div>
 }
-else if (!Model.AdequateChocolate && !Model.CompletedDailySales)
+else if(Model.AdequateStaff && !Model.AdequateChocolate)
 {
     <div class="alert alert-warning" role="alert">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -34,6 +34,7 @@ else if (!Model.AdequateChocolate && !Model.CompletedDailySales)
         Not enough chocolate. Please Restock in order to Sell!
     </div>
 }
+else { }
 
 <tr>
     <th style="text-align: center">Restock</th>
