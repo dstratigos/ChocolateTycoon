@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ChocolateTycoon.DTOs
 {
@@ -12,13 +8,9 @@ namespace ChocolateTycoon.DTOs
         public int FactoryID { get; set; }
 
         [Range(0, double.MaxValue, ErrorMessage = "No materials left!")]
-        public double RawMaterialAmount { get; set; }
-        
-        //public int _productsStored;
-
+        public double RawMaterialAmount { get; set; }     
 
         public FactoryDto FactoryDTO { get; set; }
-        //public ICollection<ChocolateDTO> ChocolatesDTO { get; set; }
 
         
     }
