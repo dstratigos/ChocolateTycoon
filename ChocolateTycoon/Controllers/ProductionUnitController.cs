@@ -21,7 +21,6 @@ namespace ChocolateTycoon.Controllers
 
             if (!vault.MoneySuffice(ProductionUnit.CreateCost))
             {
-                //TempData["ErrorMessage"] = Message.ErrorMessage;
                 var errorMessage = Message.ErrorMessage;
                 return RedirectToAction("Index", "Factory", new { id = factory.ID, errorMessage });
             }
