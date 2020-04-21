@@ -1,4 +1,4 @@
-﻿using ChocolateTycoon.Persistence;
+﻿using ChocolateTycoon.Core;
 using System.Linq;
 using System.Web.Mvc;
 

@@ -1,4 +1,4 @@
-﻿using ChocolateTycoon.Persistence;
+﻿using ChocolateTycoon.Core;
 using System.Web.Mvc;
 
 namespace ChocolateTycoon.Controllers

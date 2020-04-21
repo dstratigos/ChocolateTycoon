@@ -1,6 +1,6 @@
-﻿using ChocolateTycoon.Repositories;
+﻿using ChocolateTycoon.Core.Repositories;
 
-namespace ChocolateTycoon.Persistence
+namespace ChocolateTycoon.Core
 {
     public interface IUnitOfWork
     {

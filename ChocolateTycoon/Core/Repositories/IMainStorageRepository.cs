@@ -1,6 +1,6 @@
-﻿using ChocolateTycoon.Models;
+﻿using ChocolateTycoon.Core.Models;
 
-namespace ChocolateTycoon.Repositories
+namespace ChocolateTycoon.Core.Repositories
 {
     public interface IMainStorageRepository
     {

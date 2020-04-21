@@ -1,8 +1,8 @@
-﻿using ChocolateTycoon.Models;
+﻿using ChocolateTycoon.Core.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ChocolateTycoon.ViewModels
+namespace ChocolateTycoon.Core.ViewModels
 {
     public class StoreEmployeesViewModel
     {

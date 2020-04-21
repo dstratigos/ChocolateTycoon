@@ -1,11 +1,6 @@
 ﻿using AutoMapper;
-using ChocolateTycoon.DTOs;
-using ChocolateTycoon.Models;
-using ChocolateTycoon.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using ChocolateTycoon.Core.DTOs;
+using ChocolateTycoon.Core.Models;
 
 namespace ChocolateTycoon.App_Start
 {

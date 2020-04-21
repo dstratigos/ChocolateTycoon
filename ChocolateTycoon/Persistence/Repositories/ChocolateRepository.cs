@@ -1,10 +1,10 @@
-﻿using ChocolateTycoon.Data;
-using ChocolateTycoon.Models;
+﻿using ChocolateTycoon.Core.Models;
+using ChocolateTycoon.Core.Repositories;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
-namespace ChocolateTycoon.Repositories
+namespace ChocolateTycoon.Persistence.Repositories
 {
     public class ChocolateRepository : IChocolateRepository
     {

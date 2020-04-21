@@ -1,4 +1,4 @@
-﻿namespace ChocolateTycoon.DTOs
+﻿namespace ChocolateTycoon.Core.DTOs
 {
     public class SuppliedFactoryDto
     {

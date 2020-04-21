@@ -1,4 +1,4 @@
-namespace ChocolateTycoon.Migrations
+namespace ChocolateTycoon.Persistence.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

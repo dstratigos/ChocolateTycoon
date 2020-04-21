@@ -1,4 +1,5 @@
-﻿using ChocolateTycoon.Models;
+﻿using ChocolateTycoon.Core.Models;
+using ChocolateTycoon.Core.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;

@@ -1,11 +1,11 @@
-﻿using ChocolateTycoon.Models;
+﻿using ChocolateTycoon.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 
-namespace ChocolateTycoon.ViewModels
+namespace ChocolateTycoon.Core.ViewModels
 {
     public class MainStorageViewModel
     {

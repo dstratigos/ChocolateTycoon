@@ -1,11 +1,7 @@
-﻿using ChocolateTycoon.Models;
-using System;
+﻿using ChocolateTycoon.Core.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ChocolateTycoon.Repositories
+namespace ChocolateTycoon.Core.Repositories
 {
     public interface ISupplierRepository
     {

@@ -1,5 +1,6 @@
-﻿using ChocolateTycoon.Data;
-using ChocolateTycoon.Repositories;
+﻿using ChocolateTycoon.Core;
+using ChocolateTycoon.Core.Repositories;
+using ChocolateTycoon.Persistence.Repositories;
 
 namespace ChocolateTycoon.Persistence
 {

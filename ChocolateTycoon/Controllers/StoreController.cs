@@ -1,6 +1,6 @@
-﻿using ChocolateTycoon.Models;
-using ChocolateTycoon.Persistence;
-using ChocolateTycoon.ViewModels;
+﻿using ChocolateTycoon.Core;
+using ChocolateTycoon.Core.Models;
+using ChocolateTycoon.Core.ViewModels;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;

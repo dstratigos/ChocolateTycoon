@@ -1,4 +1,4 @@
-﻿using ChocolateTycoon.Data;
+﻿using ChocolateTycoon.Core.Models;
 using ChocolateTycoon.Persistence;
 using System.Net;
 using System.Web.Http;

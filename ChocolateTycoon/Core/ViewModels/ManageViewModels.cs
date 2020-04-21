@@ -3,7 +3,7 @@ using Microsoft.Owin.Security;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ChocolateTycoon.Models
+namespace ChocolateTycoon.Core.ViewModels
 {
     public class IndexViewModel
     {

@@ -1,7 +1,7 @@
-﻿using ChocolateTycoon.Models;
+﻿using ChocolateTycoon.Core.Models;
 using System.Collections.Generic;
 
-namespace ChocolateTycoon.Repositories
+namespace ChocolateTycoon.Core.Repositories
 {
     public interface IEmployeeRepository
     {

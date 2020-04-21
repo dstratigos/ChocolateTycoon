@@ -1,7 +1,7 @@
-﻿using ChocolateTycoon.Models;
+﻿using ChocolateTycoon.Core.Models;
 using System.Collections.Generic;
 
-namespace ChocolateTycoon.ViewModels
+namespace ChocolateTycoon.Core.ViewModels
 {
     public class EmployeeFormViewModel
     {

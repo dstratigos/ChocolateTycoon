@@ -1,5 +1,5 @@
-﻿using ChocolateTycoon.Models;
-using ChocolateTycoon.Persistence;
+﻿using ChocolateTycoon.Core;
+using ChocolateTycoon.Core.Models;
 using System.Web.Mvc;
 
 namespace ChocolateTycoon.Controllers

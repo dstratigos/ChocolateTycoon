@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ChocolateTycoon.DTOs
+namespace ChocolateTycoon.Core.DTOs
 {
     public class SupplierDto
     {

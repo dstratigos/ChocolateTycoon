@@ -1,7 +1,7 @@
-﻿using ChocolateTycoon.Data;
-using ChocolateTycoon.Models;
+﻿using ChocolateTycoon.Core.Models;
+using ChocolateTycoon.Core.Repositories;
 
-namespace ChocolateTycoon.Repositories
+namespace ChocolateTycoon.Persistence.Repositories
 {
     public class StorageUnitRepository : IStorageUnitRepository
     {

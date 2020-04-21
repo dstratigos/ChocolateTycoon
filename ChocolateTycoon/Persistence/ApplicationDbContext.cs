@@ -1,8 +1,8 @@
-﻿using ChocolateTycoon.Models;
+﻿using ChocolateTycoon.Core.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
-namespace ChocolateTycoon.Data
+namespace ChocolateTycoon.Persistence
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

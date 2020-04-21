@@ -1,8 +1,8 @@
-﻿using ChocolateTycoon.Data;
-using ChocolateTycoon.Models;
+﻿using ChocolateTycoon.Core.Models;
+using ChocolateTycoon.Core.Repositories;
 using System.Collections.Generic;
 
-namespace ChocolateTycoon.Repositories
+namespace ChocolateTycoon.Persistence.Repositories
 {
     public class ProductionUnitRepository : IProductionUnitRepository
     {

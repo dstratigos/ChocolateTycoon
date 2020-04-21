@@ -1,11 +1,11 @@
 ﻿using ChocolateTycoon.Controllers;
-using ChocolateTycoon.Models;
+using ChocolateTycoon.Core.Models;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 using System.Web.Mvc;
 
-namespace ChocolateTycoon.ViewModels
+namespace ChocolateTycoon.Core.ViewModels
 {
     public class StoreFormViewModel
     {

@@ -1,12 +1,11 @@
 ﻿using System;
+using ChocolateTycoon.Core.Models;
+using ChocolateTycoon.Persistence;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.Google;
 using Owin;
-using ChocolateTycoon.Models;
-using ChocolateTycoon.Data;
 
 namespace ChocolateTycoon
 {

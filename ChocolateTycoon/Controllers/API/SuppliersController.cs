@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using ChocolateTycoon.DTOs;
-using ChocolateTycoon.Persistence;
+using ChocolateTycoon.Core;
+using ChocolateTycoon.Core.DTOs;
 using System.Web.Http;
 
 namespace ChocolateTycoon.Controllers.API

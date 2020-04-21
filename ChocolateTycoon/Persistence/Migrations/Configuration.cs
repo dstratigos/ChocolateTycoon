@@ -1,18 +1,20 @@
-namespace ChocolateTycoon.Migrations
+namespace ChocolateTycoon.Persistence.Migrations
 {
+    using ChocolateTycoon.Persistence;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ChocolateTycoon.Data.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            MigrationsDirectory = @"Persistence\Migrations";
         }
 
-        protected override void Seed(ChocolateTycoon.Data.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

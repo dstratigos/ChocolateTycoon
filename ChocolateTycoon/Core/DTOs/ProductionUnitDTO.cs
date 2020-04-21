@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ChocolateTycoon.DTOs
+namespace ChocolateTycoon.Core.DTOs
 {
     public class ProductionUnitDto
     {
