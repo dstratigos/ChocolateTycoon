@@ -28,7 +28,7 @@ namespace ChocolateTycoon.Models.API
         [HttpDelete]
         public void DeleteStore(int id)
         {
-            var storeDb = unitOfWork.Stores.GetStoreWithSafe(id);
+            var storeDb = unitOfWork.Stores.GetStoreWithAllDetails(id);
 
             if (storeDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
