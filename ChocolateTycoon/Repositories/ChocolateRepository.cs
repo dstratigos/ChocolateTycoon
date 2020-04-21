@@ -18,8 +18,7 @@ namespace ChocolateTycoon.Repositories
         public IEnumerable<Chocolate> GetStoreChocolates(int storeId)
         {
             return _db.Chocolates
-                .Include(c => c.Status)
-                .Where(c => c.StoreId == storeId);
+                .Where(c => c.StoreId == storeId && c.ChocolateStatusId == 3);
         }
 
         public IEnumerable<Chocolate> GetMainStorageChocolates()
