@@ -189,7 +189,8 @@
                                     bootbox.confirm({
                                         closeButton: false,
                                         message: function () {
-                                            return `Are you SURE you want to break ${factoryName}'s Contract with ${supplier.name}?`;
+                                            return `Are you SURE you want to break ${factoryName}'s Contract with ${supplier.name}?` +
+                                                '<p class="text-danger" style="font-style: italic">You will be charged with a Penalty!</p>';
                                         },
                                         buttons: {
                                             confirm: {

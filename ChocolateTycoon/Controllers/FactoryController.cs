@@ -15,18 +15,11 @@ namespace ChocolateTycoon.Controllers
 {
     public class FactoryController : Controller
     {
-        private readonly ApplicationDbContext db;
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-        public FactoryController()
+        public FactoryController(IUnitOfWork unitOfWork)
         {
-            db = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(db);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
+            this.unitOfWork = unitOfWork;
         }
 
         // GET: Factory
@@ -96,7 +89,7 @@ namespace ChocolateTycoon.Controllers
         public ActionResult Save(Factory factory)
         {
             var factories = unitOfWork.Factories.GetFactories().ToList();
-            var vault = db.Safes.Where(s => s.ID == 1).Single();
+            var vault = unitOfWork.Safes.GetSafe();
 
             if (factory.ID == 0)
             {

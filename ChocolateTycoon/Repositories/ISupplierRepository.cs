@@ -9,6 +9,7 @@ namespace ChocolateTycoon.Repositories
 {
     public interface ISupplierRepository
     {
+        IEnumerable<Supplier> GetSuppliers();
         Supplier GetSupplier(int id);
         Supplier GetSupplierWithFactories(int id);
     }

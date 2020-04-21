@@ -13,14 +13,11 @@ namespace ChocolateTycoon.Controllers
 {
     public class ProductionUnitController : Controller
     {
-        private readonly ApplicationDbContext db;
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-
-        public ProductionUnitController()
+        public ProductionUnitController(IUnitOfWork unitOfWork)
         {
-            db = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(db);
+            this.unitOfWork = unitOfWork;
         }
 
         // POST: ProductionUnit/Create

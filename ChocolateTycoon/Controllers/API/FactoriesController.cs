@@ -14,13 +14,11 @@ namespace ChocolateTycoon.Controllers.API
 {
     public class FactoriesController : ApiController
     {
-        private readonly ApplicationDbContext db;
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-        public FactoriesController()
+        public FactoriesController(IUnitOfWork unitOfWork)
         {
-            db = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(db);
+            this.unitOfWork = unitOfWork;
         }
 
         // GET: api/factories

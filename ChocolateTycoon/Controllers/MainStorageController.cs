@@ -8,30 +8,28 @@ using System.Data.Entity;
 using ChocolateTycoon.ViewModels;
 using ChocolateTycoon.Services;
 using ChocolateTycoon.Data;
+using ChocolateTycoon.Persistence;
 
 namespace ChocolateTycoon.Controllers
 {
     public class MainStorageController : Controller
     {
-        private ApplicationDbContext db;
+        private readonly IUnitOfWork unitOfWork;
 
-        public MainStorageController()
+        public MainStorageController(IUnitOfWork unitOfWork)
         {
-            db = new ApplicationDbContext();
+            this.unitOfWork = unitOfWork;
         }
-
 
         // GET: MainStorage
         public ActionResult Index()
         {
-            var mainStorage = db.MainStorages.SingleOrDefault(m => m.ID == 1);
+            var mainStorage = unitOfWork.MainStorages.GetMainStorage();
 
             if (mainStorage == null)
                 return HttpNotFound();
 
-            var chocolates = db.Chocolates
-                .Where(c => c.ChocolateStatusId == 2)
-                .ToList();
+            var chocolates = unitOfWork.Chocolates.GetMainStorageChocolates().ToList();
 
             if (chocolates == null)
                 chocolates = new List<Chocolate>();

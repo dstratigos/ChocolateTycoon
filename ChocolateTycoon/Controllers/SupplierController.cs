@@ -1,5 +1,6 @@
 ﻿using ChocolateTycoon.Data;
 using ChocolateTycoon.Models;
+using ChocolateTycoon.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,22 +11,17 @@ namespace ChocolateTycoon.Controllers
 {
     public class SupplierController : Controller
     {
-        private ApplicationDbContext db;
+        private readonly IUnitOfWork unitOfWork;
 
-        public SupplierController()
+        public SupplierController(IUnitOfWork unitOfWork)
         {
-            db = new ApplicationDbContext();
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
+            this.unitOfWork = unitOfWork;
         }
 
         // GET: Supplier
         public ActionResult Index()
         {
-            var suppliers = db.Suppliers.ToList();
+            var suppliers = unitOfWork.Suppliers.GetSuppliers().ToList();
             
             return View(suppliers);
         }

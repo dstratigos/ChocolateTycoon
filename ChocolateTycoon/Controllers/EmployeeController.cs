@@ -15,20 +15,12 @@ namespace ChocolateTycoon.Controllers
 {
     public class EmployeeController : Controller
     {
-        private readonly ApplicationDbContext db;
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-        public EmployeeController()
+        public EmployeeController(IUnitOfWork unitOfWork)
         {
-            db = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(db);
+            this.unitOfWork = unitOfWork;
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-        }
-
 
         // GET: Employee
         public ActionResult Index()
