@@ -14,19 +14,17 @@ namespace ChocolateTycoon.Controllers
 {
     public class StoreController : Controller
     {
-        private readonly ApplicationDbContext db;
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-        public StoreController()
+        public StoreController(IUnitOfWork unitOfWork)
         {
-            db = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(db);
+            this.unitOfWork = unitOfWork;
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            db.Dispose();
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    db.Dispose();
+        //}
 
         public ActionResult SellChocolates(int id, bool sold = false)
         {

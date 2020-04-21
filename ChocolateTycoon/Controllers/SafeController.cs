@@ -1,4 +1,5 @@
 ﻿using ChocolateTycoon.Data;
+using ChocolateTycoon.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,40 +10,40 @@ namespace ChocolateTycoon.Controllers
 {
     public class SafeController : Controller
     {
-        private ApplicationDbContext db;
+        private readonly IUnitOfWork unitOfWork;
 
-        public SafeController()
+        public SafeController(IUnitOfWork unitOfWork)
         {
-            db = new ApplicationDbContext();
+            this.unitOfWork = unitOfWork;
         }
 
         
         // GET: Safe
         public ActionResult Vault()
         {
-            var vault = db.Safes.Where(s => s.ID == 1).Single();
+            var vault = unitOfWork.Safes.GetSafe();
 
             return PartialView("_VaultPartial", vault);
         }
 
         public ActionResult CheatDeposit()
         {
-            var vault = db.Safes.Where(s => s.ID == 1).Single();
+            var vault = unitOfWork.Safes.GetSafe();
 
             vault.CheatDepositAmount();
 
-            db.SaveChanges();
+            unitOfWork.Complete();
 
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult CheatWithdraw()
         {
-            var vault = db.Safes.Where(s => s.ID == 1).Single();
+            var vault = unitOfWork.Safes.GetSafe();
 
             vault.CheatWithdrawAmount();
 
-            db.SaveChanges();
+            unitOfWork.Complete();
 
             return RedirectToAction("Index", "Home");
         }

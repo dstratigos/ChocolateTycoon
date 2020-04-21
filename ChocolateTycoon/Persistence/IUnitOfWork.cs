@@ -12,7 +12,7 @@ namespace ChocolateTycoon.Persistence
         ISafeRepository Safes { get; }
         IStorageUnitRepository StorageUnits { get; }
         ISupplierRepository Suppliers { get;}
-        StoreRepository Stores { get; }
+        IStoreRepository Stores { get; }
 
         void Complete();
     }

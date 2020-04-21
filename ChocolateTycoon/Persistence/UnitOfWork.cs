@@ -11,7 +11,7 @@ namespace ChocolateTycoon.Persistence
     {
         private readonly ApplicationDbContext _db;
 
-        public StoreRepository Stores { get; private set; }
+        public IStoreRepository Stores { get; private set; }
         public IFactoryRepository Factories { get; private set; }
         public IMainStorageRepository MainStorages { get; private set; }
         public IProductionUnitRepository ProductionUnits { get; private set; }

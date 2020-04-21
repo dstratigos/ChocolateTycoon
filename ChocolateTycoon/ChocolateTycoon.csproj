@@ -346,6 +346,7 @@
     <Compile Include="Repositories\IProductionUnitRepository.cs" />
     <Compile Include="Repositories\ISafeRepository.cs" />
     <Compile Include="Repositories\IStorageUnitRepository.cs" />
+    <Compile Include="Repositories\IStoreRepository.cs" />
     <Compile Include="Repositories\ISupplierRepository.cs" />
     <Compile Include="Repositories\MainStorageRepository.cs" />
     <Compile Include="Repositories\ProductionUnitRepository.cs" />

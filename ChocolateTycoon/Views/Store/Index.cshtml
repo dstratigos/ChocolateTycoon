@@ -34,10 +34,10 @@
 
             if (store.ID == ViewBag.SelectedId)
             {
-                selected = "dimgrey";
+                selected = "orange";
             }
 
-            <tr @*style="background-color: @selected"*@>
+            <tr style="background-color: @selected">
                 <td>@store.Name</td>
                 <td>@store.Level</td>
                 <td style="text-align: right">
@@ -121,7 +121,7 @@
                                         });
                                     })
                                     .fail(function () {
-                                        alert("Bad very bad");
+                                        bootbox.alert("Please sell store's stock and fire employees before deleting it.");
                                     });
                             }
                         }

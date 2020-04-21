@@ -15,13 +15,11 @@ namespace ChocolateTycoon.Controllers.API
 {
     public class SuppliersController : ApiController
     {
-        private readonly ApplicationDbContext db;
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-        public SuppliersController()
+        public SuppliersController(IUnitOfWork unitOfWork)
         {
-            db = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(db);
+            this.unitOfWork = unitOfWork;
         }
 
         // GET: /Api/Suppliers/Id

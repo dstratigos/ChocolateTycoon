@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace ChocolateTycoon.Repositories
 {
-    public class StoreRepository
+    public class StoreRepository : IStoreRepository
     {
         private readonly ApplicationDbContext _db;
 
