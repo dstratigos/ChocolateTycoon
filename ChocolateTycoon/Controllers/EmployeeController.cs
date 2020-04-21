@@ -84,7 +84,6 @@ namespace ChocolateTycoon.Controllers
                     viewModel.Employee = newEmployee;
                     viewModel.Factories = unitOfWork.Factories.GetFactories().ToList();
                     viewModel.Stores = unitOfWork.Stores.GetStores().ToList();
-                    //ViewBag.Message = "This employee already exists! You are now in Edit Mode!";
                     viewModel._errorMessage = Message.ErrorMessage;
                     return View("EmployeeForm", viewModel);
                 }

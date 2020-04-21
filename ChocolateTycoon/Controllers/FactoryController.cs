@@ -33,9 +33,6 @@ namespace ChocolateTycoon.Controllers
             if (id != null)
                 ViewBag.SelectedId = id.Value;
 
-            //ViewBag.Message = TempData["ErrorMessage"];
-            //ViewBag.MainStorageInfo = TempData["MainStorageInfo"];
-
             return View(viewModel);
         }
 
@@ -64,7 +61,6 @@ namespace ChocolateTycoon.Controllers
 
             if (!vault.MoneySuffice(Factory.CreateCost))
             {
-                //TempData["ErrorMessage"] = Message.ErrorMessage;
                 var errorMessage = Message.ErrorMessage;
                 return RedirectToAction("Index", new { errorMessage } );
             }
@@ -103,7 +99,6 @@ namespace ChocolateTycoon.Controllers
                     Message.SetErrorMessage(MessageEnum.FactoryExistsError);
                     var errorMessage = Message.ErrorMessage;
                     var viewModel = new FactoryViewModel { Factory = newFactory, _errorMessage = errorMessage };
-                    //ViewBag.Message = "This Factory already exists! You are now in Edit Mode!";                    
                     return View("FactoryForm", viewModel);
                 }
 
@@ -172,13 +167,11 @@ namespace ChocolateTycoon.Controllers
 
                 unitOfWork.Chocolates.Add(mainStorage.newProducts);
 
-                //TempData["MainStorageInfo"] = Message.MainStorageInfo;
                 infoMessage = Message.MainStorageInfo;
 
                 unitOfWork.Complete();
             }
 
-            //TempData["ErrorMessage"] = Message.ErrorMessage;
             errorMessage = Message.ErrorMessage;
            
             return RedirectToAction("Index", new { id, errorMessage, infoMessage });
