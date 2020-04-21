@@ -1,10 +1,5 @@
-﻿using ChocolateTycoon.Data;
-using ChocolateTycoon.Models;
-using ChocolateTycoon.Persistence;
-using System;
-using System.Collections.Generic;
+﻿using ChocolateTycoon.Persistence;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ChocolateTycoon.Controllers
