@@ -1,5 +1,6 @@
 ﻿using ChocolateTycoon.Data;
 using ChocolateTycoon.Models;
+using ChocolateTycoon.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,19 +12,19 @@ namespace ChocolateTycoon.Controllers
 {
     public class TurnController : Controller
     {
-        private ApplicationDbContext db;
+        private readonly IUnitOfWork unitOfWork;
 
-        public TurnController()
+        public TurnController(IUnitOfWork unitOfWork)
         {
-            db = new ApplicationDbContext();
+            this.unitOfWork = unitOfWork;
         }
 
         public ActionResult EndTurn()
         {
-            var productionUnits = db.ProductionUnits.ToList();
-            var employees = db.Employees.ToList();
-            var stores = db.Stores.ToList();
-            var safe = db.Safes.SingleOrDefault(s => s.ID == 1);
+            var productionUnits = unitOfWork.ProductionUnits.GetProductionUnits().ToList();
+            var employees = unitOfWork.Employees.GetEmployees().ToList();
+            var stores = unitOfWork.Stores.GetStores().ToList();
+            var safe = unitOfWork.Safes.GetSafe();
 
             var turn = new Turn(stores, productionUnits, employees, safe);
 
@@ -32,7 +33,7 @@ namespace ChocolateTycoon.Controllers
 
             turn.EndTurn();
 
-            db.SaveChanges();
+            unitOfWork.Complete();
 
             return Content(Turn.TurnMessage);
         }

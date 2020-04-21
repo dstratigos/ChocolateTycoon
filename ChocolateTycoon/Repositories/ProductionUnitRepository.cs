@@ -16,6 +16,11 @@ namespace ChocolateTycoon.Repositories
             _db = db;
         }
 
+        public IEnumerable<ProductionUnit> GetProductionUnits()
+        {
+            return _db.ProductionUnits;
+        }
+
         public void Add(ProductionUnit productionUnit)
         {
             _db.ProductionUnits.Add(productionUnit);

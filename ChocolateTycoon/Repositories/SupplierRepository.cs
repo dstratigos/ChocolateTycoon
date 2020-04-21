@@ -17,6 +17,11 @@ namespace ChocolateTycoon.Repositories
             _db = db;
         }
 
+        public IEnumerable<Supplier> GetSuppliers()
+        {
+            return _db.Suppliers;
+        }
+
         public Supplier GetSupplier(int id)
         {
             return _db.Suppliers.SingleOrDefault(s => s.Id == id);

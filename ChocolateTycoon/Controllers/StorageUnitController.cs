@@ -13,13 +13,11 @@ namespace ChocolateTycoon.Controllers
 {
     public class StorageUnitController : Controller
     {
-        private readonly ApplicationDbContext db;
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
-        public StorageUnitController()
+        public StorageUnitController(IUnitOfWork unitOfWork)
         {
-            db = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(db);
+            this.unitOfWork = unitOfWork;
         }
 
         // POST: /factory/details/id
@@ -48,7 +46,7 @@ namespace ChocolateTycoon.Controllers
         {
             var factories = unitOfWork.Factories.GetFactoriesWithStorageUnitAndSupplier().ToList();
             var factory = factories.Where(f => f.ID == id).Single();
-            var safe = db.Safes.SingleOrDefault();
+            var safe = unitOfWork.Safes.GetSafe();
 
             factory.StorageUnit.Replenish(factories, factory.Supplier, safe);
 
