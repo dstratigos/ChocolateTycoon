@@ -12,6 +12,14 @@
         $("#salesForTodayCompleted").removeClass("hidden");
     }
 
+    if (url === "restocked=False") {
+        $("#restockFail").removeClass("hidden");
+        $("#chocolateZero").addClass("hidden");
+        console.log("Restock function failed.")
+    } else {
+        console.log("Restock function is not called.")
+    }
+
     if (url === "restocked=True") {
         $("#chocolateRestockSuccess").removeClass("hidden");
         console.log("Restock function success.")
@@ -25,6 +33,7 @@
     } else {
         console.log("Sell function is not called.")
     }
+
 
 
 }

@@ -26,15 +26,25 @@ else if (!Model.AdequateChocolate && Model.CompletedDailySales)
         Restock and Sell are disabled untill then!
     </div>
 }
-else if(Model.AdequateStaff && !Model.AdequateChocolate)
+else if (Model.AdequateStaff && !Model.AdequateChocolate)
 {
-    <div class="alert alert-warning" role="alert">
+    <div class="alert alert-warning" role="alert" id="chocolateZero">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
         <span class="sr-only">Error:</span>
         Not enough chocolate. Please Restock in order to Sell!
     </div>
+
+    <div class="alert alert-warning hidden" role="alert" id="restockFail">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Looks like there is not enough chocolate to restock! Your factories need to produce some more.
+    </div>
+
 }
-else { }
+else
+{
+
+}
 
 <tr>
     <th style="text-align: center">Restock</th>

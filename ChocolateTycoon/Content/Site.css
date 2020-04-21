@@ -154,3 +154,7 @@ td, th {
         outline: none;
         filter: brightness(80%);
     }
+
+.jumbotron {
+    max-height: 300px;
+}
