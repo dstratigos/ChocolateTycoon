@@ -1,14 +1,10 @@
-﻿using ChocolateTycoon.Models;
-using System;
+﻿using AutoMapper;
+using ChocolateTycoon.DTOs;
+using ChocolateTycoon.Models;
+using ChocolateTycoon.Persistence;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Data.Entity;
-using ChocolateTycoon.DTOs;
-using AutoMapper;
 using System.Web.Http;
-using ChocolateTycoon.Data;
-using ChocolateTycoon.Persistence;
 
 namespace ChocolateTycoon.Controllers.API
 {

@@ -1,10 +1,9 @@
-﻿using System;
+﻿using ChocolateTycoon.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
-using System.Web;
-using ChocolateTycoon.Models;
 
 namespace ChocolateTycoon.ViewModels
 {

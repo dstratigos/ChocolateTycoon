@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ChocolateTycoon.Models.Factory>
+﻿@model ChocolateTycoon.ViewModels.FactoryViewModel
 
 @{
     ViewBag.Title = "Factories";
@@ -25,11 +25,11 @@
         <div id="messageContainer" class="row text-center">
             <div id="errorContainer" class="row text-danger hidden" style="padding: 0; margin: 0 5px">
                 <h3 class="glyphicon glyphicon-exclamation-sign"></h3>
-                <span id="errorMessage" style="padding-left: 10px;">@ViewBag.Message</span>
+                <span id="errorMessage" style="padding-left: 10px;">@Model._errorMessage</span>
             </div>
             <div id="infoContainer" class="row text-warning hidden">
                 <h3 class="glyphicon glyphicon-info-sign"></h3>
-                <span id="infoMessage" style="padding-left: 10px;">@ViewBag.MainStorageInfo</span>
+                <span id="infoMessage" style="padding-left: 10px;">@Model._infoMessage</span>
             </div>
         </div>
     </div>
@@ -43,7 +43,7 @@
         <th colspan="3"></th>
     </tr>
 
-    @foreach (var factory in Model)
+    @foreach (var factory in Model.Factories)
     {
         string selected = "";
 
@@ -89,7 +89,7 @@
             <th colspan="2" style="text-align: center">Personel</th>
         </tr>
 
-        @foreach (var factory in Model)
+        @foreach (var factory in Model.Factories)
         {
             if (ViewBag.SelectedId == factory.ID)
             {

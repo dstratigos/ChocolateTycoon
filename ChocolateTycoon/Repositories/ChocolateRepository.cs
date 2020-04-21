@@ -1,10 +1,8 @@
 ﻿using ChocolateTycoon.Data;
 using ChocolateTycoon.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data.Entity;
+using System.Linq;
 
 namespace ChocolateTycoon.Repositories
 {
@@ -20,8 +18,7 @@ namespace ChocolateTycoon.Repositories
         public IEnumerable<Chocolate> GetStoreChocolates(int storeId)
         {
             return _db.Chocolates
-                .Include(c => c.Status)
-                .Where(c => c.StoreId == storeId);
+                .Where(c => c.StoreId == storeId && c.ChocolateStatusId == 3);
         }
 
         public IEnumerable<Chocolate> GetMainStorageChocolates()

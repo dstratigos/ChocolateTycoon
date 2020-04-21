@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ChocolateTycoon.Models
 {
     public enum MessageEnum
     {
         // error messages
+        [Display(Name = "This Factory already exists! You are now in Edit Mode!")]
+        FactoryExistsError = 1,
+
+        [Display(Name = "This employee already exists! You are now in Edit Mode!")]
+        EmployeeExistsError,
+
         [Display(Name = "Storage Unit not available!")]
-        StorageUnitNullError = 1,
+        StorageUnitNullError,
 
         [Display(Name = "Factory reached it's maximum Production capacity for today!")]
         ProductionTurnError,

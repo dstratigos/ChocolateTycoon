@@ -1,13 +1,6 @@
 ﻿using ChocolateTycoon.Models;
-using ChocolateTycoon.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Data.Entity;
-using ChocolateTycoon.Data;
 using ChocolateTycoon.Persistence;
+using System.Web.Mvc;
 
 namespace ChocolateTycoon.Controllers
 {
@@ -28,8 +21,8 @@ namespace ChocolateTycoon.Controllers
 
             if (!vault.MoneySuffice(ProductionUnit.CreateCost))
             {
-                TempData["ErrorMessage"] = Message.ErrorMessage;
-                return RedirectToAction("Index", "Factory", new { id = factory.ID });
+                var errorMessage = Message.ErrorMessage;
+                return RedirectToAction("Index", "Factory", new { id = factory.ID, errorMessage });
             }
 
             ProductionUnit productionUnit = new ProductionUnit { FactoryID = factory.ID };

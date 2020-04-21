@@ -1,14 +1,7 @@
-﻿using ChocolateTycoon.Data;
-using ChocolateTycoon.Models;
+﻿using ChocolateTycoon.Models;
 using ChocolateTycoon.Persistence;
-using ChocolateTycoon.Services;
 using ChocolateTycoon.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ChocolateTycoon.Controllers
@@ -23,17 +16,24 @@ namespace ChocolateTycoon.Controllers
         }
 
         // GET: Factory
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? id, string errorMessage, string infoMessage)
         {
             var factories = unitOfWork.Factories.GetFactoriesWithProductionAndStorageUnit();
+
+            if (factories == null)
+                return HttpNotFound();
+
+            var viewModel = new FactoryViewModel
+            {
+                Factories = factories,
+                _errorMessage = errorMessage,
+                _infoMessage = infoMessage
+            };
 
             if (id != null)
                 ViewBag.SelectedId = id.Value;
 
-            ViewBag.Message = TempData["ErrorMessage"];
-            ViewBag.MainStorageInfo = TempData["MainStorageInfo"];
-
-            return View(factories);
+            return View(viewModel);
         }
 
         // GET: Factory/Details/id
@@ -48,8 +48,6 @@ namespace ChocolateTycoon.Controllers
 
             viewModel.GetEmployees();
 
-            ViewBag.MainStorageInfo = TempData["MainStorageInfo"];
-
             return PartialView(viewModel);
         }
 
@@ -63,8 +61,8 @@ namespace ChocolateTycoon.Controllers
 
             if (!vault.MoneySuffice(Factory.CreateCost))
             {
-                TempData["ErrorMessage"] = Message.ErrorMessage;
-                return RedirectToAction("Index");
+                var errorMessage = Message.ErrorMessage;
+                return RedirectToAction("Index", new { errorMessage } );
             }
 
             return View("FactoryForm");
@@ -98,8 +96,9 @@ namespace ChocolateTycoon.Controllers
 
                 if (newFactory.ID != 0)
                 {
-                    var viewModel = new FactoryViewModel { Factory = newFactory };
-                    ViewBag.Message = "This Factory already exists! You are now in Edit Mode!";
+                    Message.SetErrorMessage(MessageEnum.FactoryExistsError);
+                    var errorMessage = Message.ErrorMessage;
+                    var viewModel = new FactoryViewModel { Factory = newFactory, _errorMessage = errorMessage };
                     return View("FactoryForm", viewModel);
                 }
 
@@ -154,8 +153,9 @@ namespace ChocolateTycoon.Controllers
         public ActionResult Produce(int id)
         {
             var factory = unitOfWork.Factories.GetFactoryMinusSupplier(id);
-
             var mainStorage = unitOfWork.MainStorages.GetMainStorage();
+            string errorMessage;
+            string infoMessage = "";
 
             if (factory.StorageUnit == null)
                 Message.SetErrorMessage(MessageEnum.StorageUnitNullError);
@@ -167,14 +167,14 @@ namespace ChocolateTycoon.Controllers
 
                 unitOfWork.Chocolates.Add(mainStorage.newProducts);
 
-                TempData["MainStorageInfo"] = Message.MainStorageInfo;
+                infoMessage = Message.MainStorageInfo;
 
                 unitOfWork.Complete();
             }
 
-            TempData["ErrorMessage"] = Message.ErrorMessage;
-
-            return RedirectToAction("Index", new { id });
+            errorMessage = Message.ErrorMessage;
+           
+            return RedirectToAction("Index", new { id, errorMessage, infoMessage });
         }
     }
 }

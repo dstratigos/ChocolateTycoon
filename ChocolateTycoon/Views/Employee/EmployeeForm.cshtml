@@ -14,7 +14,11 @@
 }
 <hr />
 
-<p class="text-danger">@ViewBag.Message</p>
+@if (Model._errorMessage != null)
+{
+    <p class="text-danger">@Model._errorMessage</p>
+}
+
 
 @using (Html.BeginForm("Save", "Employee"))
 {

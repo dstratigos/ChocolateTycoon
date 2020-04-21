@@ -1,15 +1,8 @@
 ﻿using ChocolateTycoon.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Data.Entity;
-using ChocolateTycoon.ViewModels;
-using System.Net;
-using ChocolateTycoon.Data;
-using AutoMapper;
 using ChocolateTycoon.Persistence;
+using ChocolateTycoon.ViewModels;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace ChocolateTycoon.Controllers
 {
@@ -87,10 +80,11 @@ namespace ChocolateTycoon.Controllers
 
                 if (newEmployee.Id != 0)
                 {
+                    Message.SetErrorMessage(MessageEnum.EmployeeExistsError);
                     viewModel.Employee = newEmployee;
                     viewModel.Factories = unitOfWork.Factories.GetFactories().ToList();
                     viewModel.Stores = unitOfWork.Stores.GetStores().ToList();
-                    ViewBag.Message = "This employee already exists! You are now in Edit Mode!";
+                    viewModel._errorMessage = Message.ErrorMessage;
                     return View("EmployeeForm", viewModel);
                 }
 

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Web;
+using System.Runtime.CompilerServices;
 
 namespace ChocolateTycoon.Models
 {
@@ -29,6 +28,9 @@ namespace ChocolateTycoon.Models
         public bool AdequateStaff { get => EnoughPersonnel(); }
 
         public bool AdequateChocolate { get => EnoughChocolates(); }
+
+        [NotMapped]
+        public decimal DailyEarnings { get; set; }
 
         public int MainStorageID { get; set; } = 1;
 
@@ -101,21 +103,21 @@ namespace ChocolateTycoon.Models
             if (AdequateStaff && AdequateChocolate && !CompletedDailySales)
             {
                 foreach (var chocolate in chocolates)
-                {
-                    Safe.Deposit = Earnings(chocolates);
                     chocolate.MarkAsSold();
-                }
 
+                Earnings(chocolates);
                 CompletedDailySales = true;
             }
         }
 
-        private decimal Earnings(List<Chocolate> chocolates)
+        private void Earnings(List<Chocolate> chocolates)
         {
-            foreach (var chocolate in chocolates)
-                Safe.DepositAmount(chocolate.Price);
+            DailyEarnings = 0;
 
-            return Safe.Deposit;
+            foreach (var chocolate in chocolates)
+                DailyEarnings += chocolate.Price;
+
+            Safe.DepositAmount(DailyEarnings);
         }
 
         private void Pricing(List<Chocolate> chocolates)
