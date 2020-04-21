@@ -1,4 +1,4 @@
-﻿@model ChocolateTycoon.ViewModels.MainStorageViewModel
+﻿@model ChocolateTycoon.Core.ViewModels.MainStorageViewModel
 
 @{
     ViewBag.Title = "Main Storage";
@@ -57,7 +57,7 @@
 
             @for (int i = 0; i < Model.availableChocolates.Count; i++)
             {
-                var types = Enum.GetNames(typeof(ChocolateTycoon.Models.ChocolateType));
+                var types = Enum.GetNames(typeof(ChocolateTycoon.Core.Models.ChocolateType));
                 var names = Model.enumNames;
 
         <tr>

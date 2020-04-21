@@ -1,4 +1,4 @@
-﻿@model ChocolateTycoon.ViewModels.FactoryViewModel
+﻿@model ChocolateTycoon.Core.ViewModels.FactoryViewModel
 @Html.AntiForgeryToken()
 <br />
 
@@ -91,7 +91,7 @@
         // Create Production Unit Button
         let puButton = document.getElementById("createPU");
         // Get Production & Storage Unit cost
-        let cost = '@ChocolateTycoon.Models.StorageUnit.CreateCost'
+        let cost = '@ChocolateTycoon.Core.Models.StorageUnit.CreateCost'
 
         // Bootbox confirmation for new Storage Unit
         if (suButton != null) {
