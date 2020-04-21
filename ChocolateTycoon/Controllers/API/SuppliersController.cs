@@ -2,6 +2,7 @@
 using ChocolateTycoon.Data;
 using ChocolateTycoon.DTOs;
 using ChocolateTycoon.Models;
+using ChocolateTycoon.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -14,18 +15,20 @@ namespace ChocolateTycoon.Controllers.API
 {
     public class SuppliersController : ApiController
     {
-        private ApplicationDbContext db;
+        private readonly ApplicationDbContext db;
+        private readonly UnitOfWork unitOfWork;
 
         public SuppliersController()
         {
             db = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(db);
         }
 
         // GET: /Api/Suppliers/Id
         [HttpGet]
         public IHttpActionResult GetSupplier(int id)
         {
-            var supplierDb = db.Suppliers.Include(s => s.Factories).Single(s => s.Id == id);
+            var supplierDb = unitOfWork.Suppliers.GetSupplierWithFactories(id);
 
             return Ok(Mapper.Map<SupplierDto>(supplierDb));
         }

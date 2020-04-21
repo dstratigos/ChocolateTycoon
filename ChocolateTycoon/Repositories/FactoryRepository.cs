@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace ChocolateTycoon.Repositories
 {
-    public class FactoryRepository
+    public class FactoryRepository : IFactoryRepository
     {
         private readonly ApplicationDbContext _db;
 
@@ -36,6 +36,17 @@ namespace ChocolateTycoon.Repositories
                 .Include(f => f.Supplier);
         }
 
+        public IEnumerable<Factory> GetFactoriesWithSupplier()
+        {
+            return _db.Factories.Include(f => f.Supplier);
+        }
+
+        public Factory GetFactory(int id)
+        {
+            return _db.Factories
+                .SingleOrDefault(f => f.ID == id);
+        }
+
         public Factory GetFactoryAllInclusive(int id)
         {
             return _db.Factories
@@ -46,18 +57,20 @@ namespace ChocolateTycoon.Repositories
                 .SingleOrDefault(f => f.ID == id);
         }
 
+        public Factory GetFactoryWithStorageUnitAndSupplier(int id)
+        {
+            return _db.Factories
+                 .Include(f => f.StorageUnit)
+                 .Include(f => f.Supplier)
+                 .Single(f => f.ID == id);
+                }
+
         public Factory GetFactoryMinusSupplier(int id)
         {
             return _db.Factories
                 .Include(f => f.ProductionUnit)
                 .Include(f => f.StorageUnit)
                 .Include(f => f.Employees)
-                .SingleOrDefault(f => f.ID == id);
-        }
-
-        public Factory GetFactory(int id)
-        {
-            return _db.Factories
                 .SingleOrDefault(f => f.ID == id);
         }
 

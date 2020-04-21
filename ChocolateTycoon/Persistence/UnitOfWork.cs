@@ -7,25 +7,19 @@ using System.Web;
 
 namespace ChocolateTycoon.Persistence
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _db;
 
         public StoreRepository Stores { get; private set; }
-
-        public FactoryRepository Factories { get; private set; }
-
-        public MainStorageRepository MainStorages { get; private set; }
-
-        public ProductionUnitRepository ProductionUnits { get; private set; }
-
-        public StorageUnitRepository StorageUnits { get; private set; }
-
-        public ChocolateRepository Chocolates { get; set; }
-
-        public SafeRepository Safes { get; set; }
-
-        public EmployeeRepository Employees { get; set; }
+        public IFactoryRepository Factories { get; private set; }
+        public IMainStorageRepository MainStorages { get; private set; }
+        public IProductionUnitRepository ProductionUnits { get; private set; }
+        public IStorageUnitRepository StorageUnits { get; private set; }
+        public IChocolateRepository Chocolates { get; private set; }
+        public ISafeRepository Safes { get; private set; }
+        public IEmployeeRepository Employees { get; private set; }
+        public ISupplierRepository Suppliers { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
@@ -38,6 +32,7 @@ namespace ChocolateTycoon.Persistence
             Chocolates = new ChocolateRepository(db);
             Safes = new SafeRepository(db);
             Employees = new EmployeeRepository(db);
+            Suppliers = new SupplierRepository(db);
         }
 
         public void Complete()

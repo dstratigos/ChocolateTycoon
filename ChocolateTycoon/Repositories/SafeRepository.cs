@@ -7,7 +7,7 @@ using System.Web;
 
 namespace ChocolateTycoon.Repositories
 {
-    public class SafeRepository
+    public class SafeRepository : ISafeRepository
     {
         private readonly ApplicationDbContext _db;
 

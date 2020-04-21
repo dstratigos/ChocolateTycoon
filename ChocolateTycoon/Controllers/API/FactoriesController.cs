@@ -8,22 +8,25 @@ using ChocolateTycoon.DTOs;
 using AutoMapper;
 using System.Web.Http;
 using ChocolateTycoon.Data;
+using ChocolateTycoon.Persistence;
 
 namespace ChocolateTycoon.Controllers.API
 {
     public class FactoriesController : ApiController
     {
-        ApplicationDbContext db;
+        private readonly ApplicationDbContext db;
+        private readonly UnitOfWork unitOfWork;
 
         public FactoriesController()
         {
             db = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(db);
         }
 
         // GET: api/factories
         public IHttpActionResult GetFactories()
         {
-            var factories = db.Factories.Include(f => f.Supplier).ToList();
+            var factories = unitOfWork.Factories.GetFactoriesWithSupplier().ToList();
 
             var factoriesDto = new List<FactoryDto>();
 
@@ -34,19 +37,16 @@ namespace ChocolateTycoon.Controllers.API
         [HttpPut]
         public IHttpActionResult BreakContract(int id)
         {
-            var factory = db.Factories
-                .Include(f => f.StorageUnit)
-                .Include(f => f.Supplier)
-                .Single(f => f.ID == id);
+            var factory = unitOfWork.Factories.GetFactoryWithStorageUnitAndSupplier(id);
 
-            var vault = db.Safes.SingleOrDefault();
+            var vault = unitOfWork.Safes.GetSafe();
 
             if (factory == null)
                 return BadRequest();
 
             var message = factory.BreakContract(vault);
 
-            db.SaveChanges();
+            unitOfWork.Complete();
 
             return Ok(message);
         }
@@ -55,12 +55,9 @@ namespace ChocolateTycoon.Controllers.API
         [HttpPost]
         public IHttpActionResult MakeContract(SuppliedFactoryDto suppliedFactory)
         {
-            var factories = db.Factories
-                .Include(f => f.StorageUnit)
-                .Include(f => f.Supplier)
-                .ToList();
+            var factories = unitOfWork.Factories.GetFactoriesWithStorageUnitAndSupplier().ToList();
             var contractFactory = factories.Find(f => f.ID == suppliedFactory.Id);
-            var supplier = db.Suppliers.SingleOrDefault(s => s.Id == suppliedFactory.supplierId);
+            var supplier = unitOfWork.Suppliers.GetSupplier(suppliedFactory.supplierId);
 
             var message = "";
 
@@ -81,7 +78,7 @@ namespace ChocolateTycoon.Controllers.API
 
             message = contractFactory.MakeContract(supplier);
 
-            db.SaveChanges();
+            unitOfWork.Complete();
 
             return Ok(message);
         }
