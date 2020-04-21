@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace ChocolateTycoon.Models
+namespace ChocolateTycoon.Core.Models
 {
     public class Turn
     {

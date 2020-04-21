@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace ChocolateTycoon.Models
+namespace ChocolateTycoon.Core.Models
 {
     public class Supplier
     {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ChocolateTycoon.Models
+namespace ChocolateTycoon.Core.Models
 {
     public class StorageUnit
     {

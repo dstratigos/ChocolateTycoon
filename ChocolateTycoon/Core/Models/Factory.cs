@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
-namespace ChocolateTycoon.Models
+namespace ChocolateTycoon.Core.Models
 {
     public class Factory
     {

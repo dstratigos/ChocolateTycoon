@@ -223,145 +223,145 @@
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\TurnController.cs" />
-    <Compile Include="Data\ApplicationDbContext.cs" />
-    <Compile Include="DTOs\SuppliedFactoryDto.cs" />
-    <Compile Include="DTOs\FactoryDto.cs" />
-    <Compile Include="DTOs\ProductionUnitDto.cs" />
-    <Compile Include="DTOs\StorageUnitDto.cs" />
-    <Compile Include="DTOs\StoreDTO.cs" />
-    <Compile Include="DTOs\SupplierDto.cs" />
+    <Compile Include="Persistence\ApplicationDbContext.cs" />
+    <Compile Include="Core\DTOs\SuppliedFactoryDto.cs" />
+    <Compile Include="Core\DTOs\FactoryDto.cs" />
+    <Compile Include="Core\DTOs\ProductionUnitDto.cs" />
+    <Compile Include="Core\DTOs\StorageUnitDto.cs" />
+    <Compile Include="Core\DTOs\StoreDTO.cs" />
+    <Compile Include="Core\DTOs\SupplierDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\HtmlHelpers.cs" />
-    <Compile Include="Migrations\202002282121374_InitialModelAgain.cs" />
-    <Compile Include="Migrations\202002282121374_InitialModelAgain.Designer.cs">
+    <Compile Include="Persistence\Migrations\202002282121374_InitialModelAgain.cs" />
+    <Compile Include="Persistence\Migrations\202002282121374_InitialModelAgain.Designer.cs">
       <DependentUpon>202002282121374_InitialModelAgain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002290822361_populateInitialTables.cs" />
-    <Compile Include="Migrations\202002290822361_populateInitialTables.Designer.cs">
+    <Compile Include="Persistence\Migrations\202002290822361_populateInitialTables.cs" />
+    <Compile Include="Persistence\Migrations\202002290822361_populateInitialTables.Designer.cs">
       <DependentUpon>202002290822361_populateInitialTables.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002290948011_PopulateChocolateTypes.cs" />
-    <Compile Include="Migrations\202002290948011_PopulateChocolateTypes.Designer.cs">
+    <Compile Include="Persistence\Migrations\202002290948011_PopulateChocolateTypes.cs" />
+    <Compile Include="Persistence\Migrations\202002290948011_PopulateChocolateTypes.Designer.cs">
       <DependentUpon>202002290948011_PopulateChocolateTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002290952140_PopulateChocolates.cs" />
-    <Compile Include="Migrations\202002290952140_PopulateChocolates.Designer.cs">
+    <Compile Include="Persistence\Migrations\202002290952140_PopulateChocolates.cs" />
+    <Compile Include="Persistence\Migrations\202002290952140_PopulateChocolates.Designer.cs">
       <DependentUpon>202002290952140_PopulateChocolates.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002290954054_PopulateMainStorages.cs" />
-    <Compile Include="Migrations\202002290954054_PopulateMainStorages.Designer.cs">
+    <Compile Include="Persistence\Migrations\202002290954054_PopulateMainStorages.cs" />
+    <Compile Include="Persistence\Migrations\202002290954054_PopulateMainStorages.Designer.cs">
       <DependentUpon>202002290954054_PopulateMainStorages.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002290956201_PopulateProductionUnits.cs" />
-    <Compile Include="Migrations\202002290956201_PopulateProductionUnits.Designer.cs">
+    <Compile Include="Persistence\Migrations\202002290956201_PopulateProductionUnits.cs" />
+    <Compile Include="Persistence\Migrations\202002290956201_PopulateProductionUnits.Designer.cs">
       <DependentUpon>202002290956201_PopulateProductionUnits.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002290957147_PopulateStorageUnits.cs" />
-    <Compile Include="Migrations\202002290957147_PopulateStorageUnits.Designer.cs">
+    <Compile Include="Persistence\Migrations\202002290957147_PopulateStorageUnits.cs" />
+    <Compile Include="Persistence\Migrations\202002290957147_PopulateStorageUnits.Designer.cs">
       <DependentUpon>202002290957147_PopulateStorageUnits.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002290958084_PopulateEmployees.cs" />
-    <Compile Include="Migrations\202002290958084_PopulateEmployees.Designer.cs">
+    <Compile Include="Persistence\Migrations\202002290958084_PopulateEmployees.cs" />
+    <Compile Include="Persistence\Migrations\202002290958084_PopulateEmployees.Designer.cs">
       <DependentUpon>202002290958084_PopulateEmployees.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003021809597_EmployeeValidations.cs" />
-    <Compile Include="Migrations\202003021809597_EmployeeValidations.Designer.cs">
+    <Compile Include="Persistence\Migrations\202003021809597_EmployeeValidations.cs" />
+    <Compile Include="Persistence\Migrations\202003021809597_EmployeeValidations.Designer.cs">
       <DependentUpon>202003021809597_EmployeeValidations.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003091426292_ChocolateStoreFk.cs" />
-    <Compile Include="Migrations\202003091426292_ChocolateStoreFk.Designer.cs">
+    <Compile Include="Persistence\Migrations\202003091426292_ChocolateStoreFk.cs" />
+    <Compile Include="Persistence\Migrations\202003091426292_ChocolateStoreFk.Designer.cs">
       <DependentUpon>202003091426292_ChocolateStoreFk.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003100652472_AddedSupplier.cs" />
-    <Compile Include="Migrations\202003100652472_AddedSupplier.Designer.cs">
+    <Compile Include="Persistence\Migrations\202003100652472_AddedSupplier.cs" />
+    <Compile Include="Persistence\Migrations\202003100652472_AddedSupplier.Designer.cs">
       <DependentUpon>202003100652472_AddedSupplier.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003161950261_PopulateSuppliers.cs" />
-    <Compile Include="Migrations\202003161950261_PopulateSuppliers.Designer.cs">
+    <Compile Include="Persistence\Migrations\202003161950261_PopulateSuppliers.cs" />
+    <Compile Include="Persistence\Migrations\202003161950261_PopulateSuppliers.Designer.cs">
       <DependentUpon>202003161950261_PopulateSuppliers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003202008449_AddedFactorySupplierRelationship.cs" />
-    <Compile Include="Migrations\202003202008449_AddedFactorySupplierRelationship.Designer.cs">
+    <Compile Include="Persistence\Migrations\202003202008449_AddedFactorySupplierRelationship.cs" />
+    <Compile Include="Persistence\Migrations\202003202008449_AddedFactorySupplierRelationship.Designer.cs">
       <DependentUpon>202003202008449_AddedFactorySupplierRelationship.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003271551239_AddedShipmentsReceivedToStorageUnit.cs" />
-    <Compile Include="Migrations\202003271551239_AddedShipmentsReceivedToStorageUnit.Designer.cs">
+    <Compile Include="Persistence\Migrations\202003271551239_AddedShipmentsReceivedToStorageUnit.cs" />
+    <Compile Include="Persistence\Migrations\202003271551239_AddedShipmentsReceivedToStorageUnit.Designer.cs">
       <DependentUpon>202003271551239_AddedShipmentsReceivedToStorageUnit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004121713421_AddedProducedDailyProduction.cs" />
-    <Compile Include="Migrations\202004121713421_AddedProducedDailyProduction.Designer.cs">
+    <Compile Include="Persistence\Migrations\202004121713421_AddedProducedDailyProduction.cs" />
+    <Compile Include="Persistence\Migrations\202004121713421_AddedProducedDailyProduction.Designer.cs">
       <DependentUpon>202004121713421_AddedProducedDailyProduction.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004131336004_MergeStoreChanges.cs" />
-    <Compile Include="Migrations\202004131336004_MergeStoreChanges.Designer.cs">
+    <Compile Include="Persistence\Migrations\202004131336004_MergeStoreChanges.cs" />
+    <Compile Include="Persistence\Migrations\202004131336004_MergeStoreChanges.Designer.cs">
       <DependentUpon>202004131336004_MergeStoreChanges.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004131348289_PopulateStoreFK.cs" />
-    <Compile Include="Migrations\202004131348289_PopulateStoreFK.Designer.cs">
+    <Compile Include="Persistence\Migrations\202004131348289_PopulateStoreFK.cs" />
+    <Compile Include="Persistence\Migrations\202004131348289_PopulateStoreFK.Designer.cs">
       <DependentUpon>202004131348289_PopulateStoreFK.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004142006195_DailySalesProp.cs" />
-    <Compile Include="Migrations\202004142006195_DailySalesProp.Designer.cs">
+    <Compile Include="Persistence\Migrations\202004142006195_DailySalesProp.cs" />
+    <Compile Include="Persistence\Migrations\202004142006195_DailySalesProp.Designer.cs">
       <DependentUpon>202004142006195_DailySalesProp.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004151742110_StoreChanges.cs" />
-    <Compile Include="Migrations\202004151742110_StoreChanges.Designer.cs">
+    <Compile Include="Persistence\Migrations\202004151742110_StoreChanges.cs" />
+    <Compile Include="Persistence\Migrations\202004151742110_StoreChanges.Designer.cs">
       <DependentUpon>202004151742110_StoreChanges.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004171657432_stock.cs" />
-    <Compile Include="Migrations\202004171657432_stock.Designer.cs">
+    <Compile Include="Persistence\Migrations\202004171657432_stock.cs" />
+    <Compile Include="Persistence\Migrations\202004171657432_stock.Designer.cs">
       <DependentUpon>202004171657432_stock.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Persistence\Migrations\Configuration.cs" />
+    <Compile Include="Core\ViewModels\AccountViewModels.cs" />
     <Compile Include="Controllers\API\StoresController.cs" />
-    <Compile Include="Models\Chocolate.cs" />
-    <Compile Include="Models\ChocolateStatus.cs" />
-    <Compile Include="Models\Employee.cs" />
-    <Compile Include="Models\Factory.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\MainStorage.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Message.cs" />
-    <Compile Include="Models\MessageEnum.cs" />
-    <Compile Include="Models\Player.cs" />
-    <Compile Include="Models\ProductionUnit.cs" />
-    <Compile Include="Models\Safe.cs" />
-    <Compile Include="Models\StorageUnit.cs" />
-    <Compile Include="Models\Store.cs" />
-    <Compile Include="Models\Supplier.cs" />
-    <Compile Include="Models\Turn.cs" />
-    <Compile Include="Persistence\IUnitOfWork.cs" />
+    <Compile Include="Core\Models\Chocolate.cs" />
+    <Compile Include="Core\Models\ChocolateStatus.cs" />
+    <Compile Include="Core\Models\Employee.cs" />
+    <Compile Include="Core\Models\Factory.cs" />
+    <Compile Include="Core\Models\IdentityModels.cs" />
+    <Compile Include="Core\Models\MainStorage.cs" />
+    <Compile Include="Core\ViewModels\ManageViewModels.cs" />
+    <Compile Include="Core\Models\Message.cs" />
+    <Compile Include="Core\Models\MessageEnum.cs" />
+    <Compile Include="Core\Models\Player.cs" />
+    <Compile Include="Core\Models\ProductionUnit.cs" />
+    <Compile Include="Core\Models\Safe.cs" />
+    <Compile Include="Core\Models\StorageUnit.cs" />
+    <Compile Include="Core\Models\Store.cs" />
+    <Compile Include="Core\Models\Supplier.cs" />
+    <Compile Include="Core\Models\Turn.cs" />
+    <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\ChocolateRepository.cs" />
-    <Compile Include="Repositories\EmployeeRepository.cs" />
-    <Compile Include="Repositories\FactoryRepository.cs" />
-    <Compile Include="Repositories\IChocolateRepository.cs" />
-    <Compile Include="Repositories\IEmployeeRepository.cs" />
-    <Compile Include="Repositories\IFactoryRepository.cs" />
-    <Compile Include="Repositories\IMainStorageRepository.cs" />
-    <Compile Include="Repositories\IProductionUnitRepository.cs" />
-    <Compile Include="Repositories\ISafeRepository.cs" />
-    <Compile Include="Repositories\IStorageUnitRepository.cs" />
-    <Compile Include="Repositories\IStoreRepository.cs" />
-    <Compile Include="Repositories\ISupplierRepository.cs" />
-    <Compile Include="Repositories\MainStorageRepository.cs" />
-    <Compile Include="Repositories\ProductionUnitRepository.cs" />
-    <Compile Include="Repositories\SafeRepository.cs" />
-    <Compile Include="Repositories\StorageUnitRepository.cs" />
-    <Compile Include="Repositories\StoreRepository.cs" />
-    <Compile Include="Models\MaterialsCost.cs" />
-    <Compile Include="Repositories\SupplierRepository.cs" />
+    <Compile Include="Persistence\Repositories\ChocolateRepository.cs" />
+    <Compile Include="Persistence\Repositories\EmployeeRepository.cs" />
+    <Compile Include="Persistence\Repositories\FactoryRepository.cs" />
+    <Compile Include="Core\Repositories\IChocolateRepository.cs" />
+    <Compile Include="Core\Repositories\IEmployeeRepository.cs" />
+    <Compile Include="Core\Repositories\IFactoryRepository.cs" />
+    <Compile Include="Core\Repositories\IMainStorageRepository.cs" />
+    <Compile Include="Core\Repositories\IProductionUnitRepository.cs" />
+    <Compile Include="Core\Repositories\ISafeRepository.cs" />
+    <Compile Include="Core\Repositories\IStorageUnitRepository.cs" />
+    <Compile Include="Core\Repositories\IStoreRepository.cs" />
+    <Compile Include="Core\Repositories\ISupplierRepository.cs" />
+    <Compile Include="Persistence\Repositories\MainStorageRepository.cs" />
+    <Compile Include="Persistence\Repositories\ProductionUnitRepository.cs" />
+    <Compile Include="Persistence\Repositories\SafeRepository.cs" />
+    <Compile Include="Persistence\Repositories\StorageUnitRepository.cs" />
+    <Compile Include="Persistence\Repositories\StoreRepository.cs" />
+    <Compile Include="Core\Models\MaterialsCost.cs" />
+    <Compile Include="Persistence\Repositories\SupplierRepository.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\EmployeeFormViewModel.cs" />
-    <Compile Include="ViewModels\FactoryViewModel.cs" />
-    <Compile Include="ViewModels\MainStorageViewModel.cs" />
-    <Compile Include="ViewModels\StoreEmployeesViewModel.cs" />
-    <Compile Include="ViewModels\StoreFormViewModel.cs" />
-    <Compile Include="ViewModels\SupplierViewModel.cs" />
+    <Compile Include="Core\ViewModels\EmployeeFormViewModel.cs" />
+    <Compile Include="Core\ViewModels\FactoryViewModel.cs" />
+    <Compile Include="Core\ViewModels\MainStorageViewModel.cs" />
+    <Compile Include="Core\ViewModels\StoreEmployeesViewModel.cs" />
+    <Compile Include="Core\ViewModels\StoreFormViewModel.cs" />
+    <Compile Include="Core\ViewModels\SupplierViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-chocolate-tycoon.css" />
@@ -753,64 +753,64 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002282121374_InitialModelAgain.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202002282121374_InitialModelAgain.resx">
       <DependentUpon>202002282121374_InitialModelAgain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002290822361_populateInitialTables.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202002290822361_populateInitialTables.resx">
       <DependentUpon>202002290822361_populateInitialTables.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002290948011_PopulateChocolateTypes.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202002290948011_PopulateChocolateTypes.resx">
       <DependentUpon>202002290948011_PopulateChocolateTypes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002290952140_PopulateChocolates.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202002290952140_PopulateChocolates.resx">
       <DependentUpon>202002290952140_PopulateChocolates.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002290954054_PopulateMainStorages.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202002290954054_PopulateMainStorages.resx">
       <DependentUpon>202002290954054_PopulateMainStorages.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002290956201_PopulateProductionUnits.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202002290956201_PopulateProductionUnits.resx">
       <DependentUpon>202002290956201_PopulateProductionUnits.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002290957147_PopulateStorageUnits.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202002290957147_PopulateStorageUnits.resx">
       <DependentUpon>202002290957147_PopulateStorageUnits.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002290958084_PopulateEmployees.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202002290958084_PopulateEmployees.resx">
       <DependentUpon>202002290958084_PopulateEmployees.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003021809597_EmployeeValidations.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202003021809597_EmployeeValidations.resx">
       <DependentUpon>202003021809597_EmployeeValidations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003091426292_ChocolateStoreFk.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202003091426292_ChocolateStoreFk.resx">
       <DependentUpon>202003091426292_ChocolateStoreFk.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003100652472_AddedSupplier.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202003100652472_AddedSupplier.resx">
       <DependentUpon>202003100652472_AddedSupplier.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003161950261_PopulateSuppliers.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202003161950261_PopulateSuppliers.resx">
       <DependentUpon>202003161950261_PopulateSuppliers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003202008449_AddedFactorySupplierRelationship.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202003202008449_AddedFactorySupplierRelationship.resx">
       <DependentUpon>202003202008449_AddedFactorySupplierRelationship.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003271551239_AddedShipmentsReceivedToStorageUnit.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202003271551239_AddedShipmentsReceivedToStorageUnit.resx">
       <DependentUpon>202003271551239_AddedShipmentsReceivedToStorageUnit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004121713421_AddedProducedDailyProduction.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004121713421_AddedProducedDailyProduction.resx">
       <DependentUpon>202004121713421_AddedProducedDailyProduction.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004131336004_MergeStoreChanges.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004131336004_MergeStoreChanges.resx">
       <DependentUpon>202004131336004_MergeStoreChanges.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004131348289_PopulateStoreFK.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004131348289_PopulateStoreFK.resx">
       <DependentUpon>202004131348289_PopulateStoreFK.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004142006195_DailySalesProp.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004142006195_DailySalesProp.resx">
       <DependentUpon>202004142006195_DailySalesProp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004151742110_StoreChanges.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004151742110_StoreChanges.resx">
       <DependentUpon>202004151742110_StoreChanges.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004171657432_stock.resx">
+    <EmbeddedResource Include="Persistence\Migrations\202004171657432_stock.resx">
       <DependentUpon>202004171657432_stock.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

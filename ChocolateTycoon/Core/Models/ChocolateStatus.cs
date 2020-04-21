@@ -1,4 +1,4 @@
-﻿namespace ChocolateTycoon.Models
+﻿namespace ChocolateTycoon.Core.Models
 {
     public class ChocolateStatus
     {        

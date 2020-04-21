@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ChocolateTycoon.Models
+namespace ChocolateTycoon.Core.Models
 {
     public enum ChocolateType
     {

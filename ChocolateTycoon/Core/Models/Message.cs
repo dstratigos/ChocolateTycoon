@@ -1,6 +1,6 @@
 ﻿using ChocolateTycoon.Helpers;
 
-namespace ChocolateTycoon.Models
+namespace ChocolateTycoon.Core.Models
 {
     public class Message
     {

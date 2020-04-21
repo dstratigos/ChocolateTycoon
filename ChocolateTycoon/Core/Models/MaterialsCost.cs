@@ -1,4 +1,4 @@
-﻿namespace ChocolateTycoon.Services
+﻿namespace ChocolateTycoon.Core.Models
 {
     public struct MaterialsCost
     {
