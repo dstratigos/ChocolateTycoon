@@ -8,6 +8,9 @@ namespace ChocolateTycoon.Models
         [Display(Name = "This Factory already exists! You are now in Edit Mode!")]
         FactoryExistsError = 1,
 
+        [Display(Name = "This employee already exists! You are now in Edit Mode!")]
+        EmployeeExistsError,
+
         [Display(Name = "Storage Unit not available!")]
         StorageUnitNullError,
 

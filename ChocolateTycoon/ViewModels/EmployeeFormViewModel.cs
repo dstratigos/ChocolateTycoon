@@ -8,5 +8,6 @@ namespace ChocolateTycoon.ViewModels
         public IEnumerable<Factory> Factories { get; set; }
         public IEnumerable<Store> Stores { get; set; }
         public Employee Employee { get; set; }
+        public string _errorMessage;
     }
 }
