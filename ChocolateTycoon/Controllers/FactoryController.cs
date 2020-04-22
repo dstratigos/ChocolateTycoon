@@ -62,7 +62,7 @@ namespace ChocolateTycoon.Controllers
             if (!vault.MoneySuffice(Factory.CreateCost))
             {
                 var errorMessage = Message.ErrorMessage;
-                return RedirectToAction("Index", new { errorMessage } );
+                return RedirectToAction("Index", new { errorMessage });
             }
 
             return View("FactoryForm");
@@ -124,7 +124,12 @@ namespace ChocolateTycoon.Controllers
             if (factory == null)
                 return HttpNotFound();
 
-            return View(factory);
+            if (factory.CanBeDeleted())
+                return View(factory);
+
+            var errorMessage = Message.ErrorMessage;
+
+            return RedirectToAction("Index", new { id, errorMessage });
         }
 
         // POST: Factory/Delete/id
@@ -173,7 +178,7 @@ namespace ChocolateTycoon.Controllers
             }
 
             errorMessage = Message.ErrorMessage;
-           
+
             return RedirectToAction("Index", new { id, errorMessage, infoMessage });
         }
     }

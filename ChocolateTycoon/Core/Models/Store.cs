@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Dynamic;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace ChocolateTycoon.Core.Models
 {
@@ -115,6 +118,8 @@ namespace ChocolateTycoon.Core.Models
 
             foreach (var chocolate in chocolates)
                 DailyEarnings += chocolate.Price;
+
+            Message.SetNotification("Daily Earnings " + DailyEarnings);
 
             Safe.DepositAmount(DailyEarnings);
         }

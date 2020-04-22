@@ -1,6 +1,7 @@
 ﻿using ChocolateTycoon.Core;
 using ChocolateTycoon.Core.Models;
 using ChocolateTycoon.Core.ViewModels;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -29,16 +30,22 @@ namespace ChocolateTycoon.Controllers
 
             store.Sell(chocolates);
 
+            var message = Message.Notification;
+
             unitOfWork.Complete();
 
-            return RedirectToAction("Index", new { id, sold = true });
+            return RedirectToAction("Index", new { id, sold = true, message });
         }
 
         public ActionResult Restock(int id, bool restocked = false)
         {
             var store = unitOfWork.Stores.GetStoreWithAllDetails(id);
 
-            var chocolates = unitOfWork.Chocolates.GetMainStorageChocolates().Take(Store._maxStorageCapacity).ToList();
+            var chocolates = unitOfWork.Chocolates
+                .GetMainStorageChocolates()
+                .OrderBy(c => Guid.NewGuid())
+                .Take(Store._maxStorageCapacity)
+                .ToList();
 
             if (chocolates.Count() == 0)
                 return RedirectToAction("Index", new { id, restocked = false });
@@ -67,14 +74,16 @@ namespace ChocolateTycoon.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int id, string message)
         {
             var store = unitOfWork.Stores.GetStoreWithAllDetails(id);
 
             if (store == null)
                 return HttpNotFound();
 
-            return PartialView("_Details", store);
+            var viewModel = new StoreFormViewModel(store) { _message = message };
+
+            return PartialView("_Details", viewModel);
         }
 
         public ActionResult Create()
@@ -109,7 +118,7 @@ namespace ChocolateTycoon.Controllers
 
             var store = new Store
             {
-                Name = viewModel.Name,
+                Name = viewModel.Store.Name,
                 Safe = safe
             };
 
@@ -144,7 +153,7 @@ namespace ChocolateTycoon.Controllers
             }
 
             var store = unitOfWork.Stores.GetStore(viewModel.ID);
-            store.Name = viewModel.Name;
+            store.Name = viewModel.Store.Name;
 
             unitOfWork.Complete();
 
