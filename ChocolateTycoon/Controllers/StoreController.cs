@@ -1,6 +1,7 @@
 ﻿using ChocolateTycoon.Core;
 using ChocolateTycoon.Core.Models;
 using ChocolateTycoon.Core.ViewModels;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -38,7 +39,11 @@ namespace ChocolateTycoon.Controllers
         {
             var store = unitOfWork.Stores.GetStoreWithAllDetails(id);
 
-            var chocolates = unitOfWork.Chocolates.GetMainStorageChocolates().Take(Store._maxStorageCapacity).ToList();
+            var chocolates = unitOfWork.Chocolates
+                .GetMainStorageChocolates()
+                .OrderBy(c => Guid.NewGuid())
+                .Take(Store._maxStorageCapacity)
+                .ToList();
 
             if (chocolates.Count() == 0)
                 return RedirectToAction("Index", new { id, restocked = false });
