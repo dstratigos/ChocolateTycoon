@@ -1,58 +1,61 @@
-﻿@model IEnumerable<ChocolateTycoon.Core.Models.Store>
+﻿@model ChocolateTycoon.Core.ViewModels.StoresViewModel
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Stores";
 }
 
 <div class="container container-fluid">
     <div class="row">
-        <h2>
-            Stores
-            <span type="button" class="btn btn-link btn-lg" style="padding-left: 15px">
-                @Html.ActionLink(" ", "Create", null, new
-           {
-               @id = "create",
-               @class = "glyphicon glyphicon-plus",
-               @style = "text-decoration: none"
-           })
-            </span>
-        </h2>
+        <h1>Stores</h1>
+        <br />
     </div>
 </div>
 
-<table id="stores" class="table table-bordered table-hover">
+@{
+    <div class="container container-fluid">
+        <div id="messageContainer" class="row text-center">
+            <div id="errorContainer" class="row text-danger hidden" style="padding: 0; margin: 0 5px">
+                <h3 class="glyphicon glyphicon-exclamation-sign"></h3>
+                <span id="errorMessage" style="padding-left: 10px;">@Model.ErrorMessage</span>
+            </div>
+        </div>
+    </div>
+}
+
+<table id="stores" class="table table-striped table-hover">
     <thead>
-        <tr @*style="background-color: lightgray; color: black;"*@>
+        <tr class="warning">
             <th>Store Name</th>
             <th>Level</th>
             <th colspan="3"></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var store in Model)
+        @foreach (var store in Model.Stores)
         {
-            string selected = "";
+            //string selected = "";
 
-            if (store.ID == ViewBag.SelectedId)
-            {
-                selected = "orange";
-            }
+            //if (store.ID == ViewBag.SelectedId)
+            //{
+            //    selected = "orange";
+            //}
 
-            <tr style="background-color: @selected">
+            <tr @*style="background-color: @selected"*@>
                 <td>@store.Name</td>
                 <td>@store.Level</td>
                 <td style="text-align: right">
                     @Html.ActionLink(" ", null, new { id = store.ID }, new
-                    { @class = "glyphicon glyphicon-option-horizontal", @style = "text-decoration: none" })
+                    { @class = "fas fa-bars", @style = "text-decoration: none" })
                 </td>
                 <td style="text-align: right">
                     @Html.ActionLink(" ", "Edit", new { id = store.ID }, new
                     {
-                        @class = "glyphicon glyphicon-cog text-warning",
+                        @class = "fas fa-cog text-warning",
                         @style = "text-decoration: none"
                     })
                 </td>
                 <td style="text-align: right">
-                    <a href="#" class="glyphicon glyphicon-remove text-danger js-delete-store"
+                    <a href="#" class="fas fa-trash-alt text-danger js-delete-store"
                        style="text-decoration: none" data-store-id="@store.ID"></a>
                 </td>
             </tr>
@@ -63,23 +66,26 @@
 
 @if (ViewBag.SelectedId != null)
 {
-    <table class="table table-bordered text-center table-hover">
-        <tr @*style="background-color: darkslategrey"*@>
-            <th colspan="3" style="text-align: center">Chocolates</th>
-            <th colspan="3" style="text-align: center">Employees</th>
-        </tr>
+<table class="table table-bordered text-center table-hover">
+    <tr @*style="background-color: darkslategrey"*@>
+        <th colspan="3" style="text-align: center">Chocolates</th>
+        <th colspan="3" style="text-align: center">Employees</th>
+    </tr>
 
-        @foreach (var store in Model)
+    @foreach (var store in Model.Stores)
+    {
+        if (ViewBag.SelectedId == store.ID)
         {
-            if (ViewBag.SelectedId == store.ID)
             {
-                {
-                    Html.RenderAction("Details", new { id = store.ID });
-                }
+                Html.RenderAction("Details", new { id = store.ID });
             }
         }
-    </table>
+    }
+</table>
 }
+
+
+@Html.ActionLink("Create a new store!", "Create", null, new { @id = "createNewStoreButton", @class = "btn btn-warning btn-lg btn-block" })
 
 
 @section scripts
@@ -129,7 +135,7 @@
                 });
             });
 
-            let button = $('#create');
+            let button = $('#createNewStoreButton');
 
             $(button).on("click", function (e) {
                 e.preventDefault();
@@ -145,13 +151,11 @@
                 });
             });
 
-            //$("#sell").on("click", function () {
-            //    $("#sellMessage").removeClass("hidden");
-            //});
+            let errorMessage = $("#errorMessage").text();
 
-            //$("#restock").on("click", function () {
-            //    $("#stockMessage").removeClass("hidden");
-            //});
+              if (errorMessage.length > 0) {
+                $("#errorContainer").toggleClass("hidden").hide().slideDown();
+            };
 
             storeActionObserver();
 

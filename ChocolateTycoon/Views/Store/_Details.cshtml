@@ -59,6 +59,8 @@ else
     <td id="restock">
         @Html.ActionLink("Restock", "Restock", new { id = Model.ID },
        new { @class = "btn btn-link text-success", @style = "padding: 0"/*, @onclick = "restock()"*/, @id = "restockButton" })
+        <i class="fas fa-sync-alt"></i>
+        @*Fix spacing*@
     </td>
     <td>@Model.Stock</td>
     <td id="sell">
