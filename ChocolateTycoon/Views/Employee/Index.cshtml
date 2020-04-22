@@ -4,15 +4,16 @@
     ViewBag.Title = "Employees";
 }
 
-<div class="container container-fluid text-center">
-
-    <h1>Employees</h1>
-    @*<p>@Html.ActionLink(" ", "Create", null, new { @id = "createNewEmployeeButton", @class = "fa fa-plus", @style = "text-decoration: none" })</p>*@
-    <br />
-
+<div class="container container-fluid">
+    <div class="row">
+        <h1>
+            Employees
+            <span type="button" class="btn btn-link btn-lg">
+                @Html.ActionLink(" ", "Create", null, new { @id = "createNewEmployeeButton", @class = "far fa-plus-square newEnityCreactionButton" })
+            </span>
+        </h1>
+    </div>
 </div>
-
-
 
 <table id="table" class="table table-striped table-hover">
 
@@ -46,7 +47,6 @@
                 }
                 else
                 {
-                    @*<span class="text-danger"><i class="fas fa-exclamation-triangle"></i> Unassigned</span>*@
                     <span class="label label-danger"><i class="fas fa-exclamation-triangle"></i> Unassigned</span>
                 }
             </td>
@@ -68,11 +68,6 @@
         </tr>
     }
 </table>
-
-<!-- Possibly add an '+' icon. -->
-    @Html.ActionLink("Create a new employee!", "Create", null, new { @id = "createNewEmployeeButton", @class = "btn btn-warning btn-lg btn-block" })
-
-
 
 @section scripts
 {

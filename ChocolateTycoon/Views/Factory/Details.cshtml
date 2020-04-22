@@ -19,21 +19,22 @@
             <td colspan="4">
                 @Html.HiddenFor(m => m.Factory.ID)
                 <button id="createSU" class="btn btn-link btn-lg create" type="submit" style="padding: 0;">
-                    <i class="glyphicon glyphicon-plus text-warning"></i>
+                    <i class="fas fa-plus text-warning" style="font-size: 18px;"></i>
                 </button>
             </td>
         }
     }
     else
     {
-        <td>
-            @Html.DisplayFor(model => model.Factory.StorageUnit.RawMaterialAmount)
-        </td>
+<td>
+    @Html.DisplayFor(model => model.Factory.StorageUnit.RawMaterialAmount)
+    <i class="fas fa-weight-hanging"></i>
+</td>
         using (Html.BeginForm("Replenish", "StorageUnit", new { id = Model.Factory.ID }))
         {
             <td>
                 <button id="replenish" class="btn btn-link  btn-sm" type="submit" style="padding: 0;">
-                    <i class="glyphicon glyphicon-plus text-success"></i>
+                    <i class="fas fa-plus text-success" style="font-size: 18px;"></i>
                 </button>
             </td>
         }
@@ -48,7 +49,7 @@
         {
             <td>
                 <a href="/Supplier" class="btn btn-link btn-lg" style="padding: 0">
-                    <i class="glyphicon glyphicon-plus text-warning"></i>
+                    <i class="fas fa-plus text-warning" style="font-size: 18px;"></i>
                 </a>
             </td>
             <td>-</td>
@@ -62,8 +63,8 @@
         {
             <td colspan="2">
                 @Html.HiddenFor(m => m.Factory.ID)
-                <button id="createPU" class="btn btn-link btn-lg" type="submit" style="padding: 0;">
-                    <i class="glyphicon glyphicon-plus text-warning"></i>
+                <button id="createPU" class="btn btn-link" type="submit" style="padding: 0;">
+                    <i class="fas fa-plus text-success" style="font-size: 18px;"></i>
                 </button>
             </td>
         }
@@ -75,7 +76,7 @@
         </td>
         <td>
         <a href="@Url.Action("Produce", new { id = Model.Factory.ID })" class="btn btn-link btn-sm" style="padding: 0">
-                <i class="glyphicon glyphicon-plus text-success"></i>
+                <i class="fas fa-plus text-success" style="font-size: 18px;"></i>
             </a>
         </td>
     }

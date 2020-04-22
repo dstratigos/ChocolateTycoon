@@ -9,7 +9,7 @@
 
     @if (Model._manager < 1)
     {
-        <p class="text-warning" style="font-style: italic; font-size: small;">1 needed</p>
+        <span class="label label-danger">At least 1 needed!</span>
     }
 </td>
 
@@ -20,7 +20,7 @@
     {
         if (Model._sales < 2)
         {
-            <p class="text-warning" style="font-style: italic; font-size: small;">2 needed</p>
+            <span class="label label-danger">At least 2 needed!</span>
         }
     }
 
@@ -28,7 +28,7 @@
     {
         if (Model._sales < 3)
         {
-            <p class="text-warning" style="font-style: italic; font-size: small;">3 needed</p>
+            <span class="label label-danger">At least 3 needed!</span>
         }
     }
 </td>
