@@ -33,6 +33,10 @@
         console.log("Restock function is not called.")
     }
 
+    if ($('#chocolateZero').length) {
+        $("#sellButton").addClass("disabled");
+    }
+
     if (url === "restocked=True") {
         $("#chocolateRestockSuccess").removeClass("hidden");
         console.log("Restock function success.")
