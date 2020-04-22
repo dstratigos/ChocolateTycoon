@@ -54,11 +54,9 @@ namespace ChocolateTycoon.Core.Models
             }
 
             if (succeeded > 0 || failed > 0)
-            {
                 Message.SetErrorMessage(null);
 
-            }
             Message.SetMainStorageInfo(succeeded, failed);
-        }        
+        }
     }
 }

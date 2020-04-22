@@ -63,6 +63,7 @@ namespace ChocolateTycoon.Controllers
         public ActionResult Save(EmployeeFormViewModel viewModel)
         {
             var employees = unitOfWork.Employees.GetEmployees().ToList();
+            var vault = unitOfWork.Safes.GetSafe();
 
             if (viewModel.Employee.Id == 0)
             {
@@ -89,10 +90,12 @@ namespace ChocolateTycoon.Controllers
                 }
 
                 unitOfWork.Employees.Add(newEmployee);
+                vault.WithdrawAmount(newEmployee.Salary);
             }
             else
             {
                 var employeeDb = unitOfWork.Employees.GetEmployee(viewModel.Employee.Id);
+                var currentPosition = employeeDb.Position;
 
                 employeeDb.FirstName = viewModel.Employee.FirstName;
                 employeeDb.LastName = viewModel.Employee.LastName;
@@ -100,6 +103,9 @@ namespace ChocolateTycoon.Controllers
                 employeeDb.Salary = viewModel.Employee.SetSalary(viewModel.Employee);
                 employeeDb.FactoryID = viewModel.Employee.FactoryID;
                 employeeDb.StoreID = viewModel.Employee.StoreID;
+
+                if (currentPosition != employeeDb.Position)
+                    vault.WithdrawAmount(employeeDb.Salary);
             }
 
             unitOfWork.Complete();

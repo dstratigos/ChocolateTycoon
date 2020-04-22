@@ -20,66 +20,85 @@
 }
 
 
-@using (Html.BeginForm("Save", "Employee"))
-{
-    @Html.AntiForgeryToken()
+<div class="row">
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Employee.FirstName, new { @class = "control-label" })
-        @Html.TextBoxFor(model => model.Employee.FirstName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Employee.FirstName)
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="form-horizontal">
+            <fieldset>
+
+                @using (Html.BeginForm("Save", "Employee"))
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Employee.FirstName, new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.Employee.FirstName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Employee.FirstName)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Employee.LastName, new { @class = "control-label" })
+                        @Html.TextBoxFor(model => model.Employee.LastName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Employee.LastName, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Employee.Position, new { @class = "control-label" })
+                        @Html.EnumDropDownListFor(model => model.Employee.Position, new
+                            {
+                                @class = "form-control",
+                                @id = "drop"
+                            })
+                    </div>
+
+                    <div id="factoryChoice" class="form-group">
+                        @Html.Label("Assign to Factory")
+                        @Html.DropDownListFor(model => model.Employee.FactoryID,
+                            new SelectList(Model.Factories, "ID", "Name"), "Select",
+                            new { @class = "form-control" }
+                        )
+                    </div>
+
+                    <div id="storeChoice" class="form-group">
+                        @Html.Label("Assign to Store")
+                        @Html.DropDownListFor(model => model.Employee.StoreID,
+                            new SelectList(Model.Stores, "ID", "Name"),
+                            "Select", new { @class = "form-control" }
+                        )
+                    </div>
+
+                    if (Model.Employee != null)
+                    {
+                        @Html.HiddenFor(model => model.Employee.Id)
+                    }
+
+                    @*<table>
+                        <tr>
+                            <td>*@
+                    <button type="submit" class="btn btn-success">Save</button>
+                    @*</td>
+
+                        <td>*@
+                    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-danger" })
+                    @*</td>
+                            </tr>
+                        </table>*@
+
+
+                    @*<div class="btn-group btn-group-justified">
+                            <a href="@Url.Action("", "Employee")" class="btn btn-warning">Back</a>
+                            <a href="@Url.Action("Save", "Employee")" class="btn btn-default" type="submit">Save</a>
+
+                        </div>*@
+                }
+
+            </fieldset>
+        </div>
+
     </div>
+</div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Employee.LastName, new { @class = "control-label" })
-        @Html.TextBoxFor(model => model.Employee.LastName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Employee.LastName, "", new { @class = "text-danger" })
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Employee.Position, new { @class = "control-label" })
-        @Html.EnumDropDownListFor(model => model.Employee.Position, new
-            {
-                @class = "form-control",
-                @id = "drop"
-            })
-    </div>
-
-    <div id="factoryChoice" class="form-group">
-        @Html.Label("Assign to Factory")
-        @Html.DropDownListFor(model => model.Employee.FactoryID,
-            new SelectList(Model.Factories, "ID", "Name"), "Select",
-            new { @class = "form-control" }
-        )
-    </div>
-
-    <div id="storeChoice" class="form-group">
-        @Html.Label("Assign to Store")
-        @Html.DropDownListFor(model => model.Employee.StoreID,
-            new SelectList(Model.Stores, "ID", "Name"),
-            "Select", new { @class = "form-control" }
-        )
-    </div>
-
-    if (Model.Employee != null)
-    {
-        @Html.HiddenFor(model => model.Employee.Id)
-    }
-
-    <table>
-        <tr>
-            <td>
-                <button type="submit" class="btn btn-success btn-sm" style="margin-right: 15px">
-                    Save
-                </button>
-            </td>
-
-            <td>
-                @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-danger btn-sm" })
-            </td>
-        </tr>
-    </table>
-}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
