@@ -10,27 +10,9 @@ namespace ChocolateTycoon.Core.ViewModels
     public class StoreFormViewModel
     {
         public int ID { get; set; }
-
-        [Required]
-        [StringLength(100, MinimumLength = 3, ErrorMessage = "Store Name should contain at least 3 charactes.")]
-        public string Name { get; set; }
-
-        public byte Level { get; private set; }
-
-        public int MainStorageID { get; set; } = 1;
-
-        public int SafeID { get; set; } = 1;
-
-        public MainStorage MainStorage { get; set; }
-
-        public Safe Safe { get; set; }
-
-        public string ErrorMessage { get; set; }
-
-        public string InfoMessage { get; set; }
-
+        public Store Store { get; set; }
+        public decimal Earnings { get; set; }
         public string Heading { get; set; }
-
         public string Action
         {
             get
@@ -49,10 +31,7 @@ namespace ChocolateTycoon.Core.ViewModels
         public StoreFormViewModel(Store store)
         {
             ID = store.ID;
-            Name = store.Name;
-            Level = store.Level;
-            MainStorageID = store.MainStorageID;
-            SafeID = store.SafeID;
+            Store = store;
         }
 
         public StoreFormViewModel()

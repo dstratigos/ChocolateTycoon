@@ -1,8 +1,8 @@
-﻿@model ChocolateTycoon.Core.Models.Store
+﻿@model ChocolateTycoon.Core.ViewModels.StoreFormViewModel
 
 <br />
 
-@if (!Model.AdequateStaff)
+@if (!Model.Store.AdequateStaff)
 {
     <div class="alert alert-warning" role="alert">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -10,12 +10,12 @@
         Not enough employees. Restock and Sell are disabled!
     </div>
 }
-else if (!Model.AdequateChocolate && Model.CompletedDailySales)
+else if (!Model.Store.AdequateChocolate && Model.Store.CompletedDailySales)
 {
     <div class="alert alert-success hidden" role="alert" id="sellSuccess">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
         <span class="sr-only">Success:</span>
-        Store's daily sales completed! Earned @Model.DailyEarnings
+        Store's daily sales completed! Earned @Model.Earnings
     </div>
 
     <div class="alert alert-warning hidden" id="salesForTodayCompleted">
@@ -26,7 +26,7 @@ else if (!Model.AdequateChocolate && Model.CompletedDailySales)
         Restock and Sell are disabled untill then!
     </div>
 }
-else if (Model.AdequateStaff && !Model.AdequateChocolate)
+else if (Model.Store.AdequateStaff && !Model.Store.AdequateChocolate)
 {
     <div class="alert alert-warning" role="alert" id="chocolateZero">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -62,7 +62,7 @@ else
         <i class="fas fa-sync-alt"></i>
         @*Fix spacing*@
     </td>
-    <td>@Model.Stock</td>
+    <td>@Model.Store.Stock</td>
     <td id="sell">
         @Html.ActionLink("Sell Chocolates", "SellChocolates", new { id = Model.ID },
        new { @class = "btn btn-link text-success", @style = "padding: 0"/*, @onclick = "dataReload();"*/, @id = "sellButton" })

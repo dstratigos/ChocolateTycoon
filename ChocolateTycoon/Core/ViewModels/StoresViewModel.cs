@@ -10,5 +10,6 @@ namespace ChocolateTycoon.Core.ViewModels
     {
         public IEnumerable<Store> Stores { get; set; }
         public string ErrorMessage { get; set; }
+        public decimal Earnings { get; set; }
     }
 }

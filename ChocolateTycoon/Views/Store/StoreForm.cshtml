@@ -10,9 +10,9 @@
     @Html.AntiForgeryToken()
 
     <div class="form-group">
-        @Html.LabelFor(v => v.Name, new { @class = "control-label" })
-        @Html.TextBoxFor(v => v.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(v => v.Name, "", new { @class = "text-danger" })
+        @Html.LabelFor(v => v.Store.Name, new { @class = "control-label" })
+        @Html.TextBoxFor(v => v.Store.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(v => v.Store.Name, "", new { @class = "text-danger" })
     </div>
 
     @Html.HiddenFor(v => v.ID)

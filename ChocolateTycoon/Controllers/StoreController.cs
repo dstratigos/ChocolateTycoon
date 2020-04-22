@@ -63,7 +63,7 @@ namespace ChocolateTycoon.Controllers
             var viewModel = new StoresViewModel
             {
                 Stores = stores,
-                ErrorMessage = errorMessage
+                ErrorMessage = errorMessage,
             };
 
             if (id != null)
@@ -79,7 +79,9 @@ namespace ChocolateTycoon.Controllers
             if (store == null)
                 return HttpNotFound();
 
-            return PartialView("_Details", store);
+            var viewModel = new StoreFormViewModel(store);
+
+            return PartialView("_Details", viewModel);
         }
 
         public ActionResult Create()
@@ -114,7 +116,7 @@ namespace ChocolateTycoon.Controllers
 
             var store = new Store
             {
-                Name = viewModel.Name,
+                Name = viewModel.Store.Name,
                 Safe = safe
             };
 
@@ -149,7 +151,7 @@ namespace ChocolateTycoon.Controllers
             }
 
             var store = unitOfWork.Stores.GetStore(viewModel.ID);
-            store.Name = viewModel.Name;
+            store.Name = viewModel.Store.Name;
 
             unitOfWork.Complete();
 
