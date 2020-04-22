@@ -223,6 +223,7 @@
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="Controllers\TurnController.cs" />
+    <Compile Include="Core\ViewModels\StoresViewModel.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Core\DTOs\SuppliedFactoryDto.cs" />
     <Compile Include="Core\DTOs\FactoryDto.cs" />

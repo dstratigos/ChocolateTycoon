@@ -51,14 +51,20 @@ namespace ChocolateTycoon.Controllers
         }
 
         // GET: Store
-        public ActionResult Index(int? id, bool completed = false)
+        public ActionResult Index(int? id, bool completed = false, string errorMessage = null)
         {
             var stores = unitOfWork.Stores.GetStores();
+
+            var viewModel = new StoresViewModel
+            {
+                Stores = stores,
+                ErrorMessage = errorMessage
+            };
 
             if (id != null)
                 ViewBag.SelectedId = id.Value;
 
-            return View(stores);
+            return View(viewModel);
         }
 
         public ActionResult Details(int id)
@@ -82,8 +88,8 @@ namespace ChocolateTycoon.Controllers
 
             if (!safe.MoneySuffice(Store.CreateCost))
             {
-                TempData["ErrorMessage"] = Message.ErrorMessage;
-                return RedirectToAction("Index");
+                var errorMessage = Message.ErrorMessage;
+                return RedirectToAction("Index", new { errorMessage });
             }
 
             return View("StoreForm", viewModel);
@@ -144,35 +150,6 @@ namespace ChocolateTycoon.Controllers
 
             return RedirectToAction("Index", "Store");
         }
-
-        //// GET: Delete
-        //public ActionResult Delete(int id)
-        //{
-        //    var store = unitOfWork.Stores.GetStore(id);
-
-        //    if (store == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    return View(store);
-        //}
-
-        //// POST: Delete
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    var store = unitOfWork.Stores.GetStore(id);
-
-        //    if (store == null)
-        //        return HttpNotFound();
-
-        //    unitOfWork.Stores.Remove(store);
-        //    unitOfWork.Complete();
-
-        //    return RedirectToAction("Index");
-        //}
 
         // GET: Store employees by position
         public PartialViewResult StoreEmployees(int id)

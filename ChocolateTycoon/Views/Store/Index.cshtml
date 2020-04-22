@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ChocolateTycoon.Core.Models.Store>
+﻿@model ChocolateTycoon.Core.ViewModels.StoresViewModel
 @{
     ViewBag.Title = "Index";
 }
@@ -19,6 +19,17 @@
     </div>
 </div>
 
+@{
+    <div class="container container-fluid">
+        <div id="messageContainer" class="row text-center">
+            <div id="errorContainer" class="row text-danger hidden" style="padding: 0; margin: 0 5px">
+                <h3 class="glyphicon glyphicon-exclamation-sign"></h3>
+                <span id="errorMessage" style="padding-left: 10px;">@Model.ErrorMessage</span>
+            </div>
+        </div>
+    </div>
+}
+
 <table id="stores" class="table table-bordered table-hover">
     <thead>
         <tr @*style="background-color: lightgray; color: black;"*@>
@@ -28,7 +39,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var store in Model)
+        @foreach (var store in Model.Stores)
         {
             string selected = "";
 
@@ -69,7 +80,7 @@
             <th colspan="3" style="text-align: center">Employees</th>
         </tr>
 
-        @foreach (var store in Model)
+        @foreach (var store in Model.Stores)
         {
             if (ViewBag.SelectedId == store.ID)
             {
@@ -145,13 +156,11 @@
                 });
             });
 
-            //$("#sell").on("click", function () {
-            //    $("#sellMessage").removeClass("hidden");
-            //});
+            let errorMessage = $("#errorMessage").text();
 
-            //$("#restock").on("click", function () {
-            //    $("#stockMessage").removeClass("hidden");
-            //});
+            if (errorMessage.length > 0) {
+                $("#errorContainer").toggleClass("hidden").hide().slideDown();
+            };
 
             storeActionObserver();
 
