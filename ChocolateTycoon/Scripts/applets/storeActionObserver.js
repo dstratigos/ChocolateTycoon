@@ -4,6 +4,19 @@
     url = url.replace("?", ''); // remove the ? in the url link.
     console.log(url);
 
+
+
+    var index = url.indexOf("&");
+    var soldStatus = url.substr(0, index); 
+    var dailyEarningsTxt = url.substr(index + 1);
+    let dailyEarnings = dailyEarningsTxt.indexOf("=");
+    dailyEarnings = dailyEarningsTxt.substr(dailyEarnings + 1).replace("%2C", ",");
+
+    console.log(soldStatus);
+    console.log(dailyEarnings);
+
+
+
     if ($('#salesForTodayCompleted').length) 
     {
         $("#restockButton").addClass("disabled");
@@ -27,8 +40,9 @@
         console.log("Restock function is not called.")
     }
 
-    if (url === "sold=True") {
+    if (soldStatus === "sold=True") {
         $("#sellSuccess").removeClass("hidden");
+        $("#dailyEarnings").text(dailyEarnings);
         console.log("Sell function success.")
     } else {
         console.log("Sell function is not called.")
