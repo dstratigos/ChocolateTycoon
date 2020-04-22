@@ -65,7 +65,7 @@ namespace ChocolateTycoon.Core.Models
             else
             {
                 Message.SetErrorMessage(MessageEnum.ProductionTurnError);
-                Message.SetMainStorageInfo(0 ,0);
+                Message.SetMainStorageInfo(0, 0);
             }
                 
         }
