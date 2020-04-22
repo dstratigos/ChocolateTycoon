@@ -23,8 +23,14 @@ namespace ChocolateTycoon.Core.Models
                 Notification = PosisionEnumHelper.GetDisplayName(received);
         }
 
-        public static void SetMainStorageInfo(int succeded, int failed)
+        public static void SetMainStorageInfo(int? succeded, int? failed)
         {
+            if (succeded == null && failed == null)
+            {
+                MainStorageInfo = "";
+                return;
+            }                
+
             MainStorageInfo = $"{succeded} {PosisionEnumHelper.GetDisplayName(MessageEnum.ProducedInfo)}" +
                               $" {failed} { PosisionEnumHelper.GetDisplayName(MessageEnum.CharityInfo)}";
         }

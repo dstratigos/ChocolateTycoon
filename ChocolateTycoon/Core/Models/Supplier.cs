@@ -25,10 +25,5 @@ namespace ChocolateTycoon.Core.Models
         {
             Factories = new List<Factory>();
         }
-
-
-
-
-
     }
 }

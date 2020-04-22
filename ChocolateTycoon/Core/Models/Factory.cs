@@ -58,14 +58,20 @@ namespace ChocolateTycoon.Core.Models
                     ProductionUnit.ProducedDailyProduction = true;
                 }
                 else if (!PersonelSuffice())
+                {
                     Message.SetErrorMessage(MessageEnum.PersonelError);
+                    Message.SetMainStorageInfo(null, null);
+                }
                 else
+                {
                     Message.SetErrorMessage(MessageEnum.RawMaterialsError);
+                    Message.SetMainStorageInfo(null, null);
+                }                    
             }
             else
             {
                 Message.SetErrorMessage(MessageEnum.ProductionTurnError);
-                Message.SetMainStorageInfo(0, 0);
+                Message.SetMainStorageInfo(null, null);
             }
                 
         }

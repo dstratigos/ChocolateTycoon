@@ -51,16 +51,16 @@ namespace ChocolateTycoon.Core.Models
             switch ((int)employee.Position)
             {
                 case 0:
-                    return 68;
+                    return 78;
 
                 case 1:
-                    return 60;
+                    return 70;
 
                 case 2:
-                    return 36;
+                    return 38;
 
                 case 3:
-                    return 40;
+                    return 42;
 
                 default:
                     return 0;
