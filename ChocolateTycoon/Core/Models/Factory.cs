@@ -144,6 +144,18 @@ namespace ChocolateTycoon.Core.Models
             return false;
         }
 
+        public bool CanBeDeleted()
+        {
+            if (ProductionUnit == null)
+                return true;
+            else if (ProductionUnit != null && !ProductionUnit.ProducedDailyProduction)
+                return true;
+
+            Message.SetErrorMessage(MessageEnum.ActionNotAllowedError);
+
+            return false;
+        }
+
         public void DoDelete(Safe vault)
         {
             var totalCost = _createCost;

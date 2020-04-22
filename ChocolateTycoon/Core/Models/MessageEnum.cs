@@ -35,6 +35,9 @@ namespace ChocolateTycoon.Core.Models
         [Display(Name = "Not enough chocolate stock. Please restock!")]
         SellStockError,
 
+        [Display(Name = "You'll have to wait until tomorrow to do that!")]
+        ActionNotAllowedError,
+
         // info messages
         [Display(Name = "chocolates stored")]
         ProducedInfo,
