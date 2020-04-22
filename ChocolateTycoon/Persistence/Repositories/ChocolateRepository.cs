@@ -27,36 +27,6 @@ namespace ChocolateTycoon.Persistence.Repositories
                 .Where(c => c.ChocolateStatusId == 2);
         }
 
-        public IEnumerable<Chocolate> GetMainStorageChocolatesDark()
-        {
-            return _db.Chocolates
-                .Where(c => c.ChocolateStatusId == 2 && c.ChocolateType == ChocolateType.Dark).Take(68);
-        }
-
-        public IEnumerable<Chocolate> GetMainStorageChocolatesAlmond()
-        {
-            return _db.Chocolates
-                .Where(c => c.ChocolateStatusId == 2 && c.ChocolateType == ChocolateType.AlmondMilk).Take(15);
-        }
-
-        public IEnumerable<Chocolate> GetMainStorageChocolatesHazelnut()
-        {
-            return _db.Chocolates
-                .Where(c => c.ChocolateStatusId == 2 && c.ChocolateType == ChocolateType.HazelnutMilk).Take(15);
-        }
-
-        public IEnumerable<Chocolate> GetMainStorageChocolatesMilk()
-        {
-            return _db.Chocolates
-                .Where(c => c.ChocolateStatusId == 2 && c.ChocolateType == ChocolateType.Milk).Take(45);
-        }
-
-        public IEnumerable<Chocolate> GetMainStorageChocolatesWhite()
-        {
-            return _db.Chocolates
-                .Where(c => c.ChocolateStatusId == 2 && c.ChocolateType == ChocolateType.Dark).Take(7);
-        }
-
         public void Add(List<Chocolate> chocolates)
         {
             _db.Chocolates.AddRange(chocolates);
