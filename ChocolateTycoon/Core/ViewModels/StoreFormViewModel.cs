@@ -25,6 +25,10 @@ namespace ChocolateTycoon.Core.ViewModels
 
         public Safe Safe { get; set; }
 
+        public string ErrorMessage { get; set; }
+
+        public string InfoMessage { get; set; }
+
         public string Heading { get; set; }
 
         public string Action
