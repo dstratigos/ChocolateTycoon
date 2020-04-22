@@ -30,9 +30,11 @@ namespace ChocolateTycoon.Controllers
 
             store.Sell(chocolates);
 
+            var message = Message.Notification;
+
             unitOfWork.Complete();
 
-            return RedirectToAction("Index", new { id, sold = true });
+            return RedirectToAction("Index", new { id, sold = true, message });
         }
 
         public ActionResult Restock(int id, bool restocked = false)
@@ -63,7 +65,7 @@ namespace ChocolateTycoon.Controllers
             var viewModel = new StoresViewModel
             {
                 Stores = stores,
-                ErrorMessage = errorMessage,
+                ErrorMessage = errorMessage
             };
 
             if (id != null)
@@ -72,14 +74,14 @@ namespace ChocolateTycoon.Controllers
             return View(viewModel);
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int id, string message)
         {
             var store = unitOfWork.Stores.GetStoreWithAllDetails(id);
 
             if (store == null)
                 return HttpNotFound();
 
-            var viewModel = new StoreFormViewModel(store);
+            var viewModel = new StoreFormViewModel(store) { _message = message };
 
             return PartialView("_Details", viewModel);
         }

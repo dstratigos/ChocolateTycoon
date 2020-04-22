@@ -11,7 +11,7 @@ namespace ChocolateTycoon.Core.ViewModels
     {
         public int ID { get; set; }
         public Store Store { get; set; }
-        public decimal Earnings { get; set; }
+        public string _message;
         public string Heading { get; set; }
         public string Action
         {

@@ -119,6 +119,8 @@ namespace ChocolateTycoon.Core.Models
             foreach (var chocolate in chocolates)
                 DailyEarnings += chocolate.Price;
 
+            Message.SetNotification("Daily Earnings " + DailyEarnings);
+
             Safe.DepositAmount(DailyEarnings);
         }
 

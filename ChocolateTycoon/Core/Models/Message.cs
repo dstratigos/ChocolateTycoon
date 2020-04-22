@@ -17,10 +17,9 @@ namespace ChocolateTycoon.Core.Models
                 ErrorMessage = PosisionEnumHelper.GetDisplayName(received);
         }
 
-        public static void SetNotification(MessageEnum? received)
+        public static void SetNotification(string message)
         {
-            if (received != null)
-                Notification = PosisionEnumHelper.GetDisplayName(received);
+            Notification = message;
         }
 
         public static void SetMainStorageInfo(int? succeded, int? failed)

@@ -2,6 +2,8 @@
 
 <br />
 
+<div>@Model._message</div>
+
 @if (!Model.Store.AdequateStaff)
 {
     <div class="alert alert-warning" role="alert">
@@ -15,7 +17,7 @@ else if (!Model.Store.AdequateChocolate && Model.Store.CompletedDailySales)
     <div class="alert alert-success hidden" role="alert" id="sellSuccess">
         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
         <span class="sr-only">Success:</span>
-        Store's daily sales completed! Earned @Model.Earnings
+        Store's daily sales completed! Earned 
     </div>
 
     <div class="alert alert-warning hidden" id="salesForTodayCompleted">
