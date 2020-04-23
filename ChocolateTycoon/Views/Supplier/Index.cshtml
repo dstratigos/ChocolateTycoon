@@ -110,7 +110,7 @@
                             message: message,
                             buttons: {
                                 ok: {
-                                    label: 'What the...',
+                                    label: 'Ok!',
                                     className: 'btn-danger'
                                 }
                             }
@@ -122,7 +122,7 @@
                             message: message,
                             buttons: {
                                 ok: {
-                                    label: 'yack, yack... now move on!',
+                                    label: 'Nice!',
                                     className: 'btn-success'
                                 }
                             },
@@ -195,11 +195,11 @@
                                         },
                                         buttons: {
                                             confirm: {
-                                                label: 'They are thieves!',
+                                                label: 'Yes, too expensive',
                                                 className: 'btn-danger pull-left'
                                             },
                                             cancel: {
-                                                label: 'Let\'s not get carried away',
+                                                label: 'Cancel, my bad',
                                                 className: 'btn-success pull-right'
                                             }
                                         },
@@ -252,11 +252,11 @@
                                         message: "Are you sure?",
                                         buttons: {
                                             confirm: {
-                                                label: 'They are the best!',
+                                                label: 'They\'re the best i can get!',
                                                 className: 'btn-success pull-left'
                                             },
                                             cancel: {
-                                                label: 'I can do better!',
+                                                label: 'Maybe I can rethink about it...',
                                                 className: 'btn-danger pull-right'
                                             }
                                         },
@@ -269,27 +269,57 @@
 
 
 
+                                            //var dialog = bootbox.dialog({
+                                            //    title: 'Processing',
+                                            //    message: '<p><i class="fa fa-spin fa-spinner"></i> Please wait while we update your contract...</p>'
+                                            //});
+                                            //dialog.init(function () {
+                                            //    setTimeout(function () {
+                                            //        if (result) {
+                                            //            $.ajax({
+                                            //                url: "/api/factories/",
+                                            //                method: "POST",
+                                            //                data: { "Id": factoryId, "supplierId": supplier.id },
+                                            //                success: function (response) {
+                                            //                    yackAndReload(response),3000;
+                                            //                },
+                                            //                error: function (response) {
+                                            //                    whatThe(response.responseJSON.message);
+                                            //                }
+                                            //            });
+                                            //        };
+                                            //    }, 3000);
+                                            //});
+
+
                                             var dialog = bootbox.dialog({
-                                                title: 'Processing',
-                                                message: '<p><i class="fa fa-spin fa-spinner"></i> Please wait while we update your contract...</p>'
+                                                title: 'Processing your request',
+                                                message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
                                             });
                                             dialog.init(function () {
                                                 setTimeout(function () {
+                                                    //dialog.find('.bootbox-body').html('I was loaded after the dialog was shown!');
                                                     if (result) {
+                                                        dialog.modal('hide');
                                                         $.ajax({
                                                             url: "/api/factories/",
                                                             method: "POST",
                                                             data: { "Id": factoryId, "supplierId": supplier.id },
                                                             success: function (response) {
-                                                                yackAndReload(response),3000;
+                                                                //yackAndReload(response);
+                                                                dialog.find('.bootbox-body').html(yackAndReload(response));
                                                             },
                                                             error: function (response) {
-                                                                whatThe(response.responseJSON.message);
+                                                                //whatThe(response.responseJSON.message);
+                                                                dialog.find('.bootbox-body').html(whatThe(response.responseJSON.message));
                                                             }
                                                         });
                                                     };
                                                 }, 3000);
                                             });
+
+
+
 
 
                                         }
