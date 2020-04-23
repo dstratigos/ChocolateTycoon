@@ -85,7 +85,7 @@
                 var types = Enum.GetNames(typeof(ChocolateTycoon.Core.Models.ChocolateType));
                 var names = Model.enumNames;
 
-                <tr>
+                <tr class="active">
                     <th>@names[i] Chocolate</th>
                     <td style="text-align: center">
                         @Model.availableChocolates[types[i]]
@@ -99,7 +99,7 @@
                 </tr>
             }
 
-            <tr style="font-size: 13pt; color: darkorange">
+            <tr class="active" style="font-size: 13pt; color: darkorange">
                 <th>Total</th>
                 <td style="font-weight: bold">@Model.Chocolates.Count()</td>
                 @*@{

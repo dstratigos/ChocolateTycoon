@@ -62,9 +62,13 @@
 * {
     /*font-family: ', sans-serif;
     font-style: normal;*/
-    font-weight: 400;
-
+    /*font-weight: 400;
+    font-family: Roboto, sans-serif*/
 }
+
+/*@font-face {
+    font-family: 'Roboto', sans-serif !important;
+}*/
 
 html {
     background: url("/Content/resources/img/BG.png") no-repeat center center fixed;
@@ -152,18 +156,28 @@ td, th {
 /* Change navbar background color */
 .navbar-brand, .navbar-inverse {
     /*background-color: #742e00;*/
-    color: black;
+    color: #000000;
     font-size: 25px;
     font-weight: bolder;
     /*text-shadow: 0px 2px 3px rgba(0,0,0,0.4), 0px 8px 13px rgba(0,0,0,0.1), 0px 18px 23px rgba(0,0,0,0.1);*/
     /*text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 0px -4px 10px rgba(255,255,255,0.3);*/
-    text-shadow: 1px 1px 0px #d5d5d5, 2px 2px 0px rgba(0, 0, 0, 0.1);
+    text-shadow: 1px 1px 0px #d5d5d5, 1.2px 1.2px 0px rgba(0, 0, 0, 0.1);
 }
+
+    /* Change navbar items hover color */
+    .navbar-inverse .navbar-nav > li > a {
+        /*color: #000000;*/
+    }
+
 
     /* Change navbar items hover color */
     .navbar-inverse .navbar-nav > li > a:hover {
         /*color: gold;*/
     }
+
+.dropdown-menu > li > a {
+    color: #000000;
+}
 
 .game-name {
     /*text-shadow: 1px 1px 4px #8C583A;*/
@@ -305,5 +319,7 @@ td, th {
     }
 
 #moneyBalance {
-    color: #8C583A;
+    color: #F27D16;
+    letter-spacing: 0.05em;
+    font-weight: bold;
 }

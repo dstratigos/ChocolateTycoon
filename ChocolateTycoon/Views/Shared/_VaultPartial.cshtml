@@ -2,10 +2,10 @@
 
     <span class="navbar-brand" id="moneyBalance">
         <span id="count">@Model.Deposit</span>
-        <span>
+        <span class="hidden">
             @Html.ActionLink( "+", "CheatDeposit", "Safe", null, new { } )
         </span>
-        <span>
+        <span class="hidden">
             @Html.ActionLink( "-", "CheatWithdraw", "Safe", null, new { } )
         </span>
         <i class="fas fa-dollar-sign"></i>
