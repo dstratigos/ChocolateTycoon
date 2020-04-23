@@ -44,9 +44,19 @@ namespace ChocolateTycoon.Persistence.Repositories
             _db.Employees.Add(employee);
         }
 
+        public void AddMany(List<Employee> employees)
+        {
+            _db.Employees.AddRange(employees);
+        }
+
         public void Remove(Employee employee)
         {
             _db.Employees.Remove(employee);
+        }
+
+        public void RemoveMany(List<Employee> employees)
+        {
+            _db.Employees.RemoveRange(employees);
         }
     }
 }

@@ -8,6 +8,7 @@ namespace ChocolateTycoon.Core.Repositories
         void Add(Store store);
         Store GetStore(int id);
         IEnumerable<Store> GetStores();
+        IEnumerable<Store> GetStoresWithAllDetails();
         Store GetStoreWithAllDetails(int id);
         Store GetStoreWithSafe(int id);
         void Remove(Store store);

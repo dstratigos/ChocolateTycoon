@@ -15,6 +15,11 @@ namespace ChocolateTycoon.Persistence.Repositories
             _db = db;
         }
 
+        public IEnumerable<Chocolate> GetChocolates()
+        {
+            return _db.Chocolates;
+        }
+
         public IEnumerable<Chocolate> GetStoreChocolates(int storeId)
         {
             return _db.Chocolates
@@ -27,9 +32,14 @@ namespace ChocolateTycoon.Persistence.Repositories
                 .Where(c => c.ChocolateStatusId == 2);
         }
 
-        public void Add(List<Chocolate> chocolates)
+        public void AddMany(List<Chocolate> chocolates)
         {
             _db.Chocolates.AddRange(chocolates);
+        }
+
+        public void RemoveMany(List<Chocolate> chocolates)
+        {
+            _db.Chocolates.RemoveRange(chocolates);
         }
     }
 }

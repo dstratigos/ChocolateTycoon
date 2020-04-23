@@ -5,8 +5,10 @@ namespace ChocolateTycoon.Core.Repositories
 {
     public interface IChocolateRepository
     {
-        void Add(List<Chocolate> chocolates);
+        void AddMany(List<Chocolate> chocolates);
+        void RemoveMany(List<Chocolate> chocolates);
+        IEnumerable<Chocolate> GetChocolates();
         IEnumerable<Chocolate> GetMainStorageChocolates();
-        IEnumerable<Chocolate> GetStoreChocolates(int storeId);
+        IEnumerable<Chocolate> GetStoreChocolates(int storeId);        
     }
 }

@@ -170,7 +170,7 @@ namespace ChocolateTycoon.Controllers
 
                 factory.Produce(mainStorage, chocolatesStored);
 
-                unitOfWork.Chocolates.Add(mainStorage.newProducts);
+                unitOfWork.Chocolates.AddMany(mainStorage.newProducts);
 
                 infoMessage = Message.MainStorageInfo;
 
