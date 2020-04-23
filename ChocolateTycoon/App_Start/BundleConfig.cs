@@ -33,6 +33,7 @@ namespace ChocolateTycoon
                       "~/Content/bootstrap-chocolate-tycoon.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
                       "~/Content/site.css",
+                      "~/Content/animate.css",
                       "~/Content/toastr.css"));
         }
     }

@@ -279,6 +279,8 @@ td, th {
     #helpButton:hover {
         border: none;
         filter: brightness(110%);
+        animation: tada 0.5s linear infinite;
+
     }
 
     #helpButton:focus {
