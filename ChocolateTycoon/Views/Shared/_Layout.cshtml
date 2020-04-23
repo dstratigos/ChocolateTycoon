@@ -12,6 +12,13 @@
 <body>
     <img class="bg-image" />
 
+    @*<iframe src="~/Content/resources/audio/chocolate_background_music_short.mp3" allow="autoplay" id="audio" style="display: none"></iframe>*@
+
+    <audio autoplay loop>
+        <source src="~/Content/resources/audio/chocolate_background_music_short.mp3" type="audio/mpeg" id="audioPlayer">
+    </audio>
+
+
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -97,6 +104,9 @@
 
 <script>
     $(window).ready(function () {
+
+        //$('audio')[0].play();
+
         let vaultVal = $("#count");
 
         //counter();
