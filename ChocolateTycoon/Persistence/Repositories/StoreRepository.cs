@@ -26,6 +26,15 @@ namespace ChocolateTycoon.Persistence.Repositories
             return _db.Stores;
         }
 
+        public IEnumerable<Store> GetStoresWithAllDetails()
+        {
+            return _db.Stores
+                .Include(s => s.Employees)
+                .Include(s => s.Chocolates)
+                .Include(s => s.MainStorage)
+                .Include(s => s.Safe);
+        }
+
         public Store GetStoreWithAllDetails(int id)
         {
             return _db.Stores

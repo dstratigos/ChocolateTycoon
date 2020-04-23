@@ -75,5 +75,37 @@ namespace ChocolateTycoon.Core.Models
 
             return 0;
         }
+
+        public static List<Employee> Default()
+        {
+            var Dimitrios = new Employee()
+            {
+                FirstName = "Dimitrios",
+                LastName = "Stratigos",
+                Position = EmployeePosition.FactoryManager               
+            };
+
+            var Eleni = new Employee()
+            {
+                FirstName = "Eleni",
+                LastName = "Magoula",
+                Position = EmployeePosition.StoreManager                
+            };
+
+            var Antonio = new Employee()
+            {
+                FirstName = "Antonio",
+                LastName = "Belshi",
+                Position = EmployeePosition.SalesExpert,
+            };
+
+            Dimitrios.Salary = Dimitrios.SetSalary(Dimitrios);
+            Eleni.Salary = Eleni.SetSalary(Eleni);
+            Antonio.Salary = Antonio.SetSalary(Antonio);
+
+            var defaultEmployees = new List<Employee>() { Dimitrios, Eleni, Antonio };
+
+            return defaultEmployees;
+        }
     }
 }

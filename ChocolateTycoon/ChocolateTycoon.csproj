@@ -214,6 +214,7 @@
     <Compile Include="Controllers\API\SuppliersController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\FactoryController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainStorageController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -736,6 +737,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Game\" />
     <Folder Include="Views\ProductionUnit\" />
     <Folder Include="Views\Safe\" />
     <Folder Include="Views\StorageUnit\" />
