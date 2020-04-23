@@ -130,13 +130,13 @@ namespace ChocolateTycoon.Core.Models
             foreach (var chocolate in chocolates)
             {
                 if (chocolate.ChocolateType == ChocolateType.Dark)
-                    chocolate.Price = 4;
-                else if (chocolate.ChocolateType == ChocolateType.AlmondMilk || chocolate.ChocolateType == ChocolateType.HazelnutMilk)
-                    chocolate.Price = 3.5M;
-                else if (chocolate.ChocolateType == ChocolateType.Milk)
-                    chocolate.Price = 2.5M;
-                else
                     chocolate.Price = 3;
+                else if (chocolate.ChocolateType == ChocolateType.AlmondMilk || chocolate.ChocolateType == ChocolateType.HazelnutMilk)
+                    chocolate.Price = 2.5M;
+                else if (chocolate.ChocolateType == ChocolateType.Milk)
+                    chocolate.Price = 1.5M;
+                else
+                    chocolate.Price = 2;
             }
         }
 
