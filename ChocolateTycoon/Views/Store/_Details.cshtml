@@ -48,7 +48,7 @@ else
 
 }
 
-<tr>
+<tr class="active">
     <th style="text-align: center">Restock</th>
     <th style="text-align: center">Chocolate Stock</th>
     <th style="text-align: center">Sell</th>
@@ -57,7 +57,7 @@ else
     <th style="text-align: center">Sales Department</th>
 </tr>
 
-<tr>
+<tr class="active">
     <td id="restock">
         @Html.ActionLink("Restock", "Restock", new { id = Model.ID },
        new { @class = "btn btn-link text-success", @style = "padding: 0"/*, @onclick = "restock()"*/, @id = "restockButton" })

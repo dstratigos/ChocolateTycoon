@@ -21,7 +21,7 @@
                 <tbody style="text-wrap: none">
                 </tbody>
                 <tfoot>
-                    <tr class="text-center">
+                    <tr  class="active text-center">
                         <td colspan="2">
                             <a href="#" class="btn btn-lg js-break-contract">
                                 <i class="fas fa-minus text-danger" style="font-size: 18px;"></i>
@@ -163,6 +163,7 @@
                         ])
                         .draw();
 
+                    $('.even').addClass("active");
 
                     // executes the BREAK contract command
                     $(table).on('click', '.js-break-contract', function () {

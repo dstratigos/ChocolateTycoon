@@ -37,7 +37,7 @@
     <tbody>
         @foreach (var store in Model.Stores)
         {
-            <tr>
+            <tr class="active">
                 <td>@store.Name</td>
                 <td>@store.Level</td>
                 <td style="text-align: right">
@@ -63,7 +63,7 @@
 @if (ViewBag.SelectedId != null)
 {
 <table class="table table-bordered text-center table-hover">
-    <tr>
+    <tr class="warning">
         <th colspan="3" style="text-align: center">Chocolates</th>
         <th colspan="3" style="text-align: center">Employees</th>
     </tr>

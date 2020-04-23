@@ -2,7 +2,7 @@
 @Html.AntiForgeryToken()
 <br />
 
-<tr>
+<tr class="active">
     <td colspan="2">Raw Materials (Kg)</td>
     <td>Supplier</td>
     <td>Received (Kg)</td>
@@ -11,7 +11,7 @@
     <td>Engineers</td>
 </tr>
 
-<tr>
+<tr class="active">
     @if (Model.Factory.StorageUnit == null)
     {
         using (Html.BeginForm("Create", "StorageUnit"))
