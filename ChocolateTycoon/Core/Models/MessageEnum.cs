@@ -46,6 +46,6 @@ namespace ChocolateTycoon.Core.Models
         CharityInfo,
 
         [Display(Name = "Done!")]
-        SellInfo,
+        SellInfo
     }
 }
