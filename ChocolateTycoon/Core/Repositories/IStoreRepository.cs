@@ -12,5 +12,6 @@ namespace ChocolateTycoon.Core.Repositories
         Store GetStoreWithAllDetails(int id);
         Store GetStoreWithSafe(int id);
         void Remove(Store store);
+        void RemoveMany(List<Store> stores);
     }
 }
