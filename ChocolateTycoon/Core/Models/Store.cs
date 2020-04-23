@@ -18,7 +18,7 @@ namespace ChocolateTycoon.Core.Models
 
         public byte Level { get; private set; }
 
-        private const int _createCost = 1500;
+        private const int _createCost = 1700;
         public static int CreateCost => _createCost;
 
         public const int _maxStorageCapacity = 150;
@@ -130,13 +130,13 @@ namespace ChocolateTycoon.Core.Models
             foreach (var chocolate in chocolates)
             {
                 if (chocolate.ChocolateType == ChocolateType.Dark)
-                    chocolate.Price = 5;
+                    chocolate.Price = 4;
                 else if (chocolate.ChocolateType == ChocolateType.AlmondMilk || chocolate.ChocolateType == ChocolateType.HazelnutMilk)
-                    chocolate.Price = 4.5M;
+                    chocolate.Price = 3.5M;
                 else if (chocolate.ChocolateType == ChocolateType.Milk)
-                    chocolate.Price = 4;
+                    chocolate.Price = 2.5M;
                 else
-                    chocolate.Price = 4;
+                    chocolate.Price = 3;
             }
         }
 
