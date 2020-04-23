@@ -323,3 +323,8 @@ td, th {
     letter-spacing: 0.05em;
     font-weight: bold;
 }
+
+.text-success:hover {
+    color: #000000 !important;
+    
+}

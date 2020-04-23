@@ -4,29 +4,48 @@
     ViewBag.Title = "Factories";
 }
 
-    <div class="container container-fluid">
-        <div class="row">
-            <h1>
-                Factories
-                <span type="button" class="btn btn-link btn-lg">
-                    @Html.ActionLink(" ", "Create", null, new { @id = "createBtn", @class = "far fa-plus-square newEnityCreactionButton" })
-                </span>
-            </h1>
-        </div>
+<div class="container container-fluid">
+    <div class="row">
+        <h1>
+            Factories
+            <span type="button" class="btn btn-link btn-lg">
+                @Html.ActionLink(" ", "Create", null, new { @id = "createBtn", @class = "far fa-plus-square newEnityCreactionButton" })
+            </span>
+        </h1>
     </div>
+</div>
 
 @{
     <div class="container container-fluid">
-        <div id="messageContainer" class="row text-center">
+        @*<div id="messageContainer" class="row text-center">
             <div id="errorContainer" class="row text-danger hidden" style="padding: 0; margin: 0 5px">
                 <h3 class="glyphicon glyphicon-exclamation-sign"></h3>
                 <span id="errorMessage" style="padding-left: 10px;">@Model._errorMessage</span>
-            </div>
-            <div id="infoContainer" class="row text-warning hidden">
-                <h3 class="glyphicon glyphicon-info-sign"></h3>
-                <span id="infoMessage" style="padding-left: 10px;">@Model._infoMessage</span>
+            </div>*@
+
+        <div id="messageContainer" class="row text-center">
+                <div class="alert alert-warning hidden" role="alert" id="errorContainer">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span class="sr-only">Error:</span>
+                    <span id="errorMessage">@Model._errorMessage</span>
+                </div>
+        </div>
+
+
+        @*<div id="infoContainer" class="row text-warning hidden">
+                    <h3 class="glyphicon glyphicon-info-sign"></h3>
+                    <span id="infoMessage" style="padding-left: 10px;">@Model._infoMessage</span>
+                </div>
+            </div>*@
+
+        <div id="infoContainer" class="row text-center">
+            <div class="alert alert-info hidden" role="alert" id="errorContainer">
+                <i class="fas fa-info-circle"></i>
+                <span class="sr-only">Error:</span>
+                <span id="infoMessage">@Model._infoMessage</span>
             </div>
         </div>
+
     </div>
 }
 
