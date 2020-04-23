@@ -10,7 +10,7 @@
 
 </head>
 <body>
-    <img class="bg-image"/>
+    <img class="bg-image" />
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
@@ -144,5 +144,28 @@
                 }
             });
         };
+
+                $("#resetGame").on("click", function(e) {
+                 e.preventDefault();
+                bootbox.confirm({
+                    title: "<strong>You are about to reset your game!</strong>",
+                    message: "<strong>Your current progress will be DELETED and can't be undone. <br /> Are you sure you want to do this?</strong>",
+                    buttons: {
+                        confirm: {
+                            label: '<i class="fa fa-check"></i> Confirm',
+                            className: 'btn-success'
+                        },
+                        cancel: {
+                            label: '<i class="fa fa-times"></i> Cancel',
+                            className: 'btn-danger'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            window.location.href = "@Url.Action("ResetGame","Game")";
+                        };
+                    }
+                });
+            });
     });
 </script>

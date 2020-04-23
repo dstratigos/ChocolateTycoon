@@ -27,7 +27,8 @@ else
             <ul class="dropdown-menu">
                 <li>@Html.ActionLink("New Player", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                 <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-                <li>@Html.ActionLink("New Game", "ResetGame", "Game")</li>
+                <hr style="margin-bottom: 1px; margin-top: 2px;" />
+                <li>@Html.ActionLink("New Game", "ResetGame", "Game", null, new { @id = "resetGame" })</li>
             </ul>
         </li>
     </ul>
@@ -36,3 +37,18 @@ else
               <li>@html.actionlink("log in", "login", "account", routevalues: null, htmlattributes: new { id = "loginlink" })</li>
         </ul>*@
 }
+
+@section scripts
+{
+    <script>
+                        //let resetGame = document.getElementById("#resetGame");
+
+        // Bootbox confirmation for game reset.
+       
+        //resetGame.addEventListener("click", function (e) {
+        //    e.preventDefault();
+
+
+        
+    </script>
+    }
