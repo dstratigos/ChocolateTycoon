@@ -4,34 +4,38 @@
     ViewBag.Title = "Stores";
 }
 
-    <div class="container container-fluid">
-        <div class="row">
-            <h1>
-                Stores
-                <span type="button" class="btn btn-link btn-lg">
-                    @Html.ActionLink(" ", "Create", null, new { @id = "createNewStoreButton", @class = "far fa-plus-square newEnityCreactionButton"})
-                </span>
-            </h1>
-        </div>
+<div class="container container-fluid">
+    <div class="row">
+        <h1>
+            Stores
+            <span type="button" class="btn btn-link btn-lg">
+                @Html.ActionLink(" ", "Create", null, new { @id = "createNewStoreButton", @class = "far fa-plus-square newEnityCreactionButton" })
+            </span>
+        </h1>
     </div>
+</div>
 
 @{
     <div class="container container-fluid">
 
-        <div id="messageContainer" class="row text-center">
+        @*<div id="messageContainer" class="row text-center">
             <div id="errorContainer" class="row text-danger hidden" style="padding: 0; margin: 0 5px">
                 <h3 class="glyphicon glyphicon-exclamation-sign"></h3>
                 <span id="errorMessage" style="padding-left: 10px;">@Model.ErrorMessage</span>
             </div>
+        </div>*@
+
+
+
+
+
+        <div id="messageContainer" class="row text-center">
+            <div class="alert alert-warning hidden" role="alert" id="errorContainer">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                <span id="errorMessage">@Model.ErrorMessage</span>
+            </div>
         </div>
-
-
-        <div class="alert alert-warning" role="alert" id="chocolateZero">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span>
-            Not enough chocolate. Please Restock in order to Sell!
-        </div>
-
     </div>
 }
 
@@ -71,22 +75,22 @@
 
 @if (ViewBag.SelectedId != null)
 {
-<table class="table table-bordered text-center table-hover">
-    <tr class="warning">
-        <th colspan="3" style="text-align: center">Chocolates</th>
-        <th colspan="3" style="text-align: center">Employees</th>
-    </tr>
+    <table class="table table-bordered text-center table-hover">
+        <tr class="warning">
+            <th colspan="3" style="text-align: center">Chocolates</th>
+            <th colspan="3" style="text-align: center">Employees</th>
+        </tr>
 
-    @foreach (var store in Model.Stores)
-    {
-        if (ViewBag.SelectedId == store.ID)
+        @foreach (var store in Model.Stores)
         {
+            if (ViewBag.SelectedId == store.ID)
             {
-                Html.RenderAction("Details", new { id = store.ID });
+                {
+                    Html.RenderAction("Details", new { id = store.ID });
+                }
             }
         }
-    }
-</table>
+    </table>
 }
 
 @section scripts
@@ -154,7 +158,7 @@
 
             let errorMessage = $("#errorMessage").text();
 
-              if (errorMessage.length > 0) {
+            if (errorMessage.length > 0) {
                 $("#errorContainer").toggleClass("hidden").hide().slideDown();
             };
 
