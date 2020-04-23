@@ -52,6 +52,11 @@
         console.log("Sell function is not called.")
     }
 
+    if ($('#adequateStaff').length) {
+        $("#restockButton").addClass("disabled");
+        $("#sellButton").addClass("disabled");
+    }
 
+    
 
 }
