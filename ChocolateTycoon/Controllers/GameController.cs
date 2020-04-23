@@ -27,8 +27,7 @@ namespace ChocolateTycoon.Controllers
             var vault = unitOfWork.Safes.GetSafe();
 
             if (stores.Count != 0)
-                foreach (var store in stores)
-                    unitOfWork.Stores.Remove(store);
+                unitOfWork.Stores.RemoveMany(stores);
 
             if (factories.Count != 0)
                 foreach (var factory in factories)

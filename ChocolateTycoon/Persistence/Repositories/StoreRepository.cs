@@ -53,13 +53,6 @@ namespace ChocolateTycoon.Persistence.Repositories
                 .SingleOrDefault();
         }
 
-        //public Store GetStoreWithChocolates(int id)
-        //{
-        //    return _db.Stores
-        //        .Include(s => s.Chocolates)
-        //        .SingleOrDefault(s => s.ID == id);
-        //}
-
         public void Add(Store store)
         {
             _db.Stores.Add(store);
@@ -68,6 +61,11 @@ namespace ChocolateTycoon.Persistence.Repositories
         public void Remove(Store store)
         {
             _db.Stores.Remove(store);
+        }
+
+        public void RemoveMany(List<Store> stores)
+        {
+            _db.Stores.RemoveRange(stores);
         }
     }
 }
