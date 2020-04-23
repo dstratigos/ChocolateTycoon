@@ -324,6 +324,7 @@ td, th {
     color: #F27D16;
     letter-spacing: 0.05em;
     font-weight: bold;
+    margin-left: 15px;
 }
 
 .text-success:hover {
