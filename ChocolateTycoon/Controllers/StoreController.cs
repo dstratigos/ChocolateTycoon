@@ -17,11 +17,6 @@ namespace ChocolateTycoon.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    db.Dispose();
-        //}
-
         public ActionResult SellChocolates(int id, bool sold = false)
         {
             var chocolates = unitOfWork.Chocolates.GetStoreChocolates(id).ToList();

@@ -109,7 +109,6 @@ namespace ChocolateTycoon.Core.Models
 
                 Earnings(chocolates);
                 CompletedDailySales = true;
-                //LevelUp();
             }
         }
 
@@ -150,11 +149,5 @@ namespace ChocolateTycoon.Core.Models
                 Pricing(chocolates);
             }
         }
-
-        //private void LevelUp()
-        //{
-        //    if (this.Chocolates.Where(c => c.ChocolateStatusId == 4).Count() >= 2000)
-        //        Level = 2;
-        //}
     }
 }

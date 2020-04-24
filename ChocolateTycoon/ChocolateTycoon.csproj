@@ -738,11 +738,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Game\" />
-    <Folder Include="Views\ProductionUnit\" />
-    <Folder Include="Views\Safe\" />
-    <Folder Include="Views\StorageUnit\" />
-    <Folder Include="Views\Turn\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -28,10 +28,11 @@
     }
     else
     {
-<td>
-    @Html.DisplayFor(model => model.Factory.StorageUnit.RawMaterialAmount)
-    <i class="fas fa-weight-hanging"></i>
-</td>
+        <td>
+            @Html.DisplayFor(model => model.Factory.StorageUnit.RawMaterialAmount)
+            <i class="fas fa-weight-hanging"></i>
+        </td>
+
         using (Html.BeginForm("Replenish", "StorageUnit", new { id = Model.Factory.ID }))
         {
             <td>
@@ -40,7 +41,6 @@
                 </button>
             </td>
         }
-
 
         if (@Model.Factory.SupplierId != null)
         {
@@ -57,7 +57,6 @@
             <td>-</td>
         }
     }
-
 
     @if (Model.Factory.ProductionUnit == null)
     {
@@ -77,7 +76,7 @@
             @Html.DisplayFor(model => model.Factory.ProductionUnit.MaxProductionPerDay)
         </td>
         <td>
-        <a href="@Url.Action("Produce", new { id = Model.Factory.ID })" class="btn btn-link btn-sm" style="padding: 0">
+            <a href="@Url.Action("Produce", new { id = Model.Factory.ID })" class="btn btn-link btn-sm" style="padding: 0">
                 <i class="fas fa-plus text-success" style="font-size: 18px;"></i>
             </a>
         </td>

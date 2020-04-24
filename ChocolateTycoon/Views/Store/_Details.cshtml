@@ -2,13 +2,6 @@
 
 <br />
 
-@*<div>@Model._message</div>*@
-
-
-
-
-
-
 @if (!Model.Store.AdequateStaff)
 {
     <div class="alert alert-warning" role="alert" id="adequateStaff">
@@ -69,7 +62,6 @@ else
         @Html.ActionLink("Restock", "Restock", new { id = Model.ID },
        new { @class = "btn btn-link text-success", @style = "padding: 0"/*, @onclick = "restock()"*/, @id = "restockButton" })
         <i class="fas fa-sync-alt"></i>
-        @*Fix spacing*@
     </td>
     <td>@Model.Store.Stock</td>
     <td id="sell">
@@ -80,16 +72,3 @@ else
         Html.RenderAction("StoreEmployees", new { id = Model.ID });
     }
 </tr>
-
-<script>
-        //function dataReload() {
-        //    $('#subTable').load("#subTable");
-    //}
-    @*$("#tableStoreName").text = '@Model.Store.Name';*@
-
-
-
-</script>
-
-
-

@@ -73,24 +73,9 @@
                         @Html.HiddenFor(model => model.Employee.Id)
                     }
 
-                    @*<table>
-                        <tr>
-                            <td>*@
                     <button type="submit" class="btn btn-success">Save</button>
-                    @*</td>
 
-                        <td>*@
                     @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-danger" })
-                    @*</td>
-                            </tr>
-                        </table>*@
-
-
-                    @*<div class="btn-group btn-group-justified">
-                            <a href="@Url.Action("", "Employee")" class="btn btn-warning">Back</a>
-                            <a href="@Url.Action("Save", "Employee")" class="btn btn-default" type="submit">Save</a>
-
-                        </div>*@
                 }
 
             </fieldset>

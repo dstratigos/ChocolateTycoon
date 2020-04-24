@@ -1,141 +1,94 @@
 ﻿@model ChocolateTycoon.Core.ViewModels.MainStorageViewModel
 
-@*@{
-    ViewBag.Title = "Main Storage";
-}
+<div class="container container-fluid text-center">
 
-<h2 style="padding-top: 10px">Main Storage</h2>
-    <hr />
-    <h4>Inventory Report</h4>
-    <hr />*@
+    <!-- Add margin top. -->
+    <h1>Main Storage</h1>
+    <p>Inventory Report</p>
 
 
+    <!-- -->
 
-
-    <div class="container container-fluid text-center">
-
-        <!-- Add margin top. -->
-        @*<blockquote>*@
-            <h1>Main Storage</h1>
-            <p>Inventory Report</p>
-        @*</blockquote>*@
-
-        @*<div class="jumbotron">
-            <h1>Jumbotron</h1>
-            <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-            <p><a class="btn btn-primary btn-lg">Learn more</a></p>
-        </div>*@
-
-        <!-- -->
-
-        <div class="panel panel-default animated slideInRight delay-600ms">
-            <div class="panel-heading">Chocolate available and ready for restock.</div> <!-- Occupied. -->
-            <div class="panel-body">
-                <div class="progress progress-striped active">
-                    <div class="progress-bar progress-bar-warning" id="availableForRestock" style="width: 0%"></div>
-                </div>
-                <br />
-                <span id="availableForRestockText"></span>
+    <div class="panel panel-default animated slideInRight delay-600ms">
+        <div class="panel-heading">Chocolate available and ready for restock.</div> <!-- Occupied. -->
+        <div class="panel-body">
+            <div class="progress progress-striped active">
+                <div class="progress-bar progress-bar-warning" id="availableForRestock" style="width: 0%"></div>
             </div>
+            <br />
+            <span id="availableForRestockText"></span>
         </div>
-
-        <!-- -->
-
-        <div class="panel panel-default animated slideInLeft delay-600ms">
-            <div class="panel-heading">Space available for chocolate production.</div>
-            <div class="panel-body">
-                <div class="progress progress-striped active">
-                    <div class="progress-bar progress-bar-warning" id="availableForProduction" style="width: 0%"></div>
-                </div>
-                <br />
-                <span id="availableForProductionText"></span>
-            </div>
-        </div>
-
-        <!-- -->
-
-        <div class="panel panel-default animated slideInRight delay-600ms">
-            <div class="panel-heading">Maximum main storage capacity.</div>
-            <div class="panel-body">
-                <div class="progress progress-striped active">
-                    <div class="progress-bar progress-bar-danger" id="maximumCapacity" style="width: 0%"></div>
-                </div>
-                <br />
-                <span id="maximumCapacityText"></span>
-            </div>
-        </div>
-
-        <!-- -->
-
-        <table id="table" class="table table-striped table-hover animated zoomInUp delay-1s">
-            <thead>
-                <tr class="warning">
-                    <td colspan="4">Chocolates per category (pcs.) </td>
-                </tr>
-                <tr class="warning">
-                    <td>Chocolate type</td>
-                    <td>Ready for restock</td>
-                    <td>Available for production</td>
-                    @*<td>Maximum capacity</td>*@
-                </tr>
-            </thead>
-
-            @for (int i = 0; i < Model.availableChocolates.Count; i++)
-            {
-                var types = Enum.GetNames(typeof(ChocolateTycoon.Core.Models.ChocolateType));
-                var names = Model.enumNames;
-
-                <tr class="active">
-                    <th>@names[i] Chocolate</th>
-                    <td style="text-align: center">
-                        @Model.availableChocolates[types[i]]
-                    </td>
-                    <td style="text-align: center">
-                        @Model.availableStorage[types[i]]
-                    </td>
-                    @*<td>
-                        @Model.MainStorage.maxPerShelf
-                    </td>*@
-                </tr>
-            }
-
-            <tr class="active" style="font-size: 13pt; color: darkorange">
-                <th>Total</th>
-                <td style="font-weight: bold">@Model.Chocolates.Count()</td>
-                @*@{
-                int total = 0;
-
-                foreach (var value in Model.availableStorage.Values)
-                {
-
-                    total += value;
-                }*@
-
-                <td style="font-weight: bold" id="availableForProductionTable"></td>
-
-
-                @*<td style="font-weight: bold">@Model.MainStorage.MaxStorage</td>*@
-            </tr>
-        </table>
-
-
-
     </div>
+
+    <!-- -->
+
+    <div class="panel panel-default animated slideInLeft delay-600ms">
+        <div class="panel-heading">Space available for chocolate production.</div>
+        <div class="panel-body">
+            <div class="progress progress-striped active">
+                <div class="progress-bar progress-bar-warning" id="availableForProduction" style="width: 0%"></div>
+            </div>
+            <br />
+            <span id="availableForProductionText"></span>
+        </div>
+    </div>
+
+    <!-- -->
+
+    <div class="panel panel-default animated slideInRight delay-600ms">
+        <div class="panel-heading">Maximum main storage capacity.</div>
+        <div class="panel-body">
+            <div class="progress progress-striped active">
+                <div class="progress-bar progress-bar-danger" id="maximumCapacity" style="width: 0%"></div>
+            </div>
+            <br />
+            <span id="maximumCapacityText"></span>
+        </div>
+    </div>
+
+    <!-- -->
+
+    <table id="table" class="table table-striped table-hover animated zoomInUp delay-1s">
+        <thead>
+            <tr class="warning">
+                <td colspan="4">Chocolates per category (pcs.) </td>
+            </tr>
+            <tr class="warning">
+                <td>Chocolate type</td>
+                <td>Ready for restock</td>
+                <td>Available for production</td>
+            </tr>
+        </thead>
+
+        @for (int i = 0; i < Model.availableChocolates.Count; i++)
+        {
+            var types = Enum.GetNames(typeof(ChocolateTycoon.Core.Models.ChocolateType));
+            var names = Model.enumNames;
+
+            <tr class="active">
+                <th>@names[i] Chocolate</th>
+                <td style="text-align: center">
+                    @Model.availableChocolates[types[i]]
+                </td>
+                <td style="text-align: center">
+                    @Model.availableStorage[types[i]]
+                </td>
+            </tr>
+        }
+
+        <tr class="active" style="font-size: 13pt; color: darkorange">
+            <th>Total</th>
+            <td style="font-weight: bold">@Model.Chocolates.Count()</td>
+            <td style="font-weight: bold" id="availableForProductionTable"></td>
+        </tr>
+    </table>
+</div>
 
 @section scripts
 {
     <script>
         $(document).ready(function () {
-            //$('#table').dataTable({
-            //    "order": [[2, "asc"]],
-            //    "columnDefs": [{ "orderable": false, "targets": 0 }],
-            //    "searching": false,
-            //    "paging": false,
-            //    "bInfo": false
-            //});
-
-            
-                @{
+            @{
                     int storageAvailability = 0;
 
                     foreach (var value in Model.availableStorage.Values)
@@ -166,15 +119,11 @@
             $('#availableForRestockText').text("@Model.Chocolates.Count() / @Model.MainStorage.MaxStorage");
             $('#availableForProduction').width(availableForProductionPercentage + '%');
             $("#availableForProductionText").text("@storageAvailability / @Model.MainStorage.MaxStorage");
-            
+
             $("#availableForProductionTable").text("@storageAvailability");
 
             $('#maximumCapacity').width(maximumCapacityPercentage + '%');
             $('#maximumCapacityText').text("@Model.MainStorage.MaxStorage");
-
-
-
         });
-       
     </script>
 }

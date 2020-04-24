@@ -17,25 +17,13 @@
 
 @{
     <div class="container container-fluid">
-        @*<div id="messageContainer" class="row text-center">
-            <div id="errorContainer" class="row text-danger hidden" style="padding: 0; margin: 0 5px">
-                <h3 class="glyphicon glyphicon-exclamation-sign"></h3>
-                <span id="errorMessage" style="padding-left: 10px;">@Model._errorMessage</span>
-            </div>*@
-
         <div id="messageContainer" class="row text-center">
-                <div class="alert alert-warning hidden" role="alert" id="errorContainer">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <span class="sr-only">Error:</span>
-                    <span id="errorMessage">@Model._errorMessage</span>
-                </div>
+            <div class="alert alert-warning hidden" role="alert" id="errorContainer">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span class="sr-only">Error:</span>
+                <span id="errorMessage">@Model._errorMessage</span>
+            </div>
 
-        @*<div id="infoContainer" class="row text-warning hidden">
-                    <h3 class="glyphicon glyphicon-info-sign"></h3>
-                    <span id="infoMessage" style="padding-left: 10px;">@Model._infoMessage</span>
-                </div>
-            </div>*@
-       
             <div class="alert alert-success hidden" role="alert" id="infoContainer">
                 <i class="fas fa-info-circle"></i>
                 <span class="sr-only">Error:</span>
