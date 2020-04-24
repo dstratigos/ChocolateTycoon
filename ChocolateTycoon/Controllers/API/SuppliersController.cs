@@ -7,12 +7,10 @@ namespace ChocolateTycoon.Controllers.API
 {
     public class SuppliersController : ApiController
     {
-        //private readonly ApplicationDbContext db;
         private readonly IUnitOfWork unitOfWork;
 
         public SuppliersController(IUnitOfWork unitOfWork)
         {
-            //db = new ApplicationDbContext();
             this.unitOfWork = unitOfWork;
         }
 
