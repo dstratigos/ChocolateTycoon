@@ -27,7 +27,8 @@ else
             <ul class="dropdown-menu">
                 <li>@Html.ActionLink("New Player", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                 <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-                <hr style="margin-bottom: 1px; margin-top: 2px;" />
+                <hr style="margin-bottom: 1px; margin-top: 10px;" />
+                <span class="label label-info" id="musicLabel">Music ON/OFF</span>
                 <li>@Html.ActionLink("New Game", "ResetGame", "Game", null, new { @id = "resetGame" })</li>
             </ul>
         </li>
@@ -47,6 +48,7 @@ else
        
         //resetGame.addEventListener("click", function (e) {
         //    e.preventDefault();
+
 
 
         

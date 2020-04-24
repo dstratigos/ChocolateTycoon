@@ -14,8 +14,8 @@
 
     @*<iframe src="~/Content/resources/audio/chocolate_background_music_short.mp3" allow="autoplay" id="audio" style="display: none"></iframe>*@
 
-    <audio autoplay loop>
-        <source src="~/Content/resources/audio/chocolate_background_music_short.mp3" type="audio/mpeg" id="audioPlayer">
+    <audio autoplay loop id="audioPlayer">
+        <source src="~/Content/resources/audio/chocolate_background_music_short.mp3" type="audio/mpeg" >
     </audio>
 
 
@@ -48,6 +48,8 @@
                             <li>@Html.ActionLink("Suppliers", "Index", "Supplier")</li>
                             <li>@Html.ActionLink("Employees", "Index", "Employee")</li>
                             <li>@Html.ActionLink("Main Storage", "Index", "MainStorage")</li>
+                            
+                            
                         </ul>
                     </li>
 
@@ -67,6 +69,8 @@
                     @Html.ActionLink("END DAY!", "EndTurn", "Turn", null, new { @id = "endTurnBtn", @class = "btn btn-danger text-center" })
 
 
+
+
                     <span class="navbar-right" id="helpButton">
                         <i class="fa fa-question"></i>
                     </span>
@@ -74,7 +78,7 @@
                     @Html.Partial("_LoginPartial")
                 </div>
 
-
+                
             </div>
 
 
@@ -104,6 +108,49 @@
 
 <script>
     $(window).ready(function () {
+
+        ////addEventListener("click", myFunction);
+        //document.getElementById("musicControl").addEventListener("onclick", control());
+        //control = function () {
+        //    if ($('#musicPlayer').length) {
+        //        $("#musicPlayer").removeAttr("autoplay");
+        //    }
+
+        //    //alert('music paused');
+        //    else {
+        //        $("#musicPlayer").attr("autoplay", "autoplay");
+        //        //alert('music playing');
+        //    }
+        //};
+
+        //$('#musicControl').click(function () {
+        //    if ($('#musicPlayer').length) {
+        //        $("#musicPlayer").removeAttr("autoplay");
+        //   } 
+        
+        //        //alert('music paused');
+        //    else {
+        //        $("#musicPlayer").attr("autoplay", "autoplay");
+        //        //alert('music playing');
+        //    }
+        //});
+
+
+
+        function musicController() {
+        let mp3 = document.getElementById("audioPlayer");
+        if (mp3.muted === true) {
+            mp3.muted = false;
+        }
+        else {
+            mp3.muted = true;
+        };
+        };
+
+
+
+
+                document.getElementById("musicLabel").addEventListener("click", musicController);
 
         //$('audio')[0].play();
 

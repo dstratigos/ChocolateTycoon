@@ -57,6 +57,6 @@
         $("#sellButton").addClass("disabled");
     }
 
-    
+
 
 }
